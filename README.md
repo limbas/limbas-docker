@@ -11,8 +11,10 @@ As a graphical database front-end, it enables the efficient processing of data s
 > docker-compose up
 ```
 
-Limbas will be available for usage at localhost:8000
+Limbas will be available for usage at http://localhost:8000
+
 User: admin
+
 Pass: limbas
 
 ## Usage (with your custom database)
@@ -22,6 +24,7 @@ Pass: limbas
 ```
 
 Connecting the limbas container and your database container is up to you.
-Limbas will be available for configuration at localhost:8000/admin/install/
+
+Limbas will be available for configuration at http://localhost:8000/admin/install/
 
 [Limbarine]: ./Limbarine.png "Limbarine"
