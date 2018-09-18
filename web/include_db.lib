@@ -1,0 +1,39 @@
+<?php
+/*
+Copyright notice
+(c) 1998-2017 LIMBAS GmbH (info@limbas.com)
+All rights reserved
+This script is part of the LIMBAS project. The LIMBAS project is free software;
+you can redistribute it and/or modify it on 2 Ways:
+Under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your option) 
+any later version. Or in a proprietary software license http://limbas.com/
+The GNU General Public License can be found at
+http://www.gnu.org/copyleft/gpl.html. A copy is found in the textfile GPL.txt
+and important notices to the license from the author is found in LICENSE.txt 
+distributed with these scripts.
+This script is distributed WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+General Public License for more details.
+This copyright notice MUST APPEAR in all copies of the script!
+*/
+
+$DBA["DB"] = 'postgres';				/* maxdb76 | masbd77 | postgres | ingres */
+$DBA["DBCUSER"] = 'limbasuser'; 		/* DB control user */
+$DBA["DBCPASS"] = 'limbaspw'; 		/* DB control password */
+$DBA["DBCNAME"] = 'limbasdb'; 		/* DB control name */
+	
+$DBA["DBUSER"] = "limbasuser";			/* DB username */
+$DBA["DBPASS"] = "limbaspw";			/* DB password */
+$DBA["DBNAME"] = "limbasdb";		/* DB instance name */
+$DBA["DBSCHEMA"] = "public";		/* DB schema */
+$DBA["DBHOST"] = "db";			/* DB hostname or IP */
+$DBA["LMHOST"] = "db";			/* LIMBAS hostname or IP */
+$DBA["DBPATH"] = "/opt/sdb/programs/bin";	/* Path to database */
+$DBA["LMPATH"] = "/opt/openlimbas/dependent";	/* Path to LIMBAS */
+$DBA["ODBCDRIVER"] = "PostgreSQL";	/* unixODBC Driver */
+$DBA["PORT"] = "";			/* database Port */
+$DBA["VERSION"] = "90604";		/* database version */
+
+require_once("{$DBA['LMPATH']}/lib/db/db_{$DBA['DB']}.lib");
+?>

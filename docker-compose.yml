@@ -1,0 +1,20 @@
+version: "2"
+services:
+  web:
+    build:
+      context: ./web
+    restart: always
+    ports:
+      - '8000:80'
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./db
+    restart: always
+    environment:
+      POSTGRES_USER: limbasuser
+      POSTGRES_PASSWORD: limbaspw
+      POSTGRES_DB: limbasdb
+      POSTGRES_INITDB_ARGS: '--locale=C --encoding=SQL_ASCII'
