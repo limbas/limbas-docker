@@ -33,7 +33,7 @@ $DBA["DBPATH"] = "/opt/sdb/programs/bin";	/* Path to database */
 $DBA["LMPATH"] = "/opt/openlimbas/dependent";	/* Path to LIMBAS */
 $DBA["ODBCDRIVER"] = "PostgreSQL";	/* unixODBC Driver */
 $DBA["PORT"] = "";			/* database Port */
-$DBA["VERSION"] = "90604";		/* database version */
+$DBA["VERSION"] = "100004";		/* database version */
 
 require_once("{$DBA['LMPATH']}/lib/db/db_{$DBA['DB']}.lib");
 ?>
