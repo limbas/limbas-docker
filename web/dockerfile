@@ -3,7 +3,8 @@ MAINTAINER Limbas GmbH <info@limbas.com>
 
 # install dependencies
 RUN yum -y update
-RUN yum -y install epel-release &&\
+RUN yum -y install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm &&\
+    yum-config-manager --enable remi-php71 &&\
     yum -y install php php-gd php-soap php-odbc php-imap php-xml php-ctype php-mbstring unixODBC ImageMagick poppler-utils wget zip unzip perl-Image-ExifTool postgresql-odbc htmldoc &&\
     yum clean all
 
@@ -20,6 +21,9 @@ RUN sed -i 's/DocumentRoot ".*"/DocumentRoot "\/opt\/openlimbas\/dependent"/g' /
 
 # database connection config
 ADD include_db.lib /opt/openlimbas/dependent/inc/include_db.lib
+
+# unpack demo extensions
+RUN tar xzf /opt/openlimbas/dependent/EXTENSIONS/demo.tar.gz -C /opt/openlimbas/dependent/EXTENSIONS
 
 # dependent is written to by apache
 VOLUME /opt/openlimbas/dependent

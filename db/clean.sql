@@ -2,18 +2,11 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.9
--- Dumped by pg_dump version 9.6.9
-
 SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'LATIN1';
+SET client_encoding = 'SQL_ASCII';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
@@ -29,11 +22,13 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+SET search_path = public, pg_catalog;
+
 --
 -- Name: lmb_lastmodified(); Type: FUNCTION; Schema: public; Owner: limbasuser
 --
 
-CREATE FUNCTION public.lmb_lastmodified() RETURNS trigger
+CREATE FUNCTION lmb_lastmodified() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -56,7 +51,7 @@ ALTER FUNCTION public.lmb_lastmodified() OWNER TO limbasuser;
 -- Name: lmb_vkn(); Type: FUNCTION; Schema: public; Owner: limbasuser
 --
 
-CREATE FUNCTION public.lmb_vkn() RETURNS trigger
+CREATE FUNCTION lmb_vkn() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -105,10 +100,10 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: ldms_favorites; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: ldms_favorites; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.ldms_favorites (
+CREATE TABLE ldms_favorites (
     id numeric(16,0) NOT NULL,
     user_id smallint,
     group_id smallint,
@@ -121,10 +116,10 @@ CREATE TABLE public.ldms_favorites (
 ALTER TABLE public.ldms_favorites OWNER TO limbasuser;
 
 --
--- Name: ldms_files; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: ldms_files; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.ldms_files (
+CREATE TABLE ldms_files (
     id numeric(18,0) NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     editdatum timestamp without time zone,
@@ -177,10 +172,10 @@ CREATE TABLE public.ldms_files (
 ALTER TABLE public.ldms_files OWNER TO limbasuser;
 
 --
--- Name: ldms_meta; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: ldms_meta; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.ldms_meta (
+CREATE TABLE ldms_meta (
     id numeric(18,0) NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     editdatum timestamp without time zone,
@@ -225,10 +220,10 @@ CREATE TABLE public.ldms_meta (
 ALTER TABLE public.ldms_meta OWNER TO limbasuser;
 
 --
--- Name: ldms_rules; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: ldms_rules; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.ldms_rules (
+CREATE TABLE ldms_rules (
     id integer NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     group_id smallint,
@@ -246,10 +241,10 @@ CREATE TABLE public.ldms_rules (
 ALTER TABLE public.ldms_rules OWNER TO limbasuser;
 
 --
--- Name: ldms_structure; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: ldms_structure; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.ldms_structure (
+CREATE TABLE ldms_structure (
     id integer NOT NULL,
     name character varying(50),
     level integer,
@@ -265,17 +260,18 @@ CREATE TABLE public.ldms_structure (
     erstgroup smallint,
     editdatum timestamp without time zone,
     sort integer,
-    path character varying(160)
+    path character varying(160),
+    storage_id smallint
 );
 
 
 ALTER TABLE public.ldms_structure OWNER TO limbasuser;
 
 --
--- Name: lmb_action; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_action; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_action (
+CREATE TABLE lmb_action (
     id integer NOT NULL,
     action character varying(50),
     link_name integer,
@@ -294,10 +290,10 @@ CREATE TABLE public.lmb_action (
 ALTER TABLE public.lmb_action OWNER TO limbasuser;
 
 --
--- Name: lmb_action_depend; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_action_depend; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_action_depend (
+CREATE TABLE lmb_action_depend (
     id integer NOT NULL,
     action character varying(50),
     link_name integer,
@@ -316,10 +312,10 @@ CREATE TABLE public.lmb_action_depend (
 ALTER TABLE public.lmb_action_depend OWNER TO limbasuser;
 
 --
--- Name: lmb_attribute_d; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_attribute_d; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_attribute_d (
+CREATE TABLE lmb_attribute_d (
     id numeric(16,0) NOT NULL,
     erstuser smallint,
     w_id integer,
@@ -327,32 +323,35 @@ CREATE TABLE public.lmb_attribute_d (
     field_id smallint,
     dat_id numeric(16,0),
     value_num double precision,
-    value_string character varying(255)
+    value_string character varying(255),
+    value_date timestamp without time zone
 );
 
 
 ALTER TABLE public.lmb_attribute_d OWNER TO limbasuser;
 
 --
--- Name: lmb_attribute_p; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_attribute_p; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_attribute_p (
+CREATE TABLE lmb_attribute_p (
     id smallint NOT NULL,
     erstdatum timestamp without time zone,
     erstuser smallint,
     name character varying(60),
-    snum smallint
+    snum smallint,
+    tagmode boolean,
+    multimode boolean
 );
 
 
 ALTER TABLE public.lmb_attribute_p OWNER TO limbasuser;
 
 --
--- Name: lmb_attribute_w; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_attribute_w; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_attribute_w (
+CREATE TABLE lmb_attribute_w (
     id numeric(16,0) NOT NULL,
     erstuser smallint,
     pool smallint,
@@ -363,17 +362,35 @@ CREATE TABLE public.lmb_attribute_w (
     sort smallint,
     type smallint,
     level integer DEFAULT 0,
-    haslevel boolean DEFAULT false
+    haslevel boolean DEFAULT false,
+    color character varying(7),
+    attrpool smallint,
+    hidetag boolean,
+    mandatory boolean
 );
 
 
 ALTER TABLE public.lmb_attribute_w OWNER TO limbasuser;
 
 --
--- Name: lmb_chart_list; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_auth_token; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_chart_list (
+CREATE TABLE lmb_auth_token (
+    token character varying(255) NOT NULL,
+    user_id integer,
+    lifespan smallint,
+    expirestamp timestamp without time zone
+);
+
+
+ALTER TABLE public.lmb_auth_token OWNER TO limbasuser;
+
+--
+-- Name: lmb_chart_list; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE TABLE lmb_chart_list (
     id integer NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     erstuser smallint,
@@ -405,10 +422,10 @@ CREATE TABLE public.lmb_chart_list (
 ALTER TABLE public.lmb_chart_list OWNER TO limbasuser;
 
 --
--- Name: lmb_charts; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_charts; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_charts (
+CREATE TABLE lmb_charts (
     id numeric(10,0) NOT NULL,
     chart_id smallint,
     field_id smallint,
@@ -421,10 +438,10 @@ CREATE TABLE public.lmb_charts (
 ALTER TABLE public.lmb_charts OWNER TO limbasuser;
 
 --
--- Name: lmb_colorschemes; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_colorschemes; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_colorschemes (
+CREATE TABLE lmb_colorschemes (
     id integer NOT NULL,
     name character varying(50),
     web1 character varying(10),
@@ -448,10 +465,10 @@ CREATE TABLE public.lmb_colorschemes (
 ALTER TABLE public.lmb_colorschemes OWNER TO limbasuser;
 
 --
--- Name: lmb_conf_fields; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_fields; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_conf_fields (
+CREATE TABLE lmb_conf_fields (
     id integer NOT NULL,
     field_id integer,
     tab_id smallint,
@@ -525,10 +542,10 @@ CREATE TABLE public.lmb_conf_fields (
 ALTER TABLE public.lmb_conf_fields OWNER TO limbasuser;
 
 --
--- Name: lmb_conf_groups; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_groups; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_conf_groups (
+CREATE TABLE lmb_conf_groups (
     id smallint NOT NULL,
     sort smallint,
     beschreibung smallint,
@@ -541,10 +558,10 @@ CREATE TABLE public.lmb_conf_groups (
 ALTER TABLE public.lmb_conf_groups OWNER TO limbasuser;
 
 --
--- Name: lmb_conf_tables; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_tables; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_conf_tables (
+CREATE TABLE lmb_conf_tables (
     id smallint NOT NULL,
     tab_id smallint,
     tab_group smallint,
@@ -568,7 +585,7 @@ CREATE TABLE public.lmb_conf_tables (
     reserveid boolean,
     event character varying(500),
     lastmodified timestamp without time zone,
-    keyfield character varying(15) DEFAULT 'ID'::character varying,
+    keyfield character varying(15),
     params1 numeric(5,0),
     params2 character varying(500),
     datasync boolean
@@ -578,10 +595,10 @@ CREATE TABLE public.lmb_conf_tables (
 ALTER TABLE public.lmb_conf_tables OWNER TO limbasuser;
 
 --
--- Name: lmb_conf_viewfields; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_viewfields; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_conf_viewfields (
+CREATE TABLE lmb_conf_viewfields (
     id numeric,
     viewid integer,
     tablename character varying(50),
@@ -598,10 +615,10 @@ CREATE TABLE public.lmb_conf_viewfields (
 ALTER TABLE public.lmb_conf_viewfields OWNER TO limbasuser;
 
 --
--- Name: lmb_conf_views; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_views; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_conf_views (
+CREATE TABLE lmb_conf_views (
     id smallint NOT NULL,
     viewdef text,
     ispublic boolean DEFAULT false,
@@ -609,17 +626,18 @@ CREATE TABLE public.lmb_conf_views (
     relation text,
     usesystabs boolean DEFAULT false,
     viewtype smallint,
-    isvalid boolean
+    isvalid boolean,
+    setmanually boolean
 );
 
 
 ALTER TABLE public.lmb_conf_views OWNER TO limbasuser;
 
 --
--- Name: lmb_crontab; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_crontab; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_crontab (
+CREATE TABLE lmb_crontab (
     id smallint NOT NULL,
     kategory character varying(20),
     start character varying(30),
@@ -627,17 +645,18 @@ CREATE TABLE public.lmb_crontab (
     erstdatum timestamp without time zone DEFAULT now(),
     activ boolean DEFAULT true,
     description character varying(60),
-    alive integer
+    alive integer,
+    job_user smallint
 );
 
 
 ALTER TABLE public.lmb_crontab OWNER TO limbasuser;
 
 --
--- Name: lmb_currency; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_currency; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_currency (
+CREATE TABLE lmb_currency (
     id smallint,
     currency character varying(50),
     code character varying(5) NOT NULL,
@@ -649,10 +668,30 @@ CREATE TABLE public.lmb_currency (
 ALTER TABLE public.lmb_currency OWNER TO limbasuser;
 
 --
--- Name: lmb_dbpatch; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_custmenu; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_dbpatch (
+CREATE TABLE lmb_custmenu (
+    id smallint NOT NULL,
+    parent smallint,
+    name smallint,
+    title smallint,
+    linkid smallint,
+    typ smallint,
+    url character varying(150),
+    icon character varying(60),
+    bg character varying(7),
+    sort smallint
+);
+
+
+ALTER TABLE public.lmb_custmenu OWNER TO limbasuser;
+
+--
+-- Name: lmb_dbpatch; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE TABLE lmb_dbpatch (
     id smallint NOT NULL,
     status boolean DEFAULT false,
     revision smallint,
@@ -665,10 +704,26 @@ CREATE TABLE public.lmb_dbpatch (
 ALTER TABLE public.lmb_dbpatch OWNER TO limbasuser;
 
 --
--- Name: lmb_field_types; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_external_storage; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_field_types (
+CREATE TABLE lmb_external_storage (
+    id smallint NOT NULL,
+    descr character varying(255),
+    classname character varying(50),
+    config text,
+    externalaccessurl character varying(255),
+    publiccloud boolean
+);
+
+
+ALTER TABLE public.lmb_external_storage OWNER TO limbasuser;
+
+--
+-- Name: lmb_field_types; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE TABLE lmb_field_types (
     id integer NOT NULL,
     field_type smallint,
     data_type smallint,
@@ -687,10 +742,10 @@ CREATE TABLE public.lmb_field_types (
 ALTER TABLE public.lmb_field_types OWNER TO limbasuser;
 
 --
--- Name: lmb_field_types_depend; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_field_types_depend; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_field_types_depend (
+CREATE TABLE lmb_field_types_depend (
     id integer,
     field_type smallint,
     data_type smallint,
@@ -709,10 +764,10 @@ CREATE TABLE public.lmb_field_types_depend (
 ALTER TABLE public.lmb_field_types_depend OWNER TO limbasuser;
 
 --
--- Name: lmb_fonts; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_fonts; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_fonts (
+CREATE TABLE lmb_fonts (
     id smallint NOT NULL,
     family character varying(30),
     name character varying(30),
@@ -723,10 +778,10 @@ CREATE TABLE public.lmb_fonts (
 ALTER TABLE public.lmb_fonts OWNER TO limbasuser;
 
 --
--- Name: lmb_form_list; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_form_list; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_form_list (
+CREATE TABLE lmb_form_list (
     id integer NOT NULL,
     name character varying(160),
     beschreibung character varying(250),
@@ -747,10 +802,10 @@ CREATE TABLE public.lmb_form_list (
 ALTER TABLE public.lmb_form_list OWNER TO limbasuser;
 
 --
--- Name: lmb_forms; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_forms; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_forms (
+CREATE TABLE lmb_forms (
     keyid smallint,
     erstdatum timestamp without time zone DEFAULT now(),
     editdatum timestamp without time zone,
@@ -797,10 +852,10 @@ CREATE TABLE public.lmb_forms (
 ALTER TABLE public.lmb_forms OWNER TO limbasuser;
 
 --
--- Name: lmb_groups; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_groups; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_groups (
+CREATE TABLE lmb_groups (
     group_id integer NOT NULL,
     name character varying(50),
     erstdatum timestamp without time zone DEFAULT now(),
@@ -816,10 +871,10 @@ CREATE TABLE public.lmb_groups (
 ALTER TABLE public.lmb_groups OWNER TO limbasuser;
 
 --
--- Name: lmb_gtab_groupdat; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_groupdat; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_gtab_groupdat (
+CREATE TABLE lmb_gtab_groupdat (
     id double precision NOT NULL,
     group_id smallint,
     tab_id smallint,
@@ -831,10 +886,10 @@ CREATE TABLE public.lmb_gtab_groupdat (
 ALTER TABLE public.lmb_gtab_groupdat OWNER TO limbasuser;
 
 --
--- Name: lmb_gtab_pattern; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_pattern; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_gtab_pattern (
+CREATE TABLE lmb_gtab_pattern (
     id integer NOT NULL,
     erstuser smallint,
     patid smallint,
@@ -851,10 +906,10 @@ CREATE TABLE public.lmb_gtab_pattern (
 ALTER TABLE public.lmb_gtab_pattern OWNER TO limbasuser;
 
 --
--- Name: lmb_gtab_rowsize; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_rowsize; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_gtab_rowsize (
+CREATE TABLE lmb_gtab_rowsize (
     id smallint NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     user_id smallint,
@@ -866,10 +921,10 @@ CREATE TABLE public.lmb_gtab_rowsize (
 ALTER TABLE public.lmb_gtab_rowsize OWNER TO limbasuser;
 
 --
--- Name: lmb_gtab_status_save; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_status_save; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_gtab_status_save (
+CREATE TABLE lmb_gtab_status_save (
     id integer NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     erstuser smallint,
@@ -886,10 +941,10 @@ CREATE TABLE public.lmb_gtab_status_save (
 ALTER TABLE public.lmb_gtab_status_save OWNER TO limbasuser;
 
 --
--- Name: lmb_history_action; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_history_action; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_history_action (
+CREATE TABLE lmb_history_action (
     id numeric(16,0) NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     userid smallint,
@@ -906,10 +961,10 @@ CREATE TABLE public.lmb_history_action (
 ALTER TABLE public.lmb_history_action OWNER TO limbasuser;
 
 --
--- Name: lmb_history_backup; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_history_backup; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_history_backup (
+CREATE TABLE lmb_history_backup (
     id numeric(16,0) NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     label character varying(50),
@@ -928,10 +983,10 @@ CREATE TABLE public.lmb_history_backup (
 ALTER TABLE public.lmb_history_backup OWNER TO limbasuser;
 
 --
--- Name: lmb_history_update; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_history_update; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_history_update (
+CREATE TABLE lmb_history_update (
     id numeric(16,0) NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     userid smallint,
@@ -949,10 +1004,10 @@ CREATE TABLE public.lmb_history_update (
 ALTER TABLE public.lmb_history_update OWNER TO limbasuser;
 
 --
--- Name: lmb_history_user; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_history_user; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_history_user (
+CREATE TABLE lmb_history_user (
     id integer NOT NULL,
     userid integer,
     sessionid character varying(128),
@@ -967,10 +1022,10 @@ CREATE TABLE public.lmb_history_user (
 ALTER TABLE public.lmb_history_user OWNER TO limbasuser;
 
 --
--- Name: lmb_indize_d; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_d; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_indize_d (
+CREATE TABLE lmb_indize_d (
     id numeric(16,0) NOT NULL,
     sid integer,
     wid numeric(16,0),
@@ -983,10 +1038,10 @@ CREATE TABLE public.lmb_indize_d (
 ALTER TABLE public.lmb_indize_d OWNER TO limbasuser;
 
 --
--- Name: lmb_indize_ds; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_ds; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_indize_ds (
+CREATE TABLE lmb_indize_ds (
     id numeric(16,0) NOT NULL,
     sid integer,
     wid numeric(16,0),
@@ -999,10 +1054,10 @@ CREATE TABLE public.lmb_indize_ds (
 ALTER TABLE public.lmb_indize_ds OWNER TO limbasuser;
 
 --
--- Name: lmb_indize_f; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_f; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_indize_f (
+CREATE TABLE lmb_indize_f (
     id numeric(16,0) NOT NULL,
     sid integer,
     wid numeric(16,0),
@@ -1014,10 +1069,10 @@ CREATE TABLE public.lmb_indize_f (
 ALTER TABLE public.lmb_indize_f OWNER TO limbasuser;
 
 --
--- Name: lmb_indize_fs; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_fs; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_indize_fs (
+CREATE TABLE lmb_indize_fs (
     id numeric(16,0) NOT NULL,
     sid integer,
     wid numeric(16,0),
@@ -1029,10 +1084,10 @@ CREATE TABLE public.lmb_indize_fs (
 ALTER TABLE public.lmb_indize_fs OWNER TO limbasuser;
 
 --
--- Name: lmb_indize_history; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_history; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_indize_history (
+CREATE TABLE lmb_indize_history (
     id numeric(16,0) NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     result boolean DEFAULT false,
@@ -1048,10 +1103,10 @@ CREATE TABLE public.lmb_indize_history (
 ALTER TABLE public.lmb_indize_history OWNER TO limbasuser;
 
 --
--- Name: lmb_indize_w; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_w; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_indize_w (
+CREATE TABLE lmb_indize_w (
     id numeric(16,0) NOT NULL,
     val character varying(60),
     metaphone character varying(60),
@@ -1062,10 +1117,10 @@ CREATE TABLE public.lmb_indize_w (
 ALTER TABLE public.lmb_indize_w OWNER TO limbasuser;
 
 --
--- Name: lmb_lang; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_lang; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_lang (
+CREATE TABLE lmb_lang (
     id integer NOT NULL,
     language_id smallint,
     element_id integer,
@@ -1081,10 +1136,10 @@ CREATE TABLE public.lmb_lang (
 ALTER TABLE public.lmb_lang OWNER TO limbasuser;
 
 --
--- Name: lmb_lang_depend; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_lang_depend; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_lang_depend (
+CREATE TABLE lmb_lang_depend (
     id integer NOT NULL,
     language_id smallint,
     element_id integer,
@@ -1100,10 +1155,10 @@ CREATE TABLE public.lmb_lang_depend (
 ALTER TABLE public.lmb_lang_depend OWNER TO limbasuser;
 
 --
--- Name: lmb_mimetypes; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_mimetypes; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_mimetypes (
+CREATE TABLE lmb_mimetypes (
     id integer NOT NULL,
     mimetype character varying(255),
     ext character varying(255),
@@ -1114,13 +1169,13 @@ CREATE TABLE public.lmb_mimetypes (
 ALTER TABLE public.lmb_mimetypes OWNER TO limbasuser;
 
 --
--- Name: lmb_printers; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_printers; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_printers (
+CREATE TABLE lmb_printers (
     id smallint NOT NULL,
-    name character varying(127),
-    sysname character varying(127),
+    name character varying(127) NOT NULL,
+    sysname character varying(127) NOT NULL,
     config text,
     def boolean
 );
@@ -1129,10 +1184,10 @@ CREATE TABLE public.lmb_printers (
 ALTER TABLE public.lmb_printers OWNER TO limbasuser;
 
 --
--- Name: lmb_reminder; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_reminder; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_reminder (
+CREATE TABLE lmb_reminder (
     id numeric(16,0) NOT NULL,
     user_id smallint,
     tab_id smallint,
@@ -1151,10 +1206,10 @@ CREATE TABLE public.lmb_reminder (
 ALTER TABLE public.lmb_reminder OWNER TO limbasuser;
 
 --
--- Name: lmb_reminder_list; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_reminder_list; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_reminder_list (
+CREATE TABLE lmb_reminder_list (
     id smallint NOT NULL,
     erstuser smallint,
     erstdatum timestamp without time zone,
@@ -1170,10 +1225,10 @@ CREATE TABLE public.lmb_reminder_list (
 ALTER TABLE public.lmb_reminder_list OWNER TO limbasuser;
 
 --
--- Name: lmb_report_list; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_report_list; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_report_list (
+CREATE TABLE lmb_report_list (
     id integer NOT NULL,
     name character varying(160),
     beschreibung character varying(250),
@@ -1200,10 +1255,10 @@ CREATE TABLE public.lmb_report_list (
 ALTER TABLE public.lmb_report_list OWNER TO limbasuser;
 
 --
--- Name: lmb_reports; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_reports; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_reports (
+CREATE TABLE lmb_reports (
     el_id smallint,
     erstdatum timestamp without time zone DEFAULT now(),
     editdatum timestamp without time zone,
@@ -1237,17 +1292,18 @@ CREATE TABLE public.lmb_reports (
     pic_name character varying(20),
     bg smallint DEFAULT 0,
     extvalue character varying(1000),
-    id integer NOT NULL
+    id integer NOT NULL,
+    tab_el smallint
 );
 
 
 ALTER TABLE public.lmb_reports OWNER TO limbasuser;
 
 --
--- Name: lmb_revision; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_revision; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_revision (
+CREATE TABLE lmb_revision (
     id smallint NOT NULL,
     erstuser smallint,
     erstdatum timestamp without time zone,
@@ -1261,10 +1317,10 @@ CREATE TABLE public.lmb_revision (
 ALTER TABLE public.lmb_revision OWNER TO limbasuser;
 
 --
--- Name: lmb_rules_action; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_action; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_rules_action (
+CREATE TABLE lmb_rules_action (
     id integer NOT NULL,
     group_id integer,
     link_id integer,
@@ -1276,10 +1332,10 @@ CREATE TABLE public.lmb_rules_action (
 ALTER TABLE public.lmb_rules_action OWNER TO limbasuser;
 
 --
--- Name: lmb_rules_dataset; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_dataset; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_rules_dataset (
+CREATE TABLE lmb_rules_dataset (
     keyid numeric(18,0) NOT NULL,
     edituser smallint,
     datid numeric(18,0),
@@ -1294,10 +1350,10 @@ CREATE TABLE public.lmb_rules_dataset (
 ALTER TABLE public.lmb_rules_dataset OWNER TO limbasuser;
 
 --
--- Name: lmb_rules_fields; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_fields; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_rules_fields (
+CREATE TABLE lmb_rules_fields (
     id numeric(10,0) NOT NULL,
     tab_id smallint,
     field_id smallint,
@@ -1327,10 +1383,10 @@ CREATE TABLE public.lmb_rules_fields (
 ALTER TABLE public.lmb_rules_fields OWNER TO limbasuser;
 
 --
--- Name: lmb_rules_repform; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_repform; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_rules_repform (
+CREATE TABLE lmb_rules_repform (
     id numeric(6,0) NOT NULL,
     typ numeric(1,0),
     group_id smallint,
@@ -1343,10 +1399,10 @@ CREATE TABLE public.lmb_rules_repform (
 ALTER TABLE public.lmb_rules_repform OWNER TO limbasuser;
 
 --
--- Name: lmb_rules_tables; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_tables; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_rules_tables (
+CREATE TABLE lmb_rules_tables (
     id integer NOT NULL,
     group_id smallint,
     tab_id smallint,
@@ -1379,10 +1435,10 @@ CREATE TABLE public.lmb_rules_tables (
 ALTER TABLE public.lmb_rules_tables OWNER TO limbasuser;
 
 --
--- Name: lmb_select_d; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_select_d; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_select_d (
+CREATE TABLE lmb_select_d (
     id integer NOT NULL,
     tab_id smallint,
     dat_id integer,
@@ -1396,25 +1452,27 @@ CREATE TABLE public.lmb_select_d (
 ALTER TABLE public.lmb_select_d OWNER TO limbasuser;
 
 --
--- Name: lmb_select_p; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_select_p; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_select_p (
+CREATE TABLE lmb_select_p (
     id smallint NOT NULL,
     erstdatum timestamp without time zone DEFAULT now(),
     erstuser smallint,
     name character varying(60),
-    snum integer
+    snum integer,
+    tagmode boolean,
+    multimode boolean
 );
 
 
 ALTER TABLE public.lmb_select_p OWNER TO limbasuser;
 
 --
--- Name: lmb_select_w; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_select_w; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_select_w (
+CREATE TABLE lmb_select_w (
     id integer NOT NULL,
     sort integer,
     wert character varying(255),
@@ -1426,17 +1484,18 @@ CREATE TABLE public.lmb_select_w (
     hide boolean DEFAULT false,
     level integer DEFAULT 0,
     haslevel boolean DEFAULT false,
-    lang2_wert character varying(255)
+    lang2_wert character varying(255),
+    color character varying(7)
 );
 
 
 ALTER TABLE public.lmb_select_w OWNER TO limbasuser;
 
 --
--- Name: lmb_session; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_session; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_session (
+CREATE TABLE lmb_session (
     id character varying(128) NOT NULL,
     user_id integer,
     group_id integer,
@@ -1452,10 +1511,10 @@ CREATE TABLE public.lmb_session (
 ALTER TABLE public.lmb_session OWNER TO limbasuser;
 
 --
--- Name: lmb_snap; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_snap; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_snap (
+CREATE TABLE lmb_snap (
     id integer NOT NULL,
     user_id smallint,
     tabid smallint,
@@ -1470,10 +1529,10 @@ CREATE TABLE public.lmb_snap (
 ALTER TABLE public.lmb_snap OWNER TO limbasuser;
 
 --
--- Name: lmb_snap_shared; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_snap_shared; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_snap_shared (
+CREATE TABLE lmb_snap_shared (
     id smallint NOT NULL,
     entity_type character varying(1),
     entity_id smallint,
@@ -1486,23 +1545,23 @@ CREATE TABLE public.lmb_snap_shared (
 ALTER TABLE public.lmb_snap_shared OWNER TO limbasuser;
 
 --
--- Name: lmb_sql_favorites; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sql_favorites; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sql_favorites (
+CREATE TABLE lmb_sql_favorites (
     id smallint NOT NULL,
-    name character varying(50),
-    statement text
+    name character varying(50) NOT NULL,
+    statement text NOT NULL
 );
 
 
 ALTER TABLE public.lmb_sql_favorites OWNER TO limbasuser;
 
 --
--- Name: lmb_sqlreserved; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sqlreserved; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sqlreserved (
+CREATE TABLE lmb_sqlreserved (
     id integer,
     sql_92 character varying(255)
 );
@@ -1511,10 +1570,10 @@ CREATE TABLE public.lmb_sqlreserved (
 ALTER TABLE public.lmb_sqlreserved OWNER TO limbasuser;
 
 --
--- Name: lmb_sync_cache; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_cache; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sync_cache (
+CREATE TABLE lmb_sync_cache (
     id numeric(16,0) NOT NULL,
     tabid smallint,
     datid numeric(16,0),
@@ -1526,10 +1585,10 @@ CREATE TABLE public.lmb_sync_cache (
 ALTER TABLE public.lmb_sync_cache OWNER TO limbasuser;
 
 --
--- Name: lmb_sync_conf; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_conf; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sync_conf (
+CREATE TABLE lmb_sync_conf (
     id smallint NOT NULL,
     template smallint,
     tabid smallint,
@@ -1542,10 +1601,10 @@ CREATE TABLE public.lmb_sync_conf (
 ALTER TABLE public.lmb_sync_conf OWNER TO limbasuser;
 
 --
--- Name: lmb_sync_log; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_log; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sync_log (
+CREATE TABLE lmb_sync_log (
     erstdatum timestamp without time zone DEFAULT now(),
     type character varying(50),
     tabid smallint,
@@ -1560,10 +1619,10 @@ CREATE TABLE public.lmb_sync_log (
 ALTER TABLE public.lmb_sync_log OWNER TO limbasuser;
 
 --
--- Name: lmb_sync_slaves; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_slaves; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sync_slaves (
+CREATE TABLE lmb_sync_slaves (
     id smallint NOT NULL,
     erstuser smallint,
     erstdatum timestamp without time zone,
@@ -1577,22 +1636,25 @@ CREATE TABLE public.lmb_sync_slaves (
 ALTER TABLE public.lmb_sync_slaves OWNER TO limbasuser;
 
 --
--- Name: lmb_sync_template; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_template; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_sync_template (
+CREATE TABLE lmb_sync_template (
     id smallint NOT NULL,
-    name character varying(50)
+    name character varying(50),
+    conflict_mode smallint,
+    tabid smallint,
+    setting text
 );
 
 
 ALTER TABLE public.lmb_sync_template OWNER TO limbasuser;
 
 --
--- Name: lmb_tabletree; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_tabletree; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_tabletree (
+CREATE TABLE lmb_tabletree (
     id smallint NOT NULL,
     erstuser smallint,
     erstdatum timestamp without time zone DEFAULT now(),
@@ -1615,10 +1677,10 @@ CREATE TABLE public.lmb_tabletree (
 ALTER TABLE public.lmb_tabletree OWNER TO limbasuser;
 
 --
--- Name: lmb_trigger; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_trigger; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_trigger (
+CREATE TABLE lmb_trigger (
     id smallint,
     erstdatum timestamp without time zone,
     editdatum timestamp without time zone,
@@ -1641,10 +1703,10 @@ CREATE TABLE public.lmb_trigger (
 ALTER TABLE public.lmb_trigger OWNER TO limbasuser;
 
 --
--- Name: lmb_uglst; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_uglst; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_uglst (
+CREATE TABLE lmb_uglst (
     ugid smallint,
     tabid smallint,
     fieldid smallint,
@@ -1656,10 +1718,10 @@ CREATE TABLE public.lmb_uglst (
 ALTER TABLE public.lmb_uglst OWNER TO limbasuser;
 
 --
--- Name: lmb_umgvar; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_umgvar; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_umgvar (
+CREATE TABLE lmb_umgvar (
     id integer,
     sort integer,
     form_name character varying(50),
@@ -1672,10 +1734,10 @@ CREATE TABLE public.lmb_umgvar (
 ALTER TABLE public.lmb_umgvar OWNER TO limbasuser;
 
 --
--- Name: lmb_user_colors; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_user_colors; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_user_colors (
+CREATE TABLE lmb_user_colors (
     id integer NOT NULL,
     userid integer,
     wert character varying(7)
@@ -1685,14 +1747,14 @@ CREATE TABLE public.lmb_user_colors (
 ALTER TABLE public.lmb_user_colors OWNER TO limbasuser;
 
 --
--- Name: lmb_userdb; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_userdb; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_userdb (
+CREATE TABLE lmb_userdb (
     user_id integer NOT NULL,
     group_id integer,
     username character varying(50),
-    passwort character varying(50),
+    passwort character varying(255),
     vorname character varying(50),
     name character varying(50),
     email character varying(50),
@@ -1745,10 +1807,10 @@ CREATE TABLE public.lmb_userdb (
 ALTER TABLE public.lmb_userdb OWNER TO limbasuser;
 
 --
--- Name: lmb_usrgrp_lst; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_usrgrp_lst; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_usrgrp_lst (
+CREATE TABLE lmb_usrgrp_lst (
     user_id smallint,
     entity_type character varying(1),
     entity_id smallint NOT NULL
@@ -1758,10 +1820,10 @@ CREATE TABLE public.lmb_usrgrp_lst (
 ALTER TABLE public.lmb_usrgrp_lst OWNER TO limbasuser;
 
 --
--- Name: lmb_wfl; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_wfl (
+CREATE TABLE lmb_wfl (
     id smallint NOT NULL,
     name character varying(50),
     descr character varying(250),
@@ -1773,10 +1835,10 @@ CREATE TABLE public.lmb_wfl (
 ALTER TABLE public.lmb_wfl OWNER TO limbasuser;
 
 --
--- Name: lmb_wfl_history; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_history; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_wfl_history (
+CREATE TABLE lmb_wfl_history (
     id numeric NOT NULL,
     erstdatum timestamp without time zone,
     inst_id numeric,
@@ -1791,10 +1853,10 @@ CREATE TABLE public.lmb_wfl_history (
 ALTER TABLE public.lmb_wfl_history OWNER TO limbasuser;
 
 --
--- Name: lmb_wfl_inst; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_inst; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_wfl_inst (
+CREATE TABLE lmb_wfl_inst (
     id numeric NOT NULL,
     tab_id smallint,
     dat_id numeric,
@@ -1806,10 +1868,10 @@ CREATE TABLE public.lmb_wfl_inst (
 ALTER TABLE public.lmb_wfl_inst OWNER TO limbasuser;
 
 --
--- Name: lmb_wfl_task; Type: TABLE; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_task; Type: TABLE; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE TABLE public.lmb_wfl_task (
+CREATE TABLE lmb_wfl_task (
     id smallint NOT NULL,
     name character varying(50),
     descr character varying(250),
@@ -1827,7 +1889,7 @@ ALTER TABLE public.lmb_wfl_task OWNER TO limbasuser;
 -- Name: seq_adressen_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_adressen_id
+CREATE SEQUENCE seq_adressen_id
     START WITH 10
     INCREMENT BY 1
     NO MINVALUE
@@ -1841,7 +1903,7 @@ ALTER TABLE public.seq_adressen_id OWNER TO limbasuser;
 -- Name: seq_artikel_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_artikel_id
+CREATE SEQUENCE seq_artikel_id
     START WITH 83
     INCREMENT BY 1
     NO MINVALUE
@@ -1855,7 +1917,7 @@ ALTER TABLE public.seq_artikel_id OWNER TO limbasuser;
 -- Name: seq_aufgaben_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_aufgaben_id
+CREATE SEQUENCE seq_aufgaben_id
     START WITH 23
     INCREMENT BY 1
     NO MINVALUE
@@ -1869,7 +1931,7 @@ ALTER TABLE public.seq_aufgaben_id OWNER TO limbasuser;
 -- Name: seq_auftraege_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_auftraege_id
+CREATE SEQUENCE seq_auftraege_id
     START WITH 33
     INCREMENT BY 1
     NO MINVALUE
@@ -1883,7 +1945,7 @@ ALTER TABLE public.seq_auftraege_id OWNER TO limbasuser;
 -- Name: seq_ausgaben_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_ausgaben_id
+CREATE SEQUENCE seq_ausgaben_id
     START WITH 5
     INCREMENT BY 1
     NO MINVALUE
@@ -1894,10 +1956,24 @@ CREATE SEQUENCE public.seq_ausgaben_id
 ALTER TABLE public.seq_ausgaben_id OWNER TO limbasuser;
 
 --
+-- Name: seq_berichtstemplate_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_berichtstemplate_id
+    START WITH 8
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_berichtstemplate_id OWNER TO limbasuser;
+
+--
 -- Name: seq_feldtypen_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_feldtypen_id
+CREATE SEQUENCE seq_feldtypen_id
     START WITH 5
     INCREMENT BY 1
     NO MINVALUE
@@ -1908,11 +1984,25 @@ CREATE SEQUENCE public.seq_feldtypen_id
 ALTER TABLE public.seq_feldtypen_id OWNER TO limbasuser;
 
 --
+-- Name: seq_kalender_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_kalender_id
+    START WITH 30
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_kalender_id OWNER TO limbasuser;
+
+--
 -- Name: seq_kontakte_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_kontakte_id
-    START WITH 117
+CREATE SEQUENCE seq_kontakte_id
+    START WITH 119
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1925,7 +2015,7 @@ ALTER TABLE public.seq_kontakte_id OWNER TO limbasuser;
 -- Name: seq_korrespondenz_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_korrespondenz_id
+CREATE SEQUENCE seq_korrespondenz_id
     START WITH 188
     INCREMENT BY 1
     NO MINVALUE
@@ -1939,8 +2029,8 @@ ALTER TABLE public.seq_korrespondenz_id OWNER TO limbasuser;
 -- Name: seq_kunden_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_kunden_id
-    START WITH 93
+CREATE SEQUENCE seq_kunden_id
+    START WITH 94
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -1950,24 +2040,10 @@ CREATE SEQUENCE public.seq_kunden_id
 ALTER TABLE public.seq_kunden_id OWNER TO limbasuser;
 
 --
--- Name: seq_ldms_favorites_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
---
-
-CREATE SEQUENCE public.seq_ldms_favorites_id
-    START WITH 5
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.seq_ldms_favorites_id OWNER TO limbasuser;
-
---
 -- Name: seq_ldms_files_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_ldms_files_id
+CREATE SEQUENCE seq_ldms_files_id
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1981,7 +2057,7 @@ ALTER TABLE public.seq_ldms_files_id OWNER TO limbasuser;
 -- Name: seq_ldms_meta_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_ldms_meta_id
+CREATE SEQUENCE seq_ldms_meta_id
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1992,39 +2068,11 @@ CREATE SEQUENCE public.seq_ldms_meta_id
 ALTER TABLE public.seq_ldms_meta_id OWNER TO limbasuser;
 
 --
--- Name: seq_ldms_rules_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
---
-
-CREATE SEQUENCE public.seq_ldms_rules_id
-    START WITH 199
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.seq_ldms_rules_id OWNER TO limbasuser;
-
---
--- Name: seq_ldms_structure_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
---
-
-CREATE SEQUENCE public.seq_ldms_structure_id
-    START WITH 61
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.seq_ldms_structure_id OWNER TO limbasuser;
-
---
 -- Name: seq_lmb_history_action_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_lmb_history_action_id
-    START WITH 1
+CREATE SEQUENCE seq_lmb_history_action_id
+    START WITH 60
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2037,8 +2085,8 @@ ALTER TABLE public.seq_lmb_history_action_id OWNER TO limbasuser;
 -- Name: seq_lmb_history_update_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_lmb_history_update_id
-    START WITH 1
+CREATE SEQUENCE seq_lmb_history_update_id
+    START WITH 3
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2051,8 +2099,8 @@ ALTER TABLE public.seq_lmb_history_update_id OWNER TO limbasuser;
 -- Name: seq_lmb_history_user_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_lmb_history_user_id
-    START WITH 1081
+CREATE SEQUENCE seq_lmb_history_user_id
+    START WITH 1096
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2065,7 +2113,7 @@ ALTER TABLE public.seq_lmb_history_user_id OWNER TO limbasuser;
 -- Name: seq_lmb_reminder_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_lmb_reminder_id
+CREATE SEQUENCE seq_lmb_reminder_id
     START WITH 135
     INCREMENT BY 1
     NO MINVALUE
@@ -2079,7 +2127,7 @@ ALTER TABLE public.seq_lmb_reminder_id OWNER TO limbasuser;
 -- Name: seq_lmb_wfl_inst_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_lmb_wfl_inst_id
+CREATE SEQUENCE seq_lmb_wfl_inst_id
     START WITH 89
     INCREMENT BY 1
     NO MINVALUE
@@ -2093,7 +2141,7 @@ ALTER TABLE public.seq_lmb_wfl_inst_id OWNER TO limbasuser;
 -- Name: seq_meinkalender_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_meinkalender_id
+CREATE SEQUENCE seq_meinkalender_id
     START WITH 6
     INCREMENT BY 1
     NO MINVALUE
@@ -2107,7 +2155,7 @@ ALTER TABLE public.seq_meinkalender_id OWNER TO limbasuser;
 -- Name: seq_mitarbeiter_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_mitarbeiter_id
+CREATE SEQUENCE seq_mitarbeiter_id
     START WITH 11
     INCREMENT BY 1
     NO MINVALUE
@@ -2121,7 +2169,7 @@ ALTER TABLE public.seq_mitarbeiter_id OWNER TO limbasuser;
 -- Name: seq_nachrichten_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_nachrichten_id
+CREATE SEQUENCE seq_nachrichten_id
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2135,7 +2183,7 @@ ALTER TABLE public.seq_nachrichten_id OWNER TO limbasuser;
 -- Name: seq_positionen_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_positionen_id
+CREATE SEQUENCE seq_positionen_id
     START WITH 99
     INCREMENT BY 1
     NO MINVALUE
@@ -2149,7 +2197,7 @@ ALTER TABLE public.seq_positionen_id OWNER TO limbasuser;
 -- Name: seq_projekte_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_projekte_id
+CREATE SEQUENCE seq_projekte_id
     START WITH 6
     INCREMENT BY 1
     NO MINVALUE
@@ -2160,10 +2208,24 @@ CREATE SEQUENCE public.seq_projekte_id
 ALTER TABLE public.seq_projekte_id OWNER TO limbasuser;
 
 --
+-- Name: seq_r_ume_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_r_ume_id
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_r_ume_id OWNER TO limbasuser;
+
+--
 -- Name: seq_raeume_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_raeume_id
+CREATE SEQUENCE seq_raeume_id
     START WITH 12
     INCREMENT BY 1
     NO MINVALUE
@@ -2177,7 +2239,7 @@ ALTER TABLE public.seq_raeume_id OWNER TO limbasuser;
 -- Name: seq_raumverteilung_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_raumverteilung_id
+CREATE SEQUENCE seq_raumverteilung_id
     START WITH 33
     INCREMENT BY 1
     NO MINVALUE
@@ -2188,10 +2250,24 @@ CREATE SEQUENCE public.seq_raumverteilung_id
 ALTER TABLE public.seq_raumverteilung_id OWNER TO limbasuser;
 
 --
+-- Name: seq_templates_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_templates_id
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_templates_id OWNER TO limbasuser;
+
+--
 -- Name: seq_verk_070140c2ecc06_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_070140c2ecc06_keyid
+CREATE SEQUENCE seq_verk_070140c2ecc06_keyid
     START WITH 3
     INCREMENT BY 1
     NO MINVALUE
@@ -2205,7 +2281,7 @@ ALTER TABLE public.seq_verk_070140c2ecc06_keyid OWNER TO limbasuser;
 -- Name: seq_verk_07a6948db7d45_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_07a6948db7d45_keyid
+CREATE SEQUENCE seq_verk_07a6948db7d45_keyid
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2219,7 +2295,7 @@ ALTER TABLE public.seq_verk_07a6948db7d45_keyid OWNER TO limbasuser;
 -- Name: seq_verk_10f25cf14fe63_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_10f25cf14fe63_keyid
+CREATE SEQUENCE seq_verk_10f25cf14fe63_keyid
     START WITH 2
     INCREMENT BY 1
     NO MINVALUE
@@ -2233,8 +2309,8 @@ ALTER TABLE public.seq_verk_10f25cf14fe63_keyid OWNER TO limbasuser;
 -- Name: seq_verk_17e64eb8914c6_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_17e64eb8914c6_keyid
-    START WITH 99
+CREATE SEQUENCE seq_verk_17e64eb8914c6_keyid
+    START WITH 100
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2247,7 +2323,7 @@ ALTER TABLE public.seq_verk_17e64eb8914c6_keyid OWNER TO limbasuser;
 -- Name: seq_verk_1fb5ab7537f76_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_1fb5ab7537f76_keyid
+CREATE SEQUENCE seq_verk_1fb5ab7537f76_keyid
     START WITH 8
     INCREMENT BY 1
     NO MINVALUE
@@ -2261,7 +2337,7 @@ ALTER TABLE public.seq_verk_1fb5ab7537f76_keyid OWNER TO limbasuser;
 -- Name: seq_verk_242f6cad318bb_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_242f6cad318bb_keyid
+CREATE SEQUENCE seq_verk_242f6cad318bb_keyid
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2275,7 +2351,7 @@ ALTER TABLE public.seq_verk_242f6cad318bb_keyid OWNER TO limbasuser;
 -- Name: seq_verk_3fcf4e1eb67e5_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_3fcf4e1eb67e5_keyid
+CREATE SEQUENCE seq_verk_3fcf4e1eb67e5_keyid
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2289,7 +2365,7 @@ ALTER TABLE public.seq_verk_3fcf4e1eb67e5_keyid OWNER TO limbasuser;
 -- Name: seq_verk_442a8f1d8a126_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_442a8f1d8a126_keyid
+CREATE SEQUENCE seq_verk_442a8f1d8a126_keyid
     START WITH 6
     INCREMENT BY 1
     NO MINVALUE
@@ -2303,7 +2379,7 @@ ALTER TABLE public.seq_verk_442a8f1d8a126_keyid OWNER TO limbasuser;
 -- Name: seq_verk_4465a9d897b7f_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_4465a9d897b7f_keyid
+CREATE SEQUENCE seq_verk_4465a9d897b7f_keyid
     START WITH 92
     INCREMENT BY 1
     NO MINVALUE
@@ -2314,24 +2390,10 @@ CREATE SEQUENCE public.seq_verk_4465a9d897b7f_keyid
 ALTER TABLE public.seq_verk_4465a9d897b7f_keyid OWNER TO limbasuser;
 
 --
--- Name: seq_verk_51afd2b841217_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
---
-
-CREATE SEQUENCE public.seq_verk_51afd2b841217_keyid
-    START WITH 16
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.seq_verk_51afd2b841217_keyid OWNER TO limbasuser;
-
---
 -- Name: seq_verk_5c73240091186_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_5c73240091186_keyid
+CREATE SEQUENCE seq_verk_5c73240091186_keyid
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2345,7 +2407,7 @@ ALTER TABLE public.seq_verk_5c73240091186_keyid OWNER TO limbasuser;
 -- Name: seq_verk_5ca376805922b_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_5ca376805922b_keyid
+CREATE SEQUENCE seq_verk_5ca376805922b_keyid
     START WITH 40
     INCREMENT BY 1
     NO MINVALUE
@@ -2359,7 +2421,7 @@ ALTER TABLE public.seq_verk_5ca376805922b_keyid OWNER TO limbasuser;
 -- Name: seq_verk_6f91ec1c8fa36_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_6f91ec1c8fa36_keyid
+CREATE SEQUENCE seq_verk_6f91ec1c8fa36_keyid
     START WITH 14
     INCREMENT BY 1
     NO MINVALUE
@@ -2373,7 +2435,7 @@ ALTER TABLE public.seq_verk_6f91ec1c8fa36_keyid OWNER TO limbasuser;
 -- Name: seq_verk_7a0c66d0b880b_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_7a0c66d0b880b_keyid
+CREATE SEQUENCE seq_verk_7a0c66d0b880b_keyid
     START WITH 4
     INCREMENT BY 1
     NO MINVALUE
@@ -2387,7 +2449,7 @@ ALTER TABLE public.seq_verk_7a0c66d0b880b_keyid OWNER TO limbasuser;
 -- Name: seq_verk_7a74d69e7b5f2_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_7a74d69e7b5f2_keyid
+CREATE SEQUENCE seq_verk_7a74d69e7b5f2_keyid
     START WITH 184
     INCREMENT BY 1
     NO MINVALUE
@@ -2401,7 +2463,7 @@ ALTER TABLE public.seq_verk_7a74d69e7b5f2_keyid OWNER TO limbasuser;
 -- Name: seq_verk_865cb28dc0601_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_865cb28dc0601_keyid
+CREATE SEQUENCE seq_verk_865cb28dc0601_keyid
     START WITH 5
     INCREMENT BY 1
     NO MINVALUE
@@ -2415,7 +2477,7 @@ ALTER TABLE public.seq_verk_865cb28dc0601_keyid OWNER TO limbasuser;
 -- Name: seq_verk_91fb8ff20bffc_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_91fb8ff20bffc_keyid
+CREATE SEQUENCE seq_verk_91fb8ff20bffc_keyid
     START WITH 37
     INCREMENT BY 1
     NO MINVALUE
@@ -2429,7 +2491,7 @@ ALTER TABLE public.seq_verk_91fb8ff20bffc_keyid OWNER TO limbasuser;
 -- Name: seq_verk_9259d5b2c1857_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_9259d5b2c1857_keyid
+CREATE SEQUENCE seq_verk_9259d5b2c1857_keyid
     START WITH 2
     INCREMENT BY 1
     NO MINVALUE
@@ -2440,10 +2502,52 @@ CREATE SEQUENCE public.seq_verk_9259d5b2c1857_keyid
 ALTER TABLE public.seq_verk_9259d5b2c1857_keyid OWNER TO limbasuser;
 
 --
+-- Name: seq_verk_94a2d53f8c06f_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_verk_94a2d53f8c06f_keyid
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_verk_94a2d53f8c06f_keyid OWNER TO limbasuser;
+
+--
+-- Name: seq_verk_9f0323be5cf4e_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_verk_9f0323be5cf4e_id
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_verk_9f0323be5cf4e_id OWNER TO limbasuser;
+
+--
+-- Name: seq_verk_9f0323be5cf4e_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_verk_9f0323be5cf4e_keyid
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_verk_9f0323be5cf4e_keyid OWNER TO limbasuser;
+
+--
 -- Name: seq_verk_a01fc1e65ef75_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_a01fc1e65ef75_keyid
+CREATE SEQUENCE seq_verk_a01fc1e65ef75_keyid
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2457,7 +2561,7 @@ ALTER TABLE public.seq_verk_a01fc1e65ef75_keyid OWNER TO limbasuser;
 -- Name: seq_verk_ab02c3dbf12e1_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_ab02c3dbf12e1_id
+CREATE SEQUENCE seq_verk_ab02c3dbf12e1_id
     START WITH 6
     INCREMENT BY 1
     NO MINVALUE
@@ -2471,7 +2575,7 @@ ALTER TABLE public.seq_verk_ab02c3dbf12e1_id OWNER TO limbasuser;
 -- Name: seq_verk_ab02c3dbf12e1_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_ab02c3dbf12e1_keyid
+CREATE SEQUENCE seq_verk_ab02c3dbf12e1_keyid
     START WITH 11
     INCREMENT BY 1
     NO MINVALUE
@@ -2485,7 +2589,7 @@ ALTER TABLE public.seq_verk_ab02c3dbf12e1_keyid OWNER TO limbasuser;
 -- Name: seq_verk_ae2df1f3eb751_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_ae2df1f3eb751_keyid
+CREATE SEQUENCE seq_verk_ae2df1f3eb751_keyid
     START WITH 3
     INCREMENT BY 1
     NO MINVALUE
@@ -2499,7 +2603,7 @@ ALTER TABLE public.seq_verk_ae2df1f3eb751_keyid OWNER TO limbasuser;
 -- Name: seq_verk_b549a745c24f3_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_b549a745c24f3_keyid
+CREATE SEQUENCE seq_verk_b549a745c24f3_keyid
     START WITH 6
     INCREMENT BY 1
     NO MINVALUE
@@ -2510,10 +2614,24 @@ CREATE SEQUENCE public.seq_verk_b549a745c24f3_keyid
 ALTER TABLE public.seq_verk_b549a745c24f3_keyid OWNER TO limbasuser;
 
 --
+-- Name: seq_verk_cf11854598193_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_verk_cf11854598193_keyid
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_verk_cf11854598193_keyid OWNER TO limbasuser;
+
+--
 -- Name: seq_verk_ed4cbeb1c927c_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_ed4cbeb1c927c_keyid
+CREATE SEQUENCE seq_verk_ed4cbeb1c927c_keyid
     START WITH 3
     INCREMENT BY 1
     NO MINVALUE
@@ -2527,8 +2645,8 @@ ALTER TABLE public.seq_verk_ed4cbeb1c927c_keyid OWNER TO limbasuser;
 -- Name: seq_verk_f7bd3e7b4766a_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_f7bd3e7b4766a_keyid
-    START WITH 12
+CREATE SEQUENCE seq_verk_f7bd3e7b4766a_keyid
+    START WITH 14
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -2538,10 +2656,24 @@ CREATE SEQUENCE public.seq_verk_f7bd3e7b4766a_keyid
 ALTER TABLE public.seq_verk_f7bd3e7b4766a_keyid OWNER TO limbasuser;
 
 --
+-- Name: seq_verk_f847ffcaa5b28_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
+--
+
+CREATE SEQUENCE seq_verk_f847ffcaa5b28_keyid
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_verk_f847ffcaa5b28_keyid OWNER TO limbasuser;
+
+--
 -- Name: seq_verk_fcd12e02a5a6c_keyid; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_verk_fcd12e02a5a6c_keyid
+CREATE SEQUENCE seq_verk_fcd12e02a5a6c_keyid
     START WITH 4
     INCREMENT BY 1
     NO MINVALUE
@@ -2555,7 +2687,7 @@ ALTER TABLE public.seq_verk_fcd12e02a5a6c_keyid OWNER TO limbasuser;
 -- Name: seq_zahlungseingang_id; Type: SEQUENCE; Schema: public; Owner: limbasuser
 --
 
-CREATE SEQUENCE public.seq_zahlungseingang_id
+CREATE SEQUENCE seq_zahlungseingang_id
     START WITH 16
     INCREMENT BY 1
     NO MINVALUE
@@ -2569,7 +2701,7 @@ ALTER TABLE public.seq_zahlungseingang_id OWNER TO limbasuser;
 -- Data for Name: ldms_favorites; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.ldms_favorites (id, user_id, group_id, erstdatum, file_id, folder) FROM stdin;
+COPY ldms_favorites (id, user_id, group_id, erstdatum, file_id, folder) FROM stdin;
 \.
 
 
@@ -2577,7 +2709,7 @@ COPY public.ldms_favorites (id, user_id, group_id, erstdatum, file_id, folder) F
 -- Data for Name: ldms_files; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.ldms_files (id, erstdatum, editdatum, edituser, erstuser, inuse_time, inuse_user, del, erstgroup, level, typ, sort, datid, tabid, fieldid, name, secname, mimetype, size, checked, perm, lmlock, lockuser, checkuser, permuser, permdate, checkdate, lockdate, vid, vact, vdesc, vpid, thumb_ok, meta, info, content, md5, ind, indd, indt, indm, indc, ocr, ocrd, ocrt, ocrs) FROM stdin;
+COPY ldms_files (id, erstdatum, editdatum, edituser, erstuser, inuse_time, inuse_user, del, erstgroup, level, typ, sort, datid, tabid, fieldid, name, secname, mimetype, size, checked, perm, lmlock, lockuser, checkuser, permuser, permdate, checkdate, lockdate, vid, vact, vdesc, vpid, thumb_ok, meta, info, content, md5, ind, indd, indt, indm, indc, ocr, ocrd, ocrt, ocrs) FROM stdin;
 \.
 
 
@@ -2585,7 +2717,7 @@ COPY public.ldms_files (id, erstdatum, editdatum, edituser, erstuser, inuse_time
 -- Data for Name: ldms_meta; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.ldms_meta (id, erstdatum, editdatum, edituser, erstuser, inuse_time, inuse_user, del, type, ftype, name2, format, geometry, resolution, depth, colors, creator, subject, classification, description, publisher, contributors, identifier, source, language, instructions, urgency, category, title, credit, city, state, country, transmission, originname, copyright, createdate, subcategory) FROM stdin;
+COPY ldms_meta (id, erstdatum, editdatum, edituser, erstuser, inuse_time, inuse_user, del, type, ftype, name2, format, geometry, resolution, depth, colors, creator, subject, classification, description, publisher, contributors, identifier, source, language, instructions, urgency, category, title, credit, city, state, country, transmission, originname, copyright, createdate, subcategory) FROM stdin;
 \.
 
 
@@ -2593,10 +2725,10 @@ COPY public.ldms_meta (id, erstdatum, editdatum, edituser, erstuser, inuse_time,
 -- Data for Name: ldms_rules; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.ldms_rules (id, erstdatum, group_id, file_id, file_typ, lmview, lmadd, del, addf, edit, lmlock) FROM stdin;
-1	2018-09-28 11:14:12.50983	1	1	\N	t	t	t	t	t	f
-2	2018-09-28 11:14:12.510101	1	2	\N	t	t	t	t	t	f
-3	2018-09-28 11:14:12.510345	1	3	\N	t	t	t	t	t	f
+COPY ldms_rules (id, erstdatum, group_id, file_id, file_typ, lmview, lmadd, del, addf, edit, lmlock) FROM stdin;
+1	2019-09-20 16:02:31.945131	1	1	\N	t	t	t	t	t	f
+2	2019-09-20 16:02:31.945789	1	2	\N	t	t	t	t	t	f
+3	2019-09-20 16:02:31.946338	1	3	\N	t	t	t	t	t	f
 \.
 
 
@@ -2604,11 +2736,11 @@ COPY public.ldms_rules (id, erstdatum, group_id, file_id, file_typ, lmview, lmad
 -- Data for Name: ldms_structure; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.ldms_structure (id, name, level, erstuser, typ, fix, mail_level, tabgroup_id, tab_id, field_id, erstdatum, readonly, erstgroup, editdatum, sort, path) FROM stdin;
-1	öffentlicher Ordner	0	1	1	t	\N	\N	0	0	2018-09-28 11:14:12.509673	f	1	\N	\N	\N
-2	Dokumente	1	1	1	f	\N	\N	0	0	2018-09-28 11:14:12.509972	f	1	\N	\N	\N
-3	Bilder	1	1	1	f	\N	\N	0	0	2018-09-28 11:14:12.510219	f	1	\N	\N	\N
-4	Eigene Dateien	0	1	4	t	\N	\N	0	\N	2018-09-28 11:14:12.510588	f	1	\N	2	\N
+COPY ldms_structure (id, name, level, erstuser, typ, fix, mail_level, tabgroup_id, tab_id, field_id, erstdatum, readonly, erstgroup, editdatum, sort, path, storage_id) FROM stdin;
+1	öffentlicher Ordner	0	1	1	t	\N	\N	0	0	2019-09-20 16:02:31.928074	f	1	\N	\N	\N	\N
+2	Dokumente	1	1	1	f	\N	\N	0	0	2019-09-20 16:02:31.945536	f	1	\N	\N	\N	\N
+3	Bilder	1	1	1	f	\N	\N	0	0	2019-09-20 16:02:31.946065	f	1	\N	\N	\N	\N
+4	Eigene Dateien	0	1	4	t	\N	\N	0	\N	2019-09-20 16:02:31.94687	f	1	\N	2	\N	\N
 \.
 
 
@@ -2616,9 +2748,10 @@ COPY public.ldms_structure (id, name, level, erstuser, typ, fix, mail_level, tab
 -- Data for Name: lmb_action; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url, sort, subgroup, maingroup, extension, target, help_url) FROM stdin;
+COPY lmb_action (id, action, link_name, beschreibung, link_url, icon_url, sort, subgroup, maingroup, extension, target, help_url) FROM stdin;
+251	nav	2246	2247	\N	\N	2	1	1		\N	\N
+173	\N	1486	1487	newwin6();	lmb-history-alt	12	1	3		\N	\N
 35	messages	415	416	f_2('messages');	lmb-mail	0	1	4		\N	\N
-268	setup_grouping_editor	2362	2363	\N	\N	0	4	2		\N	Tabellen
 36	message_new	417	418	new_message();	lmb-mail-new	2	1	4		\N	\N
 170	message_get	1422	1423	top.message.document.location.href=top.message.document.location.href;divclose();	lmb-icon-cus lmb-email-open 	3	1	4		\N	\N
 38	message_find	421	422	\N	lmb-mail-search	4	1	4		\N	\N
@@ -2632,7 +2765,6 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 130	\N	819	820	LmEx_cache_file('m');	lmb-icon-cus lmb-page-cut 	4	2	4		\N	\N
 171	\N	1470	1471	LmEx_delfile();LmEx_divclose();	lmb-icon-cus lmb-page-delete-fancy	7	2	4		\N	\N
 124	\N	790	791	unview_message()	\N	10	1	4		\N	\N
-117	explorer_search	773	774	LmEx_detailSearch(event,'');	lmb-icon-cus lmb-folder-magnify	14	2	4		\N	\N
 29	user_change	403	404	f_2('user_change');	lmb-user-setting	0	3	4		\N	\N
 169	kalender	1345	1346	f_2('kalender');	lmb-icon-cus lmb-cal-week	0	4	4		\N	\N
 41	user_vorlage	427	428	f_2('user_vorlage');	lmb-icon-cus lmb-report-picture	0	5	4		\N	\N
@@ -2654,7 +2786,6 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 265	\N	2319	2320	\N	lmb-icon-cus lmb-dir-cam	17	2	4		\N	\N
 218	\N	1910	1911	\N	lmb-icon-cus lmb-dir-cam	17	2	4		\N	\N
 220	\N	1920	1921	document.form1.save_setting.value=1;LmEx_tdsize();document.form1.submit();	lmb-icon-cus lmb-save-dir-view	18	2	4		\N	\N
-251	nav	2246	2247	\N	\N	2	1	1		\N	\N
 252	top2	2248	2249	\N	\N	1	1	1		\N	\N
 253	multiframe	2250	2251	\N	\N	3	1	1		\N	\N
 254	intro	2252	2253	\N	\N	0	1	1		\N	\N
@@ -2690,6 +2821,7 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 224	\N	1940	1941	open_menu(event,this,'tzonemenu');	lmb-icon-cus lmb-cal-day	1	4	4		\N	\N
 230	my_workflow	2084	2085	f_2('my_workflow');	lmb-icon-cus lmb-cog-add	0	7	4		\N	\N
 40	user_w_vorlage	425	426	f_2('user_w_vorlage');	lmb-bell	1	8	4		\N	\N
+268	setup_grouping_editor	2362	2363	\N	\N	0	4	2		\N	Tabellen
 137	setup_user_admin	838	839	f_3('setup_user','setup_user_tree','setup_user_erg');	lmb-user-list	2	3	2		\N	Administrieren
 151	setup_user_tracking	1266	1267	\N	lmb-icon-cus lmb-report-user	4	3	2		\N	Administrieren
 250	setup_user_overview	2244	2245	f_3('setup_user_overview');	lmb-list-users	5	3	2		\N	Übersicht
@@ -2705,7 +2837,6 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 65	setup_report_select	465	466	f_3('setup_report_select');	lmb-icon-cus lmb-report-edit	0	8	2		\N	Berichte
 114	setup_diag	752	753	f_3('setup_diag');	lmb-icon-cus lmb-chart-edit	0	7	2		\N	Diagramme
 289	setup_reminder	2738	2739	f_3('setup_reminder');	lmb-bell	0	9	2		\N	\N
-173	\N	1486	1487	newwin6();	lmb-history-alt	12	1	3		\N	\N
 14	gtab_search	373	374	limbasDetailSearch(event,this,document.form1.gtabid.value,'');	lmb-page-find	3	2	3		\N	\N
 288	\N	2679	2680	lmbNewwin();	lmb-application-double	0	3	3		\N	\N
 10	gtab_erg	365	366	document.form1.action.value='gtab_erg';document.form1.form_id.value=document.form1.formlist_id.value;send_form('1');	lmb-list-ul-alt	1	3	3		\N	\N
@@ -2721,7 +2852,6 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 113	nav_diag	750	751	\N	lmb-line-chart-alt	7	2	1		\N	\N
 21	nav_user	387	388	\N	lmb-user	1	3	1		\N	\N
 17	nav_admin	379	380	\N	lmb-cog-key	2	3	1		\N	\N
-207	nav_info	1828	1829	infos();	lmb-info-circle-alt2	3	3	1		\N	\N
 18	nav_help	381	382	help();	lmb-help	4	3	1		\N	\N
 213	user_logout	1873	1874	logout();	lmb-sign-out	5	3	1		\N	\N
 246	nav_mylimbas	2203	2204	\N	lmb-house	7	3	1		\N	\N
@@ -2729,13 +2859,6 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 43	setup_umgvar	431	432	f_3('setup_umgvar');	lmb-globe	1	1	2		\N	Umgvar
 177	setup_ftype	1514	1515	f_3('setup_ftype');	lmb-cubes	2	1	2		\N	Feldtypen
 45	setup_links	435	436	f_3('setup_links');	lmb-menu	3	1	2		\N	Menupunkte
-46	setup_color_schema	437	438	f_3('setup_color_schema');	lmb-color-swatch	4	1	2		\N	Schema
-47	setup_color	439	440	f_3('setup_color');	lmb-picture	5	1	2		\N	Farben
-108	setup_language	726	727	f_3('setup_language');	lmb-language	6	1	2		\N	Sprache
-258	setup_language_local	2263	2264	\N	lmb-language	7	1	2		\N	Sprache
-216	setup_fonts	1888	1889	f_3('setup_fonts');	lmb-font	8	1	2		\N	Schriftarten
-294	setup_snap	2768	2769	f_3('setup_snap');	lmb-camera	9	1	2		\N	\N
-295	setup_fieldselect	2771	2772	f_3('setup_fieldselect');	lmb-list-ul	10	1	2		\N	\N
 59	setup_tools	463	464	\N	lmb-wrench-alt	0	2	2		\N	DOCLimbasAdmin
 180	setup_backup	1572	1573	\N	lmb-save	1	2	2		\N	Backup
 182	setup_backup_cron	1577	1578	f_3('setup_backup_cron');	lmb-periodic	2	2	2		\N	Backup
@@ -2746,7 +2869,6 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 187	setup_indize_hist	1588	1589	f_3('setup_indize_hist');	lmb-job-history	6	2	2		\N	System-Jobs
 208	setup_index	1850	1851	f_3('setup_index');	lmb-chain	7	2	2		\N	Index
 209	setup_jobs	1862	1863	\N	lmb-plugin	8	2	2		\N	System-Jobs
-210	setup_jobs_cron	1864	1865	f_3('setup_jobs_cron');	lmb-plugin-time	9	2	2		\N	System-Jobs
 211	setup_jobs_hist	1866	1867	f_3('setup_jobs_hist');	lmb-history-alt-alt	10	2	2		\N	System-Jobs
 48	setup_export	441	442	f_3('setup_export');	lmb-upload	11	2	2		\N	Export
 49	setup_import	443	444	f_3('setup_import');	lmb-download	12	2	2		\N	Import
@@ -2760,6 +2882,9 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 226	setup_group_trigger	1988	1989	\N	lmb-database	6	3	2		\N	Administrieren
 138	setup_group_neu	840	841	f_3('setup_user','setup_user_tree','setup_group_neu');	lmb-group-plus	9	3	2		\N	Gruppe_anlegen
 76	setup_group_nutzrechte	483	484	f_3('setup_group_nutzrechte');	lmb-application-key	10	3	2		\N	Administrieren
+47	setup_color	439	440	f_3('setup_color');	lmb-picture	6	1	2		\N	Farben
+210	setup_jobs_cron	1864	1865	f_3('setup_jobs_cron');	lmb-plugin-time	9	2	2		\N	System-Jobs
+207	nav_info	1828	1829	f_3('nav_info');infos();	lmb-info-circle-alt2	3	3	1		\N	\N
 293	setup_group_workfl	2749	2750	f_3('setup_group_workfl');	lmb-icon-cus lmb-workflow-car	18	3	2		\N	\N
 56	setup_tab	457	458	f_3('setup_tab');	lmb-icon-cus lmb-table-edit	1	4	2		\N	Tabellen
 163	setup_verkn_editor	1301	1302	\N	lmb-icon-cus lmb-rel-edit	4	4	2		\N	Verknuepfungen
@@ -2826,9 +2951,17 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 214	nav_refresh	1875	1876	srefresh(this);	lmb-refresh	6	3	1		\N	\N
 128	\N	815	816	LmEx_showUploadField();LmEx_divclose();	lmb-file-upload	12	2	4		\N	\N
 301	nav_favorites	2931	2932	\N	lmb-fav-filled	8	2	1		\N	\N
-302	setup_external_storage	2933	2934	f_3('setup_external_storage')	lmb-database	11	1	2		\N	\N
-303	setup_printers	2935	2936	f_3('setup_printers')	lmb-print	12	1	2		\N	\N
 304	print	2937	2938	\N	lmb-print	\N	7	3		\N	\N
+46	setup_color_schema	437	438	f_3('setup_color_schema');	lmb-color-swatch	5	1	2		\N	Schema
+108	setup_language	726	727	f_3('setup_language');	lmb-language	7	1	2		\N	Sprache
+258	setup_language_local	2263	2264	\N	lmb-language	8	1	2		\N	Sprache
+216	setup_fonts	1888	1889	f_3('setup_fonts');	lmb-font	9	1	2		\N	Schriftarten
+294	setup_snap	2768	2769	f_3('setup_snap');	lmb-camera	10	1	2		\N	\N
+295	setup_fieldselect	2771	2772	f_3('setup_fieldselect');	lmb-list-ul	11	1	2		\N	\N
+302	setup_external_storage	2933	2934	f_3('setup_external_storage')	lmb-database	12	1	2		\N	\N
+303	setup_printers	2935	2936	f_3('setup_printers')	lmb-print	13	1	2		\N	\N
+305	setup_menueditor	2952	2953	f_3('setup_menueditor');	lmb-indent	4	1	2		\N	\N
+117	explorer_search	773	774	limbasDetailSearch(event,this,jsvar['gtabid'],null,null,null,'explorer_search');	lmb-search	14	2	4		\N	\N
 \.
 
 
@@ -2836,10 +2969,10 @@ COPY public.lmb_action (id, action, link_name, beschreibung, link_url, icon_url,
 -- Data for Name: lmb_action_depend; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_action_depend (id, action, link_name, beschreibung, link_url, icon_url, sort, subgroup, maingroup, extension, target, help_url) FROM stdin;
-1000	\N	11189	11190	\N	\N	\N	2	1	\N	\N	\N
-1001	lmbObject	11191	11192	\N	\N	0	0	5	/EXTENSIONS/lmbObjectExample/lr.ext	\N	\N
-117	explorer_search	773	774	LmEx_detailSearch(event,'', this); 	lmb-icon-cus lmb-folder-magnify	14	2	4	\N	\N	\N
+COPY lmb_action_depend (id, action, link_name, beschreibung, link_url, icon_url, sort, subgroup, maingroup, extension, target, help_url) FROM stdin;
+1001	lmbObject	11191	11192			0	0	5	/EXTENSIONS/lmbObjectExample/lr.ext	\N	
+1000		11189	11190			0	2	1		\N	
+1002	restDemo	11434	11435			0	0	5	/EXTENSIONS/rest/demo.ext	\N	
 \.
 
 
@@ -2847,7 +2980,7 @@ COPY public.lmb_action_depend (id, action, link_name, beschreibung, link_url, ic
 -- Data for Name: lmb_attribute_d; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_attribute_d (id, erstuser, w_id, tab_id, field_id, dat_id, value_num, value_string) FROM stdin;
+COPY lmb_attribute_d (id, erstuser, w_id, tab_id, field_id, dat_id, value_num, value_string, value_date) FROM stdin;
 \.
 
 
@@ -2855,7 +2988,7 @@ COPY public.lmb_attribute_d (id, erstuser, w_id, tab_id, field_id, dat_id, value
 -- Data for Name: lmb_attribute_p; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_attribute_p (id, erstdatum, erstuser, name, snum) FROM stdin;
+COPY lmb_attribute_p (id, erstdatum, erstuser, name, snum, tagmode, multimode) FROM stdin;
 \.
 
 
@@ -2863,7 +2996,15 @@ COPY public.lmb_attribute_p (id, erstdatum, erstuser, name, snum) FROM stdin;
 -- Data for Name: lmb_attribute_w; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_attribute_w (id, erstuser, pool, wert, keywords, def, hide, sort, type, level, haslevel) FROM stdin;
+COPY lmb_attribute_w (id, erstuser, pool, wert, keywords, def, hide, sort, type, level, haslevel, color, attrpool, hidetag, mandatory) FROM stdin;
+\.
+
+
+--
+-- Data for Name: lmb_auth_token; Type: TABLE DATA; Schema: public; Owner: limbasuser
+--
+
+COPY lmb_auth_token (token, user_id, lifespan, expirestamp) FROM stdin;
 \.
 
 
@@ -2871,11 +3012,11 @@ COPY public.lmb_attribute_w (id, erstuser, pool, wert, keywords, def, hide, sort
 -- Data for Name: lmb_chart_list; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_chart_list (id, erstdatum, erstuser, diag_id, diag_name, diag_desc, template, tab_id, noheader, diag_type, diag_width, diag_height, text_x, text_y, font_size, padding_left, padding_top, padding_right, padding_bottom, legend_x, legend_y, legend_mode, pie_write_values, pie_radius, transposed) FROM stdin;
-1	2016-02-29 16:23:26	1	\N	Art der Positionen	\N	\N	10	\N	Pie-Chart	440	300	\N	\N	9	\N	\N	0	0	0	0	\N	value	\N	\N
-3	2018-04-03 19:03:41	1	\N	Umsatz	\N	\N	12	\N	Line-Graph	800	600	\N	Umsatz in EUR	12	\N	\N	\N	\N	\N	\N	none	\N	0	\N
-4	2018-04-05 12:30:20	1	\N	Versandart	\N	\N	13	\N	Pie-Chart	800	600	\N	\N	12	\N	\N	0	0	0	0	\N	percent	\N	\N
-2	2016-02-29 16:28:08	1	\N	Anz Betr Positionen	\N	\N	10	\N	Bar-Chart	800	600	Produkt-Typ	Einnahmen gesamt (Eur)	12	\N	\N	\N	\N	\N	\N	none	\N	0	\N
+COPY lmb_chart_list (id, erstdatum, erstuser, diag_id, diag_name, diag_desc, template, tab_id, noheader, diag_type, diag_width, diag_height, text_x, text_y, font_size, padding_left, padding_top, padding_right, padding_bottom, legend_x, legend_y, legend_mode, pie_write_values, pie_radius, transposed) FROM stdin;
+1	2016-02-29 16:23:26.388802	1	\N	Art der Positionen	\N	\N	10	\N	Pie-Chart	440	300			9	\N	\N	0	0	0	0		value	\N	\N
+3	2018-04-03 19:03:41.871717	1	\N	Umsatz	\N		12	\N	Line-Graph	800	600		Umsatz in EUR	12	\N	\N	\N	\N	\N	\N	none		0	\N
+4	2018-04-05 12:30:20.897509	1	\N	Versandart	\N		13	\N	Pie-Chart	800	600			12	\N	\N	0	0	0	0		percent	\N	\N
+2	2016-02-29 16:28:08.451752	1	\N	Anz Betr Positionen	\N		10	\N	Bar-Chart	800	600	Produkt-Typ	Einnahmen gesamt (Eur)	12	\N	\N	\N	\N	\N	\N	none		0	\N
 \.
 
 
@@ -2883,7 +3024,7 @@ COPY public.lmb_chart_list (id, erstdatum, erstuser, diag_id, diag_name, diag_de
 -- Data for Name: lmb_charts; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_charts (id, chart_id, field_id, axis, function, color) FROM stdin;
+COPY lmb_charts (id, chart_id, field_id, axis, function, color) FROM stdin;
 \.
 
 
@@ -2891,7 +3032,7 @@ COPY public.lmb_charts (id, chart_id, field_id, axis, function, color) FROM stdi
 -- Data for Name: lmb_colorschemes; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_colorschemes (id, name, web1, web2, web3, web4, web5, web6, web7, web8, norm, web9, web10, web11, web12, web13, web14) FROM stdin;
+COPY lmb_colorschemes (id, name, web1, web2, web3, web4, web5, web6, web7, web8, norm, web9, web10, web11, web12, web13, web14) FROM stdin;
 1	basic (skalar)	#D6D6CE	#BBBBBB	#C0C0C0	#BBBBBB	#C0C0C0	#C0C0C0	#FBE16B	#EEEEEE	\N	#EEEEEE	#FBE16B	#E6E6E6	#909090	#FFFFFF	#F5F5F5
 2	basic (comet)	#d0d0d0	#444444	#C0C0C0	#BBBBBB	#EAF3EE	#C0C0C0	#97C5AB	#EEEEEE	t	#F5F5F5	#EAF3EE	#FDFEFD	#909090	#FFFFFF	#F5F5F5
 3	dark (comet)	gray	#E3E3E3	gray	gray	gray	red	#74ba6a	#5a5a5a	\N	#545454	#383838	gray	#E3E3E3	#444444	#222222
@@ -2902,35 +3043,7 @@ COPY public.lmb_colorschemes (id, name, web1, web2, web3, web4, web5, web6, web7
 -- Data for Name: lmb_conf_fields; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_conf_fields (id, field_id, tab_id, tab_group, sort, data_type, field_type, field_name, form_name, fieldkey, need, artleiste, genlink, argument, verkngroup, isunique, argument_edit, refint, verkntabid, md5tab, verknfieldid, select_sort, groupable, indize, nformat, currency, wysiwyg, verknsearch, dynsearch, select_pool, select_cut, indexed, inherit_tab, inherit_field, ext_type, verkntabletype, argument_typ, mainfield, beschreibung, spelling, lmtrigger, defaultvalue, hasrecverkn, quicksearch, relext, viewrule, editrule, potency, inherit_search, inherit_eval, inherit_filter, inherit_group, verknview, verknfind, ajaxpost, field_size, collreplace, datetime, aggregate, scale, verknparams, listing_cut, listing_viewmode, verkntree, multilang, popupdefault, fullsearch) FROM stdin;
-1	1	1	1	8	100	100	LMSECTION	lmsection	t	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10003	10004	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-2	2	1	1	9	16	5	ERSTGROUP	erstgroup	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10005	10006	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-3	3	1	1	4	36	15	ERSTDATUM	erstdatum	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10007	10008	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-4	4	1	1	5	34	14	ERSTUSER	erstuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10009	10010	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-5	5	1	1	10	16	5	LEVEL	level	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10011	10012	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	10	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-6	6	1	1	11	16	5	TYP	typ	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10013	10014	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-7	7	1	1	8	21	5	SORT	sort	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10015	10016	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	8	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-8	8	1	1	12	16	5	DATID	datid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10017	10018	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	18	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-9	9	1	1	13	16	5	TABID	tabid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10019	10020	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-10	10	1	1	14	16	5	FIELDID	fieldid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10021	10022	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-11	11	1	1	15	1	1	NAME	name	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10023	10024	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	128	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-12	12	1	1	16	1	1	SECNAME	secname	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10025	10026	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	20	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-13	13	1	1	3	45	18	MIMETYPE	mimetype	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10027	10028	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-14	14	1	1	2	44	5	SIZE	size	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10029	10030	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-15	15	1	1	9	20	10	CHECKED	checked	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10031	10032	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-16	16	1	1	10	20	10	PERM	perm	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10033	10034	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-17	17	1	1	11	20	10	LMLOCK	lmlock	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10035	10036	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-18	18	1	1	17	16	5	LOCKUSER	lockuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10037	10038	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-19	19	1	1	18	16	5	CHECKUSER	checkuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10039	10040	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-20	20	1	1	19	16	5	PERMUSER	permuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10041	10042	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-21	21	1	1	20	11	2	PERMDATE	permdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10043	10044	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	4	\N	\N	\N	\N	\N	\N	f	\N	f
-22	22	1	1	21	11	2	CHECKDATE	checkdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10045	10046	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	4	\N	\N	\N	\N	\N	\N	f	\N	f
-23	23	1	1	22	11	2	LOCKDATE	lockdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10047	10048	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	4	\N	\N	\N	\N	\N	\N	f	\N	f
-24	24	1	1	23	16	5	VID	vid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10049	10050	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-25	25	1	1	24	20	10	VACT	vact	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10051	10052	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-26	26	1	1	25	1	1	VDESC	vdesc	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10053	10054	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	128	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-27	27	1	1	26	16	5	VPID	vpid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10055	10056	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	18	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
-28	28	1	1	27	20	10	THUMB_OK	thumb_ok	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10057	10058	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+COPY lmb_conf_fields (id, field_id, tab_id, tab_group, sort, data_type, field_type, field_name, form_name, fieldkey, need, artleiste, genlink, argument, verkngroup, isunique, argument_edit, refint, verkntabid, md5tab, verknfieldid, select_sort, groupable, indize, nformat, currency, wysiwyg, verknsearch, dynsearch, select_pool, select_cut, indexed, inherit_tab, inherit_field, ext_type, verkntabletype, argument_typ, mainfield, beschreibung, spelling, lmtrigger, defaultvalue, hasrecverkn, quicksearch, relext, viewrule, editrule, potency, inherit_search, inherit_eval, inherit_filter, inherit_group, verknview, verknfind, ajaxpost, field_size, collreplace, datetime, aggregate, scale, verknparams, listing_cut, listing_viewmode, verkntree, multilang, popupdefault, fullsearch) FROM stdin;
 29	29	1	1	28	20	10	META	meta	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10059	10060	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
 30	30	1	1	29	20	10	INFO	info	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10061	10062	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
 31	31	1	1	30	48	20	CONTENT	content	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10063	10064	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
@@ -2972,6 +3085,34 @@ COPY public.lmb_conf_fields (id, field_id, tab_id, tab_group, sort, data_type, f
 67	35	2	1	43	1	1	COPYRIGHT	copyright	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10136	10137	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	128	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
 68	36	2	1	37	1	1	CREATEDATE	createdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10138	10139	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	30	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
 69	37	2	1	30	10	3	SUBCATEGORY	subcategory	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10140	10141	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	399	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+5	5	1	1	10	16	5	LEVEL	level	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10011	10012	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	10	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+6	6	1	1	11	16	5	TYP	typ	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10013	10014	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+7	7	1	1	8	21	5	SORT	sort	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10015	10016	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	8	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+8	8	1	1	12	16	5	DATID	datid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10017	10018	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	18	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+9	9	1	1	13	16	5	TABID	tabid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10019	10020	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+10	10	1	1	14	16	5	FIELDID	fieldid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10021	10022	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+11	11	1	1	15	1	1	NAME	name	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10023	10024	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	128	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+1	1	1	1	8	100	100	LMSECTION	lmsection	t	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10003	10004	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+12	12	1	1	16	1	1	SECNAME	secname	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10025	10026	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	20	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+2	2	1	1	9	16	5	ERSTGROUP	erstgroup	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10005	10006	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+3	3	1	1	4	36	15	ERSTDATUM	erstdatum	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10007	10008	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+4	4	1	1	5	34	14	ERSTUSER	erstuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10009	10010	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+13	13	1	1	3	45	18	MIMETYPE	mimetype	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10027	10028	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+14	14	1	1	2	44	5	SIZE	size	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10029	10030	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+15	15	1	1	9	20	10	CHECKED	checked	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10031	10032	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+16	16	1	1	10	20	10	PERM	perm	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10033	10034	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+17	17	1	1	11	20	10	LMLOCK	lmlock	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10035	10036	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+18	18	1	1	17	16	5	LOCKUSER	lockuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10037	10038	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+19	19	1	1	18	16	5	CHECKUSER	checkuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10039	10040	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+20	20	1	1	19	16	5	PERMUSER	permuser	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10041	10042	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+21	21	1	1	20	11	2	PERMDATE	permdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10043	10044	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	4	\N	\N	\N	\N	\N	\N	f	\N	f
+22	22	1	1	21	11	2	CHECKDATE	checkdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10045	10046	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	4	\N	\N	\N	\N	\N	\N	f	\N	f
+23	23	1	1	22	11	2	LOCKDATE	lockdate	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10047	10048	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	4	\N	\N	\N	\N	\N	\N	f	\N	f
+24	24	1	1	23	16	5	VID	vid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10049	10050	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	5	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+25	25	1	1	24	20	10	VACT	vact	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10051	10052	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+26	26	1	1	25	1	1	VDESC	vdesc	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10053	10054	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	128	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+27	27	1	1	26	16	5	VPID	vpid	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10055	10056	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	18	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
+28	28	1	1	27	20	10	THUMB_OK	thumb_ok	f	f	f	\N		\N	f	f	f	\N		\N		f	f		\N	f	\N	f	0	\N	f	0	0		1	0	f	10057	10058	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	f	\N	f
 \.
 
 
@@ -2979,7 +3120,7 @@ COPY public.lmb_conf_fields (id, field_id, tab_id, tab_group, sort, data_type, f
 -- Data for Name: lmb_conf_groups; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_conf_groups (id, sort, beschreibung, name, level, icon) FROM stdin;
+COPY lmb_conf_groups (id, sort, beschreibung, name, level, icon) FROM stdin;
 1	1	10001	10000	0	\N
 \.
 
@@ -2988,7 +3129,7 @@ COPY public.lmb_conf_groups (id, sort, beschreibung, name, level, icon) FROM std
 -- Data for Name: lmb_conf_tables; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_conf_tables (id, tab_id, tab_group, sort, tabelle, lockable, markcolor, groupable, verkn, linecolor, logging, typ, versioning, ver_desc, beschreibung, userrules, lmtrigger, indicator, ajaxpost, numrowcalc, reserveid, event, lastmodified, keyfield, params1, params2, datasync) FROM stdin;
+COPY lmb_conf_tables (id, tab_id, tab_group, sort, tabelle, lockable, markcolor, groupable, verkn, linecolor, logging, typ, versioning, ver_desc, beschreibung, userrules, lmtrigger, indicator, ajaxpost, numrowcalc, reserveid, event, lastmodified, keyfield, params1, params2, datasync) FROM stdin;
 1	1	1	1	ldms_files	f		0	1	f	f	3	0	f	10002	f	\N	\N	f	\N	\N	\N	\N	ID	\N	\N	\N
 2	2	1	2	ldms_meta	f		0	1	f	f	3	0	f	10067	f	\N	\N	f	\N	\N	\N	\N	ID	\N	\N	\N
 \.
@@ -2998,7 +3139,7 @@ COPY public.lmb_conf_tables (id, tab_id, tab_group, sort, tabelle, lockable, mar
 -- Data for Name: lmb_conf_viewfields; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_conf_viewfields (id, viewid, tablename, qfield, qfilter, qorder, qalias, sort, qshow, qfunc) FROM stdin;
+COPY lmb_conf_viewfields (id, viewid, tablename, qfield, qfilter, qorder, qalias, sort, qshow, qfunc) FROM stdin;
 \.
 
 
@@ -3006,7 +3147,7 @@ COPY public.lmb_conf_viewfields (id, viewid, tablename, qfield, qfilter, qorder,
 -- Data for Name: lmb_conf_views; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_conf_views (id, viewdef, ispublic, hasid, relation, usesystabs, viewtype, isvalid) FROM stdin;
+COPY lmb_conf_views (id, viewdef, ispublic, hasid, relation, usesystabs, viewtype, isvalid, setmanually) FROM stdin;
 \.
 
 
@@ -3014,7 +3155,7 @@ COPY public.lmb_conf_views (id, viewdef, ispublic, hasid, relation, usesystabs, 
 -- Data for Name: lmb_crontab; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_crontab (id, kategory, start, val, erstdatum, activ, description, alive) FROM stdin;
+COPY lmb_crontab (id, kategory, start, val, erstdatum, activ, description, alive, job_user) FROM stdin;
 \.
 
 
@@ -3022,7 +3163,7 @@ COPY public.lmb_crontab (id, kategory, start, val, erstdatum, activ, description
 -- Data for Name: lmb_currency; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_currency (id, currency, code, unit, symbol) FROM stdin;
+COPY lmb_currency (id, currency, code, unit, symbol) FROM stdin;
 27	Swiss Franc	CHF	0.770200010000000046	\N
 46	Euro	EUR	1.20209999999999995	€
 150	US Dollar	USD	1	$
@@ -3030,10 +3171,37 @@ COPY public.lmb_currency (id, currency, code, unit, symbol) FROM stdin;
 
 
 --
+-- Data for Name: lmb_custmenu; Type: TABLE DATA; Schema: public; Owner: limbasuser
+--
+
+COPY lmb_custmenu (id, parent, name, title, linkid, typ, url, icon, bg, sort) FROM stdin;
+2	1	11392	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=easy'	\N	\N	1
+3	1	11393	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=relation1'	\N	\N	2
+4	1	11394	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=relation2'	\N	\N	3
+5	1	11395	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=relation3'	\N	\N	4
+6	1	11396	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=criteria&actvar=1'	\N	\N	5
+7	1	11397	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=criteria&actvar=2'	\N	\N	6
+8	1	11398	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=criteria&actvar=3'	\N	\N	7
+9	1	11399	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=criteria&actvar=4'	\N	\N	8
+10	1	11400	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=create'	\N	\N	9
+11	1	11401	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=delete'	\N	\N	10
+12	1	11402	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=reload'	\N	\N	11
+13	1	11403	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=mandatory'	\N	\N	12
+14	1	11404	\N	1000	1	parent.main.document.location.href='main.php?action=lmbObject&actid=transaction'	\N	\N	13
+15	0	11405	\N	1000	0	\N	\N	\N	2
+16	15	11406	\N	1000	1	parent.main.document.location.href='public/data_access.php'	\N	\N	1
+17	15	11407	\N	1000	1	parent.main.document.location.href='public/filesearch.php'	\N	\N	2
+19	18	1002	\N	1000	7	\N	\N	\N	1
+1	0	11391	\N	1000	0	\N	\N	\N	1
+18	0	11436	\N	1000	0	\N	\N	\N	1
+\.
+
+
+--
 -- Data for Name: lmb_dbpatch; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_dbpatch (id, status, revision, description, major, version) FROM stdin;
+COPY lmb_dbpatch (id, status, revision, description, major, version) FROM stdin;
 1	t	1	\N	1	10
 3	t	3	\N	1	10
 4	t	4	\N	1	10
@@ -3438,7 +3606,7 @@ COPY public.lmb_dbpatch (id, status, revision, description, major, version) FROM
 402	t	3	reminder language support	2	11
 403	t	4	fieldtype picture	2	11
 404	t	5	independent field types	2	11
-405	t	0	\N	3	0
+405	t	0		3	0
 406	t	1	add storage-path for ldms_structure	3	1
 407	t	2	update umgvar	3	1
 408	t	3	add storage-path UPLOAD/STORAGE	3	1
@@ -3479,6 +3647,41 @@ COPY public.lmb_dbpatch (id, status, revision, description, major, version) FROM
 445	t	10	update umgvar: add lpstat_params	3	5
 446	t	11	update umgvar: add lpoptions_params	3	5
 447	t	12	update umgvar: add lp_params	3	5
+448	t	1	update umgvar: add password_hash	3	6
+449	t	2	increased length of password field to contain secure hashes	3	6
+450	t	3	adding default storage_id for folders	3	6
+451	t	4	adding storage_id for files	3	6
+452	t	5	adding public download link for files	3	6
+453	t	6	resize files secname for external storage	3	6
+454	t	7	adding external storage configuration	3	6
+455	t	8	adding auth token access	3	6
+456	t	9	resize files secname for external storage	3	6
+457	t	10	formular subtables	3	6
+458	t	11	report tables	3	6
+459	t	12	adding table LMB_SQL_FAVORITES	3	6
+460	t	1	adding VIEW_SETMANUALLY to view definition table	4	0
+461	t	2	update colors	4	0
+462	t	3	adding COLOR to atrribute_w table	4	0
+463	t	4	adding ATTRPOOL to atrribute_w table	4	0
+464	t	5	adding HIDETAG to atrribute_w table	4	0
+465	t	6	adding TAGMODE to LMB_ATTRIBUTE_P table	4	0
+466	t	7	adding TAGMODE to LMB_SELECT_P table	4	0
+467	t	8	adding MULTIMODE to LMB_ATTRIBUTE_P table	4	0
+468	t	9	adding MULTIMODE to LMB_SELECT_P table	4	0
+469	t	10	adding MANDATORY to LMB_ATTRIBUTE_W table	4	0
+470	t	11	adding COLOR to LMB_SELECT_W table	4	0
+471	f	12	adding COLOR to LMB_SELECT_W table	4	0
+472	t	13	adding JOB_USER To Table LMB_CRONTAB	4	0
+473	t	14	update umgvar: add date_max_two_digit_year_addend	4	0
+474	t	15	update umgvar: add restpath	4	0
+\.
+
+
+--
+-- Data for Name: lmb_external_storage; Type: TABLE DATA; Schema: public; Owner: limbasuser
+--
+
+COPY lmb_external_storage (id, descr, classname, config, externalaccessurl, publiccloud) FROM stdin;
 \.
 
 
@@ -3486,7 +3689,7 @@ COPY public.lmb_dbpatch (id, status, revision, description, major, version) FROM
 -- Data for Name: lmb_field_types; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_field_types (id, field_type, data_type, data_type_exp, datentyp, size, lmrule, sort, format, parse_type, funcid, hassize) FROM stdin;
+COPY lmb_field_types (id, field_type, data_type, data_type_exp, datentyp, size, lmrule, sort, format, parse_type, funcid, hassize) FROM stdin;
 49	17	43	2175	SMALLINT	5	^.{0,128}$	49	2176	2	2	f
 41	3	39	1383	LONG	0	^.{0,}|.$	10	1419	2	22	f
 22	1	28	1369	VARCHAR(128)	128	^.{0,128}$	11	1405	2	17	t
@@ -3522,7 +3725,6 @@ COPY public.lmb_field_types (id, field_type, data_type, data_type_exp, datentyp,
 45	100	100	1993	0	0	\N	36	1994	100	0	f
 55	101	101	2360	0	0	\N	37	2361	100	33	f
 57	101	102	2529	0	0	\N	38	2530	100	34	f
-58	21	50	2641	VARCHAR(8)	8	^[a-zA-Z0-9]{0,8}$	40	2642	2	16	f
 29	8	15	1375	VARCHAR(160)	160	^.{0,160}$	41	1411	2	13	f
 53	8	47	2256	BOOLEAN	1	^.{0,160}$	42	2257	3	31	f
 19	5	22	1366	INTEGER	10	^[-]?[0-9]{0,xx}$	44	1402	1	6	f
@@ -3537,6 +3739,7 @@ COPY public.lmb_field_types (id, field_type, data_type, data_type_exp, datentyp,
 42	5	21	1595	NUMERIC	10	^[-]?([0-9]{0,xx}|[0-9.,]{0,xxx})([Ee](-)?(\\d){1,2})?( )?(%)?$	5	1596	6	1	t
 47	1	42	2123	VARCHAR(30)	30	(?:\\(\\+?\\d+\\)|\\+?\\d+)(?:\\s*[\\-\\/]*\\s*\\d+)+	12	2124	2	28	t
 15	3	10	1363	VARCHAR	1000	^(.|\\n){0,xx}$	9	1399	2	3	t
+58	21	50	2641	VARCHAR(8)	8	^#?[a-zA-Z0-9]{3}([a-zA-Z0-9]{3})?$	40	2642	2	16	f
 \.
 
 
@@ -3544,7 +3747,7 @@ COPY public.lmb_field_types (id, field_type, data_type, data_type_exp, datentyp,
 -- Data for Name: lmb_field_types_depend; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_field_types_depend (id, field_type, data_type, data_type_exp, datentyp, size, lmrule, sort, format, parse_type, funcid, hassize) FROM stdin;
+COPY lmb_field_types_depend (id, field_type, data_type, data_type_exp, datentyp, size, lmrule, sort, format, parse_type, funcid, hassize) FROM stdin;
 \.
 
 
@@ -3552,7 +3755,7 @@ COPY public.lmb_field_types_depend (id, field_type, data_type, data_type_exp, da
 -- Data for Name: lmb_fonts; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_fonts (id, family, name, style) FROM stdin;
+COPY lmb_fonts (id, family, name, style) FROM stdin;
 \.
 
 
@@ -3560,7 +3763,7 @@ COPY public.lmb_fonts (id, family, name, style) FROM stdin;
 -- Data for Name: lmb_form_list; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_form_list (id, name, beschreibung, referenz_tab, erstdatum, editdatum, erstuser, edituser, form_typ, frame_size, redirect, css, extension, dimension) FROM stdin;
+COPY lmb_form_list (id, name, beschreibung, referenz_tab, erstdatum, editdatum, erstuser, edituser, form_typ, frame_size, redirect, css, extension, dimension) FROM stdin;
 \.
 
 
@@ -3568,7 +3771,7 @@ COPY public.lmb_form_list (id, name, beschreibung, referenz_tab, erstdatum, edit
 -- Data for Name: lmb_forms; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_forms (keyid, erstdatum, editdatum, erstuser, edituser, form_id, typ, posx, posy, height, width, style, tab_group, tab_id, field_id, z_index, uform_typ, uform_vtyp, pic_typ, pic_style, pic_size, tab, tab_size, tab_el_col, tab_el_row, tab_el_col_size, title, event_click, event_over, event_out, event_dblclick, event_change, parameters, inhalt, class, parentrel, id, subelement, categorie, tab_el) FROM stdin;
+COPY lmb_forms (keyid, erstdatum, editdatum, erstuser, edituser, form_id, typ, posx, posy, height, width, style, tab_group, tab_id, field_id, z_index, uform_typ, uform_vtyp, pic_typ, pic_style, pic_size, tab, tab_size, tab_el_col, tab_el_row, tab_el_col_size, title, event_click, event_over, event_out, event_dblclick, event_change, parameters, inhalt, class, parentrel, id, subelement, categorie, tab_el) FROM stdin;
 \.
 
 
@@ -3576,7 +3779,7 @@ COPY public.lmb_forms (keyid, erstdatum, editdatum, erstuser, edituser, form_id,
 -- Data for Name: lmb_groups; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_groups (group_id, name, erstdatum, editdatum, level, del, redirect, multiframelist, description) FROM stdin;
+COPY lmb_groups (group_id, name, erstdatum, editdatum, level, del, redirect, multiframelist, description) FROM stdin;
 1	admin	2001-01-15 11:17:07	\N	\N	f	\N	default.php	ADMINISTRATOR
 \.
 
@@ -3585,7 +3788,7 @@ COPY public.lmb_groups (group_id, name, erstdatum, editdatum, level, del, redire
 -- Data for Name: lmb_gtab_groupdat; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_gtab_groupdat (id, group_id, tab_id, dat_id, color) FROM stdin;
+COPY lmb_gtab_groupdat (id, group_id, tab_id, dat_id, color) FROM stdin;
 \.
 
 
@@ -3593,7 +3796,7 @@ COPY public.lmb_gtab_groupdat (id, group_id, tab_id, dat_id, color) FROM stdin;
 -- Data for Name: lmb_gtab_pattern; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_gtab_pattern (id, erstuser, patid, tabid, posx, posy, width, height, visible, viewid) FROM stdin;
+COPY lmb_gtab_pattern (id, erstuser, patid, tabid, posx, posy, width, height, visible, viewid) FROM stdin;
 \.
 
 
@@ -3601,7 +3804,7 @@ COPY public.lmb_gtab_pattern (id, erstuser, patid, tabid, posx, posy, width, hei
 -- Data for Name: lmb_gtab_rowsize; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_gtab_rowsize (id, erstdatum, user_id, tab_id, row_size) FROM stdin;
+COPY lmb_gtab_rowsize (id, erstdatum, user_id, tab_id, row_size) FROM stdin;
 \.
 
 
@@ -3609,7 +3812,7 @@ COPY public.lmb_gtab_rowsize (id, erstdatum, user_id, tab_id, row_size) FROM std
 -- Data for Name: lmb_gtab_status_save; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_gtab_status_save (id, erstdatum, erstuser, tab_id, formel, bezeichnung, group_id, typ, beschreibung, dssdsd) FROM stdin;
+COPY lmb_gtab_status_save (id, erstdatum, erstuser, tab_id, formel, bezeichnung, group_id, typ, beschreibung, dssdsd) FROM stdin;
 1	2006-01-25 17:19:35	1	7	if(!#*[10]*# AND #*[3]*#){\n$gvalue = "FF1232";\n$gdesc = '';\n}elseif(!#*[3]*#){\n$gvalue = "C6AA73";\n$gdesc = '';\n}	DNS	1	-1	\N	f
 2	2006-05-10 13:23:40	1	25	if(#*[13]*# == 'Rechnung'){\nif(!#*[8]*# AND (local_stamp(1) - get_stamp(#*[6]*#) > 1814400) AND (local_stamp(1) - get_stamp(#*[6]*#) < 3024000)){\n$gvalue = "FFDDDD";\n$gdesc = '21 Tage überschritten';\n}elseif(!#*[8]*# AND (local_stamp(1) - get_stamp(#*[6]*#) > 3024000)){\n$gvalue = "FFAAAA";\n$gdesc = '35 Tage überschritten';\n}\n}	Mahnung	1	-1	Mahnung	f
 \.
@@ -3619,7 +3822,7 @@ COPY public.lmb_gtab_status_save (id, erstdatum, erstuser, tab_id, formel, bezei
 -- Data for Name: lmb_history_action; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_history_action (id, erstdatum, userid, tab, dataid, action, loglevel, lwf_id, lwf_inid, lwf_prid) FROM stdin;
+COPY lmb_history_action (id, erstdatum, userid, tab, dataid, action, loglevel, lwf_id, lwf_inid, lwf_prid) FROM stdin;
 \.
 
 
@@ -3627,11 +3830,9 @@ COPY public.lmb_history_action (id, erstdatum, userid, tab, dataid, action, logl
 -- Data for Name: lmb_history_backup; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_history_backup (id, erstdatum, label, action, result, medium, size, nextlogpage, server, location, message, cron_id) FROM stdin;
-1	2018-09-28 11:18:03.629923		SAVE DATA	f	DATA1809281803	0	0	localhost	////opt/openlimbas/dependent/BACKUP/18_09_28_18_03.DATA.	FALSE	0
-2	2018-09-28 11:18:22.996262		SAVE DATA	f	DATA1809281822	0	0	localhost	////opt/projekts/openlimbas/dependent/BACKUP/18_09_28_18_22.DATA.	FALSE	0
-3	2018-09-28 11:18:33.054313		SAVE DATA	t	DATA1809281832	145	0	localhost	////opt/projects/openlimbas/dependent/BACKUP/18_09_28_18_32.DATA.gz		0
-4	2018-09-28 11:38:52.606877		SAVE DATA	f	DATA1809283852	0	0	localhost	////opt/projekcts/openlimbas/dependent/BACKUP/18_09_28_38_52.DATA.	FALSE	0
+COPY lmb_history_backup (id, erstdatum, label, action, result, medium, size, nextlogpage, server, location, message, cron_id) FROM stdin;
+1	2019-09-20 16:03:00.696476		SAVE DATA	t	DATA1909200259	148	0	localhost	/////opt/openlimbas/dependent/BACKUP/19_09_20_02_59.DATA.gz		0
+2	2019-09-20 16:03:12.652466		SAVE DATA	t	DATA1909200312	148	0	localhost	/////opt/openlimbas/dependent/BACKUP/19_09_20_03_12.DATA.gz		0
 \.
 
 
@@ -3639,7 +3840,7 @@ COPY public.lmb_history_backup (id, erstdatum, label, action, result, medium, si
 -- Data for Name: lmb_history_update; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_history_update (id, erstdatum, userid, tab, field, dataid, fieldvalue, action_id, lwf_id, lwf_inid, lwf_prid) FROM stdin;
+COPY lmb_history_update (id, erstdatum, userid, tab, field, dataid, fieldvalue, action_id, lwf_id, lwf_inid, lwf_prid) FROM stdin;
 \.
 
 
@@ -3647,8 +3848,9 @@ COPY public.lmb_history_update (id, erstdatum, userid, tab, field, dataid, field
 -- Data for Name: lmb_history_user; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_history_user (id, userid, sessionid, login_date, update_date, ip, host, login_time) FROM stdin;
-1088	1	4t79df5q0p0ld7ojtqrvep1ivc	2018-09-28 11:14:14.556382	2018-09-28 11:39:01	127.0.0.1		1487
+COPY lmb_history_user (id, userid, sessionid, login_date, update_date, ip, host, login_time) FROM stdin;
+1244	1	8r3jmjuqpeg3d655sl8au4t7bc	2019-09-20 16:02:57.77764	2019-09-20 16:03:12	192.168.5.19		15
+1245	1	5pfj2qk7ictlab07o90tsvvrng	2019-09-23 09:54:34.338657	2019-09-23 09:55:15	192.168.5.19		42
 \.
 
 
@@ -3656,7 +3858,7 @@ COPY public.lmb_history_user (id, userid, sessionid, login_date, update_date, ip
 -- Data for Name: lmb_indize_d; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_indize_d (id, sid, wid, ref, tabid, fieldid) FROM stdin;
+COPY lmb_indize_d (id, sid, wid, ref, tabid, fieldid) FROM stdin;
 \.
 
 
@@ -3664,7 +3866,7 @@ COPY public.lmb_indize_d (id, sid, wid, ref, tabid, fieldid) FROM stdin;
 -- Data for Name: lmb_indize_ds; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_indize_ds (id, sid, wid, ref, tabid, fieldid) FROM stdin;
+COPY lmb_indize_ds (id, sid, wid, ref, tabid, fieldid) FROM stdin;
 \.
 
 
@@ -3672,7 +3874,7 @@ COPY public.lmb_indize_ds (id, sid, wid, ref, tabid, fieldid) FROM stdin;
 -- Data for Name: lmb_indize_f; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_indize_f (id, sid, wid, fid, meta) FROM stdin;
+COPY lmb_indize_f (id, sid, wid, fid, meta) FROM stdin;
 \.
 
 
@@ -3680,7 +3882,7 @@ COPY public.lmb_indize_f (id, sid, wid, fid, meta) FROM stdin;
 -- Data for Name: lmb_indize_fs; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_indize_fs (id, sid, wid, fid, meta) FROM stdin;
+COPY lmb_indize_fs (id, sid, wid, fid, meta) FROM stdin;
 \.
 
 
@@ -3688,7 +3890,7 @@ COPY public.lmb_indize_fs (id, sid, wid, fid, meta) FROM stdin;
 -- Data for Name: lmb_indize_history; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_indize_history (id, erstdatum, result, used_time, message, action, inum, job, jnum) FROM stdin;
+COPY lmb_indize_history (id, erstdatum, result, used_time, message, action, inum, job, jnum) FROM stdin;
 \.
 
 
@@ -3696,7 +3898,7 @@ COPY public.lmb_indize_history (id, erstdatum, result, used_time, message, actio
 -- Data for Name: lmb_indize_w; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_indize_w (id, val, metaphone, upperval) FROM stdin;
+COPY lmb_indize_w (id, val, metaphone, upperval) FROM stdin;
 \.
 
 
@@ -3704,7 +3906,7 @@ COPY public.lmb_indize_w (id, val, metaphone, upperval) FROM stdin;
 -- Data for Name: lmb_lang; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, js) FROM stdin;
+COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, js) FROM stdin;
 2412	1	1246	1	ohne	deutsch	t	5	f
 6247	4	356	2	Remarques liées	francais	t	0	f
 6144	4	164	1	table	francais	t	49	f
@@ -3977,16 +4179,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 4358	1	1515	2	Tabellen - Feldtypen	deutsch	t	\N	f
 435	1	435	2	Menüpunkte	deutsch	t	\N	f
 436	1	436	2	Menüpunkte	deutsch	t	\N	f
-437	1	437	2	Schema	deutsch	t	\N	f
-438	1	438	2	Farb-Schema	deutsch	t	\N	f
-439	1	439	2	Farben	deutsch	t	\N	f
-440	1	440	2	Farb-Tabelle	deutsch	t	\N	f
-726	1	726	2	Sprache	deutsch	t	\N	f
-727	1	727	2	System Sprachtabelle	deutsch	t	\N	f
-8385	1	2263	2	Sprache	deutsch	t	\N	f
-8389	1	2264	2	Lokale Sprachtabelle	deutsch	t	\N	f
-5477	1	1888	2	Schriftarten	deutsch	t	\N	f
-5480	1	1889	2	Fontmanager	deutsch	t	\N	f
 11376	1	2568	3	Standardwert bei anlegen eines neuen Datensatzes	deutsch	t	221	f
 11400	1	2574	3	Standardformular	deutsch	t	221	f
 11420	1	2579	2	OCR	deutsch	t	0	f
@@ -4040,8 +4232,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11641	2	2634	3	descending	english	t	226	f
 11645	2	2635	3	show systemtables	english	t	225	f
 11657	2	2638	3	view	english	t	168	f
-11669	2	2641	2	Colojoice	english	t	0	f
-11673	2	2642	2	Colojoice	english	t	0	f
 11677	2	2643	1	to User	english	t	13	f
 11681	2	2644	1	set	english	t	13	f
 11633	2	2632	3	criteria	english	t	226	f
@@ -4069,8 +4259,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5836	2	2007	1	Successfully deleted!	english	t	0	f
 5838	1	2008	1	erfolgreich gesendet!	deutsch	t	0	f
 5839	2	2008	1	Successfully sent!	english	t	0	f
-5841	1	2009	1	Schnappschuß speichern	deutsch	t	0	f
-5844	1	2010	1	Schnappschuß löschen	deutsch	t	0	f
 5619	2	1935	2	File mode	english	t	\N	f
 6636	4	979	3	gzip	francais	t	145	f
 3523	3	854	1	y	Espagñol	t	19	f
@@ -4206,10 +4394,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 101	1	101	1	Detailsuche	deutsch	t	19	f
 102	1	102	1	nach	deutsch	t	19	f
 103	1	103	1	suche in	deutsch	t	19	f
-106	1	106	1	Teil des Feldinhalts	deutsch	t	19	f
-107	1	107	1	ganzes Feld	deutsch	t	19	f
-108	1	108	1	Anfang des Feldinhalts	deutsch	t	19	f
-109	1	109	1	CS	deutsch	t	19	f
 112	1	112	1	Dieser Eintrag kann nicht gelöscht werden, da bereits Werte ausgewählt sind!	deutsch	t	22	f
 941	1	941	3	Referentielle Integrität	deutsch	t	139	f
 115	1	115	1	Änderungen wurden zurückgesetzt!	deutsch	t	25	f
@@ -4223,6 +4407,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 141	1	141	1	Passwort	deutsch	t	46	f
 142	1	142	1	Vorname	deutsch	t	46	f
 144	1	144	1	email	deutsch	t	46	f
+106	1	106	1	enthält	deutsch	t	19	f
+108	1	108	1	beginnt	deutsch	t	19	f
 146	1	146	1	Allg. Einstellungen	deutsch	t	46	f
 154	1	154	1	Eigene Farbliste	deutsch	t	47	f
 155	1	155	1	Farbauswahl	deutsch	t	47	f
@@ -4293,7 +4479,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 421	1	421	2	suche	deutsch	t	\N	f
 422	1	422	2	Nachrichten suchen	deutsch	t	\N	f
 427	1	427	2	Vorlagen	deutsch	t	\N	f
-428	1	428	2	Berichtsvorlagen	deutsch	t	\N	f
 429	1	429	2	User anlegen	deutsch	t	\N	f
 430	1	430	2	User anlegen	deutsch	t	\N	f
 443	1	443	2	Import	deutsch	t	\N	f
@@ -4348,6 +4533,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 672	1	672	3	Nachname	deutsch	t	136	f
 698	1	698	1	Layout	deutsch	t	46	f
 700	1	700	1	öffne Quick-Kalender	deutsch	t	34	f
+927	1	927	3	unique	deutsch	t	110	f
 704	1	704	1	Ergebnisfenster teilen	deutsch	t	46	f
 711	1	711	1	größer	deutsch	t	19	f
 441	1	441	2	Export	deutsch	t	\N	f
@@ -4379,8 +4565,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 770	1	770	1	gelöscht	deutsch	t	154	f
 771	1	771	2	umbenennen	deutsch	t	\N	f
 772	1	772	2	Ordner/Datei umbenennen	deutsch	t	\N	f
-773	1	773	2	Erweiterte Suche	deutsch	t	\N	f
-774	1	774	2	erweiterte Suche	deutsch	t	\N	f
 777	1	777	2	neuer Ordner	deutsch	t	\N	f
 778	1	778	2	neuen Ordner erstellen	deutsch	t	\N	f
 483	1	483	2	Nutzungsrechte	deutsch	t	\N	f
@@ -4457,7 +4641,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 917	1	917	3	Eingabe des absoluten Links!	deutsch	t	107	f
 925	1	925	3	Typ	deutsch	t	110	f
 926	1	926	3	Schlüssel	deutsch	t	110	f
-927	1	927	3	unique	deutsch	t	110	f
 928	1	928	3	Defaultwert	deutsch	t	110	f
 930	1	930	3	konvertieren	deutsch	t	110	f
 931	1	931	3	ajax	deutsch	t	110	f
@@ -5195,7 +5378,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5101	2	1762	1	Method	english	t	66	f
 2738	1	1409	2	Auswahlfeld (mehrfachauswahl) mit neuem Fenster	deutsch	t	0	f
 4260	1	1482	2	Auswahlfeld (mehrfachauswahl) als Checkbox-Liste	deutsch	t	0	f
-2651	2	1365	2	Boolean 	english	f	0	f
 2722	1	1401	2	TRUE | FALSE oder 0 | 1	deutsch	t	0	f
 4290	1	1492	3	untenbündig	deutsch	t	168	f
 4291	2	1492	3	align bottom	english	t	168	f
@@ -5236,6 +5418,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 4404	1	1530	1	übernehmen+nächster	deutsch	t	13	f
 4405	2	1530	1	save and go to next	english	t	13	f
 4407	1	1531	1	übernehmen+vorheriger	deutsch	t	13	f
+5055	1	1747	3	Hinweise	deutsch	t	52	f
 4408	2	1531	1	save and go to previous	english	t	13	f
 4410	1	1532	3	Umleitung	deutsch	t	127	f
 4411	2	1532	3	redirection	english	t	127	f
@@ -5305,14 +5488,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 4614	1	1600	1	Passwort wiederholen	deutsch	t	46	f
 4521	1	1569	1	Style	deutsch	t	175	f
 4615	2	1600	1	reenter password	english	t	46	f
-4619	1	1602	2	Schnappschuß	deutsch	t	\N	f
-4620	2	1602	2	Snapshot	english	t	\N	f
-4622	1	1603	2	Schnappschuß speichern	deutsch	t	\N	f
-4623	2	1603	2	save snapshot	english	t	\N	f
-4625	1	1604	2	Schnappschuß	deutsch	t	\N	f
-4626	2	1604	2	snapshot	english	t	\N	f
-4628	1	1605	2	Schnappschuß Übersicht	deutsch	t	\N	f
-4629	2	1605	2	snapshot overview	english	t	\N	f
 4638	1	1608	1	Sie müssen einen Namen vergeben!	deutsch	t	5	f
 4639	2	1608	1	You must set a name!	english	t	5	f
 4649	1	1612	2	Datei runterladen	deutsch	t	\N	f
@@ -5459,7 +5634,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5050	2	1745	3	Origin	english	t	52	f
 5052	1	1746	3	Copyright	deutsch	t	52	f
 5053	2	1746	3	Cpyright	english	t	52	f
-5055	1	1747	3	Hinweise	deutsch	t	52	f
 5056	2	1747	3	Hints	english	t	52	f
 5058	1	1748	3	Dringlichkeit	deutsch	t	52	f
 5061	1	1749	3	Kategorie	deutsch	t	52	f
@@ -5564,9 +5738,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5286	1	1824	3	zu verknüpfende Tabelle	deutsch	t	121	f
 5295	1	1827	1	mit global	deutsch	t	19	f
 5296	2	1827	1	with global	english	t	19	f
-5297	1	1828	2	Info	deutsch	t	\N	f
 5298	2	1828	2	Info	english	t	\N	f
-5300	1	1829	2	Info über LIMBAS	deutsch	t	\N	f
 5301	2	1829	2	Info about LIMBAS	english	t	\N	f
 5304	1	1830	3	Auswahl-Pool	deutsch	t	104	f
 5305	2	1830	3	Choice pool	english	t	104	f
@@ -5601,11 +5773,9 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5399	1	1862	2	Einzel-Jobs	deutsch	t	\N	f
 5402	1	1863	2	Job - Templates	deutsch	t	\N	f
 5403	2	1863	2	Job - Templates	english	t	\N	f
-5405	1	1864	2	Periodisch	deutsch	t	\N	f
 5287	2	1824	3	To be linked table	english	t	121	f
 5344	2	1843	1	values	english	t	12	f
 5400	2	1862	2	single jbs	english	t	\N	f
-5408	1	1865	2	Periodische Ausführung	deutsch	t	\N	f
 5411	1	1866	2	History	deutsch	t	\N	f
 5412	2	1866	2	History	english	t	\N	f
 5697	1	1961	3	Auswahl	deutsch	t	168	f
@@ -5657,6 +5827,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5517	1	1901	1	Die Medatdaten konnten nicht erfolgreich ausgelesen werden.	deutsch	t	41	f
 6104	4	102	1	Après	francais	t	19	f
 5520	1	1902	1	groß/klein-Schreibung beachten	deutsch	t	66	f
+5297	1	1828	2	Info	deutsch	t	\N	f
+5300	1	1829	2	Info über LIMBAS	deutsch	t	\N	f
 5523	1	1903	1	ganzer Satz	deutsch	t	66	f
 5526	1	1904	1	Teil des Wortes	deutsch	t	66	f
 5538	1	1908	3	suche nur in Metadaten	deutsch	t	52	f
@@ -5708,10 +5880,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5704	2	1963	3	no	english	t	168	f
 5708	1	1965	2	veröffentlichen	deutsch	t	\N	f
 5709	2	1965	2	publish	english	t	\N	f
-5711	1	1966	2	Schnappschuß veröffentlichen	deutsch	t	\N	f
-5712	2	1966	2	publish snapshot	english	t	\N	f
 5715	1	1967	3	snap	deutsch	t	168	f
-5716	2	1967	3	snap	english	t	168	f
 5718	1	1968	3	hidden	deutsch	t	168	f
 5719	2	1968	3	hidden	english	t	168	f
 5739	1	1975	1	in	deutsch	t	13	f
@@ -5765,10 +5934,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6101	4	98	1	Aucun enregistrement!	francais	t	17	f
 6103	4	101	1	Recherche de contenu	francais	t	19	f
 6105	4	103	1	rechercher dans	francais	t	19	f
-6106	4	106	1	Partie de la valeur du champs	francais	t	19	f
-6107	4	107	1	Champs complet	francais	t	19	f
-6108	4	108	1	début du champs	francais	t	19	f
-6109	4	109	1	PM	francais	t	19	f
+5716	2	1967	3	filter	english	t	168	f
 6229	4	317	1	dim	francais	t	88	f
 6266	4	385	2	tables	francais	t	0	f
 6111	4	112	1	Vous ne pouvez pas supprimer cette enregistrement car il est en relation avec un autre!	francais	t	22	f
@@ -5850,7 +6016,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6283	4	416	2	Messagerie	francais	t	0	f
 6284	4	417	2	Nouveau message	francais	t	0	f
 6290	4	427	2	Gabarit	francais	t	0	f
-6291	4	428	2	Gabarit de rapport	francais	t	0	f
 6292	4	429	2	Ajouter un utilisateur	francais	t	0	f
 6293	4	430	2	Ajouter un utilisateur	francais	t	0	f
 6294	4	431	2	Variable système	francais	t	0	f
@@ -5873,6 +6038,9 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6311	4	454	2	Administration utilisateurs/groupes	francais	t	0	f
 7391	4	1805	2	Action	francais	t	182	f
 6313	4	456	2	Administration des groupes	francais	t	0	f
+6106	4	106	1	Partie de la valeur du champs	francais	f	19	f
+6108	4	108	1	début du champs	francais	f	19	f
+6291	4	428	2	Gabarit de rapport	francais	f	0	f
 6314	4	457	2	Tables	francais	t	0	f
 6315	4	458	2	Editer les tables	francais	t	0	f
 6316	4	459	2	Rapport d''erreurs	francais	t	0	f
@@ -6230,6 +6398,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6881	4	1255	3	Règles des symboles	francais	t	122	f
 7509	4	1929	3	Calendrier	francais	t	140	f
 6950	4	1325	1	L''enregistrement a été supprimer avec succès!	francais	t	25	f
+7145	4	1534	3	Encadré	francais	t	168	f
 6951	4	1326	1	L''enregistrement a été deplacé vers la corbeille!	francais	t	25	f
 6952	4	1327	1	L''enregistrement a été recréé!	francais	t	25	f
 6955	4	1330	1	Tout déselectionner	francais	t	14	f
@@ -6335,7 +6504,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6974	4	1351	2	Nombre (10)	francais	t	0	f
 7010	4	1387	2	Nombre à 10 chiffres	francais	t	0	f
 7011	4	1388	2	Nombre à 18 chiffres	francais	t	0	f
-7145	4	1534	3	Encadré	francais	t	168	f
 7146	4	1535	3	Pointillé	francais	t	168	f
 7147	4	1536	3	Tiret	francais	t	168	f
 7148	4	1537	3	Double	francais	t	168	f
@@ -6374,10 +6542,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7185	4	1590	1	Indexé	francais	t	15	f
 7191	4	1597	1	Phonétique	francais	t	19	f
 7194	4	1600	1	Mot de passe (vérification)	francais	t	46	f
-7196	4	1602	2	Capture	francais	t	0	f
-7197	4	1603	2	Sauvegarde la capture	francais	t	0	f
-7198	4	1604	2	Capture	francais	t	0	f
-7199	4	1605	2	Vue des captures	francais	t	0	f
 7202	4	1608	1	Vous devez donnez un nom!	francais	t	5	f
 7205	4	1612	2	Download	francais	t	0	f
 7206	4	1613	2	Download fichier archive	francais	t	0	f
@@ -6611,7 +6775,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7543	4	1963	3	Non	francais	t	168	f
 7545	4	1965	2	Public	francais	t	0	f
 7491	4	1910	2	Enregistrer recherche	francais	t	0	f
-7546	4	1966	2	Rendre public une capture	francais	t	0	f
 7547	4	1967	3	Capture	francais	t	168	f
 7548	4	1968	3	Caché	francais	t	168	f
 7555	4	1975	1	Dans	francais	t	13	f
@@ -6635,8 +6798,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7586	4	2006	1	Enregistré avec succès!	francais	t	0	f
 7587	4	2007	1	Supprimé avec succès!	francais	t	0	f
 7588	4	2008	1	Envoyé avec succès!	francais	t	0	f
-7589	4	2009	1	Enregistrer capture	francais	t	0	f
-7590	4	2010	1	Supprimer capture	francais	t	0	f
 7596	4	2016	1	Excel	francais	t	5	f
 7597	4	2017	1	XML	francais	t	5	f
 7600	4	2020	3	Conversion du champs:	francais	t	110	f
@@ -6665,6 +6826,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7641	4	2062	1	Dernier enregistrement!	francais	t	23	f
 7642	4	2063	3	Z-index	francais	t	175	f
 7643	4	2064	3	A l''avant plan	francais	t	168	f
+3054	3	311	1	lunes	Espagñol	t	88	f
 7644	4	2065	3	A l''arrière plan	francais	t	168	f
 7646	4	2067	3	Reconstruire:	francais	t	168	f
 7647	4	2068	3	N°	francais	t	212	f
@@ -6949,8 +7111,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 10464	1	2342	2	Übersicht von Benutzerrechte	deutsch	t	0	f
 6984	4	1361	2	Texte 254	francais	t	0	f
 10465	2	2342	2	Overview Userrights	english	t	0	f
-10468	1	2343	3	Schnappschuß-Tabellen abgleichen	deutsch	t	154	f
-10469	2	2343	3	Match Snapshot table	english	t	154	f
 10484	1	2347	3	Z-Index	deutsch	t	169	f
 10485	2	2347	3	Z-Index	english	t	169	f
 10488	1	2348	3	Y-Pos	deutsch	t	169	f
@@ -7085,7 +7245,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 8190	1	2214	3	Für dieses Feld besteht bereits eine positive Verknüpfung!\nDiese Aktion nutzt die vorhandene Verknüpfung negativ.\nVorhandene Verknüpfungen werden gelöscht!	deutsch	t	121	t
 11745	2	2660	3	content	english	t	173	f
 10412	1	2329	3	Sollen die die htaccess Dateien neu generiert werden?\nNeue Passwörter werden nur übernommen wenn die clear_password Option in den umgvars aktiviert wurde	deutsch	t	154	t
-10476	1	2345	3	Sollen die Schnappschuß-Tabellen erneuert werden?\nSchnappschüsse werden auf neue oder fehlende Felder geprüft.	deutsch	t	154	t
 5788	2	1991	3	Do you want to rebuild the Systemtables FILES and FILES_META? Existing data will be deleted!\nThe file tables are provided in the table group limbassys. 	english	t	154	t
 10413	2	2329	3	Shall the htaccess files be renewed? \t\nNew passwords will only be accepted if the clear_password option in the umgvars was activated. 	english	t	154	t
 2556	1	1318	1	Es wurden noch keine Änderungen an diesem neuen Datensatz gemacht!\nErzeugen von leeren Datensätzen ist nicht ratsam.	deutsch	t	13	t
@@ -7098,7 +7257,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 721	1	721	1	Dieser Datensatz ist mit einer Wiedervorlage versehen! Soll diese aufgehoben werden?	deutsch	t	13	t
 2045	2	923	3	title	english	t	110	f
 2799	3	30	1	creado el	Espagñol	t	12	f
-10477	2	2345	3	Shall the snapshot tables be renewed? Snapshots are checked for new or missing fields. 	english	t	154	f
 11021	2	2479	2	show dublicates 	english	t	0	f
 4992	1	1726	1	Der zugehörige Datensatz oder die Metainformationen der Datei sind nicht vorhanden!	deutsch	t	66	f
 11208	1	2526	2	erweiterte Einstellungen	deutsch	t	0	f
@@ -7121,7 +7279,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 827	1	827	2	Berichte	deutsch	t	0	f
 1950	2	827	2	reports	english	t	0	f
 6504	4	827	2	Rapports	francais	t	0	f
-5289	1	1825	3	verknüpft	deutsch	t	121	f
+5289	1	1825	3	beschreibt	deutsch	t	121	f
 736	1	736	2	Tabellen-Abfragen	deutsch	t	\N	f
 10632	1	2382	3	Start	deutsch	t	52	f
 7513	4	1933	2	JJ.MM.AAAA \n\nex: 05.12.07 - 5 dec 02 - 05 decembre 2002	francais	t	0	t
@@ -7220,12 +7378,10 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11485	2	2595	3	seperator	english	t	110	f
 11505	2	2600	3	time formate	english	t	110	f
 11501	2	2599	3	standard setting currency	english	t	110	f
-7409	4	1825	3	Champs lié	francais	t	121	f
 11469	2	2591	3	Rule to hide field expects: return true/false	english	t	110	f
 11473	2	2592	3	Rule for field write right expects: return true/false	english	t	110	f
 11525	2	2605	1	Should not be assigned twice!	english	t	13	f
 11489	2	2596	3	Number representation in number formate() formate: e.g 2, ''.'', ''''	english	t	110	f
-5290	2	1825	3	linked	english	t	121	f
 11493	2	2597	3	How the number should be shown as expotencial spelling	english	t	110	f
 1745	2	606	3	Username already exists!	english	t	126	f
 2024	2	902	3	Local setting	english	t	127	f
@@ -7296,7 +7452,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7275	4	1689	1	Nombre maximum de download simultanés	francais	t	66	f
 4916	1	1701	2	Änderungen speichern	deutsch	t	\N	f
 7287	4	1701	2	Enregistrer les modifications	francais	t	0	f
-5557	2	1914	1	Tipps for searching:\n- pay attention for correct spelling\n- serach in subfolders too \n- generalize your search 	english	t	66	t
 5869	2	2018	3	new version 	english	t	52	f
 11297	2	2548	3	Delete all temporary thumpnails?	english	t	154	f
 6058	2	2081	3	inc. sub 	english	t	212	f
@@ -7326,8 +7481,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 129	1	129	1	Die max. Größe einer hochgeladenen Datei ist beschränkt auf	deutsch	t	41	f
 6124	4	129	1	Le fichier uploadé a une taille de	francais	t	41	f
 11656	1	2638	3	anzeigen	deutsch	t	168	f
-11668	1	2641	2	Farbauswahl	deutsch	t	0	f
-11672	1	2642	2	Farbauswahl	deutsch	t	0	f
 11664	1	2640	3	Ajaxpost	deutsch	t	110	f
 2176	2	1054	3	refresh table and field rules	english	t	154	f
 11676	1	2643	1	an User	deutsch	t	13	f
@@ -7360,6 +7513,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11581	2	2619	3	and only data records from	english	t	226	f
 11577	2	2618	3	get all data records from	english	t	226	f
 11629	2	2631	3	view	english	t	226	f
+8363	2	2257	2	formula construct (SQL) 	english	t	0	f
 5913	1	2033	3	Soll die angezeigte Anzahl von Verknüpfungen und Multiselectfeldern neu berechnet werden?	deutsch	t	154	t
 425	1	425	2	Wiedervorlage	deutsch	t	\N	f
 426	1	426	2	persönliche Wiedervorlagen	deutsch	t	\N	f
@@ -7402,8 +7556,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 374	1	374	2	Datensatz suchen	deutsch	t	\N	f
 11820	1	2679	2	neues Fenster	deutsch	t	0	f
 11824	1	2680	2	neues Fenster	deutsch	t	0	f
-11828	1	2681	1	leeres Feld	deutsch	t	19	f
-11832	1	2682	1	nicht leeres Feld	deutsch	t	19	f
 11836	1	2683	1	ungleich	deutsch	t	19	f
 11776	1	2668	2	zeige Felder	deutsch	t	0	f
 11780	1	2669	2	zeige Felder	deutsch	t	0	f
@@ -7416,6 +7568,9 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11856	1	2688	3	Ergebnisanzahl	deutsch	t	140	f
 5885	1	2024	2	Abfragen	deutsch	t	\N	f
 5888	1	2025	2	Abfrage-Generator	deutsch	t	\N	f
+11832	1	2682	1	ist nicht leer	deutsch	t	19	f
+11668	1	2641	2	Farbauswahl	deutsch	t	0	f
+11672	1	2642	2	Farbauswahl	deutsch	t	0	f
 2686	1	1383	2	Long	deutsch	t	0	f
 7006	4	1383	2	Long	francais	t	0	f
 7042	4	1419	2	Bloc de texte avec maximum 100000 caractères	francais	t	0	f
@@ -7434,7 +7589,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11301	2	2549	3	Recalculate failed thumpnails? 	english	t	154	f
 11821	2	2679	2	new window	english	t	0	f
 11825	2	2680	2	new window	english	t	0	f
-11829	2	2681	1	empty field	english	t	19	f
 11845	2	2685	3	default	english	t	140	f
 11892	1	2697	3	Soll die Ordnerstruktur auf Konsistenz geprüft werden?\nFehlende Benutzer oder Berichtsordner werden neu erstellt.	deutsch	t	154	t
 11896	1	2698	3	Rotation	deutsch	t	168	f
@@ -7460,7 +7614,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 8179	2	2211	2	Attribute 	english	t	0	f
 8183	2	2212	2	Attributes 	english	t	0	f
 8359	2	2256	2	SQL-Argument 	english	t	0	f
-8363	2	2257	2	formula construct (SQL) 	english	t	0	f
 10509	2	2351	2	Document content 	english	t	0	f
 10513	2	2352	2	Reference to document 	english	t	0	f
 11293	2	2547	3	Recalculate failed thumpnails! 	english	t	154	f
@@ -7471,7 +7624,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 2751	2	1415	2	The user who modified the record	english	t	0	f
 5803	2	1996	1	publish	english	t	5	f
 11289	2	2546	3	delete temporary thumbnails	english	t	154	f
-11833	2	2682	1	not empty field	english	t	19	f
 11837	2	2683	1	different	english	t	19	f
 11841	2	2684	1	data records changed	english	t	230	f
 11765	2	2665	3	use [sequencel] table	english	t	140	f
@@ -7489,15 +7641,10 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11853	2	2687	3	no permission	english	t	140	f
 11861	2	2689	3	edit tablefields	english	t	140	f
 11865	2	2690	3	open queryeditor	english	t	140	f
-2727	2	1403	2	currency 25 didigts	english	f	0	f
 11881	2	2694	3	You want to delete all temporary textfiles?	english	t	154	f
 11885	2	2695	3	Delete temporary textfiles	english	t	154	f
 11897	2	2698	3	rotation	english	t	168	f
 11901	2	2699	3	not published	english	t	140	f
-2649	2	1364	2	Date_Time	english	f	0	f
-4270	2	1485	2	multiple choice field as checkbox	english	f	0	f
-2665	2	1372	2	Choice (multiselect) 	english	f	0	f
-7679	2	2086	2	inherited 	english	f	0	f
 11748	1	2661	3	Gruppierungs-Rahmen	deutsch	t	175	f
 114	1	114	1	Für diese Aktion besitzen Sie keine Rechte	deutsch	t	23	f
 11749	2	2661	3	grouping frame	english	t	175	f
@@ -7514,9 +7661,10 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 2796	3	27	1	editor de selección	Espagñol	t	12	f
 2798	3	29	1	contenido	Espagñol	t	12	f
 2802	3	33	1	tomar control	Espagñol	t	12	f
-7827	2	2123	2	Telephony 	english	f	0	f
 2803	3	34	1	añadir	Espagñol	t	12	f
 2818	3	49	1	¿desea realmente ocultar este registro?	Espagñol	t	13	f
+11833	2	2682	1	not empty field 	english	t	19	f
+11829	2	2681	1	empty field 	english	t	19	f
 2819	3	50	1	¿desea realmente borrar este archivo?	Espagñol	t	13	f
 2825	3	56	1	ha ocurrido un error	Espagñol	t	13	f
 2826	3	58	1	cambiar	Espagñol	t	14	f
@@ -7531,10 +7679,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 2846	3	101	1	búsqueda del contenido del cuadro	Espagñol	t	19	f
 2847	3	102	1	buscar	Espagñol	t	19	f
 2848	3	103	1	buscar en	Espagñol	t	19	f
-2850	3	106	1	parte del contenido del campo	Espagñol	t	19	f
-2851	3	107	1	todo el campo	Espagñol	t	19	f
-2852	3	108	1	comienzo del contenido del campo	Espagñol	t	19	f
-2853	3	109	1	CS	Espagñol	t	19	f
 2856	3	112	1	esta entrada no puede ser borrada,  ya existen conexiones	Espagñol	t	22	f
 2859	3	115	1	ha ocurrdio un error	Espagñol	t	25	f
 2860	3	116	1	el registro fue borrado con éxito	Espagñol	t	25	f
@@ -7574,7 +7718,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 3045	3	302	1	registrar	Espagñol	t	86	f
 3046	3	303	1	no hay registro	Espagñol	t	87	f
 3047	3	304	1	vista general del calendario	Espagñol	t	88	f
-3054	3	311	1	lunes	Espagñol	t	88	f
 3055	3	312	1	martes	Espagñol	t	88	f
 3056	3	313	1	miércoles	Espagñol	t	88	f
 3057	3	314	1	jueves	Espagñol	t	88	f
@@ -7613,17 +7756,16 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 3125	3	396	2	minimizar muestra	Espagñol	t	0	f
 3128	3	401	2	reconfigurar	Espagñol	t	0	f
 3129	3	402	2	reconfigurar resultados	Espagñol	t	0	f
-10977	2	2468	2	number with decimal point	english	f	0	f
-2699	2	1389	2	Decimal	english	f	0	f
-4600	2	1595	2	decimal in percent 	english	f	0	f
 4602	1	1596	2	Kommazahl Numeric mit Prozentdarstellung	deutsch	t	0	f
-4603	2	1596	2	decimal numeric in percent 	english	f	0	f
-7831	2	2124	2	+xx xx xxxx oder +xx xxxxx 	english	f	0	f
-2647	2	1363	2	Textarea 	english	f	0	f
-2719	2	1399	2	Textarea 	english	f	0	f
 3130	3	403	2	configuraciones	Espagñol	t	0	f
 3131	3	404	2	configuraciones generales	Espagñol	t	0	f
 3132	3	409	2	colores	Espagñol	t	0	f
+4600	2	1595	2	decimal in percent 	english	t	0	f
+4603	2	1596	2	decimal numeric in percent 	english	t	0	f
+2853	3	109	1	CS	Espagñol	f	19	f
+2851	3	107	1	todo el campo	Espagñol	f	19	f
+2850	3	106	1	parte del contenido del campo	Espagñol	f	19	f
+2852	3	108	1	comienzo del contenido del campo	Espagñol	f	19	f
 3133	3	410	2	selección del color	Espagñol	t	0	f
 3134	3	415	2	mensajes	Espagñol	t	0	f
 3135	3	416	2	sistema de mensajes	Espagñol	t	0	f
@@ -7634,7 +7776,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 3142	3	425	2	nueva presentación	Espagñol	t	0	f
 3143	3	426	2	nuevas presentaciones personales	Espagñol	t	0	f
 3144	3	427	2	presentaciones	Espagñol	t	0	f
-3145	3	428	2	presentación del informe	Espagñol	t	0	f
 3146	3	429	2	generar usuario	Espagñol	t	0	f
 3147	3	430	2	generar usuario	Espagñol	t	0	f
 3148	3	431	2	variable de entorno	Espagñol	t	0	f
@@ -8008,6 +8149,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7864	4	2132	3	versioning	francais	t	140	f
 7888	4	2138	1	non table liée sélectionnée!	francais	t	5	f
 7892	4	2139	1	Aucune donnée disponible associé!	francais	t	5	f
+10538	4	2358	1	lien Break	francais	t	13	f
 7856	4	2130	3	droit de fichier	francais	t	119	f
 7852	4	2129	3	droits de table	francais	t	119	f
 7920	4	2146	1	si le dossier versionné?	francais	t	13	f
@@ -8103,7 +8245,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 10334	4	2309	1	fichier	francais	t	97	f
 10342	4	2311	1	Aucun droit de suppression!	francais	t	97	f
 10350	4	2313	1	Le fichier source existe déjà. S'il vous plaît essayer à nouveau.	francais	t	97	f
-10538	4	2358	1	lien Break	francais	t	13	f
 10354	4	2314	1	Lancer la reconnaissance OCR	francais	t	66	f
 10358	4	2315	2	Linked mode	francais	t	0	f
 10362	4	2316	2	afficher uniquement les enregistrements liés	francais	t	0	f
@@ -8126,7 +8267,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 10458	4	2340	3	Si vous modifiez les autorisations tous les anciens unique des droits de cette table sera supprimé!	francais	t	140	f
 10462	4	2341	2	Afficher les droits des utilisateurs	francais	t	0	f
 10466	4	2342	2	Vue d'ensemble des droits des utilisateurs	francais	t	0	f
-10470	4	2343	3	tables instantané Syndicate	francais	t	154	f
 10486	4	2347	3	Z-Index	francais	t	169	f
 10490	4	2348	3	Y-Pos	francais	t	169	f
 10494	4	2349	2	test	francais	t	unknown	f
@@ -8150,12 +8290,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 10410	4	2328	3	sont tous les paramètres utilisateur seront perdus?	francais	t	154	f
 10506	4	1994	2	étiquetage Catégorie	francais	t	unknown	f
 10518	4	2353	3	IP statique	francais	t	127	f
-4621	3	1602	2	Schnapschuß	Espagñol	t	\N	f
 10446	4	2337	3	Gérer les droits des utilisateurs pour tous les enregistrements	francais	t	221	f
 10522	4	2354	1	La différence entre les versions	francais	t	204	f
-4624	3	1603	2	neue Filteransicht speichern	Espagñol	t	\N	f
-4627	3	1604	2	Schnapschuß	Espagñol	t	\N	f
-4630	3	1605	2	Schnapschuß Übersicht	Espagñol	t	\N	f
 10526	4	2355	1	Télécharger en pdf	francais	t	204	f
 4651	3	1612	2	download	Espagñol	t	\N	f
 4654	3	1613	2	download archive	Espagñol	t	\N	f
@@ -8281,7 +8417,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6563	4	896	3	Cette fonction définit les droits standards du groupe et de ses sous-groupes ici encore! Ici, les droits existants sont remplacés!	francais	t	115	t
 8192	4	2214	3	déjà il y a un lien positif pour ce domaine! Cette action utilise le raccourci négatif existant. Les liens existants seront perdus!	francais	t	121	t
 10414	4	2329	3	Si les fichiers .htaccess à régénérer? Les nouveaux mots de passe ne sont appliqués que lorsque l'option clear_password est activée dans les umgvars	francais	t	154	t
-10478	4	2345	3	Si les tables de l'instantané à la retraite? Les instantanés sont vérifiés pour les champs nouveaux ou manquants.	francais	t	154	f
 6435	4	721	1	Cet ensemble de données est muni d'une nouvelle présentation! Faut-il être retiré?	francais	t	13	t
 11206	4	2525	2	paramètres	francais	t	0	f
 11210	4	2526	2	paramètres avancés	francais	t	0	f
@@ -8367,7 +8502,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11474	4	2592	3	Règle d'accès en écriture du champ, attendu: return true / false	francais	t	110	f
 11478	4	2593	3	installer	francais	t	110	f
 5710	3	1965	2	veröffentlichen	Espagñol	t	\N	f
-5713	3	1966	2	Schnappschuß veröffentlichen	Espagñol	t	\N	f
 11494	4	2597	3	De combien d'endroits le nombre à afficher dans Expotentialschreibweise	francais	t	110	f
 11502	4	2599	3	Devise par défaut	francais	t	110	f
 11506	4	2600	3	format de l'heure	francais	t	110	f
@@ -8407,9 +8541,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11642	4	2634	3	descendant	francais	t	226	f
 11646	4	2635	3	tables système d'exposition	francais	t	225	f
 11658	4	2638	3	spectacle	francais	t	168	f
-11670	4	2641	2	sélection des couleurs	francais	t	0	f
 11666	4	2640	3	poste ajax	francais	t	110	f
-11674	4	2642	2	sélection des couleurs	francais	t	0	f
 11678	4	2643	1	à l'utilisateur	francais	t	13	f
 11682	4	2644	1	ensemble	francais	t	13	f
 11694	4	2647	1	cible	francais	t	66	f
@@ -8437,6 +8569,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7796	3	2115	2	Diagramme	Espagñol	t	\N	f
 7800	3	2116	2	Diagramme	Espagñol	t	\N	f
 7804	3	2117	2	Diagramm	Espagñol	t	\N	f
+11670	4	2641	2	sélection des couleurs	francais	f	0	f
+11674	4	2642	2	sélection des couleurs	francais	f	0	f
 7808	3	2118	2	Diagramm	Espagñol	t	\N	f
 11778	4	2668	2	montrer les champs	francais	t	0	f
 11782	4	2669	2	montrer les champs	francais	t	0	f
@@ -8459,8 +8593,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11814	4	2677	1	champ affecté	francais	t	230	f
 11822	4	2679	2	nouvelle fenêtre	francais	t	0	f
 11826	4	2680	2	nouvelle fenêtre	francais	t	0	f
-11830	4	2681	1	champ vide	francais	t	19	f
-11834	4	2682	1	non champ vide	francais	t	19	f
 11838	4	2683	1	inégal	francais	t	19	f
 7976	3	2160	2	workflow	Espagñol	t	\N	f
 7980	3	2161	2	workflow	Espagñol	t	\N	f
@@ -8500,6 +8632,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11750	4	2661	3	cadre de regroupement	francais	t	175	f
 11994	4	2722	1	Que manque index Limbasspezifische sont reconstruits?	francais	t	154	f
 11718	4	2653	3	Si les procédures de base de données Limbasspezifischen recréés?	francais	t	154	f
+3591	3	923	3	descripción	Espagñol	t	110	f
 11758	4	2663	3	Sollen die Limbasspezifischen Sequenz-Tabellen neu erstellt werden?	francais	t	154	f
 11714	4	2652	3	Les procédures de vérification	francais	t	154	f
 11754	4	2662	3	Vérifiez séquences	francais	t	154	f
@@ -8527,6 +8660,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11956	1	2713	3	Tabellenreiter	deutsch	t	173	f
 12470	4	2840	3	l'envoi automatique active / magasin le champ de formulaire en arrière-plan lors d'un changement.	francais	t	110	f
 11912	1	2702	3	Datum+Zeit+Sec	deutsch	t	110	f
+11834	4	2682	1	non champ vide	francais	f	19	f
 12486	4	2844	3	active le changement empilement / collecte pour ce champ	francais	t	110	f
 12514	4	2851	3	la définition d'une ressource source pour la représentation de Gantt. Attendu n: m relation	francais	t	140	f
 11662	4	2639	3	Recherche ajax	francais	t	110	f
@@ -8587,7 +8721,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 3247	3	550	3	borrar todo	Espagñol	t	108	f
 3829	3	1163	3	acciones	Espagñol	t	170	f
 3292	3	606	3	ya existe	Espagñol	t	126	f
-3591	3	923	3	descripción	Espagñol	t	110	f
 3586	3	918	3	con lo cual ID significa número de artículo	Espagñol	t	107	f
 3801	3	1135	3	reconfigurar	Espagñol	t	168	f
 4918	3	1701	2	änderungen Speichern	Espagñol	t	\N	f
@@ -8703,7 +8836,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12033	2	2732	3	Calculate the listed rows in the choosen format	english	t	110	f
 12037	2	2733	1	Hide column	english	t	5	f
 4297	2	1494	3	subscript	english	t	168	f
-1297	2	118	1	You have no persmission to change this fileds!	english	t	27	f
 1472	2	294	1	colour	english	t	86	f
 11945	2	2710	3	remember	english	t	173	f
 11953	2	2712	3	Click event for form-tabulator<br>e.g. alert(''hello'')	english	t	110	f
@@ -8719,7 +8851,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 1574	2	410	2	user colour-selection	english	t	0	f
 1584	2	422	2	search message	english	t	0	f
 1589	2	427	2	template	english	t	0	f
-1590	2	428	2	report-template	english	t	0	f
 1591	2	429	2	create user	english	t	0	f
 1592	2	430	2	create user	english	t	0	f
 1607	2	445	2	system	english	t	0	f
@@ -8784,7 +8915,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 2429	2	1254	3	Do you want to delete the group and all subgroups? User of these groups can be assigned to other groups with [show deleted Users]	english	t	115	t
 2449	2	1264	3	This function checks all table rights if they are present!\nExisting rights will not been overwritten.	english	t	154	t
 4864	2	1683	1	File already exists!	english	t	66	f
-1272	2	89	1	Page 	english	t	17	f
 2451	2	1265	3	This function checks all menu rights if they are present!\nExisting rights will not been overwritten.	english	t	154	t
 2453	2	1266	2	monitoring	english	t	\N	f
 2455	2	1267	2	user monitoring	english	t	\N	f
@@ -8893,6 +9023,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 4894	2	1693	1	edit	english	t	66	f
 4906	2	1697	1	This folder is a system folder. You can use it only for  tables, reports or messages.	english	t	66	f
 4911	2	1699	2	copy message	english	t	\N	f
+12052	1	2736	3	von Tabelle	deutsch	t	168	f
 4942	2	1709	1	Do you want  to delete the content of the this folder?	english	t	66	f
 4945	2	1710	1	upload denied . no permission	english	t	66	f
 4300	2	1495	3	superscript\n	english	t	168	f
@@ -8912,7 +9043,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5155	2	1780	3	action	english	t	127	f
 5160	2	1782	2	comparison	english	t	\N	f
 5163	2	1783	2	compare data records	english	t	\N	f
-5176	2	1787	1	archieve	english	t	13	f
 5179	2	1788	1	report	english	t	5	f
 5182	2	1789	3	show atcive users	english	t	132	f
 5185	2	1790	3	show all users	english	t	132	f
@@ -8940,8 +9070,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5659	2	1948	3	Textarea input filed	english	t	175	f
 5761	2	1982	1	Days	english	t	13	f
 5809	2	1998	1	save as	english	t	5	f
-5842	2	2009	1	save snapshot	english	t	0	f
-5845	2	2010	1	delete snapshot	english	t	0	f
 5875	2	2020	3	convert field	english	t	110	f
 5878	2	2021	3	In case the content is  too long or the wrong type it be cut or deleted!	english	t	110	f
 5905	2	2030	3	Refresh temporary content	english	t	154	f
@@ -8995,7 +9123,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12044	1	2734	3	Auswahlpools neu sortieren	deutsch	t	154	f
 12048	1	2735	3	Zellenstyle	deutsch	t	168	f
 12062	4	2738	2	resoumission	francais	t	0	f
-12052	1	2736	3	von Tabelle	deutsch	t	168	f
 12066	4	2739	2	resoumission	francais	t	0	f
 12106	4	2749	2	droits de flux de travail	francais	t	0	f
 12070	4	2740	3	nouvelle resoumission	francais	t	187	f
@@ -9067,7 +9194,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12133	2	2756	3	list-formular	english	t	175	f
 12137	2	2757	3	radius	english	t	168	f
 12141	2	2758	3	create file	english	t	213	f
-1269	2	86	1	entries 	english	t	17	f
 12149	2	2760	3	changing versioning will delete existing version-informations!	english	t	140	f
 12153	2	2761	3	synchronize	english	t	139	f
 8119	2	2196	2	Mimetype 	english	t	0	f
@@ -9076,16 +9202,10 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12174	4	2766	1	avant	francais	t	204	f
 12157	2	2762	1	now	english	t	204	f
 12173	2	2766	1	bevore	english	t	204	f
-12182	4	2768	2	instantanés	francais	t	0	f
-12186	4	2769	2	Gérer les instantanés publics	francais	t	0	f
-12181	2	2768	2	snapshots	english	t	0	f
-12185	2	2769	2	manage public snapshots	english	t	0	f
 12189	2	2770	3	max. results	english	t	155	f
 12190	4	2770	3	max. résultats	francais	t	155	f
 12194	4	2771	2	Piscine de sélection	francais	t	0	f
 12188	1	2770	3	max. Ergebnisse	deutsch	t	155	f
-12180	1	2768	2	Schnappschüsse	deutsch	t	0	f
-12184	1	2769	2	Öffentliche Schnappschüsse verwalten	deutsch	t	0	f
 12193	2	2771	2	select-pools	english	t	0	f
 12197	2	2772	2	administrate select-pools	english	t	0	f
 12210	4	2775	2	Création d'un rendez-vous périodique	francais	t	0	f
@@ -9116,12 +9236,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12238	4	2782	3	Les coordonnées	francais	t	169	f
 12242	4	2783	3	éléments	francais	t	169	f
 12236	1	2782	3	Koordinaten	deutsch	t	169	f
-12246	4	2784	3	instantanés publiés	francais	t	210	f
 12240	1	2783	3	Elemente	deutsch	t	169	f
-12250	4	2785	3	tous les instantanés	francais	t	210	f
-12244	1	2784	3	veröffentlichte Schnapschüsse	deutsch	t	210	f
 12254	4	2786	1	tous les jours	francais	t	200	f
-12248	1	2785	3	alle Schnapschüsse	deutsch	t	210	f
 12205	2	2774	2	ecurring appointment	english	t	0	f
 12209	2	2775	2	add ecurring appointments	english	t	0	f
 12213	2	2776	1	do you want to drop all relations from this dataset?	english	t	204	f
@@ -9130,8 +9246,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12225	2	2779	3	subreport	english	t	169	f
 12229	2	2780	3	toolbox	english	t	169	f
 12241	2	2783	3	elements	english	t	169	f
-12245	2	2784	3	public snapshots	english	t	210	f
-12249	2	2785	3	all snapshots	english	t	210	f
+12180	1	2768	2	Filter	deutsch	t	0	f
 10421	2	2331	3	parameters 	english	t	168	f
 8039	2	2176	2	Versioning add-on remark 	english	t	0	f
 11589	2	2621	3	remove relation 	english	t	226	f
@@ -9167,8 +9282,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12316	1	2802	1	Seriendauer	deutsch	t	200	f
 12322	4	2803	1	série Muster	francais	t	200	f
 12320	1	2803	1	Serienmuster	deutsch	t	200	f
-12338	4	2807	3	Les champs affichés dans Verknüpfungsaansicht	francais	t	121	f
-12336	1	2807	3	angezeigte Felder in Verknüpfungsaansicht	deutsch	t	121	f
 12332	1	2806	3	angezeigte Felder in der Verknüpfungs-Schnellsuche / Verknüpungs-Auswahl	deutsch	t	121	f
 12334	4	2806	3	Les champs affichés dans le lien Recherche / sélection Verknüpungs rapide	francais	t	121	f
 2524	1	1302	2	Verknüpfungseditor	deutsch	t	\N	f
@@ -9198,7 +9311,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12317	2	2802	1	duration of series	english	t	200	f
 12333	2	2806	3	displayed fields in link-fast-search / link-selection	english	t	121	f
 12341	2	2808	3	fields in link table that shall be searched using OR	english	t	121	f
-12337	2	2807	3	displayed fields in link-view	english	t	121	f
 12269	2	2790	1	2 times a week	english	t	200	f
 12273	2	2791	3	repetition	english	t	52	f
 12285	2	2794	1	Attention! Recursive deletion of out-of-date or linked data sets was enabled!	english	t	17	f
@@ -9306,7 +9418,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12513	2	2851	3	defines resource for gantt-view. Expects n:m-link	english	t	140	f
 12517	2	2852	3	calendar-specific settings	english	t	140	f
 12469	2	2840	3	activates automated sending / saving of form field after changes	english	t	110	f
-1271	2	88	1	rows 	english	t	17	f
 12397	2	2822	3	type of version control. <br><b>recursive:</b> version controls all 1:n-links if version control was activated<br><b>set:</b> version controls only current record	english	t	140	f
 12473	2	2841	3	Display as select field in <b>table search bar</b>	english	t	110	f
 12477	2	2842	3	activates AJAX-based selection search in <b>table search bar</b>	english	t	110	f
@@ -9425,8 +9536,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12702	4	2898	3	Pour cette langue, la traduction de langue pour les champs de table est activée ou désactivée. \\\\\\\\\\\\\\\\ N champs de traduction sont supprimés ou ajoutés!	francais	t	180	f
 7943	2	2152	1	Versioning error! Only the currents record can be versionised. 	english	t	25	f
 12700	1	2898	3	Für diese Sprache wird die Sprachübersetzung für Tabellenfelder aktiviert oder deaktiviert.\\\\\\\\\\\\\\\\nÜbersetzungsfelder werden gelöscht oder hinzugefügt!	deutsch	t	180	t
-12192	1	2771	2	Auswahlpools	deutsch	t	0	f
-12196	1	2772	2	Auswahlpools verwalten	deutsch	t	0	f
 12296	1	2797	2	Datei-Import	deutsch	t	0	f
 12300	1	2798	2	Import	deutsch	t	0	f
 729	1	729	2	Wiedervorlage	deutsch	t	\N	f
@@ -9446,52 +9555,12 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 816	1	816	2	neue Datei erstellen	deutsch	t	\N	f
 12728	1	2905	2	Mimetypes	deutsch	t	0	f
 12732	1	2906	2	Mimetypes	deutsch	t	0	f
-1202	2	1	1	permission denied! 	english	t	2	f
-1203	2	2	1	version 	english	t	4	f
-1204	2	3	1	user 	english	t	4	f
-1205	2	4	1	name 	english	t	4	f
-1208	2	7	1	host 	english	t	4	f
-1209	2	8	1	IP 	english	t	4	f
-1210	2	9	1	agent 	english	t	4	f
-1211	2	10	1	authentication 	english	t	4	f
-1212	2	11	1	company 	english	t	4	f
-1225	2	24	1	Do you want to create a new record? 	english	t	5	f
-1226	2	25	1	an unknown error is occurred 	english	t	5	f
 12685	2	2894	3	save	english	t	177	f
 12736	1	2907	2	Revisions-Manager	deutsch	t	0	f
 12740	1	2908	2	Revisions Manager	deutsch	t	0	f
-1228	2	27	1	other 	english	t	12	f
-1230	2	29	1	value 	english	t	12	f
-1231	2	30	1	search 	english	t	12	f
-1234	2	33	1	save 	english	t	12	f
-1235	2	34	1	new value 	english	t	12	f
-1250	2	49	1	Do you want to archive this record? 	english	t	13	f
-1251	2	50	1	Do you want to delete this file? 	english	t	13	f
-1252	2	51	1	Do you want to print a report for the selected data records? 	english	t	13	f
-1257	2	56	1	An error has occurred! 	english	t	13	f
-1259	2	58	1	Syntax error! Input not according field type 	english	t	14	f
-1260	2	59	1	Replace with value 	english	t	14	f
-1261	2	60	1	Conditional 	english	t	14	f
-1267	2	84	1	Do you want to delete this data record? 	english	t	17	f
-1273	2	93	1	hit 	english	t	17	f
-1276	2	96	1	show 	english	t	17	f
-1281	2	101	1	Detail search 	english	t	19	f
-1282	2	102	1	after 	english	t	19	f
-1283	2	103	1	search in 	english	t	19	f
-1285	2	106	1	part of fieldcontent 	english	t	19	f
-1286	2	107	1	whole field 	english	t	19	f
-1287	2	108	1	begin of fieldcontent 	english	t	19	f
-1288	2	109	1	CS 	english	t	19	f
-1291	2	112	1	You can not delete this entry. Value already linked.! 	english	t	22	f
-1293	2	114	1	Permission denied! 	english	t	23	f
-1294	2	115	1	Changes have been reset! 	english	t	25	f
-1295	2	116	1	Record successfully deleted!  	english	t	25	f
-1301	2	122	1	No existing links. 	english	t	34	f
-1305	2	126	1	description 	english	t	34	f
-1307	2	128	1	File could not be saved!\r\nThe file is not a regular file, storing to this target is not allowed or no storage capacity. 	english	t	41	t
-1308	2	129	1	Max file size for upload is restricted to 	english	t	41	f
-1312	2	133	1	The uploaded file has an undefined format. 	english	t	41	f
-1313	2	134	1	Error! The following fields are incorrect: 	english	t	37	f
+1204	2	3	1	user 	english	t	4	f
+12192	1	2771	2	Auswahlpools	deutsch	t	0	f
+12196	1	2772	2	Auswahlpools verwalten	deutsch	t	0	f
 1317	2	138	1	please check input	english	t	41	f
 1319	2	140	1	userdata 	english	t	46	f
 1320	2	141	1	password 	english	t	46	f
@@ -9528,7 +9597,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6729	4	1084	3	Icone - URL	francais	t	162	f
 3750	3	1084	3	ícono URL	Espagñol	t	162	f
 2206	2	1084	3	icon	english	t	162	f
-1278	2	98	1	no records found!	english	t	17	f
 12746	4	2909	1	attribué à	francais	t	0	f
 459	1	459	2	Fehlerreport	deutsch	t	\N	f
 460	1	460	2	Fehler Report	deutsch	t	\N	f
@@ -9829,6 +9897,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 4889	3	1692	1	Se generó el informe.	Espagñol	t	93	f
 5024	3	1737	3	EXIF	Espagñol	t	52	f
 4892	3	1693	1	editar	Espagñol	t	66	f
+5498	3	1895	3	disposición	Espagñol	t	164	f
 4901	3	1696	1	Los mensajes y los archivos no se pueden mezclar!	Espagñol	t	97	f
 4904	3	1697	1	Dieser Ordner ist ein Systemordner. Er ist nur in Verbindung mit Tabellen, Berichten oder Nachrichten beschreibbar!	Espagñol	t	66	f
 4928	3	1705	1	papeles	Espagñol	t	3	f
@@ -9934,7 +10003,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5417	3	1868	1	La solicitud supera el máximo de los mismos registros a tratar! La ordenación se realiza sólo en el conjunto de resultados aprobado. Los pasos siguientes están disponibles:	Espagñol	t	5	t
 5492	3	1893	3	en general	Espagñol	t	164	f
 5495	3	1894	3	rutas de instalación	Espagñol	t	164	f
-5498	3	1895	3	disposición	Espagñol	t	164	f
 5501	3	1896	3	Los arreglos de mesa	Espagñol	t	164	f
 5507	3	1898	3	Configuración del índice	Espagñol	t	164	f
 5510	3	1899	3	Configuración de archivos	Espagñol	t	164	f
@@ -9980,8 +10048,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 5831	3	2006	1	guardado correctamente!	Espagñol	t	0	f
 5834	3	2007	1	eliminado correctamente!	Espagñol	t	0	f
 5837	3	2008	1	enviado con éxito!	Espagñol	t	0	f
-5840	3	2009	1	Guardar instantánea	Espagñol	t	0	f
-5843	3	2010	1	eliminar instantánea	Espagñol	t	0	f
 5864	3	2017	1	XML	Espagñol	t	5	f
 5873	3	2020	3	La conversión de la materia:	Espagñol	t	110	f
 5876	3	2021	3	Contenido con exceso de longitud o el tipo incorrecto de reducir o borrado!	Espagñol	t	110	f
@@ -10137,6 +10203,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 10331	3	2309	1	expediente	Espagñol	t	97	f
 10263	3	2292	2	mostrar consigo registros relacionados	Espagñol	t	0	f
 10339	3	2311	1	No hay derechos de eliminación!	Espagñol	t	97	f
+11043	3	2485	3	ajustes de usuario	Espagñol	t	154	f
 10347	3	2313	1	El archivo de origen ya existe. Por favor, inténtelo de nuevo.	Espagñol	t	97	f
 10351	3	2314	1	Iniciar el reconocimiento OCR	Espagñol	t	66	f
 10355	3	2315	2	Modo vinculado	Espagñol	t	0	f
@@ -10158,7 +10225,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 10455	3	2340	3	Si cambia los permisos de todos los viejos individuales de los derechos se borrará esta tabla!	Espagñol	t	140	f
 10459	3	2341	2	Mostrar derechos de usuario	Espagñol	t	0	f
 10463	3	2342	2	Descripción general de los derechos de los usuarios	Espagñol	t	0	f
-10467	3	2343	3	Distribuir tablas de instantáneas	Espagñol	t	154	f
 10483	3	2347	3	Índice Z	Espagñol	t	169	f
 10487	3	2348	3	Y-Pos	Espagñol	t	169	f
 10491	3	2349	2	prueba	Espagñol	t	unknown	f
@@ -10237,7 +10303,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11027	3	2481	3	de contenido temporal	Espagñol	t	154	f
 11031	3	2482	3	funciones de base de datos	Espagñol	t	154	f
 11039	3	2484	3	gestión de derechos	Espagñol	t	154	f
-11043	3	2485	3	ajustes de usuario	Espagñol	t	154	f
 11035	3	2483	3	sistema	Espagñol	t	154	f
 11063	3	2490	2	árboles de relación	Espagñol	t	0	f
 11075	3	2493	2	vector árbol	Espagñol	t	0	f
@@ -10279,7 +10344,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11219	3	2529	2	Gruppierung Zeile	Espagñol	t	0	f
 8189	3	2214	3	Ya existe un vínculo positivo para este campo! Esta acción utiliza el acceso directo existente negativo. enlaces existentes se perderán!	Espagñol	t	121	t
 10411	3	2329	3	En caso de que los archivos .htaccess a ser regenerados? Las nuevas contraseñas se aplican únicamente cuando la opción clear_password está habilitada en las umgvars	Espagñol	t	154	t
-10475	3	2345	3	Si las tablas de instantáneas que se retiraron? Las instantáneas se comprueban para los campos nuevos o que faltan.	Espagñol	t	154	f
 11203	3	2525	2	ajustes	Espagñol	t	0	f
 11211	3	2527	2	actualización	Espagñol	t	0	f
 11215	3	2528	2	actualización	Espagñol	t	0	f
@@ -10290,7 +10354,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 3981	3	1318	1	No había hecho ningún cambio en este nuevo disco! Crear registros vacíos no es aconsejable.	Espagñol	t	13	t
 5156	3	1781	3	Bloquear mensaje	Espagñol	t	127	f
 12575	3	2867	3	eje	Espagñol	t	177	f
-12797	2	2922	3	\N	english	f	110	f
 11307	3	2551	3	restablecer los derechos de registro	Espagñol	t	154	f
 11311	3	2552	3	Volver a calcular el historial de derechos	Espagñol	t	154	f
 11319	3	2554	3	pestaña de acceso directo	Espagñol	t	173	f
@@ -10371,11 +10434,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11635	3	2633	3	ascendente	Espagñol	t	226	f
 11639	3	2634	3	descendente	Espagñol	t	226	f
 11643	3	2635	3	tablas del sistema espectáculo	Espagñol	t	225	f
-5288	3	1825	3	vinculado	Espagñol	t	121	f
 11655	3	2638	3	espectáculo	Espagñol	t	168	f
 11315	3	2553	3	los derechos de todos los datos existentes establecen específicos del Tablle seleccionada se borrarán!	Espagñol	t	154	f
-11667	3	2641	2	selección de color	Espagñol	t	0	f
-11671	3	2642	2	selección de color	Espagñol	t	0	f
 11675	3	2643	1	al usuario	Espagñol	t	13	f
 11679	3	2644	1	conjunto	Espagñol	t	13	f
 11727	3	2656	3	consulta de selección	Espagñol	t	140	f
@@ -10385,6 +10445,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11723	3	2655	3	El tamaño del campo como <br> 255 | 5.2	Espagñol	t	110	f
 4029	3	1366	2	Autoidentificación	Espagñol	t	0	f
 11731	3	2657	3	consulta la creación	Espagñol	t	140	f
+11667	3	2641	2	selección de color	Espagñol	f	0	f
+11671	3	2642	2	selección de color	Espagñol	f	0	f
 7689	3	2089	3	resultados de la búsqueda	Espagñol	t	121	f
 11739	3	2659	3	consulta de eliminación	Espagñol	t	140	f
 11743	3	2660	3	contenido	Espagñol	t	173	f
@@ -10408,8 +10470,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11811	3	2677	1	campo afectado	Espagñol	t	230	f
 11819	3	2679	2	nueva ventana	Espagñol	t	0	f
 11823	3	2680	2	nueva ventana	Espagñol	t	0	f
-11827	3	2681	1	campo vacío	Espagñol	t	19	f
-11831	3	2682	1	El campo vacío	Espagñol	t	19	f
 11835	3	2683	1	desigual	Espagñol	t	19	f
 11839	3	2684	1	registros modificados	Espagñol	t	230	f
 11843	3	2685	3	estándar	Espagñol	t	140	f
@@ -10423,6 +10483,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 11871	3	2692	3	escribir	Espagñol	t	168	f
 11875	3	2693	1	Taquigrafía en la búsqueda rápida	Espagñol	t	19	f
 11287	3	2546	3	Eliminar miniaturas temporales	Espagñol	t	154	f
+12291	3	2796	1	hacerse cargo y cerca	Espagñol	t	13	f
 11299	3	2549	3	solle versucht werden alle fehlgeschlagene Thumbnails neu zu berechnen?	Espagñol	t	154	f
 11883	3	2695	3	Eliminar archivos temporales de texto	Espagñol	t	154	f
 11291	3	2547	3	Volver a calcular frustrada miniaturas	Espagñol	t	154	f
@@ -10480,6 +10541,7 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12083	3	2744	2	los derechos establecer recordatorios	Espagñol	t	0	f
 12087	3	2745	2	los derechos de formulario	Espagñol	t	0	f
 12091	3	2746	2	Forma derechos establecidos	Espagñol	t	0	f
+11831	3	2682	1	El campo vacío	Espagñol	f	19	f
 12095	3	2747	2	tabla de derechos	Espagñol	t	0	f
 12099	3	2748	2	Establecer derechos de tabla	Espagñol	t	0	f
 12107	3	2750	2	Workflowrechte festlegen	Espagñol	t	0	f
@@ -10494,8 +10556,6 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12147	3	2760	3	Cuando se cambia la información de versiones versión existente será eliminado!	Espagñol	t	140	f
 12151	3	2761	3	sincronizar	Espagñol	t	139	f
 12155	3	2762	1	ahora	Espagñol	t	204	f
-12179	3	2768	2	instantáneas	Espagñol	t	0	f
-12183	3	2769	2	Trabajar con instantáneas Públicas	Espagñol	t	0	f
 12191	3	2771	2	grupo de selección	Espagñol	t	0	f
 12187	3	2770	3	máx. resultados	Espagñol	t	155	f
 12195	3	2772	2	Manejo de grupo de selección	Espagñol	t	0	f
@@ -10513,22 +10573,18 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12227	3	2780	3	Caja de herramientas	Espagñol	t	169	f
 12235	3	2782	3	coordenadas	Espagñol	t	169	f
 12239	3	2783	3	elementos	Espagñol	t	169	f
-12243	3	2784	3	instantáneas publicadas	Espagñol	t	210	f
-12247	3	2785	3	todas las instantáneas	Espagñol	t	210	f
 12251	3	2786	1	diario	Espagñol	t	200	f
 12255	3	2787	1	semanal	Espagñol	t	200	f
 12259	3	2788	1	mensual	Espagñol	t	200	f
 12275	3	2792	3	La repetición está terminando	Espagñol	t	52	f
 12283	3	2794	1	¡Precaución! Eliminación recursiva registros versionados o vinculados \\\\\\\\\\\\\\\\ Nhas activado!	Espagñol	t	17	f
 12287	3	2795	3	opciones	Espagñol	t	221	f
-12291	3	2796	1	hacerse cargo y cerca	Espagñol	t	13	f
 12295	3	2797	2	Importar archivo	Espagñol	t	0	f
 12299	3	2798	2	importación	Espagñol	t	0	f
 12303	3	2799	1	principio	Espagñol	t	200	f
 12311	3	2801	1	Duración / Period	Espagñol	t	200	f
 12315	3	2802	1	Intervalo de repetición	Espagñol	t	200	f
 12319	3	2803	1	patrón de repetición	Espagñol	t	200	f
-12335	3	2807	3	Los campos que aparecen en Verknüpfungsaansicht	Espagñol	t	121	f
 12331	3	2806	3	Los campos que se muestran en el enlace Búsqueda Rápida / selección Verknüpungs	Espagñol	t	121	f
 12343	3	2809	3	parametrización implícita	Espagñol	t	121	f
 12351	3	2811	3	Descripción de las	Espagñol	t	110	f
@@ -10567,7 +10623,8 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12395	3	2822	3	Tipo de control de versiones. <br> <b> recursiv: </ b> todas las versiones 1: n enlaces si la versión también activamente <br> <b> Solución: </ b> versionado sólo el registro actual	Espagñol	t	140	f
 12479	3	2843	3	El campo se puede representar en la lista de tablas Agrupados	Espagñol	t	110	f
 12808	1	2925	3	Rahmen	deutsch	t	173	f
-12809	2	2925	3	\N	english	f	173	f
+12179	3	2768	2	instantáneas	Espagñol	f	0	f
+12335	3	2807	3	Los campos que aparecen en Verknüpfungsaansicht	Espagñol	f	121	f
 12467	3	2840	3	activa el envío / almacén automático del campo de formulario en el fondo durante un cambio.	Espagñol	t	110	f
 12483	3	2844	3	activa el cambio de apilado / colección para este campo	Espagñol	t	110	f
 12511	3	2851	3	la definición de un recurso de origen para la representación de Gantt. n esperado: m relación	Espagñol	t	140	f
@@ -10640,127 +10697,95 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 12790	4	2920	1	\N	francais	f	31	f
 12789	2	2920	1	trigger denied execution 	english	t	31	f
 12792	1	2921	1	nicht alle Datensätze konnten verknüpft werden!	deutsch	t	25	f
-12793	2	2921	1	\N	english	f	25	f
 12794	4	2921	1	\N	francais	f	25	f
 2650	1	1365	2	Boolean	deutsch	t	0	f
 6988	4	1365	2	Booleen	francais	f	0	f
 4028	3	1365	2	Booleano	Espagñol	f	0	f
 7024	4	1401	2	TRUE|FALSE ou 1|0	francais	f	0	f
-2723	2	1401	2	TRUE | FLASE or 0 | 1	english	f	0	f
 4064	3	1401	2	TRUE | FALSE o 0 | 1	Espagñol	f	0	f
 12795	3	2922	3	\N	Espagñol	f	110	f
 7825	3	2123	2	telefonía	Espagñol	f	0	f
 4026	3	1363	2	Bloque de texto	Espagñol	f	0	f
 12800	1	2923	3	Feld wird in die globale Tabellensuche einbezogen	deutsch	t	110	f
-12801	2	2923	3	\N	english	f	110	f
 12802	4	2923	3	\N	francais	f	110	f
 12803	3	2924	3	\N	Espagñol	f	175	f
 12804	1	2924	3	Kachel	deutsch	t	175	f
-12805	2	2924	3	\N	english	f	175	f
 12806	4	2924	3	\N	francais	f	175	f
+12793	2	2921	1	could not link all datasets	english	t	25	f
 12810	4	2925	3	\N	francais	f	173	f
 5438	1	1875	2	reset	deutsch	t	\N	f
 5441	1	1876	2	Anwendung zurücksetzen	deutsch	t	\N	f
 2654	1	1367	2	Währung	deutsch	t	0	f
 6990	4	1367	2	Devise	francais	f	0	f
-2655	2	1367	2	Currency	english	f	0	f
 4030	3	1367	2	moneda	Espagñol	f	0	f
 2726	1	1403	2	Währung 25-stellig	deutsch	t	0	f
 12811	3	2926	3	\N	Espagñol	f	225	f
 12812	1	2926	3	prüfen	deutsch	t	225	f
-12813	2	2926	3	\N	english	f	225	f
 12814	4	2926	3	\N	francais	f	225	f
 12815	3	2927	1	\N	Espagñol	f	0	f
 12816	1	2927	1	Version %s ist verfügbar!	deutsch	t	0	f
-12817	2	2927	1	\N	english	f	0	f
 12818	4	2927	1	\N	francais	f	0	f
 12819	3	2928	1	\N	Espagñol	f	0	f
 12820	1	2928	1	Diese Version ist aktuell!	deutsch	t	0	f
-12821	2	2928	1	\N	english	f	0	f
 12822	4	2928	1	\N	francais	f	0	f
 12823	3	2929	1	\N	Espagñol	f	0	f
 12824	1	2929	1	Auf Updates prüfen	deutsch	t	0	f
-12825	2	2929	1	\N	english	f	0	f
 12826	4	2929	1	\N	francais	f	0	f
 12827	3	2930	1	\N	Espagñol	f	0	f
 12828	1	2930	1	Aktuelle Version	deutsch	t	0	f
-12829	2	2930	1	\N	english	f	0	f
 12830	4	2930	1	\N	francais	f	0	f
 12831	3	2931	2	\N	Espagñol	f	0	f
-12833	2	2931	2	\N	english	f	0	f
 12834	4	2931	2	\N	francais	f	0	f
 12835	3	2932	2	\N	Espagñol	f	0	f
-12837	2	2932	2	\N	english	f	0	f
 12838	4	2932	2	\N	francais	f	0	f
 12832	1	2931	2	Favoriten	deutsch	t	0	f
 12836	1	2932	2	Favoriten	deutsch	t	0	f
 12851	3	2936	2	\N	Espagñol	f	0	f
 12839	3	2933	2	\N	Espagñol	f	0	f
-12841	2	2933	2	\N	english	f	0	f
 12842	4	2933	2	\N	francais	f	0	f
 12843	3	2934	2	\N	Espagñol	f	0	f
-12845	2	2934	2	\N	english	f	0	f
 12846	4	2934	2	\N	francais	f	0	f
-12840	1	2933	2	externer Speicher	deutsch	t	0	f
-12844	1	2934	2	externer Datei Speicher	deutsch	t	0	f
 12847	3	2935	2	\N	Espagñol	f	0	f
-12849	2	2935	2	\N	english	f	0	f
 12850	4	2935	2	\N	francais	f	0	f
-12853	2	2936	2	\N	english	f	0	f
 12854	4	2936	2	\N	francais	f	0	f
-12848	1	2935	2	Drucker	deutsch	t	0	f
-12852	1	2936	2	Drucker verwalten	deutsch	t	0	f
 12855	3	2937	2	\N	Espagñol	f	0	f
 12856	1	2937	2	drucken	deutsch	t	0	f
-12857	2	2937	2	\N	english	f	0	f
 12858	4	2937	2	\N	francais	f	0	f
 12859	3	2938	2	\N	Espagñol	f	0	f
 12860	1	2938	2	Dokument drucken	deutsch	t	0	f
-12861	2	2938	2	\N	english	f	0	f
 12862	4	2938	2	\N	francais	f	0	f
 12863	3	2939	1	\N	Espagñol	f	23	f
 12864	1	2939	1	Auf Drucker	deutsch	t	23	f
-12865	2	2939	1	\N	english	f	23	f
 12866	4	2939	1	\N	francais	f	23	f
-11513	2	2602	3	Date view as strftime() formate: e.g %V,%G,%Y	english	f	110	f
 12891	3	2946	2	\N	Espagñol	f	0	f
 12892	1	2946	2	Verknüpfung	deutsch	t	0	f
-12893	2	2946	2	\N	english	f	0	f
 12894	4	2946	2	\N	francais	f	0	f
 12895	3	2947	2	\N	Espagñol	f	0	f
 12896	1	2947	2	Datei	deutsch	t	0	f
-12897	2	2947	2	\N	english	f	0	f
 12898	4	2947	2	\N	francais	f	0	f
 12899	3	2948	2	\N	Espagñol	f	0	f
 12900	1	2948	2	Sonstiges	deutsch	t	0	f
-12901	2	2948	2	\N	english	f	0	f
 12902	4	2948	2	\N	francais	f	0	f
 12903	3	2949	2	\N	Espagñol	f	0	f
 12904	1	2949	2	Limbas-System	deutsch	t	0	f
-12905	2	2949	2	\N	english	f	0	f
 12906	4	2949	2	\N	francais	f	0	f
 11512	1	2602	3	Datumsdarstellung im strftime() oder DateTime::format  Format: z.B. %V,%G,%Y  | Y-m-d H:i:s	deutsch	t	110	f
 11514	4	2602	3	Affichage de la date à strftime () Format: par exemple % V,% G% Y	francais	f	110	f
 11511	3	2602	3	visualización de la fecha en strftime () Formato: por ejemplo, % V,% G,% Y	Espagñol	f	110	f
 12867	3	2940	3	\N	Espagñol	f	226	f
 12868	1	2940	3	Konfiguration speichern	deutsch	t	226	f
-12869	2	2940	3	\N	english	f	226	f
 12870	4	2940	3	\N	francais	f	226	f
 12872	1	2941	3	Syntax prüfen	deutsch	t	226	f
 12871	3	2941	3	\N	Espagñol	f	226	f
-12873	2	2941	3	\N	english	f	226	f
 12874	4	2941	3	\N	francais	f	226	f
 12876	1	2942	3	Abfrage speichern	deutsch	t	226	f
 12875	3	2942	3	\N	Espagñol	f	226	f
-12877	2	2942	3	\N	english	f	226	f
 12878	4	2942	3	\N	francais	f	226	f
 12879	3	2943	3	\N	Espagñol	f	226	f
 12880	1	2943	3	Veröffentlichung entfernen	deutsch	t	226	f
-12881	2	2943	3	\N	english	f	226	f
 12882	4	2943	3	\N	francais	f	226	f
 6976	4	1353	2	Réel (10)	francais	f	0	f
 2658	1	1369	2	E-Mail-Adresse	deutsch	t	0	f
-2659	2	1369	2	email	english	f	0	f
 6992	4	1369	2	Email	francais	f	0	f
 4032	3	1369	2	email	Espagñol	f	0	f
 6987	4	1364	2	Date heure	francais	f	0	f
@@ -10770,26 +10795,29 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 6995	4	1372	2	Choix (Multiselect)	francais	f	0	f
 2666	1	1373	2	Auswahl (Ajax)	deutsch	t	0	f
 6996	4	1373	2	Choix (popup)	francais	f	0	f
-2667	2	1373	2	Selection (ajax)	english	f	0	f
+12813	2	2926	3	check	english	t	225	f
+12821	2	2928	1	This version is up to date!	english	t	0	f
+12817	2	2927	1	version %s is available!	english	t	0	f
+12833	2	2931	2	favorites	english	t	0	f
+12840	1	2933	2	externer Speicher	deutsch	t	0	f
+12844	1	2934	2	externer Datei Speicher	deutsch	t	0	f
+12848	1	2935	2	Drucker	deutsch	t	0	f
+12852	1	2936	2	Drucker verwalten	deutsch	t	0	f
 4036	3	1373	2	Selección (Ajax)	Espagñol	f	0	f
 7678	1	2086	2	Vererbung	deutsch	t	0	f
 7680	4	2086	2	Hérité	francais	f	0	f
 7677	3	2086	2	heredado	Espagñol	f	0	f
 12883	3	2944	2	\N	Espagñol	f	0	f
 12884	1	2944	2	Numerisch	deutsch	t	0	f
-12885	2	2944	2	\N	english	f	0	f
 12886	4	2944	2	\N	francais	f	0	f
 12887	3	2945	2	\N	Espagñol	f	0	f
 12888	1	2945	2	Auswahl	deutsch	t	0	f
-12889	2	2945	2	\N	english	f	0	f
 12890	4	2945	2	\N	francais	f	0	f
 10972	1	2467	2	Fließkomma-Zahl	deutsch	t	0	f
-10973	2	2467	2	float number	english	f	0	f
 10971	3	2467	2	Números de punto flotante	Espagñol	f	0	f
 10975	3	2468	2	número de punto de flotación	Espagñol	f	0	f
 2626	1	1353	2	Numerische Kommazahl	deutsch	t	0	f
 4016	3	1353	2	número numérico-punto	Espagñol	f	0	f
-2627	2	1353	2	Decimal 	english	f	0	f
 2698	1	1389	2	Kommazahl Numeric	deutsch	t	0	f
 4052	3	1389	2	Kommazahl Numeric	Espagñol	f	0	f
 4599	1	1595	2	Numerische Kommazahl (Prozent)	deutsch	t	0	f
@@ -10801,6 +10829,208 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 7829	3	2124	2	+xx xx xxxx o +xx xxxxx	Espagñol	f	0	f
 2718	1	1399	2	Textblock	deutsch	t	0	f
 4062	3	1399	2	bloque de texto	Espagñol	f	0	f
+1203	2	2	1	version 	english	t	4	f
+1205	2	4	1	name 	english	t	4	f
+1208	2	7	1	host 	english	t	4	f
+1209	2	8	1	IP 	english	t	4	f
+1210	2	9	1	agent 	english	t	4	f
+1211	2	10	1	authentication 	english	t	4	f
+1212	2	11	1	company 	english	t	4	f
+1225	2	24	1	Do you want to create a new record? 	english	t	5	f
+1226	2	25	1	an unknown error is occurred 	english	t	5	f
+1228	2	27	1	other 	english	t	12	f
+1230	2	29	1	value 	english	t	12	f
+1231	2	30	1	search 	english	t	12	f
+1234	2	33	1	save 	english	t	12	f
+1235	2	34	1	new value 	english	t	12	f
+1250	2	49	1	Do you want to archive this record? 	english	t	13	f
+1251	2	50	1	Do you want to delete this file? 	english	t	13	f
+1252	2	51	1	Do you want to print a report for the selected data records? 	english	t	13	f
+1257	2	56	1	An error has occurred! 	english	t	13	f
+1259	2	58	1	Syntax error! Input not according field type 	english	t	14	f
+1260	2	59	1	Replace with value 	english	t	14	f
+1261	2	60	1	Conditional 	english	t	14	f
+1267	2	84	1	Do you want to delete this data record? 	english	t	17	f
+1269	2	86	1	entries 	english	t	17	f
+1271	2	88	1	rows 	english	t	17	f
+1272	2	89	1	Page 	english	t	17	f
+1273	2	93	1	hit 	english	t	17	f
+1276	2	96	1	show 	english	t	17	f
+1278	2	98	1	no records found! 	english	t	17	f
+1281	2	101	1	Detail search 	english	t	19	f
+1282	2	102	1	after 	english	t	19	f
+1283	2	103	1	search in 	english	t	19	f
+1291	2	112	1	You can not delete this entry. Value already linked.! 	english	t	22	f
+1293	2	114	1	Permission denied! 	english	t	23	f
+1294	2	115	1	Changes have been reset! 	english	t	25	f
+1295	2	116	1	Record successfully deleted! 	english	t	25	f
+1297	2	118	1	You have no persmission to change this fileds! 	english	t	27	f
+1301	2	122	1	No existing links. 	english	t	34	f
+1305	2	126	1	description 	english	t	34	f
+5712	2	1966	2	publish filter	english	t	\N	f
+1307	2	128	1	File could not be saved!\r\nThe file is not a regular file, storing to this target is not allowed or no storage capacity. 	english	t	41	t
+1308	2	129	1	Max file size for upload is restricted to 	english	t	41	f
+1312	2	133	1	The uploaded file has an undefined format. 	english	t	41	f
+1313	2	134	1	Error! The following fields are incorrect: 	english	t	37	f
+1202	2	1	1	permission denied! 	english	t	2	f
+2627	2	1353	2	decimal numeric 	english	t	0	f
+2647	2	1363	2	Textarea 	english	t	0	f
+2649	2	1364	2	Date_Time 	english	t	0	f
+2651	2	1365	2	Boolean 	english	t	0	f
+2655	2	1367	2	Currency 	english	t	0	f
+2659	2	1369	2	email 	english	t	0	f
+2665	2	1372	2	Choice (multiselect) 	english	t	0	f
+2667	2	1373	2	Selection (ajax) 	english	t	0	f
+2699	2	1389	2	decimal numeric 	english	t	0	f
+2719	2	1399	2	Textarea 	english	t	0	f
+2723	2	1401	2	TRUE | FLASE or 0 | 1 	english	t	0	f
+2727	2	1403	2	currency 25 didigts 	english	t	0	f
+4270	2	1485	2	multiple choice field as checkbox 	english	t	0	f
+7679	2	2086	2	inherited 	english	t	0	f
+7827	2	2123	2	Telephony 	english	t	0	f
+7831	2	2124	2	+xx xx xxxx oder +xx xxxxx 	english	t	0	f
+10973	2	2467	2	float number 	english	t	0	f
+10977	2	2468	2	number with decimal point 	english	t	0	f
+11513	2	2602	3	Date view as strftime() formate: e.g %V,%G,%Y 	english	t	110	f
+12797	2	2922	3	fulltext search	english	t	110	f
+12801	2	2923	3	using field for global search	english	t	110	f
+12805	2	2924	3	tile	english	t	175	f
+12809	2	2925	3	border	english	t	173	f
+12825	2	2929	1	check for updates	english	t	0	f
+12829	2	2930	1	current version	english	t	0	f
+12837	2	2932	2	favorites	english	t	0	f
+12841	2	2933	2	external memory	english	t	0	f
+12845	2	2934	2	external file memory	english	t	0	f
+12849	2	2935	2	printer	english	t	0	f
+12889	2	2945	2	joice	english	t	0	f
+1288	2	109	1	case sensitive	english	t	19	f
+1287	2	108	1	begin of fieldcontent 	english	t	19	f
+12853	2	2936	2	manage printer	english	t	0	f
+12857	2	2937	2	print	english	t	0	f
+12861	2	2938	2	print dokument	english	t	0	f
+12865	2	2939	1	to printer	english	t	23	f
+12869	2	2940	3	save config	english	t	226	f
+12873	2	2941	3	check syntax	english	t	226	f
+12877	2	2942	3	save view	english	t	226	f
+12885	2	2944	2	numeric	english	t	0	f
+12893	2	2946	2	relation	english	t	0	f
+12897	2	2947	2	file	english	t	0	f
+12901	2	2948	2	miscellaneous	english	t	0	f
+12905	2	2949	2	Limbas-System	english	t	0	f
+12881	2	2943	3	remove publication	english	t	226	f
+5176	2	1787	1	archive	english	t	13	f
+5557	2	1914	1	Tipps for searching:\r\n- pay attention for correct spelling\r\n- search in subfolders too \r\n- generalize your search	english	t	66	t
+109	1	109	1	groß- und kleinschreibung beachten	deutsch	t	19	f
+6109	4	109	1	PM	francais	f	19	f
+107	1	107	1	ist	deutsch	t	19	f
+6107	4	107	1	Champs complet	francais	f	19	f
+11828	1	2681	1	ist leer	deutsch	t	19	f
+11830	4	2681	1	champ vide	francais	f	19	f
+11827	3	2681	1	campo vacío	Espagñol	f	19	f
+12907	3	2950	3	\N	Espagñol	f	140	f
+12908	1	2950	3	primärer Schlüssel	deutsch	t	140	f
+12910	4	2950	3	\N	francais	f	140	f
+4620	2	1602	2	filter	english	t	\N	f
+4623	2	1603	2	save filter	english	t	\N	f
+4626	2	1604	2	filter	english	t	\N	f
+4629	2	1605	2	filter overview	english	t	\N	f
+12912	1	2951	3	legt das primäre Schlüsselfeld fest sofern es nicht den Namen "ID" hat. Das Feld muß vom Typ INTEGER sein! Falls das Feld nicht existiert wird auf den Pointer zurückgegriffen.	deutsch	t	140	f
+12911	3	2951	3	\N	Espagñol	f	140	f
+12914	4	2951	3	\N	francais	f	140	f
+4619	1	1602	2	Filter	deutsch	t	\N	f
+7196	4	1602	2	Capture	francais	f	0	f
+4621	3	1602	2	Schnapschuß	Espagñol	f	\N	f
+4622	1	1603	2	Filter speichern	deutsch	t	\N	f
+7197	4	1603	2	Sauvegarde la capture	francais	f	0	f
+4624	3	1603	2	neue Filteransicht speichern	Espagñol	f	\N	f
+4625	1	1604	2	Filter	deutsch	t	\N	f
+7198	4	1604	2	Capture	francais	f	0	f
+4627	3	1604	2	Schnapschuß	Espagñol	f	\N	f
+4628	1	1605	2	Filter Übersicht	deutsch	t	\N	f
+7199	4	1605	2	Vue des captures	francais	f	0	f
+4630	3	1605	2	Schnapschuß Übersicht	Espagñol	f	\N	f
+5711	1	1966	2	Filter veröffentlichen	deutsch	t	\N	f
+7546	4	1966	2	Rendre public une capture	francais	f	0	f
+5713	3	1966	2	Schnappschuß veröffentlichen	Espagñol	f	\N	f
+5841	1	2009	1	Filter speichern	deutsch	t	0	f
+7589	4	2009	1	Enregistrer capture	francais	f	0	f
+5840	3	2009	1	Guardar instantánea	Espagñol	f	0	f
+5844	1	2010	1	Filter löschen	deutsch	t	0	f
+7590	4	2010	1	Supprimer capture	francais	f	0	f
+5843	3	2010	1	eliminar instantánea	Espagñol	f	0	f
+10468	1	2343	3	Filter-Tabellen abgleichen	deutsch	t	154	f
+10470	4	2343	3	tables instantané Syndicate	francais	f	154	f
+10467	3	2343	3	Distribuir tablas de instantáneas	Espagñol	f	154	f
+12182	4	2768	2	instantanés	francais	f	0	f
+12186	4	2769	2	Gérer les instantanés publics	francais	f	0	f
+12183	3	2769	2	Trabajar con instantáneas Públicas	Espagñol	f	0	f
+12244	1	2784	3	veröffentlichte Filter	deutsch	t	210	f
+12246	4	2784	3	instantanés publiés	francais	f	210	f
+12243	3	2784	3	instantáneas publicadas	Espagñol	f	210	f
+12248	1	2785	3	alle Filter	deutsch	t	210	f
+12250	4	2785	3	tous les instantanés	francais	f	210	f
+12247	3	2785	3	todas las instantáneas	Espagñol	f	210	f
+5842	2	2009	1	save filter	english	t	0	f
+5845	2	2010	1	delete filter	english	t	0	f
+10469	2	2343	3	Match filter table	english	t	154	f
+12915	3	2952	2	\N	Espagñol	f	0	f
+12181	2	2768	2	filter	english	t	0	f
+12185	2	2769	2	manage public filter	english	t	0	f
+12245	2	2784	3	public filter	english	t	210	f
+12249	2	2785	3	all filter	english	t	210	f
+12919	3	2953	2	\N	Espagñol	f	0	f
+10476	1	2345	3	Sollen die Filter-Tabellen erneuert werden?\r\nFilter werden auf neue oder fehlende Felder geprüft.	deutsch	t	154	t
+10478	4	2345	3	Si les tables de l'instantané à la retraite? Les instantanés sont vérifiés pour les champs nouveaux ou manquants.	francais	f	154	f
+10475	3	2345	3	Si las tablas de instantáneas que se retiraron? Las instantáneas se comprueban para los campos nuevos o que faltan.	Espagñol	f	154	f
+12918	4	2952	2	\N	francais	f	0	f
+12922	4	2953	2	\N	francais	f	0	f
+437	1	437	2	Schema	deutsch	t	\N	f
+438	1	438	2	Farb-Schema	deutsch	t	\N	f
+439	1	439	2	Farben	deutsch	t	\N	f
+440	1	440	2	Farb-Tabelle	deutsch	t	\N	f
+726	1	726	2	Sprache	deutsch	t	\N	f
+727	1	727	2	System Sprachtabelle	deutsch	t	\N	f
+8385	1	2263	2	Sprache	deutsch	t	\N	f
+8389	1	2264	2	Lokale Sprachtabelle	deutsch	t	\N	f
+5477	1	1888	2	Schriftarten	deutsch	t	\N	f
+5480	1	1889	2	Fontmanager	deutsch	t	\N	f
+12184	1	2769	2	Öffentliche Filter verwalten	deutsch	t	0	f
+12909	2	2950	3	primary key	english	t	140	f
+12917	2	2952	2	menueditor	english	t	0	f
+12916	1	2952	2	Menüeditor	deutsch	t	0	f
+12920	1	2953	2	Editor für individuelle menüs	deutsch	t	0	f
+12921	2	2953	2	editor for individual menus	english	t	0	f
+12913	2	2951	3	set primary key field if not named "ID". Field must be numeric.	english	t	140	f
+10477	2	2345	3	Shall the filter tables be renewed? Filter are checked for new or missing fields. 	english	t	154	f
+1286	2	107	1	whole field 	english	t	19	f
+1285	2	106	1	part of fieldcontent 	english	t	19	f
+773	1	773	2	Erweiterte Suche	deutsch	t	\N	f
+774	1	774	2	erweiterte Suche	deutsch	t	\N	f
+7409	4	1825	3	Champs lié	francais	f	121	f
+5288	3	1825	3	vinculado	Espagñol	f	121	f
+12924	1	2954	3	primäres Beschreibungsfeld. Verknüpfungsfeld ist immer 'ID'	deutsch	t	121	f
+12923	3	2954	3	\N	Espagñol	f	121	f
+12926	4	2954	3	\N	francais	f	121	f
+12336	1	2807	3	angezeigte Felder in der Verknüpfungsaansicht	deutsch	t	121	f
+12338	4	2807	3	Les champs affichés dans Verknüpfungsaansicht	francais	f	121	f
+12927	3	2955	3	\N	Espagñol	f	104	f
+12928	1	2955	3	Pflicht	deutsch	t	104	f
+12930	4	2955	3	\N	francais	f	104	f
+12931	3	2956	3	\N	Espagñol	f	104	f
+12932	1	2956	3	Ebene	deutsch	t	104	f
+12934	4	2956	3	\N	francais	f	104	f
+428	1	428	2	Vorlagen	deutsch	t	\N	f
+3145	3	428	2	presentación del informe	Espagñol	f	0	f
+5405	1	1864	2	Crontab	deutsch	t	\N	f
+5408	1	1865	2	System Crontab editieren	deutsch	t	\N	f
+1590	2	428	2	report-template 	english	t	0	f
+5290	2	1825	3	linked 	english	t	121	f
+11669	2	2641	2	Colojoice 	english	t	0	f
+11673	2	2642	2	Colojoice 	english	t	0	f
+12337	2	2807	3	displayed fields in link-view 	english	t	121	f
+12925	2	2954	3	primary description field. Relationfield is always 'ID'	english	t	121	f
+12933	2	2956	3	layer	english	t	104	f
+12929	2	2955	3	mandatory	english	t	104	f
 \.
 
 
@@ -10808,7 +11038,158 @@ COPY public.lmb_lang (id, language_id, element_id, typ, wert, language, edit, lm
 -- Data for Name: lmb_lang_depend; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_lang_depend (id, language_id, element_id, typ, wert, language, edit, lmfile, js) FROM stdin;
+COPY lmb_lang_depend (id, language_id, element_id, typ, wert, language, edit, lmfile, js) FROM stdin;
+100425	1	10106	4	Verleger, Herausgeber, Universität etc.	deutsch	t	ldms_meta:PUBLISHER	f
+100426	2	10106	4		english	f	ldms_meta:PUBLISHER	f
+100427	4	10106	4		francais	f	ldms_meta:PUBLISHER	f
+100428	3	10107	4		Espagñol	f	ldms_meta:PUBLISHER	f
+100429	1	10107	4	Herausgeber	deutsch	t	ldms_meta:PUBLISHER	f
+100430	2	10107	4		english	f	ldms_meta:PUBLISHER	f
+100431	4	10107	4		francais	f	ldms_meta:PUBLISHER	f
+100432	3	10108	4		Espagñol	f	ldms_meta:CONTRIBUTORS	f
+100433	1	10108	4	Name einer weiteren beteiligten Person	deutsch	t	ldms_meta:CONTRIBUTORS	f
+100434	2	10108	4		english	f	ldms_meta:CONTRIBUTORS	f
+100435	4	10108	4		francais	f	ldms_meta:CONTRIBUTORS	f
+100436	3	10109	4		Espagñol	f	ldms_meta:CONTRIBUTORS	f
+100437	1	10109	4	Mitwirkende	deutsch	t	ldms_meta:CONTRIBUTORS	f
+100438	2	10109	4		english	f	ldms_meta:CONTRIBUTORS	f
+100439	4	10109	4		francais	f	ldms_meta:CONTRIBUTORS	f
+100440	3	10110	4		Espagñol	f	ldms_meta:IDENTIFIER	f
+100441	1	10110	4	(ISBN, ISSN, URL o.ä. des vorliegenden Dokuments betr. eindeutiger Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
+100442	2	10110	4		english	f	ldms_meta:IDENTIFIER	f
+100443	4	10110	4		francais	f	ldms_meta:IDENTIFIER	f
+100444	3	10111	4		Espagñol	f	ldms_meta:IDENTIFIER	f
+100445	1	10111	4	Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
+100446	2	10111	4		english	f	ldms_meta:IDENTIFIER	f
+100447	4	10111	4		francais	f	ldms_meta:IDENTIFIER	f
+100448	3	10112	4		Espagñol	f	ldms_meta:SOURCE	f
+100449	1	10112	4	Werk, gedruckt oder elektronisch, aus dem das vorliegende Dokument stammt	deutsch	t	ldms_meta:SOURCE	f
+100450	2	10112	4		english	f	ldms_meta:SOURCE	f
+100451	4	10112	4		francais	f	ldms_meta:SOURCE	f
+100452	3	10113	4		Espagñol	f	ldms_meta:SOURCE	f
+100453	1	10113	4	Quelle	deutsch	t	ldms_meta:SOURCE	f
+100454	2	10113	4		english	f	ldms_meta:SOURCE	f
+100455	4	10113	4		francais	f	ldms_meta:SOURCE	f
+100456	3	10114	4		Espagñol	f	ldms_meta:LANGUAGE	f
+100457	1	10114	4	Sprache des Inhalts des Dokuments	deutsch	t	ldms_meta:LANGUAGE	f
+100458	2	10114	4		english	f	ldms_meta:LANGUAGE	f
+100459	4	10114	4		francais	f	ldms_meta:LANGUAGE	f
+100460	3	10115	4		Espagñol	f	ldms_meta:LANGUAGE	f
+100461	1	10115	4	Sprache	deutsch	t	ldms_meta:LANGUAGE	f
+100462	2	10115	4		english	f	ldms_meta:LANGUAGE	f
+100463	4	10115	4		francais	f	ldms_meta:LANGUAGE	f
+100464	3	10116	4		Espagñol	f	ldms_meta:INSTRUCTIONS	f
+100465	1	10116	4	Hinweise	deutsch	t	ldms_meta:INSTRUCTIONS	f
+100466	2	10116	4		english	f	ldms_meta:INSTRUCTIONS	f
+100467	4	10116	4		francais	f	ldms_meta:INSTRUCTIONS	f
+100468	3	10117	4		Espagñol	f	ldms_meta:INSTRUCTIONS	f
+100469	1	10117	4	Hinweise	deutsch	t	ldms_meta:INSTRUCTIONS	f
+100470	2	10117	4		english	f	ldms_meta:INSTRUCTIONS	f
+100471	4	10117	4		francais	f	ldms_meta:INSTRUCTIONS	f
+100472	3	10118	4		Espagñol	f	ldms_meta:URGENCY	f
+100473	1	10118	4	Dringlichkeit	deutsch	t	ldms_meta:URGENCY	f
+100474	2	10118	4		english	f	ldms_meta:URGENCY	f
+100475	4	10118	4		francais	f	ldms_meta:URGENCY	f
+100476	3	10119	4		Espagñol	f	ldms_meta:URGENCY	f
+100477	1	10119	4	Dringlichkeit	deutsch	t	ldms_meta:URGENCY	f
+100478	2	10119	4		english	f	ldms_meta:URGENCY	f
+100479	4	10119	4		francais	f	ldms_meta:URGENCY	f
+100480	3	10120	4		Espagñol	f	ldms_meta:CATEGORY	f
+100481	1	10120	4	Kategorie	deutsch	t	ldms_meta:CATEGORY	f
+100482	2	10120	4		english	f	ldms_meta:CATEGORY	f
+100483	4	10120	4		francais	f	ldms_meta:CATEGORY	f
+100484	3	10121	4		Espagñol	f	ldms_meta:CATEGORY	f
+100485	1	10121	4	Kategorie	deutsch	t	ldms_meta:CATEGORY	f
+100486	2	10121	4		english	f	ldms_meta:CATEGORY	f
+100487	4	10121	4		francais	f	ldms_meta:CATEGORY	f
+100488	3	10122	4		Espagñol	f	ldms_meta:TITLE	f
+100489	1	10122	4	Autor	deutsch	t	ldms_meta:TITLE	f
+100490	2	10122	4		english	f	ldms_meta:TITLE	f
+100491	4	10122	4		francais	f	ldms_meta:TITLE	f
+100492	3	10123	4		Espagñol	f	ldms_meta:TITLE	f
+100493	1	10123	4	Autor	deutsch	t	ldms_meta:TITLE	f
+100494	2	10123	4		english	f	ldms_meta:TITLE	f
+100495	4	10123	4		francais	f	ldms_meta:TITLE	f
+100496	3	10124	4		Espagñol	f	ldms_meta:CREDIT	f
+100497	1	10124	4	Bildrechte	deutsch	t	ldms_meta:CREDIT	f
+100498	2	10124	4		english	f	ldms_meta:CREDIT	f
+100499	4	10124	4		francais	f	ldms_meta:CREDIT	f
+100500	3	10125	4		Espagñol	f	ldms_meta:CREDIT	f
+100501	1	10125	4	Bildrechte	deutsch	t	ldms_meta:CREDIT	f
+100502	2	10125	4		english	f	ldms_meta:CREDIT	f
+100503	4	10125	4		francais	f	ldms_meta:CREDIT	f
+100504	3	10126	4		Espagñol	f	ldms_meta:CITY	f
+100505	1	10126	4	Ort	deutsch	t	ldms_meta:CITY	f
+100506	2	10126	4		english	f	ldms_meta:CITY	f
+100507	4	10126	4		francais	f	ldms_meta:CITY	f
+100508	3	10127	4		Espagñol	f	ldms_meta:CITY	f
+100509	1	10127	4	Ort	deutsch	t	ldms_meta:CITY	f
+100510	2	10127	4		english	f	ldms_meta:CITY	f
+100511	4	10127	4		francais	f	ldms_meta:CITY	f
+100512	3	10128	4		Espagñol	f	ldms_meta:STATE	f
+100513	1	10128	4	Staat/Provinz	deutsch	t	ldms_meta:STATE	f
+100514	2	10128	4		english	f	ldms_meta:STATE	f
+100515	4	10128	4		francais	f	ldms_meta:STATE	f
+100516	3	10129	4		Espagñol	f	ldms_meta:STATE	f
+100517	1	10129	4	Staat/Provinz	deutsch	t	ldms_meta:STATE	f
+100518	2	10129	4		english	f	ldms_meta:STATE	f
+100519	4	10129	4		francais	f	ldms_meta:STATE	f
+100520	3	10130	4		Espagñol	f	ldms_meta:COUNTRY	f
+100521	1	10130	4	Land	deutsch	t	ldms_meta:COUNTRY	f
+100522	2	10130	4		english	f	ldms_meta:COUNTRY	f
+100523	4	10130	4		francais	f	ldms_meta:COUNTRY	f
+100524	3	10131	4		Espagñol	f	ldms_meta:COUNTRY	f
+100525	1	10131	4	Land	deutsch	t	ldms_meta:COUNTRY	f
+100526	2	10131	4		english	f	ldms_meta:COUNTRY	f
+100527	4	10131	4		francais	f	ldms_meta:COUNTRY	f
+100528	3	10132	4		Espagñol	f	ldms_meta:TRANSMISSION	f
+100529	1	10132	4	Aufgeber-Code	deutsch	t	ldms_meta:TRANSMISSION	f
+100530	2	10132	4		english	f	ldms_meta:TRANSMISSION	f
+100531	4	10132	4		francais	f	ldms_meta:TRANSMISSION	f
+100532	3	10133	4		Espagñol	f	ldms_meta:TRANSMISSION	f
+100533	1	10133	4	Aufgeber-Code	deutsch	t	ldms_meta:TRANSMISSION	f
+100534	2	10133	4		english	f	ldms_meta:TRANSMISSION	f
+100535	4	10133	4		francais	f	ldms_meta:TRANSMISSION	f
+100536	3	10134	4		Espagñol	f	ldms_meta:ORIGINNAME	f
+100537	1	10134	4	Objektname	deutsch	t	ldms_meta:ORIGINNAME	f
+100538	2	10134	4		english	f	ldms_meta:ORIGINNAME	f
+100539	4	10134	4		francais	f	ldms_meta:ORIGINNAME	f
+100540	3	10135	4		Espagñol	f	ldms_meta:ORIGINNAME	f
+100541	1	10135	4	Objektname	deutsch	t	ldms_meta:ORIGINNAME	f
+100542	2	10135	4		english	f	ldms_meta:ORIGINNAME	f
+100543	4	10135	4		francais	f	ldms_meta:ORIGINNAME	f
+100544	3	10136	4		Espagñol	f	ldms_meta:COPYRIGHT	f
+100545	1	10136	4	Vermerk	deutsch	t	ldms_meta:COPYRIGHT	f
+100546	2	10136	4		english	f	ldms_meta:COPYRIGHT	f
+100547	4	10136	4		francais	f	ldms_meta:COPYRIGHT	f
+100548	3	10137	4		Espagñol	f	ldms_meta:COPYRIGHT	f
+100549	1	10137	4	Vermerk	deutsch	t	ldms_meta:COPYRIGHT	f
+100550	2	10137	4		english	f	ldms_meta:COPYRIGHT	f
+100551	4	10137	4		francais	f	ldms_meta:COPYRIGHT	f
+100552	3	10138	4		Espagñol	f	ldms_meta:CREATEDATE	f
+100553	1	10138	4	Erstellt am	deutsch	t	ldms_meta:CREATEDATE	f
+100554	2	10138	4		english	f	ldms_meta:CREATEDATE	f
+100555	4	10138	4		francais	f	ldms_meta:CREATEDATE	f
+100556	3	10139	4		Espagñol	f	ldms_meta:CREATEDATE	f
+100557	1	10139	4	Erstellt am	deutsch	t	ldms_meta:CREATEDATE	f
+100558	2	10139	4		english	f	ldms_meta:CREATEDATE	f
+100559	4	10139	4		francais	f	ldms_meta:CREATEDATE	f
+100560	3	10140	4		Espagñol	f	ldms_meta:SUBCATEGORY	f
+100561	1	10140	4	Unterkategorien	deutsch	t	ldms_meta:SUBCATEGORY	f
+100562	2	10140	4		english	f	ldms_meta:SUBCATEGORY	f
+100563	4	10140	4		francais	f	ldms_meta:SUBCATEGORY	f
+100564	3	10141	4		Espagñol	f	ldms_meta:SUBCATEGORY	f
+100565	1	10141	4	Unterkategorien	deutsch	t	ldms_meta:SUBCATEGORY	f
+100566	2	10141	4		english	f	ldms_meta:SUBCATEGORY	f
+100567	4	10141	4		francais	f	ldms_meta:SUBCATEGORY	f
+100076	3	10019	4		Espagñol	f	ldms_files:TABID	f
+100077	1	10019	4	TABID	deutsch	t	ldms_files:TABID	f
+100078	2	10019	4		english	f	ldms_files:TABID	f
+100079	4	10019	4		francais	f	ldms_files:TABID	f
+100080	3	10020	4		Espagñol	f	ldms_files:TABID	f
+100081	1	10020	4	TABID	deutsch	t	ldms_files:TABID	f
+100082	2	10020	4		english	f	ldms_files:TABID	f
+100083	4	10020	4		francais	f	ldms_files:TABID	f
 100000	3	10000	4		Espagñol	f	Tablegroup: Limbassys	f
 100001	1	10000	4	Limbassys	deutsch	t	Tablegroup: Limbassys	f
 100002	2	10000	4		english	f	Tablegroup: Limbassys	f
@@ -10885,14 +11266,6 @@ COPY public.lmb_lang_depend (id, language_id, element_id, typ, wert, language, e
 100073	1	10018	4	DATID	deutsch	t	ldms_files:DATID	f
 100074	2	10018	4		english	f	ldms_files:DATID	f
 100075	4	10018	4		francais	f	ldms_files:DATID	f
-100076	3	10019	4		Espagñol	f	ldms_files:TABID	f
-100077	1	10019	4	TABID	deutsch	t	ldms_files:TABID	f
-100078	2	10019	4		english	f	ldms_files:TABID	f
-100079	4	10019	4		francais	f	ldms_files:TABID	f
-100080	3	10020	4		Espagñol	f	ldms_files:TABID	f
-100081	1	10020	4	TABID	deutsch	t	ldms_files:TABID	f
-100082	2	10020	4		english	f	ldms_files:TABID	f
-100083	4	10020	4		francais	f	ldms_files:TABID	f
 100084	3	10021	4		Espagñol	f	ldms_files:FIELDID	f
 100085	1	10021	4	FIELDID	deutsch	t	ldms_files:FIELDID	f
 100086	2	10021	4		english	f	ldms_files:FIELDID	f
@@ -11234,149 +11607,6 @@ COPY public.lmb_lang_depend (id, language_id, element_id, typ, wert, language, e
 100422	2	10105	4		english	f	ldms_meta:DESCRIPTION	f
 100423	4	10105	4		francais	f	ldms_meta:DESCRIPTION	f
 100424	3	10106	4		Espagñol	f	ldms_meta:PUBLISHER	f
-100425	1	10106	4	Verleger, Herausgeber, Universität etc.	deutsch	t	ldms_meta:PUBLISHER	f
-100426	2	10106	4		english	f	ldms_meta:PUBLISHER	f
-100427	4	10106	4		francais	f	ldms_meta:PUBLISHER	f
-100428	3	10107	4		Espagñol	f	ldms_meta:PUBLISHER	f
-100429	1	10107	4	Herausgeber	deutsch	t	ldms_meta:PUBLISHER	f
-100430	2	10107	4		english	f	ldms_meta:PUBLISHER	f
-100431	4	10107	4		francais	f	ldms_meta:PUBLISHER	f
-100432	3	10108	4		Espagñol	f	ldms_meta:CONTRIBUTORS	f
-100433	1	10108	4	Name einer weiteren beteiligten Person	deutsch	t	ldms_meta:CONTRIBUTORS	f
-100434	2	10108	4		english	f	ldms_meta:CONTRIBUTORS	f
-100435	4	10108	4		francais	f	ldms_meta:CONTRIBUTORS	f
-100436	3	10109	4		Espagñol	f	ldms_meta:CONTRIBUTORS	f
-100437	1	10109	4	Mitwirkende	deutsch	t	ldms_meta:CONTRIBUTORS	f
-100438	2	10109	4		english	f	ldms_meta:CONTRIBUTORS	f
-100439	4	10109	4		francais	f	ldms_meta:CONTRIBUTORS	f
-100440	3	10110	4		Espagñol	f	ldms_meta:IDENTIFIER	f
-100441	1	10110	4	(ISBN, ISSN, URL o.ä. des vorliegenden Dokuments betr. eindeutiger Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
-100442	2	10110	4		english	f	ldms_meta:IDENTIFIER	f
-100443	4	10110	4		francais	f	ldms_meta:IDENTIFIER	f
-100444	3	10111	4		Espagñol	f	ldms_meta:IDENTIFIER	f
-100445	1	10111	4	Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
-100446	2	10111	4		english	f	ldms_meta:IDENTIFIER	f
-100447	4	10111	4		francais	f	ldms_meta:IDENTIFIER	f
-100448	3	10112	4		Espagñol	f	ldms_meta:SOURCE	f
-100449	1	10112	4	Werk, gedruckt oder elektronisch, aus dem das vorliegende Dokument stammt	deutsch	t	ldms_meta:SOURCE	f
-100450	2	10112	4		english	f	ldms_meta:SOURCE	f
-100451	4	10112	4		francais	f	ldms_meta:SOURCE	f
-100452	3	10113	4		Espagñol	f	ldms_meta:SOURCE	f
-100453	1	10113	4	Quelle	deutsch	t	ldms_meta:SOURCE	f
-100454	2	10113	4		english	f	ldms_meta:SOURCE	f
-100455	4	10113	4		francais	f	ldms_meta:SOURCE	f
-100456	3	10114	4		Espagñol	f	ldms_meta:LANGUAGE	f
-100457	1	10114	4	Sprache des Inhalts des Dokuments	deutsch	t	ldms_meta:LANGUAGE	f
-100458	2	10114	4		english	f	ldms_meta:LANGUAGE	f
-100459	4	10114	4		francais	f	ldms_meta:LANGUAGE	f
-100460	3	10115	4		Espagñol	f	ldms_meta:LANGUAGE	f
-100461	1	10115	4	Sprache	deutsch	t	ldms_meta:LANGUAGE	f
-100462	2	10115	4		english	f	ldms_meta:LANGUAGE	f
-100463	4	10115	4		francais	f	ldms_meta:LANGUAGE	f
-100464	3	10116	4		Espagñol	f	ldms_meta:INSTRUCTIONS	f
-100465	1	10116	4	Hinweise	deutsch	t	ldms_meta:INSTRUCTIONS	f
-100466	2	10116	4		english	f	ldms_meta:INSTRUCTIONS	f
-100467	4	10116	4		francais	f	ldms_meta:INSTRUCTIONS	f
-100468	3	10117	4		Espagñol	f	ldms_meta:INSTRUCTIONS	f
-100469	1	10117	4	Hinweise	deutsch	t	ldms_meta:INSTRUCTIONS	f
-100470	2	10117	4		english	f	ldms_meta:INSTRUCTIONS	f
-100471	4	10117	4		francais	f	ldms_meta:INSTRUCTIONS	f
-100472	3	10118	4		Espagñol	f	ldms_meta:URGENCY	f
-100473	1	10118	4	Dringlichkeit	deutsch	t	ldms_meta:URGENCY	f
-100474	2	10118	4		english	f	ldms_meta:URGENCY	f
-100475	4	10118	4		francais	f	ldms_meta:URGENCY	f
-100476	3	10119	4		Espagñol	f	ldms_meta:URGENCY	f
-100477	1	10119	4	Dringlichkeit	deutsch	t	ldms_meta:URGENCY	f
-100478	2	10119	4		english	f	ldms_meta:URGENCY	f
-100479	4	10119	4		francais	f	ldms_meta:URGENCY	f
-100480	3	10120	4		Espagñol	f	ldms_meta:CATEGORY	f
-100481	1	10120	4	Kategorie	deutsch	t	ldms_meta:CATEGORY	f
-100482	2	10120	4		english	f	ldms_meta:CATEGORY	f
-100483	4	10120	4		francais	f	ldms_meta:CATEGORY	f
-100484	3	10121	4		Espagñol	f	ldms_meta:CATEGORY	f
-100485	1	10121	4	Kategorie	deutsch	t	ldms_meta:CATEGORY	f
-100486	2	10121	4		english	f	ldms_meta:CATEGORY	f
-100487	4	10121	4		francais	f	ldms_meta:CATEGORY	f
-100488	3	10122	4		Espagñol	f	ldms_meta:TITLE	f
-100489	1	10122	4	Autor	deutsch	t	ldms_meta:TITLE	f
-100490	2	10122	4		english	f	ldms_meta:TITLE	f
-100491	4	10122	4		francais	f	ldms_meta:TITLE	f
-100492	3	10123	4		Espagñol	f	ldms_meta:TITLE	f
-100493	1	10123	4	Autor	deutsch	t	ldms_meta:TITLE	f
-100494	2	10123	4		english	f	ldms_meta:TITLE	f
-100495	4	10123	4		francais	f	ldms_meta:TITLE	f
-100496	3	10124	4		Espagñol	f	ldms_meta:CREDIT	f
-100497	1	10124	4	Bildrechte	deutsch	t	ldms_meta:CREDIT	f
-100498	2	10124	4		english	f	ldms_meta:CREDIT	f
-100499	4	10124	4		francais	f	ldms_meta:CREDIT	f
-100500	3	10125	4		Espagñol	f	ldms_meta:CREDIT	f
-100501	1	10125	4	Bildrechte	deutsch	t	ldms_meta:CREDIT	f
-100502	2	10125	4		english	f	ldms_meta:CREDIT	f
-100503	4	10125	4		francais	f	ldms_meta:CREDIT	f
-100504	3	10126	4		Espagñol	f	ldms_meta:CITY	f
-100505	1	10126	4	Ort	deutsch	t	ldms_meta:CITY	f
-100506	2	10126	4		english	f	ldms_meta:CITY	f
-100507	4	10126	4		francais	f	ldms_meta:CITY	f
-100508	3	10127	4		Espagñol	f	ldms_meta:CITY	f
-100509	1	10127	4	Ort	deutsch	t	ldms_meta:CITY	f
-100510	2	10127	4		english	f	ldms_meta:CITY	f
-100511	4	10127	4		francais	f	ldms_meta:CITY	f
-100512	3	10128	4		Espagñol	f	ldms_meta:STATE	f
-100513	1	10128	4	Staat/Provinz	deutsch	t	ldms_meta:STATE	f
-100514	2	10128	4		english	f	ldms_meta:STATE	f
-100515	4	10128	4		francais	f	ldms_meta:STATE	f
-100516	3	10129	4		Espagñol	f	ldms_meta:STATE	f
-100517	1	10129	4	Staat/Provinz	deutsch	t	ldms_meta:STATE	f
-100518	2	10129	4		english	f	ldms_meta:STATE	f
-100519	4	10129	4		francais	f	ldms_meta:STATE	f
-100520	3	10130	4		Espagñol	f	ldms_meta:COUNTRY	f
-100521	1	10130	4	Land	deutsch	t	ldms_meta:COUNTRY	f
-100522	2	10130	4		english	f	ldms_meta:COUNTRY	f
-100523	4	10130	4		francais	f	ldms_meta:COUNTRY	f
-100524	3	10131	4		Espagñol	f	ldms_meta:COUNTRY	f
-100525	1	10131	4	Land	deutsch	t	ldms_meta:COUNTRY	f
-100526	2	10131	4		english	f	ldms_meta:COUNTRY	f
-100527	4	10131	4		francais	f	ldms_meta:COUNTRY	f
-100528	3	10132	4		Espagñol	f	ldms_meta:TRANSMISSION	f
-100529	1	10132	4	Aufgeber-Code	deutsch	t	ldms_meta:TRANSMISSION	f
-100530	2	10132	4		english	f	ldms_meta:TRANSMISSION	f
-100531	4	10132	4		francais	f	ldms_meta:TRANSMISSION	f
-100532	3	10133	4		Espagñol	f	ldms_meta:TRANSMISSION	f
-100533	1	10133	4	Aufgeber-Code	deutsch	t	ldms_meta:TRANSMISSION	f
-100534	2	10133	4		english	f	ldms_meta:TRANSMISSION	f
-100535	4	10133	4		francais	f	ldms_meta:TRANSMISSION	f
-100536	3	10134	4		Espagñol	f	ldms_meta:ORIGINNAME	f
-100537	1	10134	4	Objektname	deutsch	t	ldms_meta:ORIGINNAME	f
-100538	2	10134	4		english	f	ldms_meta:ORIGINNAME	f
-100539	4	10134	4		francais	f	ldms_meta:ORIGINNAME	f
-100540	3	10135	4		Espagñol	f	ldms_meta:ORIGINNAME	f
-100541	1	10135	4	Objektname	deutsch	t	ldms_meta:ORIGINNAME	f
-100542	2	10135	4		english	f	ldms_meta:ORIGINNAME	f
-100543	4	10135	4		francais	f	ldms_meta:ORIGINNAME	f
-100544	3	10136	4		Espagñol	f	ldms_meta:COPYRIGHT	f
-100545	1	10136	4	Vermerk	deutsch	t	ldms_meta:COPYRIGHT	f
-100546	2	10136	4		english	f	ldms_meta:COPYRIGHT	f
-100547	4	10136	4		francais	f	ldms_meta:COPYRIGHT	f
-100548	3	10137	4		Espagñol	f	ldms_meta:COPYRIGHT	f
-100549	1	10137	4	Vermerk	deutsch	t	ldms_meta:COPYRIGHT	f
-100550	2	10137	4		english	f	ldms_meta:COPYRIGHT	f
-100551	4	10137	4		francais	f	ldms_meta:COPYRIGHT	f
-100552	3	10138	4		Espagñol	f	ldms_meta:CREATEDATE	f
-100553	1	10138	4	Erstellt am	deutsch	t	ldms_meta:CREATEDATE	f
-100554	2	10138	4		english	f	ldms_meta:CREATEDATE	f
-100555	4	10138	4		francais	f	ldms_meta:CREATEDATE	f
-100556	3	10139	4		Espagñol	f	ldms_meta:CREATEDATE	f
-100557	1	10139	4	Erstellt am	deutsch	t	ldms_meta:CREATEDATE	f
-100558	2	10139	4		english	f	ldms_meta:CREATEDATE	f
-100559	4	10139	4		francais	f	ldms_meta:CREATEDATE	f
-100560	3	10140	4		Espagñol	f	ldms_meta:SUBCATEGORY	f
-100561	1	10140	4	Unterkategorien	deutsch	t	ldms_meta:SUBCATEGORY	f
-100562	2	10140	4		english	f	ldms_meta:SUBCATEGORY	f
-100563	4	10140	4		francais	f	ldms_meta:SUBCATEGORY	f
-100564	3	10141	4		Espagñol	f	ldms_meta:SUBCATEGORY	f
-100565	1	10141	4	Unterkategorien	deutsch	t	ldms_meta:SUBCATEGORY	f
-100566	2	10141	4		english	f	ldms_meta:SUBCATEGORY	f
-100567	4	10141	4		francais	f	ldms_meta:SUBCATEGORY	f
 \.
 
 
@@ -11384,7 +11614,7 @@ COPY public.lmb_lang_depend (id, language_id, element_id, typ, wert, language, e
 -- Data for Name: lmb_mimetypes; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_mimetypes (id, mimetype, ext, pic) FROM stdin;
+COPY lmb_mimetypes (id, mimetype, ext, pic) FROM stdin;
 1	application/excel	xls	xls.gif
 6	application/andrew-inset	ez	\N
 17	application/mac-binhex40	hqx	\N
@@ -11502,7 +11732,7 @@ COPY public.lmb_mimetypes (id, mimetype, ext, pic) FROM stdin;
 -- Data for Name: lmb_printers; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_printers (id, name, sysname, config, def) FROM stdin;
+COPY lmb_printers (id, name, sysname, config, def) FROM stdin;
 \.
 
 
@@ -11510,7 +11740,7 @@ COPY public.lmb_printers (id, name, sysname, config, def) FROM stdin;
 -- Data for Name: lmb_reminder; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_reminder (id, user_id, tab_id, dat_id, frist, typ, description, fromuser, content, category, group_id, wfl_inst) FROM stdin;
+COPY lmb_reminder (id, user_id, tab_id, dat_id, frist, typ, description, fromuser, content, category, group_id, wfl_inst) FROM stdin;
 \.
 
 
@@ -11518,7 +11748,7 @@ COPY public.lmb_reminder (id, user_id, tab_id, dat_id, frist, typ, description, 
 -- Data for Name: lmb_reminder_list; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_reminder_list (id, erstuser, erstdatum, name, tab_id, formd_id, forml_id, groupbased, sort) FROM stdin;
+COPY lmb_reminder_list (id, erstuser, erstdatum, name, tab_id, formd_id, forml_id, groupbased, sort) FROM stdin;
 \.
 
 
@@ -11526,7 +11756,7 @@ COPY public.lmb_reminder_list (id, erstuser, erstdatum, name, tab_id, formd_id, 
 -- Data for Name: lmb_report_list; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_report_list (id, name, beschreibung, page_style, sql_statement, erstdatum, editdatum, erstuser, edituser, referenz_tab, grouplist, target, savename, tagmod, extension, indexorder, odt_template, defformat, listmode, ods_template) FROM stdin;
+COPY lmb_report_list (id, name, beschreibung, page_style, sql_statement, erstdatum, editdatum, erstuser, edituser, referenz_tab, grouplist, target, savename, tagmod, extension, indexorder, odt_template, defformat, listmode, ods_template) FROM stdin;
 \.
 
 
@@ -11534,7 +11764,7 @@ COPY public.lmb_report_list (id, name, beschreibung, page_style, sql_statement, 
 -- Data for Name: lmb_reports; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_reports (el_id, erstdatum, editdatum, erstuser, edituser, typ, posx, posy, height, width, inhalt, dbfield, verkn_baum, style, db_data_type, show_all, bericht_id, z_index, liste, tab, tab_size, tab_el_col, tab_el_row, tab_el_col_size, header, footer, pic_typ, pic_style, pic_size, pic_res, pic_name, bg, extvalue, id) FROM stdin;
+COPY lmb_reports (el_id, erstdatum, editdatum, erstuser, edituser, typ, posx, posy, height, width, inhalt, dbfield, verkn_baum, style, db_data_type, show_all, bericht_id, z_index, liste, tab, tab_size, tab_el_col, tab_el_row, tab_el_col_size, header, footer, pic_typ, pic_style, pic_size, pic_res, pic_name, bg, extvalue, id, tab_el) FROM stdin;
 \.
 
 
@@ -11542,7 +11772,7 @@ COPY public.lmb_reports (el_id, erstdatum, editdatum, erstuser, edituser, typ, p
 -- Data for Name: lmb_revision; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_revision (id, erstuser, erstdatum, revision, version, corev, description) FROM stdin;
+COPY lmb_revision (id, erstuser, erstdatum, revision, version, corev, description) FROM stdin;
 \.
 
 
@@ -11550,7 +11780,7 @@ COPY public.lmb_revision (id, erstuser, erstdatum, revision, version, corev, des
 -- Data for Name: lmb_rules_action; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_rules_action (id, group_id, link_id, perm, sort) FROM stdin;
+COPY lmb_rules_action (id, group_id, link_id, perm, sort) FROM stdin;
 1	1	1	2	\N
 2	1	3	2	\N
 3	1	4	2	\N
@@ -11765,6 +11995,8 @@ COPY public.lmb_rules_action (id, group_id, link_id, perm, sort) FROM stdin;
 4432	1	303	2	\N
 4433	1	301	2	\N
 4434	1	302	2	\N
+4438	1	305	2	\N
+4442	1	1002	2	\N
 \.
 
 
@@ -11772,7 +12004,7 @@ COPY public.lmb_rules_action (id, group_id, link_id, perm, sort) FROM stdin;
 -- Data for Name: lmb_rules_dataset; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_rules_dataset (keyid, edituser, datid, userid, groupid, tabid, edit, del) FROM stdin;
+COPY lmb_rules_dataset (keyid, edituser, datid, userid, groupid, tabid, edit, del) FROM stdin;
 \.
 
 
@@ -11780,7 +12012,23 @@ COPY public.lmb_rules_dataset (keyid, edituser, datid, userid, groupid, tabid, e
 -- Data for Name: lmb_rules_fields; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_rules_fields (id, tab_id, field_id, group_id, tab_group, lmview, edit, color, filter, sort, need, filtertyp, nformat, currency, deflt, copy, lmtrigger, ext_type, ver, editrule, fieldoption, listedit, speechrec) FROM stdin;
+COPY lmb_rules_fields (id, tab_id, field_id, group_id, tab_group, lmview, edit, color, filter, sort, need, filtertyp, nformat, currency, deflt, copy, lmtrigger, ext_type, ver, editrule, fieldoption, listedit, speechrec) FROM stdin;
+54	2	22	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+55	2	23	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+56	2	24	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+57	2	25	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+58	2	26	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+59	2	27	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+60	2	28	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+61	2	29	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+62	2	30	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+63	2	31	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+64	2	32	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+65	2	33	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+66	2	34	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+67	2	35	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+68	2	36	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
+69	2	37	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
 1	1	1	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
 2	1	2	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
 3	1	3	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
@@ -11834,22 +12082,6 @@ COPY public.lmb_rules_fields (id, tab_id, field_id, group_id, tab_group, lmview,
 51	2	19	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
 52	2	20	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
 53	2	21	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-54	2	22	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-55	2	23	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-56	2	24	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-57	2	25	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-58	2	26	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-59	2	27	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-60	2	28	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-61	2	29	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-62	2	30	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-63	2	31	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-64	2	32	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-65	2	33	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-66	2	34	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-67	2	35	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-68	2	36	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
-69	2	37	1	1	t	t			0	f	0	\N	\N	\N	t	\N	\N	f	\N	t	\N	\N
 \.
 
 
@@ -11857,7 +12089,7 @@ COPY public.lmb_rules_fields (id, tab_id, field_id, group_id, tab_group, lmview,
 -- Data for Name: lmb_rules_repform; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_rules_repform (id, typ, group_id, repform_id, lmview, hidden) FROM stdin;
+COPY lmb_rules_repform (id, typ, group_id, repform_id, lmview, hidden) FROM stdin;
 \.
 
 
@@ -11865,7 +12097,7 @@ COPY public.lmb_rules_repform (id, typ, group_id, repform_id, lmview, hidden) FR
 -- Data for Name: lmb_rules_tables; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_rules_tables (id, group_id, tab_id, tab_group, edit, lmview, view_period, view_form, del, hide, lmadd, need, lmtrigger, view_tform, ver, editrule, hidemenu, userrules, viewver, lmlock, userprivilege, hiraprivilege, specificprivilege, indicator, copy, view_lform) FROM stdin;
+COPY lmb_rules_tables (id, group_id, tab_id, tab_group, edit, lmview, view_period, view_form, del, hide, lmadd, need, lmtrigger, view_tform, ver, editrule, hidemenu, userrules, viewver, lmlock, userprivilege, hiraprivilege, specificprivilege, indicator, copy, view_lform) FROM stdin;
 1	1	1	1	t	t	0	0	t	t	t	f	\N	\N	\N	\N	f	f	f	f	f	f	\N	\N	t	\N
 2	1	2	1	t	t	0	0	t	t	t	f	\N	\N	\N	\N	f	f	f	f	f	f	\N	\N	t	\N
 \.
@@ -11875,7 +12107,7 @@ COPY public.lmb_rules_tables (id, group_id, tab_id, tab_group, edit, lmview, vie
 -- Data for Name: lmb_select_d; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_select_d (id, tab_id, dat_id, erstdatum, erstuser, field_id, w_id) FROM stdin;
+COPY lmb_select_d (id, tab_id, dat_id, erstdatum, erstuser, field_id, w_id) FROM stdin;
 \.
 
 
@@ -11883,7 +12115,7 @@ COPY public.lmb_select_d (id, tab_id, dat_id, erstdatum, erstuser, field_id, w_i
 -- Data for Name: lmb_select_p; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_select_p (id, erstdatum, erstuser, name, snum) FROM stdin;
+COPY lmb_select_p (id, erstdatum, erstuser, name, snum, tagmode, multimode) FROM stdin;
 \.
 
 
@@ -11891,7 +12123,7 @@ COPY public.lmb_select_p (id, erstdatum, erstuser, name, snum) FROM stdin;
 -- Data for Name: lmb_select_w; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_select_w (id, sort, wert, erstdatum, erstuser, def, keywords, pool, hide, level, haslevel, lang2_wert) FROM stdin;
+COPY lmb_select_w (id, sort, wert, erstdatum, erstuser, def, keywords, pool, hide, level, haslevel, lang2_wert, color) FROM stdin;
 \.
 
 
@@ -11899,8 +12131,9 @@ COPY public.lmb_select_w (id, sort, wert, erstdatum, erstuser, def, keywords, po
 -- Data for Name: lmb_session; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_session (id, user_id, group_id, logout, erstdatum, ip, filestruct_changed, table_changed, snap_changed) FROM stdin;
-4t79df5q0p0ld7ojtqrvep1ivc	1	1	f	2018-09-28 11:14:14.519638	127.0.0.1	f	f	f
+COPY lmb_session (id, user_id, group_id, logout, erstdatum, ip, filestruct_changed, table_changed, snap_changed) FROM stdin;
+8r3jmjuqpeg3d655sl8au4t7bc	1	1	f	2019-09-20 16:02:57.699761	192.168.5.19	f	f	f
+5pfj2qk7ictlab07o90tsvvrng	1	1	f	2019-09-23 09:54:34.089736	192.168.5.19	f	f	f
 \.
 
 
@@ -11908,7 +12141,7 @@ COPY public.lmb_session (id, user_id, group_id, logout, erstdatum, ip, filestruc
 -- Data for Name: lmb_snap; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_snap (id, user_id, tabid, name, erstdatum, global, filter, ext) FROM stdin;
+COPY lmb_snap (id, user_id, tabid, name, erstdatum, global, filter, ext) FROM stdin;
 \.
 
 
@@ -11916,7 +12149,7 @@ COPY public.lmb_snap (id, user_id, tabid, name, erstdatum, global, filter, ext) 
 -- Data for Name: lmb_snap_shared; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_snap_shared (id, entity_type, entity_id, snapshot_id, edit, del) FROM stdin;
+COPY lmb_snap_shared (id, entity_type, entity_id, snapshot_id, edit, del) FROM stdin;
 \.
 
 
@@ -11924,7 +12157,7 @@ COPY public.lmb_snap_shared (id, entity_type, entity_id, snapshot_id, edit, del)
 -- Data for Name: lmb_sql_favorites; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sql_favorites (id, name, statement) FROM stdin;
+COPY lmb_sql_favorites (id, name, statement) FROM stdin;
 \.
 
 
@@ -11932,7 +12165,7 @@ COPY public.lmb_sql_favorites (id, name, statement) FROM stdin;
 -- Data for Name: lmb_sqlreserved; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sqlreserved (id, sql_92) FROM stdin;
+COPY lmb_sqlreserved (id, sql_92) FROM stdin;
 1	ABSOLUTE
 5	ALL
 6	ALLOCATE
@@ -12263,7 +12496,7 @@ COPY public.lmb_sqlreserved (id, sql_92) FROM stdin;
 -- Data for Name: lmb_sync_cache; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sync_cache (id, tabid, datid, slave_id, slave_datid) FROM stdin;
+COPY lmb_sync_cache (id, tabid, datid, slave_id, slave_datid) FROM stdin;
 \.
 
 
@@ -12271,7 +12504,7 @@ COPY public.lmb_sync_cache (id, tabid, datid, slave_id, slave_datid) FROM stdin;
 -- Data for Name: lmb_sync_conf; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sync_conf (id, template, tabid, fieldid, master, slave) FROM stdin;
+COPY lmb_sync_conf (id, template, tabid, fieldid, master, slave) FROM stdin;
 \.
 
 
@@ -12279,7 +12512,7 @@ COPY public.lmb_sync_conf (id, template, tabid, fieldid, master, slave) FROM std
 -- Data for Name: lmb_sync_log; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sync_log (erstdatum, type, tabid, datid, fieldid, origin, errorcode, message) FROM stdin;
+COPY lmb_sync_log (erstdatum, type, tabid, datid, fieldid, origin, errorcode, message) FROM stdin;
 \.
 
 
@@ -12287,7 +12520,7 @@ COPY public.lmb_sync_log (erstdatum, type, tabid, datid, fieldid, origin, errorc
 -- Data for Name: lmb_sync_slaves; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sync_slaves (id, erstuser, erstdatum, name, slave_url, slave_username, slave_pass) FROM stdin;
+COPY lmb_sync_slaves (id, erstuser, erstdatum, name, slave_url, slave_username, slave_pass) FROM stdin;
 \.
 
 
@@ -12295,7 +12528,7 @@ COPY public.lmb_sync_slaves (id, erstuser, erstdatum, name, slave_url, slave_use
 -- Data for Name: lmb_sync_template; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_sync_template (id, name) FROM stdin;
+COPY lmb_sync_template (id, name, conflict_mode, tabid, setting) FROM stdin;
 \.
 
 
@@ -12303,7 +12536,7 @@ COPY public.lmb_sync_template (id, name) FROM stdin;
 -- Data for Name: lmb_tabletree; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_tabletree (id, erstuser, erstdatum, tabid, target_formid, display_field, display_icon, display_title, poolname, target_snap, display, display_sort, display_rule, treeid, relationid, itemtab) FROM stdin;
+COPY lmb_tabletree (id, erstuser, erstdatum, tabid, target_formid, display_field, display_icon, display_title, poolname, target_snap, display, display_sort, display_rule, treeid, relationid, itemtab) FROM stdin;
 \.
 
 
@@ -12311,7 +12544,7 @@ COPY public.lmb_tabletree (id, erstuser, erstdatum, tabid, target_formid, displa
 -- Data for Name: lmb_trigger; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_trigger (id, erstdatum, editdatum, edituser, erstuser, table_name, type, trigger_value, description, active, intern, sort, name, dbvendor, debvendor, "position") FROM stdin;
+COPY lmb_trigger (id, erstdatum, editdatum, edituser, erstuser, table_name, type, trigger_value, description, active, intern, sort, name, dbvendor, debvendor, "position") FROM stdin;
 \.
 
 
@@ -12319,7 +12552,7 @@ COPY public.lmb_trigger (id, erstdatum, editdatum, edituser, erstuser, table_nam
 -- Data for Name: lmb_uglst; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_uglst (ugid, tabid, fieldid, datid, typ) FROM stdin;
+COPY lmb_uglst (ugid, tabid, fieldid, datid, typ) FROM stdin;
 1	11	6	15	g
 1	11	6	21	g
 2	11	6	7	g
@@ -12336,7 +12569,7 @@ COPY public.lmb_uglst (ugid, tabid, fieldid, datid, typ) FROM stdin;
 -- Data for Name: lmb_umgvar; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_umgvar (id, sort, form_name, norm, beschreibung, category) FROM stdin;
+COPY lmb_umgvar (id, sort, form_name, norm, beschreibung, category) FROM stdin;
 53	68	logout_page	index.php	page after logout	1894
 93	106	crontab	/var/spool/cron/tabs/webuser	path to crontab	1894
 24	17	searchcount	3	max paralell search	1896
@@ -12416,24 +12649,21 @@ COPY public.lmb_umgvar (id, sort, form_name, norm, beschreibung, category) FROM 
 70	83	default_layout	comet	default layout for new users	1893
 132	138	header_auth	basic	client browser authentication (basic/digest)	1900
 133	140	LDAP_domain	\N	a valid LDAP or domain server	1900
-74	87	default_language	1	default language for new users (language_id of lmb_lang)	1893
-25	13	charset	ISO-8859-1	charset	1895
-73	86	default_usercolor	2	default usercolor for new users (id of lmb_colorschemes)	1893
 51	66	debug_lang	0	view language-ID	1995
 134	140	LDAP_baseDn	DC=mydomain,DC=local	the base dn for your domain	1900
 3	8	fontsize	11	default font-size	1895
-44	47	url		Base URL of installation	1893
 135	140	LDAP_accountSuffix	@mydomain.local	the full account suffix for your domain	1900
 136	140	LDAP_defaultGroup	\N	default LIMBAS maingroup of all LDAP users	1900
 124	1	report_calc_output	xls	report output format of type calc (xls/xlsx/CSV)	2820
 138	150	LDAP_useSSL	0	use LDAP over SSL	1900
+25	13	charset	ISO-8859-1	charset	1895
 140	152	use_phpmailer	1	use PHPMailer for sendmail	2818
 137	140	debug_messages	0	store all messages in messages.log	1995
 89	102	read_metadata	jpg,jpeg,tiff,pdf,gif	read metadata from file (jpg,jpeg,tiff,pdf,gif OR 1 for all)	1899
 88	101	update_metadata	jpg,jpeg,tiff,pdf,gif	update metadata to file (jpg,jpeg,tiff,pdf,gif OR 1 for all)	1899
 130	137	csv_enclosure	\N	csv export enclosure (")	2818
-129	137	csv_delimiter	\N	csv export delimiter (\\\\t / ;)	2818
-139	137	csv_escape	\N	csv escape char (\\\\ / ~)	2818
+129	137	csv_delimiter	\N	csv export delimiter (\\t / ;)	2818
+139	137	csv_escape	\N	csv escape char (\\ / ~)	2818
 30	46	indize_filetype	pdf,text,txt,html	files to index (pdf,text,html OR 1 for all)	1898
 142	154	sync_mode	0	0=master, 1=slave	2818
 143	155	sync_port	9004	php socket port	2818
@@ -12441,16 +12671,22 @@ COPY public.lmb_umgvar (id, sort, form_name, norm, beschreibung, category) FROM 
 145	157	sync_timeout	10	numer of connection attempts	2818
 146	158	page_title	Limbas-Demo - %s	custom title %s	1893
 141	153	multi_language	2	languages to translate (1,2,3)	1896
-19	12	company	your company	company	1893
-107	119	default_dateformat	1	default dateformat for new users (1=german;2=US;3=fra)	1893
-128	137	database_version	90607	database version	2818
-147	158	update_check	0	check for updates (0/1/auto)	1893
 148	1	lpstat_params	\N	options for command lpstat	2935
 149	2	lpoptions_params	\N	options for command lpoptions	2935
 150	3	lp_params	\N	options for command lp	2935
+128	137	database_version	90609	database version	2818
+19	12	company	your company	company	1893
+74	87	default_language	1	default language for new users (language_id of lmb_lang)	1893
+107	119	default_dateformat	1	default dateformat for new users (1=german;2=US;3=fra)	1893
+73	86	default_usercolor	2	default usercolor for new users (id of lmb_colorschemes)	1893
+44	47	url		Base URL of installation	1893
 10	46	path	/opt/openlimbas/dependent	absolute path of installation	1893
-37	52	backup_default	localhost:////opt/openlimbas/dependent/BACKUP	default path of Backup	1893
+37	52	backup_default	localhost://///opt/openlimbas/dependent/BACKUP	default path of Backup	1893
+151	1	password_hash	1	Password hashing algorithm (see PHP function password_hash)	1900
+152	150	date_max_two_digit_year_addend	20	Amount of years (e.g. 20) to add to the current year (e.g. 2019 -> 2039) to<br>determine the timespan (1940-2039) that will be used to calculate the<br>full year when entered as the last two digits (e.g. 39 -> 2039, but 40 -> 1940)	1893
 59	74	admin_mode	0	only for LIMBAS-Crew !!!	1995
+153	150	restpath	main_rest.php	different url path to REST api. (e.g. api.limbas.com/rest). Default is main_rest.php	1893
+147	158	update_check	0	check for updates (0/1/auto)	1893
 \.
 
 
@@ -12458,66 +12694,66 @@ COPY public.lmb_umgvar (id, sort, form_name, norm, beschreibung, category) FROM 
 -- Data for Name: lmb_user_colors; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_user_colors (id, userid, wert) FROM stdin;
-7	0	FF6500
-8	0	008600
-9	0	7B7D00
-10	0	0004FF
-11	0	636594
-12	0	7B7D7B
-13	0	FF0400
-14	0	FF9600
-15	0	94CF00
-16	0	319E6B
-17	0	31CFCE
-18	0	396DFF
-19	0	FFCF00
-20	0	FFFF00
-21	0	00C7FF
-22	0	BDBEBD
-23	0	FFC794
-24	0	FFFF9C
-25	0	CEFFCE
-26	0	CEFFFF
-27	0	9CCFFF
-28	0	FFFFFF
-29	0	00FFF0
-30	0	DFDFDF
-31	0	999999
-32	0	333333
-36	0	E1E1F0
-38	0	FFFFCE
-39	1	96B400
-40	1	C3B400
-41	1	C37800
-42	1	D2E1D2
-43	1	A5E1D2
-44	1	2D87D2
-45	1	5A6900
-46	1	876900
-47	1	D26900
-48	1	D2FFF0
-49	1	A5FFF0
-50	1	5AFFF0
-51	0	E9E9E9
-52	1	FF0000
-53	1	F01EB4
-54	1	FFFF5A
-55	0	3CA5F0
-56	0	87FFF0
-57	0	874BF0
-58	0	5A4BF0
-59	0	4B2DF0
-60	0	873CF0
-61	0	FF00F0
-62	0	690FF0
-63	0	FF0F00
-64	0	B40F00
-65	0	872D00
-66	0	3CD200
-67	0	2D3C00
-68	0	5A2D00
-69	0	697800
+COPY lmb_user_colors (id, userid, wert) FROM stdin;
+7	0	#FF6500
+8	0	#008600
+9	0	#7B7D00
+10	0	#0004FF
+11	0	#636594
+12	0	#7B7D7B
+13	0	#FF0400
+14	0	#FF9600
+15	0	#94CF00
+16	0	#319E6B
+17	0	#31CFCE
+18	0	#396DFF
+19	0	#FFCF00
+20	0	#FFFF00
+21	0	#00C7FF
+22	0	#BDBEBD
+23	0	#FFC794
+24	0	#FFFF9C
+25	0	#CEFFCE
+26	0	#CEFFFF
+27	0	#9CCFFF
+28	0	#FFFFFF
+29	0	#00FFF0
+30	0	#DFDFDF
+31	0	#999999
+32	0	#333333
+36	0	#E1E1F0
+38	0	#FFFFCE
+39	1	#96B400
+40	1	#C3B400
+41	1	#C37800
+42	1	#D2E1D2
+43	1	#A5E1D2
+44	1	#2D87D2
+45	1	#5A6900
+46	1	#876900
+47	1	#D26900
+48	1	#D2FFF0
+49	1	#A5FFF0
+50	1	#5AFFF0
+51	0	#E9E9E9
+52	1	#FF0000
+53	1	#F01EB4
+54	1	#FFFF5A
+55	0	#3CA5F0
+56	0	#87FFF0
+57	0	#874BF0
+58	0	#5A4BF0
+59	0	#4B2DF0
+60	0	#873CF0
+61	0	#FF00F0
+62	0	#690FF0
+63	0	#FF0F00
+64	0	#B40F00
+65	0	#872D00
+66	0	#3CD200
+67	0	#2D3C00
+68	0	#5A2D00
+69	0	#697800
 \.
 
 
@@ -12525,8 +12761,8 @@ COPY public.lmb_user_colors (id, userid, wert) FROM stdin;
 -- Data for Name: lmb_userdb; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_userdb (user_id, group_id, username, passwort, vorname, name, email, beschreibung, erstdatum, editdatum, maxresult, farbschema, lmlock, data_hide, language, layout, uploadsize, debug, sub_group, data_display, iprange, soundlist, change_pass, del, data_color, subadmin, logging, validdate, valid, lock_txt, ufile, t_setting, symbolbar, usercolor, lockbackend, clearpass, session, gc_maxlifetime, id, static_ip, dateformat, setlocal, time_zone, ugtab, e_setting, m_setting, tel, fax, "position", superadmin) FROM stdin;
-1	1	admin	43ab4027e9aa8fea4c209901747670f3	Adminus	Administratos	test@test.org	test	2000-12-17 12:45:28	2018-09-24 18:53:47	15	2	f	1	1	comet	104857600	f	\N	1	*.*.*.*	notify.wav;ringin.wav;latetermin.wav	f	f	f	f	1	\N	f	\N		;;;	t	FFFFF	f	limbas123	\N	0	1	f	1	de_DE	Europe/Berlin	a:1:{s:6:"filter";a:4:{s:18:"ext_RelationFields";a:12:{s:8:"g_4_57_2";a:1:{i:1;s:1:"4";}s:7:"g_4_57_";a:1:{i:1;s:1:"4";}s:9:"g_25_23_9";a:2:{i:0;s:1:"1";i:1;s:1:"2";}s:8:"g_4_34_8";a:1:{i:0;s:1:"7";}s:9:"g_25_28_9";a:3:{i:0;s:1:"4";i:1;s:1:"2";i:2;s:1:"1";}s:4:"edit";a:2:{s:9:"g_25_28_9";i:1;s:9:"g_25_15_9";i:1;}s:9:"g_25_15_9";a:1:{i:0;s:1:"2";}s:6:"g_6_5_";a:2:{i:0;s:1:"2";i:1;s:4:"1001";}s:8:"g_4_13_2";a:2:{i:0;s:1:"1";i:1;s:1:"2";}s:5:"order";a:1:{s:9:"g_25_23_9";a:1:{i:0;a:3:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:3:"ASC";}}}s:9:"g_34_62_5";a:0:{}s:8:"g_4_34_2";a:2:{i:0;s:1:"7";i:1;s:2:"20";}}s:12:"tabulatorKey";a:4:{i:4;a:1:{i:7;N;}i:34;a:5:{i:157;N;i:217;s:3:"244";i:382;N;i:467;N;i:478;N;}i:25;a:3:{i:2;s:1:"4";i:6;N;i:37;s:2:"38";}i:1;a:1:{i:37;s:2:"38";}}s:14:"groupheaderKey";a:7:{i:4;s:2:"28";i:34;s:2:"14";i:25;s:2:"34";i:1;s:2:"27";i:2;s:1:"1";i:3;s:1:"7";i:23;s:2:"17";}s:11:"groupheader";a:2:{i:2;i:1;i:3;i:1;}}}	a:1:{i:36;a:7:{s:9:"full_name";s:0:"";s:13:"email_address";s:0:"";s:13:"reply_address";s:0:"";s:13:"imap_hostname";s:0:"";s:13:"imap_username";s:0:"";s:13:"imap_password";s:0:"";s:9:"imap_port";s:0:"";}}	a:4:{s:4:"menu";a:17:{s:4:"21_0";i:1;s:4:"21_1";i:1;s:6:"1000_1";i:1;s:9:"279_27903";i:1;s:6:"1000_0";i:1;s:5:"244_0";i:1;s:5:"301_0";i:1;s:4:"17_0";i:1;s:4:"17_4";i:1;s:4:"17_1";i:1;s:4:"17_3";i:1;s:4:"17_5";i:1;s:4:"17_6";i:1;s:4:"17_2";i:1;s:13:"Wiedervorlage";i:1;s:5:"244_1";i:1;s:5:"244_2";i:1;}s:5:"frame";a:2:{s:3:"cal";s:1:"1";s:3:"nav";s:3:"269";}s:7:"submenu";a:46:{s:13:"17_LIMBAS CRM";i:1;s:14:"17_Demo tables";i:1;s:15:"17_Demo queries";i:1;s:12:"17_Limbassys";i:1;s:14:"17_System jobs";i:1;s:15:"17_Beispiel-CRM";i:1;s:21:"17_Tutorial-Beispiele";i:1;s:13:"244_Feldtypen";i:1;s:14:"17_System-Jobs";i:1;s:23:"244_ArtBetragPositionen";i:1;s:9:"17_Backup";i:1;s:20:"17_Tutorial-Abfragen";i:1;s:5:"17_36";i:1;s:5:"17_54";i:1;s:5:"17_56";i:1;s:5:"17_37";i:1;s:5:"17_55";i:1;s:5:"17_57";i:1;s:5:"17_63";i:1;s:5:"17_64";i:1;s:5:"17_67";i:1;s:5:"17_68";i:1;s:5:"17_65";i:1;s:6:"244_25";i:1;s:5:"17_66";i:1;s:5:"17_47";i:1;s:5:"17_69";i:1;s:5:"17_46";i:1;s:5:"244_2";i:1;s:5:"17_70";i:1;s:6:"244_16";i:1;s:5:"244_0";i:1;s:5:"244_1";i:1;s:5:"244_3";i:1;s:5:"17_71";i:1;s:6:"244_12";i:1;s:5:"17_72";i:1;s:5:"17_73";i:1;s:5:"17_74";i:1;s:5:"17_53";i:1;s:5:"17_52";i:1;s:5:"244_9";i:1;s:5:"17_44";i:1;s:5:"17_50";i:1;s:5:"17_51";i:1;s:5:"17_21";i:1;}s:3:"fav";a:6:{s:10:"form;23;15";i:1;s:9:"diag;10;2";i:1;s:6:"tab;1;";i:1;s:7:"rep;4;3";i:1;s:6:"tab;4;";i:1;s:7:"tab;25;";i:1;}}	\N	\N	\N	t
+COPY lmb_userdb (user_id, group_id, username, passwort, vorname, name, email, beschreibung, erstdatum, editdatum, maxresult, farbschema, lmlock, data_hide, language, layout, uploadsize, debug, sub_group, data_display, iprange, soundlist, change_pass, del, data_color, subadmin, logging, validdate, valid, lock_txt, ufile, t_setting, symbolbar, usercolor, lockbackend, clearpass, session, gc_maxlifetime, id, static_ip, dateformat, setlocal, time_zone, ugtab, e_setting, m_setting, tel, fax, "position", superadmin) FROM stdin;
+1	1	admin	$2y$10$9WAMJDTSUf6DL/JII/4N9uNnNLxDAMLyuDrDAvSPoFJZS/L.mGNBe	Adminus	Administratos	test@test.org	test	2000-12-17 12:45:28	2019-03-12 14:57:21.062	15	2	f	1	1	comet	104857600	f		1	*.*.*.*	notify.wav;ringin.wav;latetermin.wav	f	f	f	f	1	\N	f			;;;	t	FFFFF	f	limbas123	\N	0	1	f	1	de_DE	Europe/Berlin	a:1:{s:6:"filter";a:5:{s:18:"ext_RelationFields";a:12:{s:8:"g_4_57_2";a:1:{i:1;s:1:"4";}s:7:"g_4_57_";a:1:{i:1;s:1:"4";}s:9:"g_25_23_9";a:2:{i:0;s:1:"1";i:1;s:1:"2";}s:8:"g_4_34_8";a:1:{i:0;s:1:"7";}s:9:"g_25_28_9";a:3:{i:0;s:1:"4";i:1;s:1:"2";i:2;s:1:"1";}s:4:"edit";a:2:{s:9:"g_25_28_9";i:1;s:9:"g_25_15_9";i:1;}s:9:"g_25_15_9";a:1:{i:0;s:1:"2";}s:6:"g_6_5_";a:2:{i:0;s:1:"2";i:1;s:4:"1001";}s:8:"g_4_13_2";a:2:{i:0;s:1:"1";i:1;s:1:"2";}s:5:"order";a:1:{s:9:"g_25_23_9";a:1:{i:0;a:3:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:3:"ASC";}}}s:9:"g_34_62_5";a:0:{}s:8:"g_4_34_2";a:2:{i:0;s:1:"7";i:1;s:2:"20";}}s:12:"tabulatorKey";a:4:{i:4;a:1:{i:7;N;}i:34;a:5:{i:157;N;i:217;N;i:382;N;i:467;N;i:478;N;}i:25;a:3:{i:2;s:1:"4";i:6;s:1:"7";i:37;s:2:"38";}i:1;a:1:{i:37;s:2:"38";}}s:14:"groupheaderKey";a:7:{i:4;s:2:"28";i:34;s:2:"52";i:25;s:2:"17";i:1;s:2:"27";i:2;s:1:"1";i:3;s:1:"7";i:23;s:2:"17";}s:11:"groupheader";a:2:{i:2;i:1;i:3;i:1;}s:6:"gwidth";a:2:{i:14;s:17:"calc(100% - 80px)";i:15;s:17:"calc(100% - 80px)";}}}	a:1:{i:36;a:7:{s:9:"full_name";s:0:"";s:13:"email_address";s:0:"";s:13:"reply_address";s:0:"";s:13:"imap_hostname";s:0:"";s:13:"imap_username";s:0:"";s:13:"imap_password";s:0:"";s:9:"imap_port";s:0:"";}}	a:4:{s:4:"menu";a:14:{s:4:"21_0";i:1;s:4:"21_1";i:1;s:6:"1000_1";i:1;s:9:"279_27903";i:1;s:6:"1000_0";i:1;s:5:"244_0";i:1;s:5:"301_0";i:1;s:5:"244_1";i:1;s:5:"244_2";i:1;s:5:"244_3";i:1;s:6:"1000_2";i:1;s:4:"17_1";i:1;s:4:"17_0";i:1;s:4:"17_3";i:1;}s:5:"frame";a:3:{s:3:"cal";s:1:"1";s:3:"nav";s:3:"292";s:10:"multiframe";s:2:"15";}s:7:"submenu";a:55:{s:13:"17_LIMBAS CRM";i:1;s:14:"17_Demo tables";i:1;s:15:"17_Demo queries";i:1;s:12:"17_Limbassys";i:1;s:14:"17_System jobs";i:1;s:15:"17_Beispiel-CRM";i:1;s:21:"17_Tutorial-Beispiele";i:1;s:13:"244_Feldtypen";i:1;s:14:"17_System-Jobs";i:1;s:23:"244_ArtBetragPositionen";i:1;s:9:"17_Backup";i:1;s:20:"17_Tutorial-Abfragen";i:1;s:5:"17_36";i:1;s:5:"17_54";i:1;s:5:"17_56";i:1;s:5:"17_37";i:1;s:5:"17_57";i:1;s:5:"17_63";i:1;s:5:"17_64";i:1;s:5:"17_67";i:1;s:5:"17_68";i:1;s:5:"17_65";i:1;s:6:"244_25";i:1;s:5:"17_66";i:1;s:5:"17_47";i:1;s:5:"17_69";i:1;s:5:"17_46";i:1;s:5:"244_2";i:1;s:5:"17_70";i:1;s:6:"244_16";i:1;s:5:"244_0";i:1;s:5:"244_1";i:1;s:5:"244_3";i:1;s:5:"17_71";i:1;s:6:"244_12";i:1;s:5:"17_72";i:1;s:5:"17_73";i:1;s:5:"17_74";i:1;s:5:"17_53";i:1;s:5:"17_52";i:1;s:5:"244_9";i:1;s:5:"17_44";i:1;s:5:"17_50";i:1;s:5:"17_51";i:1;s:5:"17_75";i:1;s:5:"17_55";i:1;s:5:"17_79";i:1;s:5:"17_76";i:1;s:5:"17_77";i:1;s:5:"17_80";i:1;s:5:"17_81";i:1;s:5:"17_78";i:1;s:5:"17_59";i:1;s:5:"17_58";i:1;s:5:"17_24";i:1;}s:3:"fav";a:6:{s:10:"form;23;15";i:1;s:9:"diag;10;2";i:1;s:6:"tab;1;";i:1;s:7:"rep;4;3";i:1;s:6:"tab;4;";i:1;s:7:"tab;25;";i:1;}}	\N	\N	\N	t
 \.
 
 
@@ -12534,7 +12770,7 @@ COPY public.lmb_userdb (user_id, group_id, username, passwort, vorname, name, em
 -- Data for Name: lmb_usrgrp_lst; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_usrgrp_lst (user_id, entity_type, entity_id) FROM stdin;
+COPY lmb_usrgrp_lst (user_id, entity_type, entity_id) FROM stdin;
 \.
 
 
@@ -12542,7 +12778,7 @@ COPY public.lmb_usrgrp_lst (user_id, entity_type, entity_id) FROM stdin;
 -- Data for Name: lmb_wfl; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_wfl (id, name, descr, startid, params) FROM stdin;
+COPY lmb_wfl (id, name, descr, startid, params) FROM stdin;
 \.
 
 
@@ -12550,7 +12786,7 @@ COPY public.lmb_wfl (id, name, descr, startid, params) FROM stdin;
 -- Data for Name: lmb_wfl_history; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_wfl_history (id, erstdatum, inst_id, task_id, user_id, wfl_id, tab_id, dat_id) FROM stdin;
+COPY lmb_wfl_history (id, erstdatum, inst_id, task_id, user_id, wfl_id, tab_id, dat_id) FROM stdin;
 \.
 
 
@@ -12558,7 +12794,7 @@ COPY public.lmb_wfl_history (id, erstdatum, inst_id, task_id, user_id, wfl_id, t
 -- Data for Name: lmb_wfl_inst; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_wfl_inst (id, tab_id, dat_id, task_id, wfl_id) FROM stdin;
+COPY lmb_wfl_inst (id, tab_id, dat_id, task_id, wfl_id) FROM stdin;
 \.
 
 
@@ -12566,7 +12802,7 @@ COPY public.lmb_wfl_inst (id, tab_id, dat_id, task_id, wfl_id) FROM stdin;
 -- Data for Name: lmb_wfl_task; Type: TABLE DATA; Schema: public; Owner: limbasuser
 --
 
-COPY public.lmb_wfl_task (id, name, descr, wfl_id, tab_id, tasks_usable, params, sort) FROM stdin;
+COPY lmb_wfl_task (id, name, descr, wfl_id, tab_id, tasks_usable, params, sort) FROM stdin;
 \.
 
 
@@ -12574,1087 +12810,1156 @@ COPY public.lmb_wfl_task (id, name, descr, wfl_id, tab_id, tasks_usable, params,
 -- Name: seq_adressen_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_adressen_id', 10, false);
+SELECT pg_catalog.setval('seq_adressen_id', 10, false);
 
 
 --
 -- Name: seq_artikel_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_artikel_id', 83, false);
+SELECT pg_catalog.setval('seq_artikel_id', 83, false);
 
 
 --
 -- Name: seq_aufgaben_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_aufgaben_id', 23, false);
+SELECT pg_catalog.setval('seq_aufgaben_id', 23, false);
 
 
 --
 -- Name: seq_auftraege_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_auftraege_id', 33, false);
+SELECT pg_catalog.setval('seq_auftraege_id', 33, false);
 
 
 --
 -- Name: seq_ausgaben_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_ausgaben_id', 5, false);
+SELECT pg_catalog.setval('seq_ausgaben_id', 5, false);
+
+
+--
+-- Name: seq_berichtstemplate_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_berichtstemplate_id', 8, false);
 
 
 --
 -- Name: seq_feldtypen_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_feldtypen_id', 5, false);
+SELECT pg_catalog.setval('seq_feldtypen_id', 5, false);
+
+
+--
+-- Name: seq_kalender_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_kalender_id', 30, false);
 
 
 --
 -- Name: seq_kontakte_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_kontakte_id', 117, false);
+SELECT pg_catalog.setval('seq_kontakte_id', 119, false);
 
 
 --
 -- Name: seq_korrespondenz_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_korrespondenz_id', 188, false);
+SELECT pg_catalog.setval('seq_korrespondenz_id', 188, false);
 
 
 --
 -- Name: seq_kunden_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_kunden_id', 93, false);
-
-
---
--- Name: seq_ldms_favorites_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
---
-
-SELECT pg_catalog.setval('public.seq_ldms_favorites_id', 5, false);
+SELECT pg_catalog.setval('seq_kunden_id', 94, false);
 
 
 --
 -- Name: seq_ldms_files_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_ldms_files_id', 1, false);
+SELECT pg_catalog.setval('seq_ldms_files_id', 1, false);
 
 
 --
 -- Name: seq_ldms_meta_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_ldms_meta_id', 1, false);
-
-
---
--- Name: seq_ldms_rules_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
---
-
-SELECT pg_catalog.setval('public.seq_ldms_rules_id', 199, false);
-
-
---
--- Name: seq_ldms_structure_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
---
-
-SELECT pg_catalog.setval('public.seq_ldms_structure_id', 61, false);
+SELECT pg_catalog.setval('seq_ldms_meta_id', 1, false);
 
 
 --
 -- Name: seq_lmb_history_action_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_lmb_history_action_id', 1, false);
+SELECT pg_catalog.setval('seq_lmb_history_action_id', 124, true);
 
 
 --
 -- Name: seq_lmb_history_update_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_lmb_history_update_id', 1, false);
+SELECT pg_catalog.setval('seq_lmb_history_update_id', 15, true);
 
 
 --
 -- Name: seq_lmb_history_user_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_lmb_history_user_id', 1088, true);
+SELECT pg_catalog.setval('seq_lmb_history_user_id', 1245, true);
 
 
 --
 -- Name: seq_lmb_reminder_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_lmb_reminder_id', 135, false);
+SELECT pg_catalog.setval('seq_lmb_reminder_id', 135, false);
 
 
 --
 -- Name: seq_lmb_wfl_inst_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_lmb_wfl_inst_id', 89, false);
+SELECT pg_catalog.setval('seq_lmb_wfl_inst_id', 89, false);
 
 
 --
 -- Name: seq_meinkalender_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_meinkalender_id', 6, false);
+SELECT pg_catalog.setval('seq_meinkalender_id', 6, false);
 
 
 --
 -- Name: seq_mitarbeiter_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_mitarbeiter_id', 11, false);
+SELECT pg_catalog.setval('seq_mitarbeiter_id', 11, false);
 
 
 --
 -- Name: seq_nachrichten_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_nachrichten_id', 1, false);
+SELECT pg_catalog.setval('seq_nachrichten_id', 1, false);
 
 
 --
 -- Name: seq_positionen_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_positionen_id', 99, false);
+SELECT pg_catalog.setval('seq_positionen_id', 99, false);
 
 
 --
 -- Name: seq_projekte_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_projekte_id', 6, false);
+SELECT pg_catalog.setval('seq_projekte_id', 6, false);
+
+
+--
+-- Name: seq_r_ume_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_r_ume_id', 1, false);
 
 
 --
 -- Name: seq_raeume_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_raeume_id', 12, false);
+SELECT pg_catalog.setval('seq_raeume_id', 12, false);
 
 
 --
 -- Name: seq_raumverteilung_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_raumverteilung_id', 33, false);
+SELECT pg_catalog.setval('seq_raumverteilung_id', 33, false);
+
+
+--
+-- Name: seq_templates_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_templates_id', 1, true);
 
 
 --
 -- Name: seq_verk_070140c2ecc06_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_070140c2ecc06_keyid', 3, false);
+SELECT pg_catalog.setval('seq_verk_070140c2ecc06_keyid', 3, false);
 
 
 --
 -- Name: seq_verk_07a6948db7d45_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_07a6948db7d45_keyid', 1, false);
+SELECT pg_catalog.setval('seq_verk_07a6948db7d45_keyid', 1, false);
 
 
 --
 -- Name: seq_verk_10f25cf14fe63_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_10f25cf14fe63_keyid', 2, false);
+SELECT pg_catalog.setval('seq_verk_10f25cf14fe63_keyid', 3, true);
 
 
 --
 -- Name: seq_verk_17e64eb8914c6_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_17e64eb8914c6_keyid', 99, false);
+SELECT pg_catalog.setval('seq_verk_17e64eb8914c6_keyid', 100, false);
 
 
 --
 -- Name: seq_verk_1fb5ab7537f76_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_1fb5ab7537f76_keyid', 8, false);
+SELECT pg_catalog.setval('seq_verk_1fb5ab7537f76_keyid', 8, false);
 
 
 --
 -- Name: seq_verk_242f6cad318bb_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_242f6cad318bb_keyid', 1, false);
+SELECT pg_catalog.setval('seq_verk_242f6cad318bb_keyid', 7, true);
 
 
 --
 -- Name: seq_verk_3fcf4e1eb67e5_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_3fcf4e1eb67e5_keyid', 1, false);
+SELECT pg_catalog.setval('seq_verk_3fcf4e1eb67e5_keyid', 1, false);
 
 
 --
 -- Name: seq_verk_442a8f1d8a126_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_442a8f1d8a126_keyid', 6, false);
+SELECT pg_catalog.setval('seq_verk_442a8f1d8a126_keyid', 6, false);
 
 
 --
 -- Name: seq_verk_4465a9d897b7f_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_4465a9d897b7f_keyid', 92, false);
-
-
---
--- Name: seq_verk_51afd2b841217_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
---
-
-SELECT pg_catalog.setval('public.seq_verk_51afd2b841217_keyid', 16, false);
+SELECT pg_catalog.setval('seq_verk_4465a9d897b7f_keyid', 92, false);
 
 
 --
 -- Name: seq_verk_5c73240091186_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_5c73240091186_keyid', 1, false);
+SELECT pg_catalog.setval('seq_verk_5c73240091186_keyid', 7, true);
 
 
 --
 -- Name: seq_verk_5ca376805922b_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_5ca376805922b_keyid', 40, false);
+SELECT pg_catalog.setval('seq_verk_5ca376805922b_keyid', 40, false);
 
 
 --
 -- Name: seq_verk_6f91ec1c8fa36_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_6f91ec1c8fa36_keyid', 14, false);
+SELECT pg_catalog.setval('seq_verk_6f91ec1c8fa36_keyid', 14, false);
 
 
 --
 -- Name: seq_verk_7a0c66d0b880b_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_7a0c66d0b880b_keyid', 4, false);
+SELECT pg_catalog.setval('seq_verk_7a0c66d0b880b_keyid', 4, false);
 
 
 --
 -- Name: seq_verk_7a74d69e7b5f2_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_7a74d69e7b5f2_keyid', 184, false);
+SELECT pg_catalog.setval('seq_verk_7a74d69e7b5f2_keyid', 184, false);
 
 
 --
 -- Name: seq_verk_865cb28dc0601_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_865cb28dc0601_keyid', 5, false);
+SELECT pg_catalog.setval('seq_verk_865cb28dc0601_keyid', 5, false);
 
 
 --
 -- Name: seq_verk_91fb8ff20bffc_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_91fb8ff20bffc_keyid', 37, false);
+SELECT pg_catalog.setval('seq_verk_91fb8ff20bffc_keyid', 37, false);
 
 
 --
 -- Name: seq_verk_9259d5b2c1857_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_9259d5b2c1857_keyid', 2, false);
+SELECT pg_catalog.setval('seq_verk_9259d5b2c1857_keyid', 2, false);
+
+
+--
+-- Name: seq_verk_94a2d53f8c06f_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_verk_94a2d53f8c06f_keyid', 1, false);
+
+
+--
+-- Name: seq_verk_9f0323be5cf4e_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_verk_9f0323be5cf4e_id', 1, false);
+
+
+--
+-- Name: seq_verk_9f0323be5cf4e_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_verk_9f0323be5cf4e_keyid', 3, true);
 
 
 --
 -- Name: seq_verk_a01fc1e65ef75_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_a01fc1e65ef75_keyid', 1, false);
+SELECT pg_catalog.setval('seq_verk_a01fc1e65ef75_keyid', 1, false);
 
 
 --
 -- Name: seq_verk_ab02c3dbf12e1_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_ab02c3dbf12e1_id', 6, false);
+SELECT pg_catalog.setval('seq_verk_ab02c3dbf12e1_id', 6, false);
 
 
 --
 -- Name: seq_verk_ab02c3dbf12e1_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_ab02c3dbf12e1_keyid', 11, false);
+SELECT pg_catalog.setval('seq_verk_ab02c3dbf12e1_keyid', 11, false);
 
 
 --
 -- Name: seq_verk_ae2df1f3eb751_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_ae2df1f3eb751_keyid', 3, false);
+SELECT pg_catalog.setval('seq_verk_ae2df1f3eb751_keyid', 3, false);
 
 
 --
 -- Name: seq_verk_b549a745c24f3_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_b549a745c24f3_keyid', 6, false);
+SELECT pg_catalog.setval('seq_verk_b549a745c24f3_keyid', 6, false);
+
+
+--
+-- Name: seq_verk_cf11854598193_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_verk_cf11854598193_keyid', 1, false);
 
 
 --
 -- Name: seq_verk_ed4cbeb1c927c_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_ed4cbeb1c927c_keyid', 3, false);
+SELECT pg_catalog.setval('seq_verk_ed4cbeb1c927c_keyid', 3, false);
 
 
 --
 -- Name: seq_verk_f7bd3e7b4766a_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_f7bd3e7b4766a_keyid', 12, false);
+SELECT pg_catalog.setval('seq_verk_f7bd3e7b4766a_keyid', 14, false);
+
+
+--
+-- Name: seq_verk_f847ffcaa5b28_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
+--
+
+SELECT pg_catalog.setval('seq_verk_f847ffcaa5b28_keyid', 1, false);
 
 
 --
 -- Name: seq_verk_fcd12e02a5a6c_keyid; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_verk_fcd12e02a5a6c_keyid', 4, false);
+SELECT pg_catalog.setval('seq_verk_fcd12e02a5a6c_keyid', 4, false);
 
 
 --
 -- Name: seq_zahlungseingang_id; Type: SEQUENCE SET; Schema: public; Owner: limbasuser
 --
 
-SELECT pg_catalog.setval('public.seq_zahlungseingang_id', 16, false);
+SELECT pg_catalog.setval('seq_zahlungseingang_id', 16, false);
 
 
 --
--- Name: ldms_favorites ldms_favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: ldms_favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.ldms_favorites
+ALTER TABLE ONLY ldms_favorites
     ADD CONSTRAINT ldms_favorites_pkey PRIMARY KEY (id);
 
 
 --
--- Name: ldms_files ldms_files_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: ldms_files_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.ldms_files
+ALTER TABLE ONLY ldms_files
     ADD CONSTRAINT ldms_files_pkey PRIMARY KEY (id);
 
 
 --
--- Name: ldms_meta ldms_meta_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: ldms_meta_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.ldms_meta
+ALTER TABLE ONLY ldms_meta
     ADD CONSTRAINT ldms_meta_pkey PRIMARY KEY (id);
 
 
 --
--- Name: ldms_rules ldms_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: ldms_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.ldms_rules
+ALTER TABLE ONLY ldms_rules
     ADD CONSTRAINT ldms_rules_pkey PRIMARY KEY (id);
 
 
 --
--- Name: ldms_structure ldms_structure_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: ldms_structure_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.ldms_structure
+ALTER TABLE ONLY ldms_structure
     ADD CONSTRAINT ldms_structure_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_action_depend lmb_action_depend_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_action_depend_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_action_depend
+ALTER TABLE ONLY lmb_action_depend
     ADD CONSTRAINT lmb_action_depend_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_action lmb_action_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_action_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_action
+ALTER TABLE ONLY lmb_action
     ADD CONSTRAINT lmb_action_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_attribute_d lmb_attribute_d_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_attribute_d_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_attribute_d
+ALTER TABLE ONLY lmb_attribute_d
     ADD CONSTRAINT lmb_attribute_d_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_attribute_p lmb_attribute_p_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_attribute_p_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_attribute_p
+ALTER TABLE ONLY lmb_attribute_p
     ADD CONSTRAINT lmb_attribute_p_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_attribute_w lmb_attribute_w_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_attribute_w_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_attribute_w
+ALTER TABLE ONLY lmb_attribute_w
     ADD CONSTRAINT lmb_attribute_w_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_chart_list lmb_chart_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_auth_token_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_chart_list
-    ADD CONSTRAINT lmb_chart_list_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY lmb_auth_token
+    ADD CONSTRAINT lmb_auth_token_pkey PRIMARY KEY (token);
 
 
 --
--- Name: lmb_charts lmb_charts_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_charts_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_charts
+ALTER TABLE ONLY lmb_chart_list
     ADD CONSTRAINT lmb_charts_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_colorschemes lmb_colorschemes_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_charts_pkey1; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_colorschemes
+ALTER TABLE ONLY lmb_charts
+    ADD CONSTRAINT lmb_charts_pkey1 PRIMARY KEY (id);
+
+
+--
+-- Name: lmb_colorschemes_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+ALTER TABLE ONLY lmb_colorschemes
     ADD CONSTRAINT lmb_colorschemes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_conf_fields lmb_conf_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_conf_fields
+ALTER TABLE ONLY lmb_conf_fields
     ADD CONSTRAINT lmb_conf_fields_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_conf_groups lmb_conf_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_conf_groups
+ALTER TABLE ONLY lmb_conf_groups
     ADD CONSTRAINT lmb_conf_groups_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_conf_tables lmb_conf_tables_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_tables_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_conf_tables
+ALTER TABLE ONLY lmb_conf_tables
     ADD CONSTRAINT lmb_conf_tables_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_conf_views lmb_conf_views_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_conf_views_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_conf_views
+ALTER TABLE ONLY lmb_conf_views
     ADD CONSTRAINT lmb_conf_views_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_crontab lmb_crontab_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_crontab_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_crontab
+ALTER TABLE ONLY lmb_crontab
     ADD CONSTRAINT lmb_crontab_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_currency lmb_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_currency
+ALTER TABLE ONLY lmb_currency
     ADD CONSTRAINT lmb_currency_pkey PRIMARY KEY (code);
 
 
 --
--- Name: lmb_dbpatch lmb_dbpatch_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_custmenu_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_dbpatch
+ALTER TABLE ONLY lmb_custmenu
+    ADD CONSTRAINT lmb_custmenu_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: lmb_dbpatch_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+ALTER TABLE ONLY lmb_dbpatch
     ADD CONSTRAINT lmb_dbpatch_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_field_types lmb_field_types_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_external_storage_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_field_types
+ALTER TABLE ONLY lmb_external_storage
+    ADD CONSTRAINT lmb_external_storage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: lmb_field_types_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+ALTER TABLE ONLY lmb_field_types
     ADD CONSTRAINT lmb_field_types_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_fonts lmb_fonts_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_fonts_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_fonts
+ALTER TABLE ONLY lmb_fonts
     ADD CONSTRAINT lmb_fonts_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_form_list lmb_form_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_form_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_form_list
+ALTER TABLE ONLY lmb_form_list
     ADD CONSTRAINT lmb_form_list_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_forms lmb_forms_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_forms_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_forms
+ALTER TABLE ONLY lmb_forms
     ADD CONSTRAINT lmb_forms_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_groups lmb_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_groups
+ALTER TABLE ONLY lmb_groups
     ADD CONSTRAINT lmb_groups_pkey PRIMARY KEY (group_id);
 
 
 --
--- Name: lmb_gtab_groupdat lmb_gtab_groupdat_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_groupdat_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_gtab_groupdat
+ALTER TABLE ONLY lmb_gtab_groupdat
     ADD CONSTRAINT lmb_gtab_groupdat_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_gtab_pattern lmb_gtab_pattern_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_pattern_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_gtab_pattern
+ALTER TABLE ONLY lmb_gtab_pattern
     ADD CONSTRAINT lmb_gtab_pattern_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_gtab_rowsize lmb_gtab_rowsize_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_rowsize_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_gtab_rowsize
+ALTER TABLE ONLY lmb_gtab_rowsize
     ADD CONSTRAINT lmb_gtab_rowsize_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_gtab_status_save lmb_gtab_status_save_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_gtab_status_save_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_gtab_status_save
+ALTER TABLE ONLY lmb_gtab_status_save
     ADD CONSTRAINT lmb_gtab_status_save_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_history_action lmb_history_action_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_history_action_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_history_action
+ALTER TABLE ONLY lmb_history_action
     ADD CONSTRAINT lmb_history_action_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_history_backup lmb_history_backup_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_history_backup_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_history_backup
+ALTER TABLE ONLY lmb_history_backup
     ADD CONSTRAINT lmb_history_backup_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_history_update lmb_history_update_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_history_update_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_history_update
+ALTER TABLE ONLY lmb_history_update
     ADD CONSTRAINT lmb_history_update_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_history_user lmb_history_user_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_history_user_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_history_user
+ALTER TABLE ONLY lmb_history_user
     ADD CONSTRAINT lmb_history_user_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_indize_d lmb_indize_d_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_d_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_indize_d
+ALTER TABLE ONLY lmb_indize_d
     ADD CONSTRAINT lmb_indize_d_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_indize_ds lmb_indize_ds_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_ds_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_indize_ds
+ALTER TABLE ONLY lmb_indize_ds
     ADD CONSTRAINT lmb_indize_ds_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_indize_f lmb_indize_f_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_f_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_indize_f
+ALTER TABLE ONLY lmb_indize_f
     ADD CONSTRAINT lmb_indize_f_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_indize_fs lmb_indize_fs_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_fs_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_indize_fs
+ALTER TABLE ONLY lmb_indize_fs
     ADD CONSTRAINT lmb_indize_fs_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_indize_history lmb_indize_history_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_history_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_indize_history
+ALTER TABLE ONLY lmb_indize_history
     ADD CONSTRAINT lmb_indize_history_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_indize_w lmb_indize_w_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_indize_w_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_indize_w
+ALTER TABLE ONLY lmb_indize_w
     ADD CONSTRAINT lmb_indize_w_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_lang_depend lmb_lang_depend_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_lang_depend_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_lang_depend
+ALTER TABLE ONLY lmb_lang_depend
     ADD CONSTRAINT lmb_lang_depend_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_lang lmb_lang_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_lang_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_lang
+ALTER TABLE ONLY lmb_lang
     ADD CONSTRAINT lmb_lang_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_mimetypes lmb_mimetypes_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_mimetypes_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_mimetypes
+ALTER TABLE ONLY lmb_mimetypes
     ADD CONSTRAINT lmb_mimetypes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_printers lmb_printers_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_printers_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_printers
+ALTER TABLE ONLY lmb_printers
     ADD CONSTRAINT lmb_printers_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_reminder_list lmb_reminder_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_reminder_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_reminder_list
+ALTER TABLE ONLY lmb_reminder_list
     ADD CONSTRAINT lmb_reminder_list_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_reminder lmb_reminder_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_reminder_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_reminder
+ALTER TABLE ONLY lmb_reminder
     ADD CONSTRAINT lmb_reminder_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_report_list lmb_report_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_report_list_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_report_list
+ALTER TABLE ONLY lmb_report_list
     ADD CONSTRAINT lmb_report_list_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_reports lmb_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_reports
+ALTER TABLE ONLY lmb_reports
     ADD CONSTRAINT lmb_reports_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_revision lmb_revision_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_revision_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_revision
+ALTER TABLE ONLY lmb_revision
     ADD CONSTRAINT lmb_revision_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_rules_action lmb_rules_action_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_action_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_rules_action
+ALTER TABLE ONLY lmb_rules_action
     ADD CONSTRAINT lmb_rules_action_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_rules_dataset lmb_rules_dataset_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_dataset_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_rules_dataset
+ALTER TABLE ONLY lmb_rules_dataset
     ADD CONSTRAINT lmb_rules_dataset_pkey PRIMARY KEY (keyid);
 
 
 --
--- Name: lmb_rules_fields lmb_rules_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_rules_fields
+ALTER TABLE ONLY lmb_rules_fields
     ADD CONSTRAINT lmb_rules_fields_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_rules_repform lmb_rules_repform_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_repform_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_rules_repform
+ALTER TABLE ONLY lmb_rules_repform
     ADD CONSTRAINT lmb_rules_repform_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_rules_tables lmb_rules_tables_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_rules_tables_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_rules_tables
+ALTER TABLE ONLY lmb_rules_tables
     ADD CONSTRAINT lmb_rules_tables_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_select_d lmb_select_d_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_select_d_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_select_d
+ALTER TABLE ONLY lmb_select_d
     ADD CONSTRAINT lmb_select_d_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_select_p lmb_select_p_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_select_p_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_select_p
+ALTER TABLE ONLY lmb_select_p
     ADD CONSTRAINT lmb_select_p_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_select_w lmb_select_w_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_select_w_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_select_w
+ALTER TABLE ONLY lmb_select_w
     ADD CONSTRAINT lmb_select_w_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_session lmb_session_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_session_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_session
+ALTER TABLE ONLY lmb_session
     ADD CONSTRAINT lmb_session_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_snap lmb_snap_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_snap_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_snap
+ALTER TABLE ONLY lmb_snap
     ADD CONSTRAINT lmb_snap_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_snap_shared lmb_snap_shared_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_snap_shared_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_snap_shared
+ALTER TABLE ONLY lmb_snap_shared
     ADD CONSTRAINT lmb_snap_shared_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_sql_favorites lmb_sql_favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_sql_favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_sql_favorites
+ALTER TABLE ONLY lmb_sql_favorites
     ADD CONSTRAINT lmb_sql_favorites_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_sync_cache lmb_sync_cache_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_cache_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_sync_cache
+ALTER TABLE ONLY lmb_sync_cache
     ADD CONSTRAINT lmb_sync_cache_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_sync_conf lmb_sync_conf_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_conf_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_sync_conf
+ALTER TABLE ONLY lmb_sync_conf
     ADD CONSTRAINT lmb_sync_conf_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_sync_slaves lmb_sync_slaves_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_slaves_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_sync_slaves
+ALTER TABLE ONLY lmb_sync_slaves
     ADD CONSTRAINT lmb_sync_slaves_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_sync_template lmb_sync_template_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_sync_template_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_sync_template
+ALTER TABLE ONLY lmb_sync_template
     ADD CONSTRAINT lmb_sync_template_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_tabletree lmb_tabletree_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_tabletree_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_tabletree
+ALTER TABLE ONLY lmb_tabletree
     ADD CONSTRAINT lmb_tabletree_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_user_colors lmb_user_colors_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_user_colors_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_user_colors
+ALTER TABLE ONLY lmb_user_colors
     ADD CONSTRAINT lmb_user_colors_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_userdb lmb_userdb_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_userdb_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_userdb
+ALTER TABLE ONLY lmb_userdb
     ADD CONSTRAINT lmb_userdb_pkey PRIMARY KEY (user_id);
 
 
 --
--- Name: lmb_usrgrp_lst lmb_usrgrp_lst_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_usrgrp_lst_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_usrgrp_lst
+ALTER TABLE ONLY lmb_usrgrp_lst
     ADD CONSTRAINT lmb_usrgrp_lst_pkey PRIMARY KEY (entity_id);
 
 
 --
--- Name: lmb_wfl_history lmb_wfl_history_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_history_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_wfl_history
+ALTER TABLE ONLY lmb_wfl_history
     ADD CONSTRAINT lmb_wfl_history_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_wfl_inst lmb_wfl_inst_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_inst_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_wfl_inst
+ALTER TABLE ONLY lmb_wfl_inst
     ADD CONSTRAINT lmb_wfl_inst_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_wfl lmb_wfl_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_wfl
+ALTER TABLE ONLY lmb_wfl
     ADD CONSTRAINT lmb_wfl_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmb_wfl_task lmb_wfl_task_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser
+-- Name: lmb_wfl_task_pkey; Type: CONSTRAINT; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-ALTER TABLE ONLY public.lmb_wfl_task
+ALTER TABLE ONLY lmb_wfl_task
     ADD CONSTRAINT lmb_wfl_task_pkey PRIMARY KEY (id);
 
 
 --
--- Name: lmbind_01217b04ccb8; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_01217b04ccb8; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_01217b04ccb8 ON public.lmb_indize_ds USING btree (sid);
-
-
---
--- Name: lmbind_0314e7967dee; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_0314e7967dee ON public.lmb_select_w USING btree (sort);
+CREATE INDEX lmbind_01217b04ccb8 ON lmb_indize_ds USING btree (sid);
 
 
 --
--- Name: lmbind_04ce156187bf; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_0314e7967dee; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_04ce156187bf ON public.lmb_gtab_groupdat USING btree (dat_id);
-
-
---
--- Name: lmbind_088efa7e573d; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_088efa7e573d ON public.lmb_indize_fs USING btree (wid);
+CREATE INDEX lmbind_0314e7967dee ON lmb_select_w USING btree (sort);
 
 
 --
--- Name: lmbind_0bd11c6c8a2c; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_04ce156187bf; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_0bd11c6c8a2c ON public.lmb_indize_fs USING btree (fid);
-
-
---
--- Name: lmbind_26978b187133; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_26978b187133 ON public.lmb_indize_ds USING btree (wid);
+CREATE INDEX lmbind_04ce156187bf ON lmb_gtab_groupdat USING btree (dat_id);
 
 
 --
--- Name: lmbind_2f2ee5e97d38; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_088efa7e573d; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_2f2ee5e97d38 ON public.lmb_select_d USING btree (dat_id);
-
-
---
--- Name: lmbind_334cacede330; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_334cacede330 ON public.lmb_indize_d USING btree (sid);
+CREATE INDEX lmbind_088efa7e573d ON lmb_indize_fs USING btree (wid);
 
 
 --
--- Name: lmbind_34739590a79d; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_0bd11c6c8a2c; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_34739590a79d ON public.lmb_indize_f USING btree (sid);
-
-
---
--- Name: lmbind_38eeeaf25327; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_38eeeaf25327 ON public.lmb_indize_f USING btree (fid);
+CREATE INDEX lmbind_0bd11c6c8a2c ON lmb_indize_fs USING btree (fid);
 
 
 --
--- Name: lmbind_400c234940f9; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_26978b187133; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_400c234940f9 ON public.lmb_indize_d USING btree (ref);
-
-
---
--- Name: lmbind_79016facda02; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_79016facda02 ON public.lmb_select_w USING btree (pool);
+CREATE INDEX lmbind_26978b187133 ON lmb_indize_ds USING btree (wid);
 
 
 --
--- Name: lmbind_7dde11622c42; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_2f2ee5e97d38; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_7dde11622c42 ON public.lmb_select_w USING btree (wert);
-
-
---
--- Name: lmbind_7e69e22bebf1; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_7e69e22bebf1 ON public.lmb_indize_d USING btree (wid);
+CREATE INDEX lmbind_2f2ee5e97d38 ON lmb_select_d USING btree (dat_id);
 
 
 --
--- Name: lmbind_c002031e56f6; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_334cacede330; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_c002031e56f6 ON public.lmb_indize_w USING btree (metaphone);
-
-
---
--- Name: lmbind_e7316051ee6a; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_e7316051ee6a ON public.lmb_indize_ds USING btree (ref);
+CREATE INDEX lmbind_334cacede330 ON lmb_indize_d USING btree (sid);
 
 
 --
--- Name: lmbind_e880d842e2eb; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_34739590a79d; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_e880d842e2eb ON public.lmb_select_d USING btree (w_id);
-
-
---
--- Name: lmbind_f64c6f0c9be4; Type: INDEX; Schema: public; Owner: limbasuser
---
-
-CREATE INDEX lmbind_f64c6f0c9be4 ON public.lmb_indize_f USING btree (wid);
+CREATE INDEX lmbind_34739590a79d ON lmb_indize_f USING btree (sid);
 
 
 --
--- Name: lmbind_fcb928ba00ba; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_38eeeaf25327; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_fcb928ba00ba ON public.lmb_indize_fs USING btree (sid);
+CREATE INDEX lmbind_38eeeaf25327 ON lmb_indize_f USING btree (fid);
 
 
 --
--- Name: lmbind_fec71f938036; Type: INDEX; Schema: public; Owner: limbasuser
+-- Name: lmbind_400c234940f9; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
 --
 
-CREATE INDEX lmbind_fec71f938036 ON public.lmb_indize_w USING btree (val);
+CREATE INDEX lmbind_400c234940f9 ON lmb_indize_d USING btree (ref);
+
+
+--
+-- Name: lmbind_79016facda02; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_79016facda02 ON lmb_select_w USING btree (pool);
+
+
+--
+-- Name: lmbind_7dde11622c42; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_7dde11622c42 ON lmb_select_w USING btree (wert);
+
+
+--
+-- Name: lmbind_7e69e22bebf1; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_7e69e22bebf1 ON lmb_indize_d USING btree (wid);
+
+
+--
+-- Name: lmbind_c002031e56f6; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_c002031e56f6 ON lmb_indize_w USING btree (metaphone);
+
+
+--
+-- Name: lmbind_e7316051ee6a; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_e7316051ee6a ON lmb_indize_ds USING btree (ref);
+
+
+--
+-- Name: lmbind_e880d842e2eb; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_e880d842e2eb ON lmb_select_d USING btree (w_id);
+
+
+--
+-- Name: lmbind_f64c6f0c9be4; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_f64c6f0c9be4 ON lmb_indize_f USING btree (wid);
+
+
+--
+-- Name: lmbind_fcb928ba00ba; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_fcb928ba00ba ON lmb_indize_fs USING btree (sid);
+
+
+--
+-- Name: lmbind_fec71f938036; Type: INDEX; Schema: public; Owner: limbasuser; Tablespace: 
+--
+
+CREATE INDEX lmbind_fec71f938036 ON lmb_indize_w USING btree (val);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
