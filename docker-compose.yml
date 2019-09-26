@@ -17,4 +17,4 @@ services:
       POSTGRES_USER: limbasuser
       POSTGRES_PASSWORD: limbaspw
       POSTGRES_DB: limbasdb
-      POSTGRES_INITDB_ARGS: '--locale=C --encoding=SQL_ASCII'
+      POSTGRES_INITDB_ARGS: '--locale=C --encoding=UTF8'

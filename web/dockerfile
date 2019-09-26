@@ -5,7 +5,7 @@ MAINTAINER Limbas GmbH <info@limbas.com>
 RUN yum -y update
 RUN yum -y install epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm &&\
     yum-config-manager --enable remi-php71 &&\
-    yum -y install php php-gd php-soap php-odbc php-imap php-xml php-ctype php-mbstring unixODBC ImageMagick poppler-utils wget zip unzip perl-Image-ExifTool postgresql-odbc htmldoc &&\
+    yum -y install php php-pdo php-pgsql php-mysql php-gd php-soap php-imap php-xml php-ctype php-mbstring ImageMagick poppler-utils wget zip unzip perl-Image-ExifTool htmldoc &&\
     yum clean all
 
 # add limbas source

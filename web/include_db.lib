@@ -29,9 +29,9 @@ $DBA["DBNAME"] = "limbasdb";		/* DB instance name */
 $DBA["DBSCHEMA"] = "public";		/* DB schema */
 $DBA["DBHOST"] = "db";			/* DB hostname or IP */
 $DBA["LMHOST"] = "db";			/* LIMBAS hostname or IP */
-$DBA["DBPATH"] = "/opt/sdb/programs/bin";	/* Path to database */
+$DBA["DBPATH"] = "";	/* Path to database */
 $DBA["LMPATH"] = "/opt/openlimbas/dependent";	/* Path to LIMBAS */
-$DBA["ODBCDRIVER"] = "PostgreSQL";	/* unixODBC Driver */
+$DBA["ODBCDRIVER"] = "PDO";	/* unixODBC Driver */
 $DBA["PORT"] = "";			/* database Port */
 $DBA["VERSION"] = "100004";		/* database version */
 

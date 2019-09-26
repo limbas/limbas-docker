@@ -3,7 +3,7 @@
 --
 
 SET statement_timeout = 0;
-SET client_encoding = 'SQL_ASCII';
+SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -2737,7 +2737,7 @@ COPY ldms_rules (id, erstdatum, group_id, file_id, file_typ, lmview, lmadd, del,
 --
 
 COPY ldms_structure (id, name, level, erstuser, typ, fix, mail_level, tabgroup_id, tab_id, field_id, erstdatum, readonly, erstgroup, editdatum, sort, path, storage_id) FROM stdin;
-1	öffentlicher Ordner	0	1	1	t	\N	\N	0	0	2019-09-20 16:02:31.928074	f	1	\N	\N	\N	\N
+1	Ã¶ffentlicher Ordner	0	1	1	t	\N	\N	0	0	2019-09-20 16:02:31.928074	f	1	\N	\N	\N	\N
 2	Dokumente	1	1	1	f	\N	\N	0	0	2019-09-20 16:02:31.945536	f	1	\N	\N	\N	\N
 3	Bilder	1	1	1	f	\N	\N	0	0	2019-09-20 16:02:31.946065	f	1	\N	\N	\N	\N
 4	Eigene Dateien	0	1	4	t	\N	\N	0	\N	2019-09-20 16:02:31.94687	f	1	\N	2	\N	\N
@@ -2824,7 +2824,7 @@ COPY lmb_action (id, action, link_name, beschreibung, link_url, icon_url, sort, 
 268	setup_grouping_editor	2362	2363	\N	\N	0	4	2		\N	Tabellen
 137	setup_user_admin	838	839	f_3('setup_user','setup_user_tree','setup_user_erg');	lmb-user-list	2	3	2		\N	Administrieren
 151	setup_user_tracking	1266	1267	\N	lmb-icon-cus lmb-report-user	4	3	2		\N	Administrieren
-250	setup_user_overview	2244	2245	f_3('setup_user_overview');	lmb-list-users	5	3	2		\N	Übersicht
+250	setup_user_overview	2244	2245	f_3('setup_user_overview');	lmb-list-users	5	3	2		\N	Ãœbersicht
 55	setup_group_erg	455	456	f_3('setup_group_erg');	lmb-group	7	3	2		\N	Administrieren
 100	setup_group_tab	497	498	f_3('setup_group_tab');	lmb-table-key	13	3	2		\N	Administrieren
 291	setup_group_forms	2745	2746	f_3('setup_group_forms');	lmb-icon-cus lmb-application-form-key	14	3	2		\N	Administrieren
@@ -3165,7 +3165,7 @@ COPY lmb_crontab (id, kategory, start, val, erstdatum, activ, description, alive
 
 COPY lmb_currency (id, currency, code, unit, symbol) FROM stdin;
 27	Swiss Franc	CHF	0.770200010000000046	\N
-46	Euro	EUR	1.20209999999999995	€
+46	Euro	EUR	1.20209999999999995	Â€
 150	US Dollar	USD	1	$
 \.
 
@@ -3710,7 +3710,7 @@ COPY lmb_field_types (id, field_type, data_type, data_type_exp, datentyp, size, 
 23	1	33	2903	VARCHAR	180	^.{0,xx}$	31	2904	2	24	f
 2	5	16	1350	FIXED	10	^[-]?[0-9]{0,xx}$	1	1386	1	1	t
 17	10	20	1365	BOOLEAN	1	^([0-1]|TRUE|FALSE|true|false)$	2	1401	3	5	f
-20	5	30	1367	NUMERIC	18	^-?[0-9]{1,xx}([.,][0-9]{1,})?( ?([A-Za-z]{1,3}|[€$]))?$	6	1403	6	7	t
+20	5	30	1367	NUMERIC	18	^-?[0-9]{1,xx}([.,][0-9]{1,})?( ?([A-Za-z]{1,3}|[Â€$]))?$	6	1403	6	7	t
 13	1	1	1361	VARCHAR	50	^.{0,xx}$	8	1397	2	2	t
 60	\N	\N	2944	\N	\N	\N	0	\N	\N	\N	f
 61	\N	\N	1361	\N	\N	\N	7	\N	\N	\N	f
@@ -3814,7 +3814,7 @@ COPY lmb_gtab_rowsize (id, erstdatum, user_id, tab_id, row_size) FROM stdin;
 
 COPY lmb_gtab_status_save (id, erstdatum, erstuser, tab_id, formel, bezeichnung, group_id, typ, beschreibung, dssdsd) FROM stdin;
 1	2006-01-25 17:19:35	1	7	if(!#*[10]*# AND #*[3]*#){\n$gvalue = "FF1232";\n$gdesc = '';\n}elseif(!#*[3]*#){\n$gvalue = "C6AA73";\n$gdesc = '';\n}	DNS	1	-1	\N	f
-2	2006-05-10 13:23:40	1	25	if(#*[13]*# == 'Rechnung'){\nif(!#*[8]*# AND (local_stamp(1) - get_stamp(#*[6]*#) > 1814400) AND (local_stamp(1) - get_stamp(#*[6]*#) < 3024000)){\n$gvalue = "FFDDDD";\n$gdesc = '21 Tage überschritten';\n}elseif(!#*[8]*# AND (local_stamp(1) - get_stamp(#*[6]*#) > 3024000)){\n$gvalue = "FFAAAA";\n$gdesc = '35 Tage überschritten';\n}\n}	Mahnung	1	-1	Mahnung	f
+2	2006-05-10 13:23:40	1	25	if(#*[13]*# == 'Rechnung'){\nif(!#*[8]*# AND (local_stamp(1) - get_stamp(#*[6]*#) > 1814400) AND (local_stamp(1) - get_stamp(#*[6]*#) < 3024000)){\n$gvalue = "FFDDDD";\n$gdesc = '21 Tage Ã¼berschritten';\n}elseif(!#*[8]*# AND (local_stamp(1) - get_stamp(#*[6]*#) > 3024000)){\n$gvalue = "FFAAAA";\n$gdesc = '35 Tage Ã¼berschritten';\n}\n}	Mahnung	1	-1	Mahnung	f
 \.
 
 
@@ -3908,9 +3908,9 @@ COPY lmb_indize_w (id, val, metaphone, upperval) FROM stdin;
 
 COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, js) FROM stdin;
 2412	1	1246	1	ohne	deutsch	t	5	f
-6247	4	356	2	Remarques liées	francais	t	0	f
+6247	4	356	2	Remarques liÃ©es	francais	t	0	f
 6144	4	164	1	table	francais	t	49	f
-6285	4	418	2	Créer un nouveau message	francais	t	0	f
+6285	4	418	2	CrÃ©er un nouveau message	francais	t	0	f
 6286	4	421	2	Rechercher	francais	t	0	f
 6287	4	422	2	Rechercher un message	francais	t	0	f
 6288	4	425	2	Rappel	francais	t	0	f
@@ -3918,10 +3918,10 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6417	4	672	3	Nom	francais	t	136	f
 6558	4	890	1	Novembre	francais	t	41	f
 6559	4	891	1	Decembre	francais	t	41	f
-6677	4	1024	3	Indiqué	francais	t	149	f
-6802	4	1157	3	N° page	francais	t	169	f
-6941	4	1315	3	Le nom d''utilisateur et le mot de passe doivent comporter un minimum de 5 caractères!	francais	t	127	f
-6943	4	1317	1	Non autorisé!	francais	t	31	f
+6677	4	1024	3	IndiquÃ©	francais	t	149	f
+6802	4	1157	3	NÂ° page	francais	t	169	f
+6941	4	1315	3	Le nom d''utilisateur et le mot de passe doivent comporter un minimum de 5 caractÄres!	francais	t	127	f
+6943	4	1317	1	Non autorisÃ©!	francais	t	31	f
 6945	4	1319	2	Editeur de chargement	francais	t	0	f
 6946	4	1320	2	Editeur de chargement	francais	t	0	f
 6948	4	1322	1	Chemin du fichier	francais	t	186	f
@@ -3929,16 +3929,16 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7115	4	1500	2	Apercu	francais	t	0	f
 7120	4	1506	1	Oui	francais	t	15	f
 7361	4	1775	3	Formulaire	francais	t	168	f
-7481	4	1900	3	Paramètre de sécurité	francais	t	164	f
+7481	4	1900	3	ParamÄtre de sÃ©curitÃ©	francais	t	164	f
 7630	4	2051	1	Vous n'' actuellement ni tache ni workflow!	francais	t	208	f
-7633	4	2054	1	Le workflow a été annulé avec succès!	francais	t	209	f
+7633	4	2054	1	Le workflow a Ã©tÃ© annulÃ© avec succÄs!	francais	t	209	f
 7638	4	2059	2	Workflow	francais	t	0	f
 7833	1	2125	2	verstecke gesperrte	deutsch	t	\N	f
 7834	2	2125	2	hide locked data	english	t	\N	f
 7835	4	2125	2	verstecke gesperrte Daten	francais	t	\N	f
-7837	1	2126	2	verstecke gesperrte Datensätze	deutsch	t	\N	f
+7837	1	2126	2	verstecke gesperrte DatensÃ¤tze	deutsch	t	\N	f
 7838	2	2126	2	hide locked records	english	t	\N	f
-7839	4	2126	2	verstecke gesperrte Datensätze	francais	t	\N	f
+7839	4	2126	2	verstecke gesperrte DatensÃ¤tze	francais	t	\N	f
 7862	1	2132	3	versionieren	deutsch	t	140	f
 7863	2	2132	3	versionise	english	t	140	f
 7869	1	2134	2	versionieren	deutsch	t	\N	f
@@ -3948,8 +3948,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7874	2	2135	2	versionise record	english	t	\N	f
 7875	4	2135	2	neue Datensatzversion	francais	t	\N	f
 7878	2	2136	2	select all	english	t	\N	f
-6271	4	392	2	sortie imprimée	francais	t	0	f
-7879	4	2136	2	alle auswählen	francais	t	\N	f
+6271	4	392	2	sortie imprimÃ©e	francais	t	0	f
+7879	4	2136	2	alle auswÃ¤hlen	francais	t	\N	f
 8030	1	2174	2	\N	deutsch	t	0	f
 8031	2	2174	2	\N	english	t	0	f
 7993	1	2165	2	Symbolleiste	deutsch	t	\N	f
@@ -3957,7 +3957,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8002	1	2167	1	zeige Symbolleiste	deutsch	t	46	f
 8005	1	2168	2	suchen	deutsch	t	\N	f
 8006	2	2168	2	search	english	t	\N	f
-8009	1	2169	2	Suchmenü	deutsch	t	\N	f
+8009	1	2169	2	SuchmenÃ¼	deutsch	t	\N	f
 8010	2	2169	2	Search menu	english	t	\N	f
 8013	1	2170	2	Versionsstand	deutsch	t	\N	f
 8014	2	2170	2	show Version status	english	t	\N	f
@@ -3975,17 +3975,17 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8047	2	2178	3	colspan	english	t	168	f
 8050	1	2179	3	rowspan	deutsch	t	168	f
 8051	2	2179	3	rowspan	english	t	168	f
-8053	1	2180	2	zeige verknüpfte	deutsch	t	\N	f
+8053	1	2180	2	zeige verknÃ¼pfte	deutsch	t	\N	f
 8054	2	2180	2	show linked	english	t	\N	f
-8055	4	2180	2	zeige verknüpfte	francais	t	\N	f
-8057	1	2181	2	zeige verknüpfte Datensätze	deutsch	t	\N	f
+8055	4	2180	2	zeige verknÃ¼pfte	francais	t	\N	f
+8057	1	2181	2	zeige verknÃ¼pfte DatensÃ¤tze	deutsch	t	\N	f
 8058	2	2181	2	show linked records	english	t	\N	f
 8201	1	2217	2	zu Favoriten	deutsch	t	\N	f
 8203	4	2217	2	zu Favoriten	francais	t	\N	f
-8205	1	2218	2	zu Favoriten hinzufügen	deutsch	t	\N	f
+8205	1	2218	2	zu Favoriten hinzufÃ¼gen	deutsch	t	\N	f
 8206	2	2218	2	add to favorites	english	t	\N	f
-8207	4	2218	2	zu Favoriten hinzufügen	francais	t	\N	f
-8210	1	2219	1	Wollen Sie die Datei/en zu den Favoriten hinzufügen?	deutsch	t	66	f
+8207	4	2218	2	zu Favoriten hinzufÃ¼gen	francais	t	\N	f
+8210	1	2219	1	Wollen Sie die Datei/en zu den Favoriten hinzufÃ¼gen?	deutsch	t	66	f
 8122	1	2197	2	Mimetype	deutsch	t	0	f
 8211	2	2219	1	Add file/s to favorites?	english	t	66	f
 8219	4	2221	2	System Arrays	francais	t	\N	f
@@ -3996,7 +3996,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8091	2	2189	1	You have no permission for this file. 	english	t	66	f
 8111	2	2194	2	filesize	english	t	0	f
 8202	2	2217	2	to favorites	english	t	\N	f
-8238	1	2226	1	auswählen	deutsch	t	215	f
+8238	1	2226	1	auswÃ¤hlen	deutsch	t	215	f
 8371	4	2259	2	Bildvorschau	francais	t	\N	f
 8373	1	2260	2	Bildershow	deutsch	t	\N	f
 8374	2	2260	2	Picture show	english	t	\N	f
@@ -4033,23 +4033,23 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10308	1	2303	3	lesen	deutsch	t	122	f
 10204	1	2277	2	Berichtrechte	deutsch	t	0	f
 10309	2	2303	3	read	english	t	122	f
-10264	1	2292	2	zeige mit sich selbst verknüpfte Datensätze	deutsch	t	0	f
+10264	1	2292	2	zeige mit sich selbst verknÃ¼pfte DatensÃ¤tze	deutsch	t	0	f
 10265	2	2292	2	show selve linked records 	english	t	0	f
 10208	1	2278	2	Berichtrechte festlegen	deutsch	t	0	f
 10333	2	2309	1	Folder	english	t	97	f
 10336	1	2310	1	Sie haben keine Ordnerrechte!	deutsch	t	97	f
 10337	2	2310	1	No folder rights!	english	t	97	f
-10340	1	2311	1	keine Löschrechte!	deutsch	t	97	f
+10340	1	2311	1	keine LÃ¶schrechte!	deutsch	t	97	f
 10348	1	2313	1	Die Quelldatei existiert schon. Bitte versuchen Sie es erneut.	deutsch	t	97	f
 10349	2	2313	1	Sourcefile already exists. Please try again.	english	t	97	f
 10352	1	2314	1	OCR Erkennung starten	deutsch	t	66	f
 10353	2	2314	1	Start OCR identification	english	t	66	f
-10356	1	2315	2	Verknüpfungs-Modus	deutsch	t	0	f
-10360	1	2316	2	zeige nur verknüpfte Datensätze	deutsch	t	0	f
+10356	1	2315	2	VerknÃ¼pfungs-Modus	deutsch	t	0	f
+10360	1	2316	2	zeige nur verknÃ¼pfte DatensÃ¤tze	deutsch	t	0	f
 10361	2	2316	2	show only linked records	english	t	0	f
 10364	1	2317	1	Die Quelldatei existiert nicht mehr!	deutsch	t	66	f
 10365	2	2317	1	Source file does not exist anymore!	english	t	66	f
-10368	1	2318	1	Datei löschen	deutsch	t	215	f
+10368	1	2318	1	Datei lÃ¶schen	deutsch	t	215	f
 10372	1	2319	2	Unterordner durchsuchen	deutsch	t	0	f
 10373	2	2319	2	search subfolder	english	t	0	f
 10376	1	2320	2	rekursive Suche	deutsch	t	0	f
@@ -4069,8 +4069,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10525	2	2355	1	show as pdf	english	t	204	f
 10532	1	2357	3	Seperator	deutsch	t	168	f
 10533	2	2357	3	Seperator	english	t	168	f
-10536	1	2358	1	Verknüpfung lösen	deutsch	t	13	f
-10540	1	2359	1	Wollen Sie die Verknüpfung dieses Datensatzes entfernen?	deutsch	t	13	t
+10536	1	2358	1	VerknÃ¼pfung lÃ¶sen	deutsch	t	13	f
+10540	1	2359	1	Wollen Sie die VerknÃ¼pfung dieses Datensatzes entfernen?	deutsch	t	13	t
 10512	1	2352	2	Referenz zu Dokument	deutsch	t	0	f
 10552	1	2362	2	Gruppierung	deutsch	t	0	f
 10553	2	2362	2	Grouping	english	t	0	f
@@ -4080,7 +4080,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10577	2	2368	3	Infotext if blockage	english	t	154	f
 10604	1	2375	1	Die hochgeladene Datei existiert schon mit gleichem oder unter anderem Namen in folgenden Ordnern	deutsch	t	41	f
 10605	2	2375	1	The uploaded file already exists with same or under another name in the following folders.	english	t	41	f
-6331	4	474	2	taille de l'élément de rapport	francais	t	0	f
+6331	4	474	2	taille de l'Ã©lÃ©ment de rapport	francais	t	0	f
 10780	1	2419	3	Nachricht	deutsch	t	52	f
 10781	2	2419	3	News	english	t	52	f
 10816	1	2428	3	unbegrenzt sperren	deutsch	t	221	f
@@ -4095,40 +4095,40 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10837	2	2433	1	Shall the record be released again?	english	t	13	f
 10844	1	2435	1	Datensatz wurde erfolgreich gesperrt!	deutsch	t	25	f
 10845	2	2435	1	Record has been successfully locked!	english	t	25	f
-10848	1	2436	1	Datensätze wurden erfolgreich gesperrt!	deutsch	t	25	f
+10848	1	2436	1	DatensÃ¤tze wurden erfolgreich gesperrt!	deutsch	t	25	f
 10849	2	2436	1	Records have been successfully locked!	english	t	25	f
 10852	1	2437	1	Datensatz wurde erfolgreich entsperrt!	deutsch	t	25	f
 10853	2	2437	1	Record has been successfully unlocked!	english	t	25	f
-10856	1	2438	1	Datensätze wurden erfolgreich entsperrt!	deutsch	t	25	f
+10856	1	2438	1	DatensÃ¤tze wurden erfolgreich entsperrt!	deutsch	t	25	f
 10825	2	2430	2	lock record	english	t	0	f
 10857	2	2438	1	Records have been successfully unlocked!	english	t	25	f
 10860	1	2439	2	gesperrte Daten	deutsch	t	0	f
 10861	2	2439	2	locked data	english	t	0	f
-10864	1	2440	2	meine gesperrten Datensätze	deutsch	t	0	f
+10864	1	2440	2	meine gesperrten DatensÃ¤tze	deutsch	t	0	f
 10865	2	2440	2	my locked data	english	t	0	f
 10868	1	2441	2	zeige gesperrte	deutsch	t	0	f
 10869	2	2441	2	show locked	english	t	0	f
-10872	1	2442	2	zeige gesperrte Datensätze	deutsch	t	0	f
+10872	1	2442	2	zeige gesperrte DatensÃ¤tze	deutsch	t	0	f
 10877	2	2443	2	save	english	t	0	f
 10985	2	2470	2	delete incl. ref. integrity	english	t	0	f
-10996	1	2473	1	folgende Abhängigkeiten bestehen:	deutsch	t	25	f
+10996	1	2473	1	folgende AbhÃ¤ngigkeiten bestehen:	deutsch	t	25	f
 10997	2	2473	1	the following dependence exists:	english	t	25	f
-11000	1	2474	1	folgende Abhängigkeiten wurden gelöst!:	deutsch	t	25	f
+11000	1	2474	1	folgende AbhÃ¤ngigkeiten wurden gelÃ¶st!:	deutsch	t	25	f
 7779	2	2111	3	Folder	english	t	170	f
 11001	2	2474	1	the following dependence were deleted:	english	t	25	f
-11028	1	2481	3	Temporäre Inhalte	deutsch	t	154	f
+11028	1	2481	3	TemporÃ¤re Inhalte	deutsch	t	154	f
 11032	1	2482	3	Datenbankfunktionen	deutsch	t	154	f
 11033	2	2482	3	Database functions	english	t	154	f
 11040	1	2484	3	Rechteverwaltung	deutsch	t	154	f
 11041	2	2484	3	Rights management	english	t	154	f
 11044	1	2485	3	Usereinstellungen	deutsch	t	154	f
 11045	2	2485	3	User settings	english	t	154	f
-11008	1	2476	3	Foreign Keys prüfen	deutsch	t	154	f
+11008	1	2476	3	Foreign Keys prÃ¼fen	deutsch	t	154	f
 10989	2	2471	2	special features	english	t	0	f
 10993	2	2472	2	special features	english	t	0	f
 11029	2	2481	3	temporary contents	english	t	154	f
 11036	1	2483	3	System	deutsch	t	154	f
-11064	1	2490	2	Beziehungsbäume	deutsch	t	0	f
+11064	1	2490	2	BeziehungsbÃ¤ume	deutsch	t	0	f
 731	1	731	2	Formulare	deutsch	t	\N	f
 732	1	732	2	Formulare	deutsch	t	\N	f
 8137	1	2201	2	Berichte	deutsch	t	\N	f
@@ -4143,12 +4143,12 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11077	2	2493	2	tabletree	english	t	0	f
 11081	2	2494	2	tabletree	english	t	0	f
 2695	2	1387	2	10-digit number 	english	t	0	f
-7009	4	1386	2	Nombre à 5 chiffres	francais	t	0	f
+7009	4	1386	2	Nombre Ä… 5 chiffres	francais	t	0	f
 11196	1	2523	1	Imap Port	deutsch	t	46	f
 11200	1	2524	1	Imap Passwort	deutsch	t	46	f
 10445	2	2337	3	maintain Userrights 	english	t	221	f
 10565	2	2365	2	Overview dublicates 	english	t	0	f
-11056	1	2488	3	Trigger prüfen	deutsch	t	154	f
+11056	1	2488	3	Trigger prÃ¼fen	deutsch	t	154	f
 2421	2	1250	3	history	english	t	132	f
 11061	2	2489	2	Tabletree 	english	t	0	f
 11113	2	2502	1	format	english	t	13	f
@@ -4166,9 +4166,9 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11201	2	2524	1	imap password	english	t	46	f
 11204	1	2525	2	Einstellungen	deutsch	t	0	f
 11312	1	2552	3	Datensatzrechte neu berechnen	deutsch	t	154	f
-11320	1	2554	3	Verknüpfungsreiter	deutsch	t	173	f
+11320	1	2554	3	VerknÃ¼pfungsreiter	deutsch	t	173	f
 11324	1	2555	3	Menuleiste	deutsch	t	173	f
-11332	1	2557	3	Fußleiste	deutsch	t	173	f
+11332	1	2557	3	FuÃŸleiste	deutsch	t	173	f
 550	1	550	3	leeren	deutsch	t	108	f
 6374	4	550	3	Supprimer tout	francais	t	108	f
 7778	1	2111	3	Ablageordner	deutsch	t	170	f
@@ -4177,28 +4177,28 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 432	1	432	2	Umgebungsvariablen	deutsch	t	\N	f
 4355	1	1514	2	Feldtypen	deutsch	t	\N	f
 4358	1	1515	2	Tabellen - Feldtypen	deutsch	t	\N	f
-435	1	435	2	Menüpunkte	deutsch	t	\N	f
-436	1	436	2	Menüpunkte	deutsch	t	\N	f
+435	1	435	2	MenÃ¼punkte	deutsch	t	\N	f
+436	1	436	2	MenÃ¼punkte	deutsch	t	\N	f
 11376	1	2568	3	Standardwert bei anlegen eines neuen Datensatzes	deutsch	t	221	f
 11400	1	2574	3	Standardformular	deutsch	t	221	f
 11420	1	2579	2	OCR	deutsch	t	0	f
 11424	1	2580	2	OCR Erkennung	deutsch	t	0	f
 10876	1	2443	2	speichern	deutsch	t	0	f
-10880	1	2444	2	übernehmen	deutsch	t	0	f
+10880	1	2444	2	Ã¼bernehmen	deutsch	t	0	f
 11360	1	2564	2	Erweiterte Einstellungen	deutsch	t	0	f
 502	1	502	2	SQL-Editor	deutsch	t	\N	f
 11428	1	2581	3	css Datei	deutsch	t	175	f
-11432	1	2582	1	verknüpfen	deutsch	t	15	f
+11432	1	2582	1	verknÃ¼pfen	deutsch	t	15	f
 11169	2	2516	3	transmit userrights hierarchic	english	t	221	f
 10529	2	2356	3	show all versioned 	english	t	221	f
 11353	2	2562	3	User could not be created!	english	t	126	f
 11357	2	2563	2	Settings	english	t	0	f
 11361	2	2564	2	Advanced settings	english	t	0	f
 11484	1	2595	3	Trennzeichen	deutsch	t	110	f
-2428	1	1254	3	Wollen Sie die Gruppe und alle Untergruppen löschen?\nUser dieser Gruppen können mit [zeige gelöschte User] anderen Gruppen zugeordnet werden!	deutsch	t	115	t
+2428	1	1254	3	Wollen Sie die Gruppe und alle Untergruppen lÃ¶schen?\nUser dieser Gruppen kÃ¶nnen mit [zeige gelÃ¶schte User] anderen Gruppen zugeordnet werden!	deutsch	t	115	t
 10320	1	2306	3	Formular/Berichtrechte	deutsch	t	119	f
-7858	1	2131	3	Menürechte	deutsch	t	119	f
-11444	1	2585	3	übernehme Rechte von Obergruppe:	deutsch	t	119	f
+7858	1	2131	3	MenÃ¼rechte	deutsch	t	119	f
+11444	1	2585	3	Ã¼bernehme Rechte von Obergruppe:	deutsch	t	119	f
 923	1	923	3	Titel	deutsch	t	110	f
 6586	4	923	3	Description	francais	t	110	f
 11536	1	2608	3	Filter	deutsch	t	110	f
@@ -4208,23 +4208,23 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11172	1	2517	1	hirarchisch vererben	deutsch	t	13	f
 11549	2	2611	3	inheritance	english	t	110	f
 1700	2	550	3	empty	english	t	108	f
-4968	1	1718	3	Soll der gesamte Index dieses Feldes gelöscht werden?	deutsch	t	110	f
-7304	4	1718	3	Est-ce-que l''index entier doit être supprimé pour ce champs?	francais	t	110	f
+4968	1	1718	3	Soll der gesamte Index dieses Feldes gelÃ¶scht werden?	deutsch	t	110	f
+7304	4	1718	3	Est-ce-que l''index entier doit Åºtre supprimÃ© pour ce champs?	francais	t	110	f
 5556	1	1914	1	Suchtipps:\n-korrekte Schreibweise beachten\n-verallgemeinern Sie die Suche\n-suchen Sie in Unterordnern (sub)	deutsch	t	66	t
-7494	4	1914	1	Conseil de recherche:\n - porter attention à l''orthographe\n - rechercher dans les sous-dossiers	francais	t	66	t
+7494	4	1914	1	Conseil de recherche:\n - porter attention Ä… l''orthographe\n - rechercher dans les sous-dossiers	francais	t	66	t
 5868	1	2018	3	neueste Version	deutsch	t	52	f
-7598	4	2018	3	Dernière version	francais	t	52	f
-5970	1	2052	1	Workflow wurdet nicht abgebrochen! Möglicherweise ein Rechteproblem.	deutsch	t	209	f
-7631	4	2052	1	Le workflow ne peut être interrompu! Probablement un	francais	t	209	f
-5973	1	2053	1	Workflow konnte nicht angehalten werden! Möglicherweise ein Rechteproblem.	deutsch	t	209	f
-7632	4	2053	1	Le workflow ne peut être suspendu! Surement un problème de droit.	francais	t	209	f
+7598	4	2018	3	DerniÄre version	francais	t	52	f
+5970	1	2052	1	Workflow wurdet nicht abgebrochen! MÃ¶glicherweise ein Rechteproblem.	deutsch	t	209	f
+7631	4	2052	1	Le workflow ne peut Åºtre interrompu! Probablement un	francais	t	209	f
+5973	1	2053	1	Workflow konnte nicht angehalten werden! MÃ¶glicherweise ein Rechteproblem.	deutsch	t	209	f
+7632	4	2053	1	Le workflow ne peut Åºtre suspendu! Surement un problÄme de droit.	francais	t	209	f
 7660	4	2081	3	Inc. sous-dos.	francais	t	212	f
 7694	1	2090	3	Hintergr.	deutsch	t	168	f
-7696	4	2090	3	Arrière-plan	francais	t	168	f
+7696	4	2090	3	ArriÄre-plan	francais	t	168	f
 2040	2	918	3	where ?ID stands for article-no. 	english	t	107	f
 5554	2	1913	1	- limit the result with more search parameters.\n- If entitled, expand the result limit.\n- If entitled, cancel the result limit.	english	t	5	t
-6333	4	476	2	contenu  de l'élément de rapport	francais	t	0	f
-6334	4	477	2	représentation	francais	t	0	f
+6333	4	476	2	contenu  de l'Ã©lÃ©ment de rapport	francais	t	0	f
+6334	4	477	2	reprÃ©sentation	francais	t	0	f
 11613	2	2627	3	sum	english	t	226	f
 11617	2	2628	3	min	english	t	226	f
 11621	2	2629	3	max	english	t	226	f
@@ -4236,7 +4236,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11681	2	2644	1	set	english	t	13	f
 11633	2	2632	3	criteria	english	t	226	f
 11692	1	2647	1	Ziel	deutsch	t	66	f
-7692	4	2089	3	Champs affiché	francais	t	121	f
+7692	4	2089	3	Champs affichÃ©	francais	t	121	f
 5610	1	1932	2	Datum	deutsch	t	0	f
 5770	2	1985	1	Years	english	t	13	f
 5772	1	1986	3	Erweiterung	deutsch	t	162	f
@@ -4255,41 +4255,41 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5832	1	2006	1	erfolgreich gespeichert!	deutsch	t	0	f
 5833	2	2006	1	Successfully saved!	english	t	0	f
 6042	1	2076	3	Monatstag	deutsch	t	212	f
-5835	1	2007	1	erfolgreich gelöscht!	deutsch	t	0	f
+5835	1	2007	1	erfolgreich gelÃ¶scht!	deutsch	t	0	f
 5836	2	2007	1	Successfully deleted!	english	t	0	f
 5838	1	2008	1	erfolgreich gesendet!	deutsch	t	0	f
 5839	2	2008	1	Successfully sent!	english	t	0	f
 5619	2	1935	2	File mode	english	t	\N	f
 6636	4	979	3	gzip	francais	t	145	f
-3523	3	854	1	y	Espagñol	t	19	f
-6442	4	730	2	Modifier la réimpression	francais	t	0	f
-6448	4	736	2	requêtes de table	francais	t	0	f
-6510	4	835	2	paramètres généraux du groupe	francais	t	0	f
-7098	4	1483	2	Champ de sélection (liste)	francais	t	0	f
-7099	4	1484	2	Sélection (radio)	francais	t	0	f
-7111	4	1496	3	frontière supérieure	francais	t	168	f
-7112	4	1497	3	marge inférieure	francais	t	168	f
+3523	3	854	1	y	EspagÅ„ol	t	19	f
+6442	4	730	2	Modifier la rÃ©impression	francais	t	0	f
+6448	4	736	2	requÅºtes de table	francais	t	0	f
+6510	4	835	2	paramÄtres gÃ©nÃ©raux du groupe	francais	t	0	f
+7098	4	1483	2	Champ de sÃ©lection (liste)	francais	t	0	f
+7099	4	1484	2	SÃ©lection (radio)	francais	t	0	f
+7111	4	1496	3	frontiÄre supÃ©rieure	francais	t	168	f
+7112	4	1497	3	marge infÃ©rieure	francais	t	168	f
 7792	4	2114	1	limite	francais	t	5	f
-7904	4	2142	3	récursive	francais	t	140	f
-7908	4	2143	3	fixé	francais	t	140	f
+7904	4	2142	3	rÃ©cursive	francais	t	140	f
+7908	4	2143	3	fixÃ©	francais	t	140	f
 7912	4	2144	3	manuellement	francais	t	122	f
 7916	4	2145	3	automatiquement	francais	t	122	f
-8044	4	2177	1	L'enregistrement de données est identique!	francais	t	13	f
+8044	4	2177	1	L'enregistrement de donnÃ©es est identique!	francais	t	13	f
 8048	4	2178	3	colspan	francais	t	168	f
 8052	4	2179	3	rowspan	francais	t	168	f
-8064	4	2182	1	Le record était lié!	francais	t	25	f
-8068	4	2183	1	Les enregistrements ont été liés!	francais	t	25	f
-8072	4	2184	1	Le lien a été résolu!	francais	t	25	f
-8076	4	2185	1	Les liens ont été résolus!	francais	t	25	f
-8128	4	2198	3	dépendant\r\n	francais	t	168	f
-8164	4	2207	3	modèle	francais	t	177	f
+8064	4	2182	1	Le record Ã©tait liÃ©!	francais	t	25	f
+8068	4	2183	1	Les enregistrements ont Ã©tÃ© liÃ©s!	francais	t	25	f
+8072	4	2184	1	Le lien a Ã©tÃ© rÃ©solu!	francais	t	25	f
+8076	4	2185	1	Les liens ont Ã©tÃ© rÃ©solus!	francais	t	25	f
+8128	4	2198	3	dÃ©pendant\r\n	francais	t	168	f
+8164	4	2207	3	modÄle	francais	t	177	f
 8032	4	2174	2	 	francais	t	0	f
 10206	4	2277	2	droits de rapport	francais	t	0	f
-10210	4	2278	2	Définir les droits de rapport	francais	t	0	f
-10214	4	2279	3	Le formulaire devrait-il être supprimé?	francais	t	176	f
+10210	4	2278	2	DÃ©finir les droits de rapport	francais	t	0	f
+10214	4	2279	3	Le formulaire devrait-il Åºtre supprimÃ©?	francais	t	176	f
 10222	4	2281	3	formes	francais	t	222	f
-10234	4	2284	3	Le rapport devrait-il être supprimé?	francais	t	170	f
-10238	4	2285	3	Le diagramme devrait-il être supprimé?	francais	t	177	f
+10234	4	2284	3	Le rapport devrait-il Åºtre supprimÃ©?	francais	t	170	f
+10238	4	2285	3	Le diagramme devrait-il Åºtre supprimÃ©?	francais	t	177	f
 5625	2	1937	2	Key word 	english	t	\N	f
 5634	2	1940	2	Time frame	english	t	\N	f
 5637	2	1941	2	Change timeframe	english	t	\N	f
@@ -4303,7 +4303,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5866	2	2017	1	XML	english	t	5	f
 5874	1	2020	3	Konvertierung des Feldes:	deutsch	t	110	f
 140	1	140	1	Userdaten	deutsch	t	46	f
-5877	1	2021	3	Inhalte mit Überlängen oder falschen Typs werden gekürzt bzw. gelöscht!	deutsch	t	110	f
+5877	1	2021	3	Inhalte mit ÃœberlÃ¤ngen oder falschen Typs werden gekÃ¼rzt bzw. gelÃ¶scht!	deutsch	t	110	f
 5883	1	2023	3	Abfrage	deutsch	t	140	f
 5884	2	2023	3	Query	english	t	140	f
 5886	2	2024	2	Querys	english	t	\N	f
@@ -4312,7 +4312,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5893	2	2026	3	SQL	english	t	205	f
 5895	1	2027	3	Editor	deutsch	t	205	f
 5896	2	2027	3	Editor	english	t	205	f
-5904	1	2030	3	Temporäre Feldinhalte aktualisieren	deutsch	t	154	f
+5904	1	2030	3	TemporÃ¤re Feldinhalte aktualisieren	deutsch	t	154	f
 5919	1	2035	3	Workflow	deutsch	t	140	f
 5920	2	2035	3	Workflow	english	t	140	f
 5928	2	2038	2	My tasks	english	t	\N	f
@@ -4321,11 +4321,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5941	2	2042	1	Last user	english	t	208	f
 5943	1	2043	1	aktuelle Nutzer	deutsch	t	208	f
 5944	2	2043	1	Current user	english	t	208	f
-5946	1	2044	1	nächste Nutzer	deutsch	t	208	f
+5946	1	2044	1	nÃ¤chste Nutzer	deutsch	t	208	f
 5947	2	2044	1	Next user	english	t	208	f
-5952	1	2046	1	Möchten Sie diesen Workflow anhalten?	deutsch	t	208	f
+5952	1	2046	1	MÃ¶chten Sie diesen Workflow anhalten?	deutsch	t	208	f
 5953	2	2046	1	Do you want to stop this workflow	english	t	208	f
-5955	1	2047	1	Möchten Sie diesen Workflow abbrechen?	deutsch	t	208	f
+5955	1	2047	1	MÃ¶chten Sie diesen Workflow abbrechen?	deutsch	t	208	f
 5956	2	2047	1	Do you want to cancel this workflow?	english	t	208	f
 5958	1	2048	1	Augfabe	deutsch	t	208	f
 5959	2	2048	1	Task	english	t	208	f
@@ -4347,7 +4347,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5998	2	2061	1	First record!	english	t	23	f
 6000	1	2062	1	Letzter Datensatz!	deutsch	t	23	f
 6001	2	2062	1	Last record!	english	t	23	f
-6003	1	2063	3	Z-Index berücksichtigen	deutsch	t	175	f
+6003	1	2063	3	Z-Index berÃ¼cksichtigen	deutsch	t	175	f
 6004	2	2063	3	consider Z-Index	english	t	175	f
 6006	1	2064	3	in den Vordergrund	deutsch	t	168	f
 6007	2	2064	3	In foreground	english	t	168	f
@@ -4376,44 +4376,44 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 27	1	27	1	Zusatz	deutsch	t	12	f
 29	1	29	1	Wert	deutsch	t	12	f
 30	1	30	1	suchen	deutsch	t	12	f
-33	1	33	1	übernehmen	deutsch	t	12	f
+33	1	33	1	Ã¼bernehmen	deutsch	t	12	f
 34	1	34	1	neuer Wert	deutsch	t	12	f
 49	1	49	1	Wollen Sie diesen Datensatz archivieren?	deutsch	t	13	t
-50	1	50	1	Wollen Sie diese Datei wirklich löschen?	deutsch	t	13	t
+50	1	50	1	Wollen Sie diese Datei wirklich lÃ¶schen?	deutsch	t	13	t
 56	1	56	1	Ein Fehler ist aufgetreten!	deutsch	t	13	f
 58	1	58	1	Syntaxfehler! Die Eingaben entsprechen nicht dem Datentyp.	deutsch	t	14	f
 59	1	59	1	ersetze mit Wert	deutsch	t	14	f
 60	1	60	1	bei Bedingung	deutsch	t	14	f
-84	1	84	1	Wollen Sie diesen Datensatz wirklich löschen?	deutsch	t	17	f
-86	1	86	1	Einträge	deutsch	t	17	f
+84	1	84	1	Wollen Sie diesen Datensatz wirklich lÃ¶schen?	deutsch	t	17	f
+86	1	86	1	EintrÃ¤ge	deutsch	t	17	f
 88	1	88	1	Zeilen	deutsch	t	17	f
 89	1	89	1	Seite	deutsch	t	17	f
 93	1	93	1	Treffer	deutsch	t	17	f
 96	1	96	1	zeige	deutsch	t	17	f
-98	1	98	1	keine Datensätze vorhanden!	deutsch	t	17	f
+98	1	98	1	keine DatensÃ¤tze vorhanden!	deutsch	t	17	f
 101	1	101	1	Detailsuche	deutsch	t	19	f
 102	1	102	1	nach	deutsch	t	19	f
 103	1	103	1	suche in	deutsch	t	19	f
-112	1	112	1	Dieser Eintrag kann nicht gelöscht werden, da bereits Werte ausgewählt sind!	deutsch	t	22	f
-941	1	941	3	Referentielle Integrität	deutsch	t	139	f
-115	1	115	1	Änderungen wurden zurückgesetzt!	deutsch	t	25	f
-116	1	116	1	Datensatz wurde erfolgreich gelöscht!	deutsch	t	25	f
+112	1	112	1	Dieser Eintrag kann nicht gelÃ¶scht werden, da bereits Werte ausgewÃ¤hlt sind!	deutsch	t	22	f
+941	1	941	3	Referentielle IntegritÃ¤t	deutsch	t	139	f
+115	1	115	1	Ã„nderungen wurden zurÃ¼ckgesetzt!	deutsch	t	25	f
+116	1	116	1	Datensatz wurde erfolgreich gelÃ¶scht!	deutsch	t	25	f
 118	1	118	1	Sie haben keine Feldrechte!	deutsch	t	27	f
-122	1	122	1	Keine Verknüpfung vorhanden	deutsch	t	34	f
+122	1	122	1	Keine VerknÃ¼pfung vorhanden	deutsch	t	34	f
 126	1	126	1	Beschreibung	deutsch	t	34	f
 133	1	133	1	Die upgeloadete Datei besitzt ein unbekanntes Format	deutsch	t	41	f
-134	1	134	1	Eingabefehler! Folgende Felder wurden falsch ausgefüllt:	deutsch	t	37	f
-138	1	138	1	Bitte überprüfen Sie die Richtigkeit Ihrer Eingaben.	deutsch	t	41	f
+134	1	134	1	Eingabefehler! Folgende Felder wurden falsch ausgefÃ¼llt:	deutsch	t	37	f
+138	1	138	1	Bitte Ã¼berprÃ¼fen Sie die Richtigkeit Ihrer Eingaben.	deutsch	t	41	f
 141	1	141	1	Passwort	deutsch	t	46	f
 142	1	142	1	Vorname	deutsch	t	46	f
 144	1	144	1	email	deutsch	t	46	f
-106	1	106	1	enthält	deutsch	t	19	f
+106	1	106	1	enthÃ¤lt	deutsch	t	19	f
 108	1	108	1	beginnt	deutsch	t	19	f
 146	1	146	1	Allg. Einstellungen	deutsch	t	46	f
 154	1	154	1	Eigene Farbliste	deutsch	t	47	f
 155	1	155	1	Farbauswahl	deutsch	t	47	f
 156	1	156	1	Farbwert	deutsch	t	47	f
-160	1	160	1	löschen	deutsch	t	49	f
+160	1	160	1	lÃ¶schen	deutsch	t	49	f
 164	1	164	1	Tabelle	deutsch	t	49	f
 168	1	168	1	Feld	deutsch	t	50	f
 455	1	455	2	Gruppen	deutsch	t	\N	f
@@ -4421,7 +4421,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 197	1	197	1	Datum	deutsch	t	55	f
 200	1	200	1	neue Vorlage	deutsch	t	55	f
 209	1	209	1	Dateiname	deutsch	t	66	f
-210	1	210	1	Größe	deutsch	t	66	f
+210	1	210	1	GrÃ¶ÃŸe	deutsch	t	66	f
 242	1	242	2	Unterordner einbinden	deutsch	t	44	f
 293	1	293	1	KW	deutsch	t	86	f
 294	1	294	1	Farbe	deutsch	t	86	f
@@ -4432,7 +4432,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 301	1	301	1	Tabellenansicht	deutsch	t	86	f
 302	1	302	1	eintragen	deutsch	t	86	f
 303	1	303	1	Kein Eintrag!	deutsch	t	87	f
-304	1	304	1	Kalenderübersicht	deutsch	t	88	f
+304	1	304	1	KalenderÃ¼bersicht	deutsch	t	88	f
 311	1	311	1	Mo	deutsch	t	88	f
 312	1	312	1	Di	deutsch	t	88	f
 313	1	313	1	Mi	deutsch	t	88	f
@@ -4443,7 +4443,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 353	1	353	2	bearbeiten	deutsch	t	\N	f
 354	1	354	2	Liste bearbeiten	deutsch	t	\N	f
 355	1	355	2	Bemerkung	deutsch	t	\N	f
-356	1	356	2	Verknüpfungs-Bemerkungen	deutsch	t	\N	f
+356	1	356	2	VerknÃ¼pfungs-Bemerkungen	deutsch	t	\N	f
 357	1	357	2	Details	deutsch	t	\N	f
 358	1	358	2	Datensatz Detailansicht	deutsch	t	\N	f
 359	1	359	2	Export	deutsch	t	\N	f
@@ -4452,8 +4452,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 362	1	362	2	Mehrfachauswahlfeld bearbeiten	deutsch	t	\N	f
 363	1	363	2	Info	deutsch	t	\N	f
 364	1	364	2	Datensatz Informationen	deutsch	t	\N	f
-367	1	367	2	löschen	deutsch	t	\N	f
-368	1	368	2	Datensatz löschen	deutsch	t	\N	f
+367	1	367	2	lÃ¶schen	deutsch	t	\N	f
+368	1	368	2	Datensatz lÃ¶schen	deutsch	t	\N	f
 379	1	379	2	admin	deutsch	t	\N	f
 380	1	380	2	Admin Einstellungen	deutsch	t	\N	f
 381	1	381	2	Hilfe	deutsch	t	\N	f
@@ -4466,8 +4466,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 394	1	394	2	Anzeige maximieren	deutsch	t	\N	f
 395	1	395	2	minimieren	deutsch	t	\N	f
 396	1	396	2	Anzeige minimieren	deutsch	t	\N	f
-401	1	401	2	Auswahl zurücksetzen	deutsch	t	\N	f
-402	1	402	2	löschen von Such und Filterkriterien	deutsch	t	\N	f
+401	1	401	2	Auswahl zurÃ¼cksetzen	deutsch	t	\N	f
+402	1	402	2	lÃ¶schen von Such und Filterkriterien	deutsch	t	\N	f
 403	1	403	2	Einstellungen	deutsch	t	\N	f
 404	1	404	2	Allg. User Einstellungen	deutsch	t	\N	f
 409	1	409	2	Farben	deutsch	t	\N	f
@@ -4490,8 +4490,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 464	1	464	2	Tools	deutsch	t	\N	f
 465	1	465	2	Berichte	deutsch	t	\N	f
 466	1	466	2	Berichte bearbeiten	deutsch	t	\N	f
-473	1	473	2	Größe	deutsch	t	\N	f
-474	1	474	2	Bericht Element-Größe	deutsch	t	\N	f
+473	1	473	2	GrÃ¶ÃŸe	deutsch	t	\N	f
+474	1	474	2	Bericht Element-GrÃ¶ÃŸe	deutsch	t	\N	f
 475	1	475	2	Inhalt	deutsch	t	\N	f
 476	1	476	2	Bericht Element-Inhalt	deutsch	t	\N	f
 477	1	477	2	Darstellung	deutsch	t	\N	f
@@ -4499,12 +4499,12 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 517	1	517	3	Argument	deutsch	t	101	f
 518	1	518	3	Umg.-Variablen	deutsch	t	101	f
 519	1	519	3	Username	deutsch	t	101	f
-520	1	520	3	Vollständiger Name	deutsch	t	101	f
+520	1	520	3	VollstÃ¤ndiger Name	deutsch	t	101	f
 521	1	521	3	E-Mail	deutsch	t	101	f
-522	1	522	3	ändern	deutsch	t	101	f
+522	1	522	3	Ã¤ndern	deutsch	t	101	f
 529	1	529	3	RGB-Farbwerte	deutsch	t	106	f
 530	1	530	3	HEX-Farbwerte	deutsch	t	106	f
-540	1	540	3	hinzufügen	deutsch	t	106	f
+540	1	540	3	hinzufÃ¼gen	deutsch	t	106	f
 543	1	543	3	Zeitpunkt	deutsch	t	108	f
 544	1	544	3	Aktion	deutsch	t	108	f
 545	1	545	3	Datei	deutsch	t	108	f
@@ -4515,7 +4515,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 563	1	563	3	angelegt	deutsch	t	115	f
 569	1	569	3	Name der Gruppe	deutsch	t	119	f
 571	1	571	3	anlegen	deutsch	t	119	f
-573	1	573	3	Menü	deutsch	t	120	f
+573	1	573	3	MenÃ¼	deutsch	t	120	f
 575	1	575	3	Rechte	deutsch	t	120	f
 577	1	577	3	Tabellen	deutsch	t	120	f
 600	1	600	3	schon vorhanden!	deutsch	t	111	f
@@ -4525,17 +4525,17 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 624	1	624	3	Sprache	deutsch	t	127	f
 632	1	632	3	Aktiv	deutsch	t	46	f
 633	1	633	3	Inaktiv	deutsch	t	46	f
-11906	4	2700	3	Paramètres du calendrier	francais	t	164	f
+11906	4	2700	3	ParamÄtres du calendrier	francais	t	164	f
 11958	4	2713	3	onglet Tableau	francais	t	173	f
 7309	4	1723	3	Date et heure	francais	t	110	f
 656	1	656	3	Log-Level	deutsch	t	132	f
 657	1	657	3	sperren	deutsch	t	132	f
 672	1	672	3	Nachname	deutsch	t	136	f
 698	1	698	1	Layout	deutsch	t	46	f
-700	1	700	1	öffne Quick-Kalender	deutsch	t	34	f
+700	1	700	1	Ã¶ffne Quick-Kalender	deutsch	t	34	f
 927	1	927	3	unique	deutsch	t	110	f
 704	1	704	1	Ergebnisfenster teilen	deutsch	t	46	f
-711	1	711	1	größer	deutsch	t	19	f
+711	1	711	1	grÃ¶ÃŸer	deutsch	t	19	f
 441	1	441	2	Export	deutsch	t	\N	f
 442	1	442	2	Export	deutsch	t	\N	f
 457	1	457	2	Tabellen	deutsch	t	\N	f
@@ -4549,11 +4549,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 452	1	452	2	User Diagramm Statistik	deutsch	t	\N	f
 712	1	712	1	kleiner	deutsch	t	19	f
 713	1	713	1	gleich	deutsch	t	19	f
-715	1	715	1	öffne Auswahldetails	deutsch	t	34	f
-716	1	716	3	max. Uploadgröße	deutsch	t	127	f
+715	1	715	1	Ã¶ffne Auswahldetails	deutsch	t	34	f
+716	1	716	3	max. UploadgrÃ¶ÃŸe	deutsch	t	127	f
 722	1	722	1	Datensatz:	deutsch	t	13	f
-605	1	605	3	Es müssen mindestens Username, Passwort und Hauptgruppe angegeben werden!	deutsch	t	126	f
-745	1	745	1	geänderte Werte übernehmen!	deutsch	t	37	f
+605	1	605	3	Es mÃ¼ssen mindestens Username, Passwort und Hauptgruppe angegeben werden!	deutsch	t	126	f
+745	1	745	1	geÃ¤nderte Werte Ã¼bernehmen!	deutsch	t	37	f
 749	1	749	1	letzter Login	deutsch	t	4	f
 752	1	752	2	Diagramme	deutsch	t	\N	f
 753	1	753	2	Diagrammeditor	deutsch	t	\N	f
@@ -4562,7 +4562,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 767	1	767	1	Nachrichten	deutsch	t	145	f
 768	1	768	1	empfangen	deutsch	t	145	f
 769	1	769	1	gesendet	deutsch	t	154	f
-770	1	770	1	gelöscht	deutsch	t	154	f
+770	1	770	1	gelÃ¶scht	deutsch	t	154	f
 771	1	771	2	umbenennen	deutsch	t	\N	f
 772	1	772	2	Ordner/Datei umbenennen	deutsch	t	\N	f
 777	1	777	2	neuer Ordner	deutsch	t	\N	f
@@ -4577,34 +4577,34 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 790	1	790	2	ungelesen	deutsch	t	\N	f
 791	1	791	2	Nachricht als ungelesen markieren	deutsch	t	\N	f
 812	1	812	1	Eigene Dateien	deutsch	t	3	f
-813	1	813	1	öffentlicher Ordner	deutsch	t	3	f
+813	1	813	1	Ã¶ffentlicher Ordner	deutsch	t	3	f
 817	1	817	2	kopieren	deutsch	t	\N	f
 818	1	818	2	Dateien/Ordner kopieren	deutsch	t	\N	f
 819	1	819	2	ausschneiden	deutsch	t	\N	f
 820	1	820	2	Dateien/Ordner verschieben	deutsch	t	\N	f
-821	1	821	1	Wollen Sie diesen Ordner und seinen Inhalt löschen?	deutsch	t	68	f
-822	1	822	1	Wollen Sie die Dateien/Ordner löschen?	deutsch	t	66	f
+821	1	821	1	Wollen Sie diesen Ordner und seinen Inhalt lÃ¶schen?	deutsch	t	68	f
+822	1	822	1	Wollen Sie die Dateien/Ordner lÃ¶schen?	deutsch	t	66	f
 828	1	828	2	Formular	deutsch	t	\N	f
 829	1	829	2	Formular	deutsch	t	\N	f
 830	1	830	2	Herkunft	deutsch	t	\N	f
-831	1	831	2	Verknüpfung rückverfolgen	deutsch	t	\N	f
+831	1	831	2	VerknÃ¼pfung rÃ¼ckverfolgen	deutsch	t	\N	f
 842	1	842	1	speichern	deutsch	t	54	f
 843	1	843	1	bearbeiten	deutsch	t	54	f
-844	1	844	1	schließen	deutsch	t	54	f
+844	1	844	1	schlieÃŸen	deutsch	t	54	f
 847	1	847	2	Hintergrund	deutsch	t	\N	f
-848	1	848	2	Hintergrund-Farbe ändern	deutsch	t	\N	f
+848	1	848	2	Hintergrund-Farbe Ã¤ndern	deutsch	t	\N	f
 851	1	851	1	Spalte	deutsch	t	5	f
 854	1	854	1	und	deutsch	t	19	f
 855	1	855	1	oder	deutsch	t	19	f
-856	1	856	1	Wollen Sie die Session wirklich löschen?	deutsch	t	46	f
+856	1	856	1	Wollen Sie die Session wirklich lÃ¶schen?	deutsch	t	46	f
 857	1	857	1	zum Anfang	deutsch	t	13	f
 858	1	858	1	zum Ende	deutsch	t	13	f
-859	1	859	1	nächster	deutsch	t	13	f
+859	1	859	1	nÃ¤chster	deutsch	t	13	f
 860	1	860	1	vorheriger	deutsch	t	13	f
 866	1	866	1	NEIN	deutsch	t	5	f
 867	1	867	1	JA	deutsch	t	5	f
 869	1	869	1	benachrichtigen	deutsch	t	15	f
-870	1	870	1	Website öffnen	deutsch	t	15	f
+870	1	870	1	Website Ã¶ffnen	deutsch	t	15	f
 873	1	873	1	Sonntag	deutsch	t	41	f
 874	1	874	1	Montag	deutsch	t	41	f
 875	1	875	1	Dienstag	deutsch	t	41	f
@@ -4614,7 +4614,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 879	1	879	1	Samstag	deutsch	t	41	f
 880	1	880	1	Januar	deutsch	t	41	f
 881	1	881	1	Februar	deutsch	t	41	f
-882	1	882	1	März	deutsch	t	41	f
+882	1	882	1	MÃ¤rz	deutsch	t	41	f
 883	1	883	1	April	deutsch	t	41	f
 884	1	884	1	Mai	deutsch	t	41	f
 885	1	885	1	Juni	deutsch	t	41	f
@@ -4628,25 +4628,25 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 839	1	839	2	User administrieren	deutsch	t	\N	f
 891	1	891	1	Dezember	deutsch	t	41	f
 897	1	897	3	Untergruppe von	deutsch	t	119	f
-899	1	899	3	Wollen Sie die Session dieses Users löschen?	deutsch	t	127	f
+899	1	899	3	Wollen Sie die Session dieses Users lÃ¶schen?	deutsch	t	127	f
 900	1	900	3	Hauptgruppe	deutsch	t	127	f
 901	1	901	3	Untergruppen	deutsch	t	127	f
 903	1	903	3	IP-range	deutsch	t	127	f
 904	1	904	3	Sessionrefresh	deutsch	t	127	f
-905	1	905	3	Tabellenrechte zurücksetzten	deutsch	t	127	f
-907	1	907	3	Menürechte zurücksetzten	deutsch	t	127	f
+905	1	905	3	Tabellenrechte zurÃ¼cksetzten	deutsch	t	127	f
+907	1	907	3	MenÃ¼rechte zurÃ¼cksetzten	deutsch	t	127	f
 908	1	908	3	Wollen Sie den User	deutsch	t	132	f
 911	1	911	3	Debug	deutsch	t	132	f
 916	1	916	3	Linkgenerator	deutsch	t	107	f
 917	1	917	3	Eingabe des absoluten Links!	deutsch	t	107	f
 925	1	925	3	Typ	deutsch	t	110	f
-926	1	926	3	Schlüssel	deutsch	t	110	f
+926	1	926	3	SchlÃ¼ssel	deutsch	t	110	f
 928	1	928	3	Defaultwert	deutsch	t	110	f
 930	1	930	3	konvertieren	deutsch	t	110	f
 931	1	931	3	ajax	deutsch	t	110	f
-939	1	939	3	Verknüpfungen in	deutsch	t	139	f
+939	1	939	3	VerknÃ¼pfungen in	deutsch	t	139	f
 940	1	940	3	eingetragen	deutsch	t	139	f
-942	1	942	3	hinzugefügt	deutsch	t	139	f
+942	1	942	3	hinzugefÃ¼gt	deutsch	t	139	f
 834	1	834	2	allgemein	deutsch	t	\N	f
 835	1	835	2	allgemeine Gruppeneinstellungen	deutsch	t	\N	f
 949	1	949	3	ID	deutsch	t	140	f
@@ -4665,13 +4665,13 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12737	2	2907	2	Revision manager	english	t	0	f
 12741	2	2908	2	Revision manager	english	t	0	f
 971	1	971	3	Insgesamt wurden	deutsch	t	145	f
-972	1	972	3	Datensätze	deutsch	t	145	f
+972	1	972	3	DatensÃ¤tze	deutsch	t	145	f
 973	1	973	3	exportiert	deutsch	t	145	f
 974	1	974	3	Export-Verzeichnis	deutsch	t	145	f
 977	1	977	3	Dateien zusammenfassen	deutsch	t	145	f
 979	1	979	3	starten	deutsch	t	145	f
 987	1	987	3	fertig	deutsch	t	147	f
-988	1	988	3	Folgende Felder haben ein ungültiges Format	deutsch	t	148	f
+988	1	988	3	Folgende Felder haben ein ungÃ¼ltiges Format	deutsch	t	148	f
 12745	2	2909	1	assigned to	english	t	0	f
 12753	2	2911	3	activates automatic deletion and re-insertion of dependent queries	english	t	110	f
 12757	2	2912	3	Dependencies	english	t	110	f
@@ -4687,35 +4687,35 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12769	2	2915	2	Data synchronisation	english	t	0	f
 12781	2	2918	3	open	english	t	110	f
 12785	2	2919	3	will be marked as open in the table view	english	t	110	f
-12767	3	2915	2	sincronización de datos	Espagñol	t	0	f
-12779	3	2918	3	desplegar	Espagñol	t	110	f
-12783	3	2919	3	está marcado como abierto en la vista de tabla	Espagñol	t	110	f
-12770	4	2915	2	synchronisation des données	francais	t	0	f
+12767	3	2915	2	sincronizaciÃ³n de datos	EspagÅ„ol	t	0	f
+12779	3	2918	3	desplegar	EspagÅ„ol	t	110	f
+12783	3	2919	3	estÄ¯ marcado como abierto en la vista de tabla	EspagÅ„ol	t	110	f
+12770	4	2915	2	synchronisation des donnÃ©es	francais	t	0	f
 12782	4	2918	3	ouvrir	francais	t	110	f
-12786	4	2919	3	est marqué comme ouvert dans la vue de la table	francais	t	110	f
+12786	4	2919	3	est marquÃ© comme ouvert dans la vue de la table	francais	t	110	f
 997	1	997	3	Zeilenvorschau	deutsch	t	148	f
 998	1	998	3	aus Systemdatei	deutsch	t	148	f
-1002	1	1002	3	überschreiben	deutsch	t	148	f
-1003	1	1003	3	anhängen	deutsch	t	148	f
+1002	1	1002	3	Ã¼berschreiben	deutsch	t	148	f
+1003	1	1003	3	anhÃ¤ngen	deutsch	t	148	f
 1004	1	1004	3	ID beibehalten	deutsch	t	148	f
 1006	1	1006	3	Komplett-Import	deutsch	t	148	f
 1007	1	1007	3	Config-Datei	deutsch	t	148	f
 1009	1	1009	3	reinstallieren	deutsch	t	148	f
 1010	1	1010	3	falscher Feldtyp	deutsch	t	149	f
-1011	1	1011	3	Datensätze eingefügt	deutsch	t	149	f
+1011	1	1011	3	DatensÃ¤tze eingefÃ¼gt	deutsch	t	149	f
 1012	1	1012	3	Fehler	deutsch	t	149	f
 1014	1	1014	3	Instanz testen	deutsch	t	149	f
-1015	1	1015	3	Daten in Tabelle einfügen	deutsch	t	149	f
+1015	1	1015	3	Daten in Tabelle einfÃ¼gen	deutsch	t	149	f
 1016	1	1016	3	Reihen fehlgeschlagen	deutsch	t	149	f
-1017	1	1017	3	Reihen eingefügt	deutsch	t	149	f
+1017	1	1017	3	Reihen eingefÃ¼gt	deutsch	t	149	f
 1018	1	1018	3	erstellt	deutsch	t	149	f
 1019	1	1019	3	fehlgeschlagen	deutsch	t	149	f
 1020	1	1020	3	erstelle Tabelle	deutsch	t	149	f
-1021	1	1021	3	lösche Tabelle	deutsch	t	149	f
+1021	1	1021	3	lÃ¶sche Tabelle	deutsch	t	149	f
 1022	1	1022	3	Import Report	deutsch	t	149	f
 1024	1	1024	3	indiziert	deutsch	t	149	f
 1025	1	1025	3	Indizierung Tabelle	deutsch	t	149	f
-1026	1	1026	3	foreign key hinzufügen	deutsch	t	149	f
+1026	1	1026	3	foreign key hinzufÃ¼gen	deutsch	t	149	f
 1029	1	1029	3	Tabellengruppe	deutsch	t	150	f
 1036	1	1036	3	Struktur	deutsch	t	150	f
 1037	1	1037	3	Struktur und Daten	deutsch	t	150	f
@@ -4723,31 +4723,31 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 1039	1	1039	3	vorhanden	deutsch	t	151	f
 1040	1	1040	3	importieren	deutsch	t	151	f
 12778	4	2917	2	Synchronisation ID esclave 	francais	t	0	f
-12775	3	2917	2	Sincronización ID esclavo 	Espagñol	t	0	f
+12775	3	2917	2	SincronizaciÃ³n ID esclavo 	EspagÅ„ol	t	0	f
 12777	2	2917	2	Sync slave ID 	english	t	0	f
 922	1	922	3	Feldname	deutsch	t	110	f
 924	1	924	3	Bezeichnung	deutsch	t	110	f
 932	1	932	3	Auswahlsuche	deutsch	t	110	f
 1054	1	1054	3	Tabellen und Feldrechte abgleichen	deutsch	t	154	f
-1056	1	1056	3	Menürechte abgleichen	deutsch	t	154	f
+1056	1	1056	3	MenÃ¼rechte abgleichen	deutsch	t	154	f
 1551	2	385	2	Tables	english	t	0	f
-1057	1	1057	3	Alle Sessions löschen	deutsch	t	154	f
+1057	1	1057	3	Alle Sessions lÃ¶schen	deutsch	t	154	f
 1060	1	1060	3	System-Info	deutsch	t	155	f
 1061	1	1061	3	zeigen	deutsch	t	155	f
-1065	1	1065	3	ausführen	deutsch	t	155	f
+1065	1	1065	3	ausfÃ¼hren	deutsch	t	155	f
 1067	1	1067	3	Priviligien	deutsch	t	155	f
 1068	1	1068	3	Erstellungsdatum	deutsch	t	155	f
 1069	1	1069	3	Tabelle erfolgreich geleert	deutsch	t	156	f
 1070	1	1070	3	Fehler! Die Tabelle wurde nicht geleert.	deutsch	t	156	f
-1071	1	1071	3	Tabelle erfolgreich gelöscht	deutsch	t	156	f
-1072	1	1072	3	Fehler! Die Tabelle wurde nicht gelöscht.	deutsch	t	156	f
+1071	1	1071	3	Tabelle erfolgreich gelÃ¶scht	deutsch	t	156	f
+1072	1	1072	3	Fehler! Die Tabelle wurde nicht gelÃ¶scht.	deutsch	t	156	f
 2456	1	1268	2	Tabellenrechte	deutsch	t	\N	f
 2458	1	1269	2	Tabellenrechte-Aktualisierung	deutsch	t	\N	f
 2460	1	1270	2	Nutzungsrechte	deutsch	t	\N	f
 2462	1	1271	2	Nutzungsrechte Aktualisierung	deutsch	t	\N	f
 12764	1	2914	2	Synchronisation	deutsch	t	0	f
 12768	1	2915	2	Datensynchronisation	deutsch	t	0	f
-1073	1	1073	3	SQL-Query erfolgreich ausgeführt	deutsch	t	156	f
+1073	1	1073	3	SQL-Query erfolgreich ausgefÃ¼hrt	deutsch	t	156	f
 1078	1	1078	3	Regel	deutsch	t	160	f
 1083	1	1083	3	URL	deutsch	t	162	f
 1087	1	1087	3	Bild	deutsch	t	162	f
@@ -4761,7 +4761,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 1109	1	1109	3	Spalten	deutsch	t	168	f
 1111	1	1111	3	Abstand	deutsch	t	168	f
 1112	1	1112	3	Kopf	deutsch	t	168	f
-1113	1	1113	3	Fuß	deutsch	t	168	f
+1113	1	1113	3	FuÃŸ	deutsch	t	168	f
 1114	1	1114	3	Liste	deutsch	t	168	f
 1115	1	1115	3	Schriftstil	deutsch	t	168	f
 1116	1	1116	3	Schriftgewicht	deutsch	t	168	f
@@ -4776,19 +4776,19 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 1124	1	1124	3	kursiv	deutsch	t	168	f
 1125	1	1125	3	fett	deutsch	t	168	f
 1126	1	1126	3	unterstrichen	deutsch	t	168	f
-1127	1	1127	3	Großbuchstaben	deutsch	t	168	f
+1127	1	1127	3	GroÃŸbuchstaben	deutsch	t	168	f
 1128	1	1128	3	Kleinbuchstaben	deutsch	t	168	f
 1129	1	1129	3	Blocksatz	deutsch	t	168	f
-1130	1	1130	3	linksbündig	deutsch	t	168	f
+1130	1	1130	3	linksbÃ¼ndig	deutsch	t	168	f
 1131	1	1131	3	zentriert	deutsch	t	168	f
-1132	1	1132	3	rechtsbündig	deutsch	t	168	f
+1132	1	1132	3	rechtsbÃ¼ndig	deutsch	t	168	f
 1134	1	1134	3	Historie	deutsch	t	168	f
 1136	1	1136	3	neuberechnen	deutsch	t	168	f
 1138	1	1138	3	Z-Satz	deutsch	t	169	f
-1140	1	1140	3	Seitengröße (mm)	deutsch	t	169	f
+1140	1	1140	3	SeitengrÃ¶ÃŸe (mm)	deutsch	t	169	f
 1141	1	1141	3	Breite	deutsch	t	169	f
-1142	1	1142	3	Höhe	deutsch	t	169	f
-1143	1	1143	3	Seitenränder (mm)	deutsch	t	169	f
+1142	1	1142	3	HÃ¶he	deutsch	t	169	f
+1143	1	1143	3	SeitenrÃ¤nder (mm)	deutsch	t	169	f
 1144	1	1144	3	oben	deutsch	t	169	f
 1145	1	1145	3	unten	deutsch	t	169	f
 1146	1	1146	3	links	deutsch	t	169	f
@@ -4801,14 +4801,14 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 1153	1	1153	3	Rechteck	deutsch	t	169	f
 1154	1	1154	3	Ellipse	deutsch	t	169	f
 1157	1	1157	3	Seiten-Nr	deutsch	t	169	f
-1162	1	1162	3	für Tabelle	deutsch	t	170	f
+1162	1	1162	3	fÃ¼r Tabelle	deutsch	t	170	f
 1165	1	1165	3	neuer Bericht	deutsch	t	170	f
 1167	1	1167	3	Die Graphik konnte nicht erfolgreich gespeichert werden	deutsch	t	172	f
 1170	1	1170	3	Zeichensatz	deutsch	t	175	f
 1490	2	312	1	Tue	english	t	88	f
 1171	1	1171	3	Unterformular	deutsch	t	175	f
 1174	1	1174	3	Submit-Button	deutsch	t	175	f
-1176	1	1176	3	Qualität	deutsch	t	175	f
+1176	1	1176	3	QualitÃ¤t	deutsch	t	175	f
 1179	1	1179	3	Formular	deutsch	t	176	f
 1183	1	1183	3	Entwurf Einspaltig	deutsch	t	176	f
 1184	1	1184	3	Entwurf Liste	deutsch	t	176	f
@@ -5171,46 +5171,46 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2435	2	1257	1	archive	english	t	122	f
 2438	1	1259	1	editieren	deutsch	t	122	f
 2439	2	1259	1	edit	english	t	122	f
-2448	1	1264	3	Diese Funktion prüft alle Tabellenrechte auf Vorhandensein! \nVorhandene Rechte werden nicht überschrieben	deutsch	t	154	t
+2448	1	1264	3	Diese Funktion prÃ¼ft alle Tabellenrechte auf Vorhandensein! \nVorhandene Rechte werden nicht Ã¼berschrieben	deutsch	t	154	t
 2430	1	1255	3	Indikatorregel	deutsch	t	122	f
-2450	1	1265	3	Diese Funktion prüft alle Menürechte auf Vorhandensein! \nVorhandene Rechte werden nicht überschrieben	deutsch	t	154	t
-2452	1	1266	2	Überwachung	deutsch	t	\N	f
-2454	1	1267	2	User-Überwachung	deutsch	t	\N	f
+2450	1	1265	3	Diese Funktion prÃ¼ft alle MenÃ¼rechte auf Vorhandensein! \nVorhandene Rechte werden nicht Ã¼berschrieben	deutsch	t	154	t
+2452	1	1266	2	Ãœberwachung	deutsch	t	\N	f
+2454	1	1267	2	User-Ãœberwachung	deutsch	t	\N	f
 2472	1	1276	2	Tabellendetail	deutsch	t	\N	f
 2474	1	1277	2	Tabelleneinstellungen	deutsch	t	\N	f
-2482	1	1281	2	verknüpfen	deutsch	t	\N	f
-2484	1	1282	2	Datensatz verknüpfen	deutsch	t	\N	f
-2488	1	1284	2	Verknüpfung entfernen	deutsch	t	\N	f
-2490	1	1285	1	Datensatz schon verknüpft!	deutsch	t	27	f
+2482	1	1281	2	verknÃ¼pfen	deutsch	t	\N	f
+2484	1	1282	2	Datensatz verknÃ¼pfen	deutsch	t	\N	f
+2488	1	1284	2	VerknÃ¼pfung entfernen	deutsch	t	\N	f
+2490	1	1285	1	Datensatz schon verknÃ¼pft!	deutsch	t	27	f
 2491	2	1285	1	Record allready linked	english	t	27	f
 2492	1	1286	2	Fensteraufteilung	deutsch	t	\N	f
-2494	1	1287	2	Rahmengröße und Art anpassen	deutsch	t	\N	f
+2494	1	1287	2	RahmengrÃ¶ÃŸe und Art anpassen	deutsch	t	\N	f
 4689	1	1625	1	Ansicht	deutsch	t	66	f
 2496	1	1288	2	automatische Breite	deutsch	t	\N	f
-2498	1	1289	2	Tabellengröße automatisch anpassen	deutsch	t	\N	f
+2498	1	1289	2	TabellengrÃ¶ÃŸe automatisch anpassen	deutsch	t	\N	f
 2500	1	1290	2	Liste bearbeiten	deutsch	t	\N	f
 2502	1	1291	2	Liste bearbeiten	deutsch	t	\N	f
 2508	1	1294	1	zur ersten Seite	deutsch	t	5	f
 2510	1	1295	1	zur letzten Seite	deutsch	t	5	f
 4825	2	1670	3	disabled	english	t	52	f
-2512	1	1296	1	eine Seite zurück	deutsch	t	5	f
+2512	1	1296	1	eine Seite zurÃ¼ck	deutsch	t	5	f
 2514	1	1297	1	eine Seite weiter	deutsch	t	5	f
-2516	1	1298	1	öffne Verknüpfung	deutsch	t	15	f
+2516	1	1298	1	Ã¶ffne VerknÃ¼pfung	deutsch	t	15	f
 2387	2	1233	2	history	english	t	\N	f
 2385	2	1232	2	history	english	t	\N	f
 2404	1	1242	1	Benutzer	deutsch	t	20	f
 4819	2	1668	3	minimum	english	t	52	f
 4296	1	1494	3	tiefstellen	deutsch	t	168	f
-2518	1	1299	1	erzeuge Verknüpfung	deutsch	t	15	f
-2520	1	1300	3	erlaube Passwortänderung	deutsch	t	127	f
-2526	1	1303	3	Verknüpfungen neu eintragen!	deutsch	t	121	f
+2518	1	1299	1	erzeuge VerknÃ¼pfung	deutsch	t	15	f
+2520	1	1300	3	erlaube PasswortÃ¤nderung	deutsch	t	127	f
+2526	1	1303	3	VerknÃ¼pfungen neu eintragen!	deutsch	t	121	f
 2528	1	1304	3	neu berechnen!	deutsch	t	101	f
 2529	2	1304	3	Recalculate!	english	t	101	f
 2530	1	1305	2	archivieren	deutsch	t	\N	f
 2531	2	1305	2	archive	english	t	\N	f
 2532	1	1306	2	Datensatz archivieren	deutsch	t	\N	f
 2534	1	1307	2	zeige archivierte	deutsch	t	\N	f
-2536	1	1308	2	zeige archivierte Datensätze	deutsch	t	\N	f
+2536	1	1308	2	zeige archivierte DatensÃ¤tze	deutsch	t	\N	f
 2540	1	1310	2	Datensatz wiederherstellen	deutsch	t	\N	f
 2542	1	1311	1	Soll der Datensatz wiederhergestellt werden?	deutsch	t	13	t
 2544	1	1312	1	Datensatz wurde archiviert!	deutsch	t	25	f
@@ -5218,19 +5218,19 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2546	1	1313	1	Datensatz wurde wiederhergestellt!	deutsch	t	25	f
 2547	2	1313	1	The record has been recreated!	english	t	25	f
 5927	1	2038	2	Meine Aufgaben	deutsch	t	\N	f
-2550	1	1315	3	Username und Passwort müssen aus mindestens 5 Zeichen bestehen!	deutsch	t	127	f
+2550	1	1315	3	Username und Passwort mÃ¼ssen aus mindestens 5 Zeichen bestehen!	deutsch	t	127	f
 2554	1	1317	1	Keine Berechtigung!	deutsch	t	31	f
 2555	2	1317	1	No permission!	english	t	31	f
 2558	1	1319	2	Uploadeditor	deutsch	t	\N	f
 2560	1	1320	2	Uploadeditor	deutsch	t	\N	f
-2486	1	1283	2	Verknüpfungen entfernen	deutsch	t	\N	f
-2522	1	1301	2	Verknüpfungseditor	deutsch	t	\N	f
+2486	1	1283	2	VerknÃ¼pfungen entfernen	deutsch	t	\N	f
+2522	1	1301	2	VerknÃ¼pfungseditor	deutsch	t	\N	f
 2564	1	1322	1	Dateipfad	deutsch	t	186	f
 2568	1	1324	1	Dateiliste importieren!	deutsch	t	186	f
-2570	1	1325	1	Datensätze wurden erfolgreich gelöscht!	deutsch	t	25	f
-2572	1	1326	1	Datensätze wurden achiviert!	deutsch	t	25	f
+2570	1	1325	1	DatensÃ¤tze wurden erfolgreich gelÃ¶scht!	deutsch	t	25	f
+2572	1	1326	1	DatensÃ¤tze wurden achiviert!	deutsch	t	25	f
 2573	2	1326	1	Records have been archived!	english	t	25	f
-2574	1	1327	1	Datensätze wurden wiederhergestellt!	deutsch	t	25	f
+2574	1	1327	1	DatensÃ¤tze wurden wiederhergestellt!	deutsch	t	25	f
 2575	2	1327	1	The record has been recreated!	english	t	25	f
 2580	1	1330	1	alle umkehren	deutsch	t	14	f
 2582	1	1331	1	alle markieren	deutsch	t	14	f
@@ -5239,7 +5239,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2596	1	1338	1	ersetze mit Datum	deutsch	t	14	f
 2598	1	1339	1	addiere Tage	deutsch	t	14	f
 2600	1	1340	1	subtrahiere Tage	deutsch	t	14	f
-2602	1	1341	1	ändern!	deutsch	t	14	f
+2602	1	1341	1	Ã¤ndern!	deutsch	t	14	f
 2603	2	1341	1	modify!	english	t	14	f
 2604	1	1342	1	angezeigte	deutsch	t	5	f
 2605	2	1342	1	shown	english	t	5	f
@@ -5305,16 +5305,16 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2760	1	1420	1	alle User sperren!	deutsch	t	154	f
 2761	2	1420	1	Deactivate all users!	english	t	154	f
 2764	1	1422	2	abrufen	deutsch	t	\N	f
-2766	1	1423	2	auf neue Nachrichten prüfen	deutsch	t	\N	f
-6603	4	941	3	Intégrité référentielle	francais	t	139	f
-3609	3	941	3	integridad referencial	Espagñol	t	139	f
-2672	1	1376	2	Verknüpfung 1:n	deutsch	t	0	f
+2766	1	1423	2	auf neue Nachrichten prÃ¼fen	deutsch	t	\N	f
+6603	4	941	3	IntÃ©gritÃ© rÃ©fÃ©rentielle	francais	t	139	f
+3609	3	941	3	integridad referencial	EspagÅ„ol	t	139	f
+2672	1	1376	2	VerknÃ¼pfung 1:n	deutsch	t	0	f
 2744	1	1412	2	z.B. Kunde (1) -> Ansprechpartner (n)	deutsch	t	0	f
-2674	1	1377	2	Verknüpfung n:m	deutsch	t	0	f
+2674	1	1377	2	VerknÃ¼pfung n:m	deutsch	t	0	f
 2746	1	1413	2	z.B. Auftrag (n) -> Artikel (m)	deutsch	t	0	f
 2676	1	1378	2	Post-User	deutsch	t	0	f
 2678	1	1379	2	Edit-User	deutsch	t	0	f
-2750	1	1415	2	Welcher User den Datensatz zuletzt verändert hat	deutsch	t	0	f
+2750	1	1415	2	Welcher User den Datensatz zuletzt verÃ¤ndert hat	deutsch	t	0	f
 2736	1	1408	2	Auswahlfeld (mehrfachauswahl) als MULTISELECT	deutsch	t	0	f
 2758	1	1419	2	Textblock Memo	deutsch	t	0	f
 2714	1	1397	2	Text	deutsch	t	0	f
@@ -5323,8 +5323,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2752	1	1416	2	Erstellungsdatum	deutsch	t	0	f
 2754	1	1417	2	Bearbeitungsdatum	deutsch	t	0	f
 2717	2	1398	2	Textarea with max. 399 chars 	english	t	0	f
-2777	3	8	1	IP	Espagñol	t	4	f
-2841	3	96	1	mostrar tope	Espagñol	t	17	f
+2777	3	8	1	IP	EspagÅ„ol	t	4	f
+2841	3	96	1	mostrar tope	EspagÅ„ol	t	17	f
 4107	1	1431	3	Anmeldung	deutsch	t	182	f
 4108	2	1431	3	Login	english	t	182	f
 4113	1	1433	3	beobachten	deutsch	t	182	f
@@ -5352,38 +5352,38 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2731	2	1405	2	email with max 128 chars	english	t	0	f
 5032	2	1739	3	Preview	english	t	52	f
 5653	2	1946	3	Main menu frame	english	t	175	f
-4167	1	1451	1	löschen!	deutsch	t	192	f
+4167	1	1451	1	lÃ¶schen!	deutsch	t	192	f
 4168	2	1451	1	Delete!	english	t	192	f
 4191	1	1459	3	gruppierbar	deutsch	t	110	f
 4192	2	1459	3	groupable	english	t	110	f
-4194	1	1460	3	Verknüpfung	deutsch	t	140	f
+4194	1	1460	3	VerknÃ¼pfung	deutsch	t	140	f
 4203	1	1463	3	proportional	deutsch	t	168	f
 4204	2	1463	3	proportional	english	t	168	f
 4206	1	1464	3	kopieren	deutsch	t	176	f
-4223	1	1470	2	löschen	deutsch	t	\N	f
+4223	1	1470	2	lÃ¶schen	deutsch	t	\N	f
 4224	2	1470	2	delete	english	t	\N	f
-4226	1	1471	2	Dateien/Ordner löschen	deutsch	t	\N	f
+4226	1	1471	2	Dateien/Ordner lÃ¶schen	deutsch	t	\N	f
 4230	1	1472	1	Keine Dateien gefunden!	deutsch	t	66	f
-4241	1	1476	2	löschen	deutsch	t	\N	f
+4241	1	1476	2	lÃ¶schen	deutsch	t	\N	f
 4242	2	1476	2	delete	english	t	\N	f
-4244	1	1477	2	Nachricht löschen	deutsch	t	\N	f
+4244	1	1477	2	Nachricht lÃ¶schen	deutsch	t	\N	f
 4257	1	1481	3	incl. Userverzeichnis	deutsch	t	127	f
 4263	1	1483	2	Auswahlfeld (Liste)	deutsch	t	0	f
 4266	1	1484	2	Auswahl (Radio)	deutsch	t	0	f
 4272	2	1486	2	History	english	t	\N	f
 4275	2	1487	2	Record history	english	t	\N	f
-4284	1	1490	3	obenbündig	deutsch	t	168	f
+4284	1	1490	3	obenbÃ¼ndig	deutsch	t	168	f
 4285	2	1490	3	align top	english	t	168	f
 4287	1	1491	3	mittig	deutsch	t	168	f
 5101	2	1762	1	Method	english	t	66	f
 2738	1	1409	2	Auswahlfeld (mehrfachauswahl) mit neuem Fenster	deutsch	t	0	f
 4260	1	1482	2	Auswahlfeld (mehrfachauswahl) als Checkbox-Liste	deutsch	t	0	f
 2722	1	1401	2	TRUE | FALSE oder 0 | 1	deutsch	t	0	f
-4290	1	1492	3	untenbündig	deutsch	t	168	f
+4290	1	1492	3	untenbÃ¼ndig	deutsch	t	168	f
 4291	2	1492	3	align bottom	english	t	168	f
 4293	1	1493	3	Basislinie	deutsch	t	168	f
 4294	2	1493	3	baseline	english	t	168	f
-4299	1	1495	3	höherstellen	deutsch	t	168	f
+4299	1	1495	3	hÃ¶herstellen	deutsch	t	168	f
 4302	1	1496	3	oberer Schriftrand	deutsch	t	168	f
 4305	1	1497	3	unterer Schriftrand	deutsch	t	168	f
 4306	2	1497	3	bottom of the font line	english	t	168	f
@@ -5399,8 +5399,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4332	1	1506	1	Ja	deutsch	t	15	f
 4335	1	1507	1	Nein	deutsch	t	15	f
 4339	2	1508	3	Requiered field	english	t	122	f
-4341	1	1509	1	Folgende Felder wurden nicht ausgefüllt!	deutsch	t	13	f
-4353	1	1513	3	Gruppe gelöscht	deutsch	t	116	f
+4341	1	1509	1	Folgende Felder wurden nicht ausgefÃ¼llt!	deutsch	t	13	f
+4353	1	1513	3	Gruppe gelÃ¶scht	deutsch	t	116	f
 4362	1	1516	3	field_type	deutsch	t	160	f
 4363	2	1516	3	field_type	english	t	160	f
 4365	1	1517	3	data_type	deutsch	t	160	f
@@ -5410,14 +5410,14 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4371	1	1519	3	Datentyp	deutsch	t	160	f
 4207	2	1464	3	copy	english	t	176	f
 4221	1	1469	1	Gruppen	deutsch	t	20	f
-4386	1	1524	1	übernehmen+anlegen	deutsch	t	13	f
+4386	1	1524	1	Ã¼bernehmen+anlegen	deutsch	t	13	f
 4387	2	1524	1	save and create new	english	t	13	f
 4392	1	1526	1	zeige Liste	deutsch	t	13	f
-4395	1	1527	1	übernehmen/anwenden	deutsch	t	5	f
+4395	1	1527	1	Ã¼bernehmen/anwenden	deutsch	t	5	f
 4396	2	1527	1	save	english	t	5	f
-4404	1	1530	1	übernehmen+nächster	deutsch	t	13	f
+4404	1	1530	1	Ã¼bernehmen+nÃ¤chster	deutsch	t	13	f
 4405	2	1530	1	save and go to next	english	t	13	f
-4407	1	1531	1	übernehmen+vorheriger	deutsch	t	13	f
+4407	1	1531	1	Ã¼bernehmen+vorheriger	deutsch	t	13	f
 5055	1	1747	3	Hinweise	deutsch	t	52	f
 4408	2	1531	1	save and go to previous	english	t	13	f
 4410	1	1532	3	Umleitung	deutsch	t	127	f
@@ -5432,13 +5432,13 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4426	2	1537	3	doubled	english	t	168	f
 4428	1	1538	3	3D-innen	deutsch	t	168	f
 4429	2	1538	3	3D in	english	t	168	f
-4431	1	1539	3	3D-außen	deutsch	t	168	f
+4431	1	1539	3	3D-auÃŸen	deutsch	t	168	f
 4432	2	1539	3	3D out	english	t	168	f
 4434	1	1540	3	Art	deutsch	t	168	f
 4435	2	1540	3	type	english	t	168	f
 4437	1	1541	3	Rahmenfarbe	deutsch	t	168	f
 4446	1	1544	1	Metadaten zeigen	deutsch	t	15	f
-4449	1	1545	1	Metadaten ändern	deutsch	t	15	f
+4449	1	1545	1	Metadaten Ã¤ndern	deutsch	t	15	f
 4470	1	1552	1	Phys.name	deutsch	t	15	f
 4471	2	1552	1	Phys.name	english	t	15	f
 4494	1	1560	1	entpacken	deutsch	t	15	f
@@ -5448,17 +5448,17 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4504	2	1563	1	Format	english	t	15	f
 4506	1	1564	1	Geometrie	deutsch	t	15	f
 4507	2	1564	1	Geometry	english	t	15	f
-4509	1	1565	1	Auflösung	deutsch	t	15	f
+4509	1	1565	1	AuflÃ¶sung	deutsch	t	15	f
 4510	2	1565	1	Resolution	english	t	15	f
 4512	1	1566	1	Farbtiefe	deutsch	t	15	f
 4515	1	1567	1	Farben	deutsch	t	15	f
-4527	1	1571	1	zurück setzen	deutsch	t	20	f
+4527	1	1571	1	zurÃ¼ck setzen	deutsch	t	20	f
 4528	2	1571	1	rollback	english	t	20	f
 4529	1	1572	2	Backup	deutsch	t	\N	f
 4530	2	1572	2	Backup	english	t	\N	f
 4532	1	1573	2	System-Backup	deutsch	t	\N	f
 4533	2	1573	2	System-Backup	english	t	\N	f
-4536	1	1574	1	Die Referentielle Integrität wurde verletzt!	deutsch	t	25	f
+4536	1	1574	1	Die Referentielle IntegritÃ¤t wurde verletzt!	deutsch	t	25	f
 4537	2	1574	1	referentially integrity was broken	english	t	25	f
 4538	1	1575	2	History	deutsch	t	\N	f
 4539	2	1575	2	History	english	t	\N	f
@@ -5477,7 +5477,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4559	1	1582	2	System-Jobs	deutsch	t	\N	f
 4562	1	1583	2	Systemverbundene Jobs (Indizierung / OCR)	deutsch	t	\N	f
 4565	1	1584	2	Periodisch	deutsch	t	\N	f
-4568	1	1585	2	Periodische Ausführung	deutsch	t	\N	f
+4568	1	1585	2	Periodische AusfÃ¼hrung	deutsch	t	\N	f
 4577	1	1588	2	History	deutsch	t	\N	f
 4578	2	1588	2	History	english	t	\N	f
 4580	1	1589	2	Jobs - History	deutsch	t	\N	f
@@ -5488,7 +5488,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4614	1	1600	1	Passwort wiederholen	deutsch	t	46	f
 4521	1	1569	1	Style	deutsch	t	175	f
 4615	2	1600	1	reenter password	english	t	46	f
-4638	1	1608	1	Sie müssen einen Namen vergeben!	deutsch	t	5	f
+4638	1	1608	1	Sie mÃ¼ssen einen Namen vergeben!	deutsch	t	5	f
 4639	2	1608	1	You must set a name!	english	t	5	f
 4649	1	1612	2	Datei runterladen	deutsch	t	\N	f
 4652	1	1613	2	Datei/Archiv runterladen	deutsch	t	\N	f
@@ -5518,21 +5518,21 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4729	2	1638	3	Created by	english	t	52	f
 4731	1	1639	3	Erstellt am	deutsch	t	52	f
 4732	2	1639	3	Creation date	english	t	52	f
-4734	1	1640	3	Überschrift	deutsch	t	52	f
+4734	1	1640	3	Ãœberschrift	deutsch	t	52	f
 4735	2	1640	3	header	english	t	52	f
 4737	1	1641	3	Zusatz zum Namen	deutsch	t	52	f
 4738	2	1641	3	other name	english	t	52	f
 4740	1	1642	3	Verfasser	deutsch	t	52	f
 4743	1	1643	3	Name des Verfassers (Familienname, Vorname)	deutsch	t	52	f
 4744	2	1643	3	creater name (last name, first name)	english	t	52	f
-4746	1	1644	3	Schlagwörter	deutsch	t	52	f
+4746	1	1644	3	SchlagwÃ¶rter	deutsch	t	52	f
 4747	2	1644	3	keywords	english	t	52	f
 4749	1	1645	3	Stichworte zum Thema des Dokuments, mehrere getrennt durch Komma	deutsch	t	52	f
 4755	1	1647	3	Abstrakt, Beschreibung des Inhalts	deutsch	t	52	f
 4756	2	1647	3	Abstract, content description	english	t	52	f
 4758	1	1648	3	Herausgeber	deutsch	t	52	f
 4759	2	1648	3	Distributor	english	t	52	f
-4761	1	1649	3	Verleger, Herausgeber, Universität etc.	deutsch	t	52	f
+4761	1	1649	3	Verleger, Herausgeber, UniversitÃ¤t etc.	deutsch	t	52	f
 4762	2	1649	3	Distributor, university, etc...	english	t	52	f
 4764	1	1650	3	Mitwirkende	deutsch	t	52	f
 4765	2	1650	3	co author	english	t	52	f
@@ -5542,7 +5542,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4774	2	1653	3	documents type	english	t	52	f
 4782	1	1656	3	Identifikation	deutsch	t	52	f
 4783	2	1656	3	identification	english	t	52	f
-4785	1	1657	3	(ISBN, ISSN, URL o.ä. des vorliegenden Dokuments betr. eindeutiger Identifikation	deutsch	t	52	f
+4785	1	1657	3	(ISBN, ISSN, URL o.Ã¤. des vorliegenden Dokuments betr. eindeutiger Identifikation	deutsch	t	52	f
 4786	2	1657	3	(ISBN, ISSN)	english	t	52	f
 4791	1	1659	3	Werk, gedruckt oder elektronisch, aus dem das vorliegende Dokument stammt	deutsch	t	52	f
 4797	1	1661	3	Sprache des Inhalts des Dokuments	deutsch	t	52	f
@@ -5551,7 +5551,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4804	2	1663	3	source	english	t	52	f
 4806	1	1664	3	Attribute	deutsch	t	52	f
 4807	2	1664	3	attribute	english	t	52	f
-4809	1	1665	3	geprüft	deutsch	t	52	f
+4809	1	1665	3	geprÃ¼ft	deutsch	t	52	f
 4810	2	1665	3	checked	english	t	52	f
 4812	1	1666	3	freigegeben	deutsch	t	52	f
 4813	2	1666	3	authorized	english	t	52	f
@@ -5571,13 +5571,13 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4867	2	1684	1	Folder already exists!	english	t	66	f
 4869	1	1685	3	Duplikate	deutsch	t	52	f
 4870	2	1685	3	duplicate	english	t	52	f
-4872	1	1686	3	Das Userverzeichniss konnte nicht gelöscht werden!	deutsch	t	29	f
-4875	1	1687	3	zeige gelöschte User	deutsch	t	132	f
+4872	1	1686	3	Das Userverzeichniss konnte nicht gelÃ¶scht werden!	deutsch	t	29	f
+4875	1	1687	3	zeige gelÃ¶schte User	deutsch	t	132	f
 4878	1	1688	1	Datei ist gesperrt!	deutsch	t	66	f
 4890	1	1692	1	Der Bericht wurde erzeugt.	deutsch	t	93	f
 4891	2	1692	1	Report  was created.	english	t	93	f
 4893	1	1693	1	Bearbeiten	deutsch	t	66	f
-4902	1	1696	1	Nachrichten und Dateien können nicht gemischt werden!	deutsch	t	97	f
+4902	1	1696	1	Nachrichten und Dateien kÃ¶nnen nicht gemischt werden!	deutsch	t	97	f
 4903	2	1696	1	Messages and files can not be mixed	english	t	97	f
 4905	1	1697	1	Dieser Ordner ist ein Systemordner. Er ist nur in Verbindung mit Tabellen, Berichten oder Nachrichten beschreibbar!	deutsch	t	66	f
 4908	2	1698	2	copy	english	t	\N	f
@@ -5588,12 +5588,12 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4930	2	1705	1	document	english	t	3	f
 4932	1	1706	1	Bilder	deutsch	t	3	f
 4933	2	1706	1	picture	english	t	3	f
-4941	1	1709	1	Wollen Sie den gesamten Inhalt des Ordners löschen?	deutsch	t	66	f
+4941	1	1709	1	Wollen Sie den gesamten Inhalt des Ordners lÃ¶schen?	deutsch	t	66	f
 4944	1	1710	1	Keine Upload Berechtigung!	deutsch	t	66	f
 4946	1	1711	2	kennzeichnen	deutsch	t	\N	f
 4947	2	1711	2	mark	english	t	\N	f
 4949	1	1712	2	Nachricht kennzeichnen	deutsch	t	\N	f
-4965	1	1717	1	keine Datei ausgewählt!	deutsch	t	66	f
+4965	1	1717	1	keine Datei ausgewÃ¤hlt!	deutsch	t	66	f
 4966	2	1717	1	No file selected!	english	t	66	f
 4971	1	1719	3	Indiziert am:	deutsch	t	52	f
 4972	2	1719	3	Indexed on:	english	t	52	f
@@ -5605,13 +5605,13 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4981	2	1722	1	Time left (min.):	english	t	23	f
 4985	1	1724	2	Thumbnails erneuern	deutsch	t	\N	f
 4988	1	1725	2	Vorschaubilder neu generieren	deutsch	t	\N	f
-4995	1	1727	3	komplett löschen	deutsch	t	127	f
+4995	1	1727	3	komplett lÃ¶schen	deutsch	t	127	f
 4998	1	1728	3	User aktivieren	deutsch	t	132	f
 5000	1	1729	2	kopieren	deutsch	t	\N	f
 5001	2	1729	2	copy	english	t	\N	f
 5003	1	1730	2	Datensatz kopieren	deutsch	t	\N	f
 5004	2	1730	2	copy record	english	t	\N	f
-5013	1	1733	1	kein Datensatz ausgewählt!	deutsch	t	5	f
+5013	1	1733	1	kein Datensatz ausgewÃ¤hlt!	deutsch	t	5	f
 5018	1	1735	2	neues Fenster	deutsch	t	\N	f
 5021	1	1736	2	neuer LIMBAS-Explorer	deutsch	t	\N	f
 5022	2	1736	2	new LIMBAS-Explorer	english	t	\N	f
@@ -5624,7 +5624,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5035	2	1740	3	XMP	english	t	52	f
 5037	1	1741	3	Objektbeschreibung	deutsch	t	52	f
 5038	2	1741	3	Object description	english	t	52	f
-5040	1	1742	3	Stichwörter	deutsch	t	52	f
+5040	1	1742	3	StichwÃ¶rter	deutsch	t	52	f
 5041	2	1742	3	Keyword	english	t	52	f
 5043	1	1743	3	Kategorien	deutsch	t	52	f
 5044	2	1743	3	Category	english	t	52	f
@@ -5694,7 +5694,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5181	1	1789	3	zeige aktive User	deutsch	t	132	f
 5184	1	1790	3	zeige alle User	deutsch	t	132	f
 5187	1	1791	3	Statistik	deutsch	t	132	f
-5190	1	1792	3	geändert	deutsch	t	132	f
+5190	1	1792	3	geÃ¤ndert	deutsch	t	132	f
 5193	1	1793	3	zeige gesperrte User	deutsch	t	132	f
 5205	1	1797	1	0 (kein Logging)	deutsch	t	127	f
 5206	2	1797	1	0 (no logging)	english	t	127	f
@@ -5720,10 +5720,10 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5235	1	1807	2	ID	deutsch	t	182	f
 5236	2	1807	2	ID	english	t	182	f
 5238	1	1808	2	Art	deutsch	t	182	f
-5241	1	1809	3	Hauptmenü	deutsch	t	163	f
+5241	1	1809	3	HauptmenÃ¼	deutsch	t	163	f
 5244	1	1810	3	Admin	deutsch	t	163	f
 5245	2	1810	3	Admin	english	t	163	f
-5250	1	1812	3	Usermenü	deutsch	t	163	f
+5250	1	1812	3	UsermenÃ¼	deutsch	t	163	f
 5251	2	1812	3	User menu	english	t	163	f
 5253	1	1813	3	Erweiterungen	deutsch	t	163	f
 5254	2	1813	3	Extensions	english	t	163	f
@@ -5731,11 +5731,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5257	2	1814	3	sub group	english	t	162	f
 5259	1	1815	3	Sort	deutsch	t	162	f
 5260	2	1815	3	sort	english	t	162	f
-5265	1	1817	3	Passwort gültig bis	deutsch	t	127	f
+5265	1	1817	3	Passwort gÃ¼ltig bis	deutsch	t	127	f
 5266	2	1817	3	Password valid till	english	t	127	f
 5283	1	1823	3	Generator	deutsch	t	121	f
 5284	2	1823	3	Generator	english	t	121	f
-5286	1	1824	3	zu verknüpfende Tabelle	deutsch	t	121	f
+5286	1	1824	3	zu verknÃ¼pfende Tabelle	deutsch	t	121	f
 5295	1	1827	1	mit global	deutsch	t	19	f
 5296	2	1827	1	with global	english	t	19	f
 5298	2	1828	2	Info	english	t	\N	f
@@ -5756,7 +5756,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5343	1	1843	1	Werte	deutsch	t	12	f
 5346	1	1844	1	davon	deutsch	t	12	f
 5347	2	1844	1	of	english	t	12	f
-5349	1	1845	1	ausgewählt	deutsch	t	12	f
+5349	1	1845	1	ausgewÃ¤hlt	deutsch	t	12	f
 5350	2	1845	1	selected	english	t	12	f
 5352	1	1846	1	angezeigt	deutsch	t	12	f
 5353	2	1846	1	shown	english	t	12	f
@@ -5784,7 +5784,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5420	1	1869	2	! Limit aufheben	deutsch	t	\N	f
 5421	2	1869	2	Disable limitation	english	t	\N	f
 5423	1	1870	2	hebt das Datensatzlimit auf (langsam)	deutsch	t	\N	f
-5430	1	1872	3	Infomenü	deutsch	t	163	f
+5430	1	1872	3	InfomenÃ¼	deutsch	t	163	f
 5431	2	1872	3	Info menu	english	t	163	f
 5432	1	1873	2	Abmelden	deutsch	t	\N	f
 5433	2	1873	2	Logout	english	t	\N	f
@@ -5800,16 +5800,16 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5455	2	1880	3	Number format	english	t	110	f
 5457	1	1881	3	RegExp	deutsch	t	110	f
 5458	2	1881	3	RegExp	english	t	110	f
-5463	1	1883	3	Währung	deutsch	t	110	f
+5463	1	1883	3	WÃ¤hrung	deutsch	t	110	f
 5469	1	1885	3	WYSIWYG	deutsch	t	110	f
 5470	2	1885	3	WYSIWYG	english	t	110	f
 5472	1	1886	3	Wert-Trennung	deutsch	t	110	f
 5473	2	1886	3	value seperation	english	t	110	f
-5475	1	1887	3	anz. Verknüpfungen	deutsch	t	110	f
+5475	1	1887	3	anz. VerknÃ¼pfungen	deutsch	t	110	f
 5478	2	1888	2	Fonts	english	t	\N	f
 5481	2	1889	2	Font manager	english	t	\N	f
-5486	1	1891	2	Suche zurücksetzen	deutsch	t	\N	f
-5489	1	1892	2	Suche zurücksetzen	deutsch	t	\N	f
+5486	1	1891	2	Suche zurÃ¼cksetzen	deutsch	t	\N	f
+5489	1	1892	2	Suche zurÃ¼cksetzen	deutsch	t	\N	f
 5493	1	1893	3	Allgemein	deutsch	t	164	f
 5494	2	1893	3	General	english	t	164	f
 5496	1	1894	3	Installations-Pfade	deutsch	t	164	f
@@ -5825,15 +5825,15 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5514	1	1900	3	Sicherheits-Einstellungen	deutsch	t	164	f
 5515	2	1900	3	Security parameters	english	t	164	f
 5517	1	1901	1	Die Medatdaten konnten nicht erfolgreich ausgelesen werden.	deutsch	t	41	f
-6104	4	102	1	Après	francais	t	19	f
-5520	1	1902	1	groß/klein-Schreibung beachten	deutsch	t	66	f
+6104	4	102	1	AprÄs	francais	t	19	f
+5520	1	1902	1	groÃŸ/klein-Schreibung beachten	deutsch	t	66	f
 5297	1	1828	2	Info	deutsch	t	\N	f
-5300	1	1829	2	Info über LIMBAS	deutsch	t	\N	f
+5300	1	1829	2	Info Ã¼ber LIMBAS	deutsch	t	\N	f
 5523	1	1903	1	ganzer Satz	deutsch	t	66	f
 5526	1	1904	1	Teil des Wortes	deutsch	t	66	f
 5538	1	1908	3	suche nur in Metadaten	deutsch	t	52	f
-5541	1	1909	1	für diesen Dateityp kann keine Vorschau erstellt werden.	deutsch	t	66	f
-5546	1	1911	2	Suche wird für alle Ordner gemerkt	deutsch	t	\N	f
+5541	1	1909	1	fÃ¼r diesen Dateityp kann keine Vorschau erstellt werden.	deutsch	t	66	f
+5546	1	1911	2	Suche wird fÃ¼r alle Ordner gemerkt	deutsch	t	\N	f
 5547	2	1911	2	Search in all marked folder	english	t	\N	f
 5559	1	1915	1	Keine Dokumente gefunden!	deutsch	t	66	f
 5560	2	1915	1	No document found!	english	t	66	f
@@ -5841,9 +5841,9 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5564	1	1917	2	Auswahl anzuzeigender Felder	deutsch	t	\N	f
 5573	1	1920	2	Ordneransicht speichern	deutsch	t	\N	f
 5576	1	1921	2	aktuelle Ordner-Einstellung speichern	deutsch	t	\N	f
-12763	3	2914	2	sincronización	Espagñol	t	0	f
-5579	1	1922	2	Ansicht übernehmen	deutsch	t	\N	f
-5582	1	1923	2	Ansichtseinstellungen für alle Ordner speichern	deutsch	t	\N	f
+12763	3	2914	2	sincronizaciÃ³n	EspagÅ„ol	t	0	f
+5579	1	1922	2	Ansicht Ã¼bernehmen	deutsch	t	\N	f
+5582	1	1923	2	Ansichtseinstellungen fÃ¼r alle Ordner speichern	deutsch	t	\N	f
 5755	2	1980	1	Minutes	english	t	13	f
 5586	1	1924	3	Sonstiges	deutsch	t	52	f
 5587	2	1924	3	Others	english	t	52	f
@@ -5878,7 +5878,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5701	2	1962	3	yes	english	t	168	f
 5703	1	1963	3	nein	deutsch	t	168	f
 5704	2	1963	3	no	english	t	168	f
-5708	1	1965	2	veröffentlichen	deutsch	t	\N	f
+5708	1	1965	2	verÃ¶ffentlichen	deutsch	t	\N	f
 5709	2	1965	2	publish	english	t	\N	f
 5715	1	1967	3	snap	deutsch	t	168	f
 5718	1	1968	3	hidden	deutsch	t	168	f
@@ -5894,24 +5894,24 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5763	1	1983	1	Wochen	deutsch	t	13	f
 5764	2	1983	1	Weeks	english	t	13	f
 5769	1	1985	1	Jahre	deutsch	t	13	f
-5930	1	2039	2	Aufgaben Übersicht	deutsch	t	\N	f
+5930	1	2039	2	Aufgaben Ãœbersicht	deutsch	t	\N	f
 6036	1	2074	3	Minute	deutsch	t	212	f
 6037	2	2074	3	Minute	english	t	212	f
 6039	1	2075	3	Stunde	deutsch	t	212	f
 6043	2	2076	3	Day of the month	english	t	212	f
 6048	1	2078	3	Wochentag	deutsch	t	212	f
 6049	2	2078	3	Week day	english	t	212	f
-6051	1	2079	3	Job hinzufügen	deutsch	t	212	f
+6051	1	2079	3	Job hinzufÃ¼gen	deutsch	t	212	f
 6052	2	2079	3	Add job	english	t	212	f
 6054	1	2080	3	Dateistruktur	deutsch	t	212	f
-6059	4	1	1	Permission refusée!	francais	t	2	f
+6059	4	1	1	Permission refusÃ©e!	francais	t	2	f
 6061	4	3	1	utilisateur	francais	t	4	f
 6062	4	4	1	nom	francais	t	4	f
 6065	4	7	1	host	francais	t	4	f
 6066	4	8	1	IP	francais	t	4	f
 6067	4	9	1	Agent	francais	t	4	f
 6068	4	10	1	Autentification	francais	t	4	f
-6069	4	11	1	société	francais	t	4	f
+6069	4	11	1	sociÃ©tÃ©	francais	t	4	f
 6070	4	24	1	Voulez-bous ajouter un nouvel enregistrement?	francais	t	5	f
 6071	4	25	1	Une erreur inattendue est survenue!	francais	t	5	f
 6073	4	27	1	Autre	francais	t	12	f
@@ -5919,18 +5919,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6075	4	30	1	chercher	francais	t	12	f
 6076	4	33	1	Enregistrer	francais	t	12	f
 6077	4	34	1	nouvelle valeur	francais	t	12	f
-6078	4	49	1	Voulez vous envoyer cet enregistrement à la corbeille?	francais	t	13	f
-6079	4	50	1	Voulez vous réellement supprimer cet enregistrement?	francais	t	13	f
+6078	4	49	1	Voulez vous envoyer cet enregistrement Ä… la corbeille?	francais	t	13	f
+6079	4	50	1	Voulez vous rÃ©ellement supprimer cet enregistrement?	francais	t	13	f
 6083	4	56	1	Une erreur est survenue	francais	t	13	f
-6084	4	58	1	Erreur de synthaxe! Les données saisies ne correspondent pas au type de donnée attendues.	francais	t	14	f
+6084	4	58	1	Erreur de synthaxe! Les donnÃ©es saisies ne correspondent pas au type de donnÃ©e attendues.	francais	t	14	f
 6085	4	59	1	remplace avec la valeur	francais	t	14	f
 6086	4	60	1	Condition	francais	t	14	f
 6090	4	84	1	Effacer l''enregistrement ?	francais	t	17	f
-6092	4	86	1	Entrées	francais	t	17	f
+6092	4	86	1	EntrÃ©es	francais	t	17	f
 6094	4	88	1	lignes	francais	t	17	f
 6095	4	89	1	pages	francais	t	17	f
-6096	4	93	1	résultat	francais	t	17	f
-6099	4	96	1	Affichés	francais	t	17	f
+6096	4	93	1	rÃ©sultat	francais	t	17	f
+6099	4	96	1	AffichÃ©s	francais	t	17	f
 6101	4	98	1	Aucun enregistrement!	francais	t	17	f
 6103	4	101	1	Recherche de contenu	francais	t	19	f
 6105	4	103	1	rechercher dans	francais	t	19	f
@@ -5938,19 +5938,19 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6229	4	317	1	dim	francais	t	88	f
 6266	4	385	2	tables	francais	t	0	f
 6111	4	112	1	Vous ne pouvez pas supprimer cette enregistrement car il est en relation avec un autre!	francais	t	22	f
-6114	4	115	1	Une erreur est survenue! Les modifications sont annulées!	francais	t	25	f
-6115	4	116	1	L''enregistrement a été supprimé avec succes!	francais	t	25	f
+6114	4	115	1	Une erreur est survenue! Les modifications sont annulÃ©es!	francais	t	25	f
+6115	4	116	1	L''enregistrement a Ã©tÃ© supprimÃ© avec succes!	francais	t	25	f
 6116	4	118	1	Vous n''avez pas de droit sur le champs!	francais	t	27	f
-6117	4	122	1	Aucune relation définie	francais	t	34	f
+6117	4	122	1	Aucune relation dÃ©finie	francais	t	34	f
 6121	4	126	1	description	francais	t	34	f
-6125	4	133	1	Le fichier uploadé a un format indéfini.	francais	t	41	f
+6125	4	133	1	Le fichier uploadÃ© a un format indÃ©fini.	francais	t	41	f
 6126	4	134	1	Erreur! Les champs suivants sont incorrects:	francais	t	37	f
-6128	4	138	1	Merci de vériifier la saisie.	francais	t	41	f
-6129	4	140	1	Données utilisateur	francais	t	46	f
+6128	4	138	1	Merci de vÃ©riifier la saisie.	francais	t	41	f
+6129	4	140	1	DonnÃ©es utilisateur	francais	t	46	f
 6130	4	141	1	mot de passe	francais	t	46	f
-6131	4	142	1	prénom	francais	t	46	f
+6131	4	142	1	prÃ©nom	francais	t	46	f
 6133	4	144	1	email	francais	t	46	f
-6135	4	146	1	Paramètres généraux	francais	t	46	f
+6135	4	146	1	ParamÄtres gÃ©nÃ©raux	francais	t	46	f
 6136	4	154	1	Echantillon personnel de couleur	francais	t	47	f
 6137	4	155	1	Echantillonage de couleur	francais	t	47	f
 6138	4	156	1	Valeur	francais	t	47	f
@@ -5968,11 +5968,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6208	4	294	1	couleur	francais	t	86	f
 6209	4	295	1	remarque	francais	t	86	f
 6210	4	296	1	mois	francais	t	86	f
-6211	4	297	1	début	francais	t	86	f
+6211	4	297	1	dÃ©but	francais	t	86	f
 6214	4	300	1	vue calendrier	francais	t	86	f
 6215	4	301	1	vue table	francais	t	86	f
 6216	4	302	1	Enregistrer	francais	t	86	f
-6217	4	303	1	Aucune entrée!	francais	t	87	f
+6217	4	303	1	Aucune entrÃ©e!	francais	t	87	f
 6218	4	304	1	vue calendrier!	francais	t	88	f
 6223	4	311	1	lun	francais	t	88	f
 6224	4	312	1	mar	francais	t	88	f
@@ -5984,7 +5984,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6245	4	354	2	editer la liste	francais	t	0	f
 6246	4	355	2	remarque	francais	t	0	f
 6248	4	357	2	details	francais	t	0	f
-6249	4	358	2	Affichage des détail de l''enregistrement	francais	t	0	f
+6249	4	358	2	Affichage des dÃ©tail de l''enregistrement	francais	t	0	f
 6250	4	359	2	export	francais	t	0	f
 6251	4	360	2	Export Excel	francais	t	0	f
 6252	4	361	2	ajouter	francais	t	0	f
@@ -5995,7 +5995,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6260	4	373	2	rechercher	francais	t	0	f
 6261	4	374	2	recherche d''enregistrement	francais	t	0	f
 6262	4	379	2	admin	francais	t	0	f
-6263	4	380	2	Paramètres admin	francais	t	0	f
+6263	4	380	2	ParamÄtres admin	francais	t	0	f
 6264	4	381	2	aide	francais	t	0	f
 6265	4	382	2	aide	francais	t	0	f
 6267	4	386	2	tables	francais	t	0	f
@@ -6006,10 +6006,10 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6273	4	394	2	Maximiser l''affichage	francais	t	0	f
 6274	4	395	2	minimiser	francais	t	0	f
 6275	4	396	2	Minimiser l''affichage	francais	t	0	f
-6276	4	401	2	rétablir les parametres	francais	t	0	f
-6277	4	402	2	rétablir les parametres	francais	t	0	f
-6278	4	403	2	Paramètres	francais	t	0	f
-6279	4	404	2	Paramètres globaux des utilisateurs	francais	t	0	f
+6276	4	401	2	rÃ©tablir les parametres	francais	t	0	f
+6277	4	402	2	rÃ©tablir les parametres	francais	t	0	f
+6278	4	403	2	ParamÄtres	francais	t	0	f
+6279	4	404	2	ParamÄtres globaux des utilisateurs	francais	t	0	f
 6280	4	409	2	couleurs	francais	t	0	f
 6281	4	410	2	Choix des couleurs utilisateur	francais	t	0	f
 6282	4	415	2	Messages	francais	t	0	f
@@ -6018,7 +6018,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6290	4	427	2	Gabarit	francais	t	0	f
 6292	4	429	2	Ajouter un utilisateur	francais	t	0	f
 6293	4	430	2	Ajouter un utilisateur	francais	t	0	f
-6294	4	431	2	Variable système	francais	t	0	f
+6294	4	431	2	Variable systÄme	francais	t	0	f
 6295	4	432	2	Variables d''environement	francais	t	0	f
 6296	4	435	2	Gestionnaire de menu	francais	t	0	f
 6297	4	436	2	Table en relation	francais	t	0	f
@@ -6030,8 +6030,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6303	4	442	2	Export	francais	t	0	f
 6304	4	443	2	Import	francais	t	0	f
 6305	4	444	2	Import	francais	t	0	f
-6306	4	445	2	Système	francais	t	0	f
-6307	4	446	2	Outils système	francais	t	0	f
+6306	4	445	2	SystÄme	francais	t	0	f
+6307	4	446	2	Outils systÄme	francais	t	0	f
 6308	4	451	2	statistiques	francais	t	0	f
 6309	4	452	2	Statistique des diagrammes utilisateur	francais	t	0	f
 6310	4	453	2	Utilisateurs/groupes	francais	t	0	f
@@ -6039,14 +6039,14 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7391	4	1805	2	Action	francais	t	182	f
 6313	4	456	2	Administration des groupes	francais	t	0	f
 6106	4	106	1	Partie de la valeur du champs	francais	f	19	f
-6108	4	108	1	début du champs	francais	f	19	f
+6108	4	108	1	dÃ©but du champs	francais	f	19	f
 6291	4	428	2	Gabarit de rapport	francais	f	0	f
 6314	4	457	2	Tables	francais	t	0	f
 6315	4	458	2	Editer les tables	francais	t	0	f
 6316	4	459	2	Rapport d''erreurs	francais	t	0	f
 6317	4	460	2	Rapport d''erreurs	francais	t	0	f
 6318	4	461	2	Configuration	francais	t	0	f
-6319	4	462	2	Paramètres généraux	francais	t	0	f
+6319	4	462	2	ParamÄtres gÃ©nÃ©raux	francais	t	0	f
 6320	4	463	2	Outils	francais	t	0	f
 6321	4	464	2	Outils	francais	t	0	f
 6322	4	465	2	Rapports	francais	t	0	f
@@ -6054,8 +6054,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6330	4	473	2	Taille	francais	t	0	f
 6332	4	475	2	Contenu	francais	t	0	f
 6336	4	483	2	Droits	francais	t	0	f
-6340	4	495	2	Général	francais	t	0	f
-6341	4	496	2	Paramètres généraux des utilisateurs	francais	t	0	f
+6340	4	495	2	GÃ©nÃ©ral	francais	t	0	f
+6341	4	496	2	ParamÄtres gÃ©nÃ©raux des utilisateurs	francais	t	0	f
 6342	4	497	2	Droits des tables	francais	t	0	f
 6343	4	498	2	Figer les droits des tables	francais	t	0	f
 6344	4	501	2	Tables	francais	t	0	f
@@ -6074,27 +6074,27 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6369	4	545	3	Fichier	francais	t	108	f
 6370	4	546	3	Ligne	francais	t	108	f
 6371	4	547	3	Message d''erreur	francais	t	108	f
-6372	4	548	3	Requête SQL	francais	t	108	f
+6372	4	548	3	RequÅºte SQL	francais	t	108	f
 6375	4	561	3	Groupe	francais	t	115	f
-6377	4	563	3	Ajouté	francais	t	115	f
+6377	4	563	3	AjoutÃ©	francais	t	115	f
 6380	4	569	3	Nom du groupe	francais	t	119	f
 6382	4	571	3	Ajouter	francais	t	119	f
 6383	4	573	3	Menu	francais	t	120	f
 6385	4	575	3	Droits	francais	t	120	f
 6387	4	577	3	Tables	francais	t	120	f
-6390	4	600	3	Existe déjà!	francais	t	111	f
+6390	4	600	3	Existe dÃ©jÄ…!	francais	t	111	f
 6398	4	612	3	Email	francais	t	127	f
 6546	4	878	1	Vendredi	francais	t	41	f
-6401	4	616	3	Résultats affichés max.	francais	t	127	f
+6401	4	616	3	RÃ©sultats affichÃ©s max.	francais	t	127	f
 6402	4	623	3	Schema de couleur	francais	t	127	f
 6403	4	624	3	Langue	francais	t	127	f
 6405	4	632	3	Actif	francais	t	46	f
 6406	4	633	3	Inactif	francais	t	46	f
 6411	4	656	3	Loglevel	francais	t	132	f
-6412	4	657	3	Désactivé	francais	t	132	f
+6412	4	657	3	DÃ©sactivÃ©	francais	t	132	f
 6423	4	698	1	Mise en page	francais	t	46	f
 6424	4	700	1	Ouvrir le calendrier express	francais	t	34	f
-6426	4	704	1	Partager la fenêtre de résultat	francais	t	46	f
+6426	4	704	1	Partager la fenÅºtre de rÃ©sultat	francais	t	46	f
 6429	4	711	1	Plus grand	francais	t	19	f
 6430	4	712	1	Plus petit	francais	t	19	f
 6431	4	713	1	Identique	francais	t	19	f
@@ -6106,27 +6106,27 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6443	4	731	2	Formulaire	francais	t	0	f
 6444	4	732	2	Formulaire	francais	t	0	f
 6391	4	605	3	Utilisateur	francais	t	126	f
-6447	4	735	2	Requête	francais	t	0	f
-6452	4	745	1	Les modifications ont été enregistrée!	francais	t	37	f
-6453	4	749	1	Dernière connexion	francais	t	4	f
+6447	4	735	2	RequÅºte	francais	t	0	f
+6452	4	745	1	Les modifications ont Ã©tÃ© enregistrÃ©e!	francais	t	37	f
+6453	4	749	1	DerniÄre connexion	francais	t	4	f
 6454	4	750	2	Diagramme	francais	t	0	f
 6456	4	752	2	Diagramme	francais	t	0	f
 6457	4	753	2	Editeur de diagramme	francais	t	0	f
-6458	4	763	1	Cet enregistrement est en cours d''édition par un autre utilisateur, et est donc désactivé pour une courte durée!	francais	t	23	f
-6459	4	764	1	Les droits ou bien l''enregistrement ont été supprimés!	francais	t	23	f
+6458	4	763	1	Cet enregistrement est en cours d''Ã©dition par un autre utilisateur, et est donc dÃ©sactivÃ© pour une courte durÃ©e!	francais	t	23	f
+6459	4	764	1	Les droits ou bien l''enregistrement ont Ã©tÃ© supprimÃ©s!	francais	t	23	f
 6462	4	767	1	Message	francais	t	145	f
 6463	4	768	1	Recevoir	francais	t	145	f
-6464	4	769	1	Envoyé	francais	t	154	f
-6465	4	770	1	Supprimé	francais	t	154	f
+6464	4	769	1	EnvoyÃ©	francais	t	154	f
+6465	4	770	1	SupprimÃ©	francais	t	154	f
 6466	4	771	2	Renomer	francais	t	0	f
 6467	4	772	2	Renomer Dossier/Fichier	francais	t	0	f
-6468	4	773	2	Avancé	francais	t	0	f
-6469	4	774	2	Recherche avancé	francais	t	0	f
+6468	4	773	2	AvancÃ©	francais	t	0	f
+6469	4	774	2	Recherche avancÃ©	francais	t	0	f
 6470	4	777	2	Nouveau dossier	francais	t	0	f
 6471	4	778	2	Ajouter un nouveau dossier	francais	t	0	f
 6474	4	784	2	Deplacer	francais	t	0	f
 6475	4	785	2	Deplacer message	francais	t	0	f
-6476	4	786	2	Répondre	francais	t	0	f
+6476	4	786	2	RÃ©pondre	francais	t	0	f
 6477	4	787	2	Repondre messsage	francais	t	0	f
 6478	4	788	2	Faire suivre	francais	t	0	f
 6479	4	789	2	Faire suivre le message	francais	t	0	f
@@ -6140,13 +6140,13 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6499	4	819	2	Deplacer	francais	t	0	f
 6500	4	820	2	Deplacer fichier	francais	t	0	f
 6501	4	821	1	Voulez vous supprimer ce dossier ainsi que son contenu?	francais	t	68	f
-7237	4	1644	3	Mot clés	francais	t	52	f
+7237	4	1644	3	Mot clÃ©s	francais	t	52	f
 6502	4	822	1	Voulez vous supprimer ce(s) fichier(s)?	francais	t	66	f
 6505	4	828	2	Formulaire	francais	t	0	f
 6506	4	829	2	Formulaire	francais	t	0	f
 6507	4	830	2	Suivre	francais	t	0	f
 6508	4	831	2	Suivre lien	francais	t	0	f
-6509	4	834	2	Général	francais	t	0	f
+6509	4	834	2	GÃ©nÃ©ral	francais	t	0	f
 6511	4	838	2	Vue d''ensemble	francais	t	0	f
 6512	4	839	2	Vue d''ensemble utilisateur	francais	t	0	f
 6513	4	840	2	Ajouter un groupe	francais	t	0	f
@@ -6154,21 +6154,21 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6515	4	842	1	Sauvegarder	francais	t	54	f
 6516	4	843	1	Editer	francais	t	54	f
 6517	4	844	1	Fermer	francais	t	54	f
-6520	4	847	2	Arrière plan	francais	t	0	f
-6521	4	848	2	Modifier la couleur de l''arrière plan	francais	t	0	f
+6520	4	847	2	ArriÄre plan	francais	t	0	f
+6521	4	848	2	Modifier la couleur de l''arriÄre plan	francais	t	0	f
 6523	4	851	1	Colonne	francais	t	5	f
 6524	4	854	1	et	francais	t	19	f
 6525	4	855	1	ou	francais	t	19	f
-6526	4	856	1	Voulez vous réellement réinitialiser la session?	francais	t	46	f
-6527	4	857	1	Au début	francais	t	13	f
+6526	4	856	1	Voulez vous rÃ©ellement rÃ©initialiser la session?	francais	t	46	f
+6527	4	857	1	Au dÃ©but	francais	t	13	f
 6528	4	858	1	A la fin	francais	t	13	f
 6529	4	859	1	Suivant	francais	t	13	f
-6530	4	860	1	Précedent	francais	t	13	f
+6530	4	860	1	PrÃ©cedent	francais	t	13	f
 6534	4	866	1	Non	francais	t	5	f
 6535	4	867	1	Oui	francais	t	5	f
 6538	4	870	1	Ouvrir le site web	francais	t	15	f
 6541	4	873	1	Dimanche	francais	t	41	f
-6532	4	862	1	En arrière	francais	t	5	f
+6532	4	862	1	En arriÄre	francais	t	5	f
 6542	4	874	1	Lundi	francais	t	41	f
 6543	4	875	1	Mardi	francais	t	41	f
 6544	4	876	1	Mercredi	francais	t	41	f
@@ -6181,7 +6181,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6552	4	884	1	Mai	francais	t	41	f
 6553	4	885	1	Juin	francais	t	41	f
 6554	4	886	1	Juillet	francais	t	41	f
-6555	4	887	1	Août	francais	t	41	f
+6555	4	887	1	AoÅ«t	francais	t	41	f
 6556	4	888	1	Septembre	francais	t	41	f
 6557	4	889	1	Octobre	francais	t	41	f
 6564	4	897	3	Sous-groupe de	francais	t	119	f
@@ -6189,21 +6189,21 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6567	4	900	3	Groupe principal	francais	t	127	f
 6568	4	901	3	Sous groupe	francais	t	127	f
 6570	4	903	3	Plage IP	francais	t	127	f
-6571	4	904	3	Rafrîchir la session	francais	t	127	f
+6571	4	904	3	RafrÄ«chir la session	francais	t	127	f
 6572	4	905	3	Renouveller les droits sur tables	francais	t	127	f
 6573	4	907	3	Renouveller les menus	francais	t	127	f
 6574	4	908	3	Supprimer l''utilisateur	francais	t	132	f
 6576	4	911	3	Debug	francais	t	132	f
-6580	4	916	3	Générateur de lien	francais	t	107	f
+6580	4	916	3	GÃ©nÃ©rateur de lien	francais	t	107	f
 6581	4	917	3	Saisir un lien absolu!	francais	t	107	f
 6588	4	925	3	Type	francais	t	110	f
-6589	4	926	3	Clé	francais	t	110	f
+6589	4	926	3	ClÃ©	francais	t	110	f
 6590	4	927	3	Unique	francais	t	110	f
-6591	4	928	3	Valeur par défaut	francais	t	110	f
+6591	4	928	3	Valeur par dÃ©faut	francais	t	110	f
 6593	4	930	3	Convertir	francais	t	110	f
 6594	4	931	3	Recherch.dyn	francais	t	110	f
 6602	4	940	3	Enregistrer	francais	t	139	f
-6604	4	942	3	Ajouté	francais	t	139	f
+6604	4	942	3	AjoutÃ©	francais	t	139	f
 6608	4	949	3	ID	francais	t	140	f
 6610	4	951	3	Nom de table	francais	t	140	f
 6611	4	952	3	Pos	francais	t	140	f
@@ -6211,27 +6211,27 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6619	4	961	3	Archive de table	francais	t	145	f
 6620	4	962	3	Export Excel	francais	t	145	f
 6621	4	963	3	Export texte	francais	t	145	f
-6622	4	964	3	Export système	francais	t	145	f
+6622	4	964	3	Export systÄme	francais	t	145	f
 6569	4	902	3	Photo	francais	t	127	f
 6623	4	965	3	Groupe d''archivage	francais	t	145	f
-6624	4	966	3	Système complet	francais	t	145	f
+6624	4	966	3	SystÄme complet	francais	t	145	f
 6625	4	967	3	Table projet	francais	t	145	f
-6626	4	968	3	Tables systèmes dependantes	francais	t	145	f
+6626	4	968	3	Tables systÄmes dependantes	francais	t	145	f
 6627	4	970	3	Export Ok	francais	t	145	f
 6628	4	971	3	Ensemble	francais	t	145	f
 6629	4	972	3	Enregistrement	francais	t	145	f
 6630	4	973	3	Export	francais	t	145	f
 6631	4	974	3	Dossier d''export	francais	t	145	f
-6643	4	987	3	Terminé	francais	t	147	f
+6643	4	987	3	TerminÃ©	francais	t	147	f
 6644	4	988	3	Les champs suivant ne sont pas au bon format	francais	t	148	f
 6645	4	990	3	Import partiel	francais	t	148	f
 6646	4	991	3	Import texte	francais	t	148	f
 6647	4	992	3	D''un fichier texte	francais	t	148	f
 6648	4	993	3	Aucun	francais	t	148	f
 6649	4	994	3	Tout	francais	t	148	f
-6650	4	995	3	Import système	francais	t	148	f
+6650	4	995	3	Import systÄme	francais	t	148	f
 6652	4	997	3	Apercu ligne	francais	t	148	f
-6653	4	998	3	Depuis le système de fichier	francais	t	148	f
+6653	4	998	3	Depuis le systÄme de fichier	francais	t	148	f
 6655	4	1002	3	Ecraser	francais	t	148	f
 6656	4	1003	3	Depend	francais	t	148	f
 6657	4	1004	3	Conserver ID	francais	t	148	f
@@ -6240,54 +6240,54 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6660	4	1007	3	Fichier configuration	francais	t	148	f
 6662	4	1009	3	Reinstaller	francais	t	148	f
 6663	4	1010	3	Type de champs incorrect	francais	t	149	f
-6664	4	1011	3	Enregistrements insérer	francais	t	149	f
+6664	4	1011	3	Enregistrements insÃ©rer	francais	t	149	f
 6665	4	1012	3	Erreur	francais	t	149	f
 6667	4	1014	3	Teste de l''instance	francais	t	149	f
-6668	4	1015	3	Inserer les données dans la table	francais	t	149	f
+6668	4	1015	3	Inserer les donnÃ©es dans la table	francais	t	149	f
 6669	4	1016	3	Ligne en erreur	francais	t	149	f
-6670	4	1017	3	Lignes insérées	francais	t	149	f
-6671	4	1018	3	Créé	francais	t	149	f
-6672	4	1019	3	Echoué	francais	t	149	f
-6673	4	1020	3	Créer table	francais	t	149	f
+6670	4	1017	3	Lignes insÃ©rÃ©es	francais	t	149	f
+6671	4	1018	3	CrÃ©Ã©	francais	t	149	f
+6672	4	1019	3	EchouÃ©	francais	t	149	f
+6673	4	1020	3	CrÃ©er table	francais	t	149	f
 6674	4	1021	3	Supprimer table	francais	t	149	f
 6675	4	1022	3	Importer rapport	francais	t	149	f
 6678	4	1025	3	Indication table	francais	t	149	f
-6679	4	1026	3	Ajouter clé externe	francais	t	149	f
+6679	4	1026	3	Ajouter clÃ© externe	francais	t	149	f
 6682	4	1029	3	Groupe de table	francais	t	150	f
 6689	4	1036	3	Structure	francais	t	150	f
 7535	4	1955	3	Assembler	francais	t	168	f
 6585	4	922	3	Champs	francais	t	110	f
 6595	4	932	3	Select	francais	t	110	f
-6690	4	1037	3	Structure et données	francais	t	150	f
-6691	4	1038	3	Créer	francais	t	150	f
+6690	4	1037	3	Structure et donnÃ©es	francais	t	150	f
+6691	4	1038	3	CrÃ©er	francais	t	150	f
 6692	4	1039	3	Present	francais	t	151	f
 6693	4	1040	3	Importer	francais	t	151	f
-6703	4	1054	3	Raffraîchir tables et champs	francais	t	154	f
-6704	4	1056	3	Raffraîchir menus	francais	t	154	f
+6703	4	1054	3	RaffraÄ«chir tables et champs	francais	t	154	f
+6704	4	1056	3	RaffraÄ«chir menus	francais	t	154	f
 6705	4	1057	3	Supprimer sessions	francais	t	154	f
-6707	4	1060	3	Information système	francais	t	155	f
+6707	4	1060	3	Information systÄme	francais	t	155	f
 6708	4	1061	3	Afficher	francais	t	155	f
 6712	4	1065	3	Executer	francais	t	155	f
-6714	4	1067	3	Privilèges	francais	t	155	f
-6715	4	1068	3	Date de création	francais	t	155	f
-6716	4	1069	3	Table vidée avec succès	francais	t	156	f
-6717	4	1070	3	Erreur! La table n''a pas été vidée	francais	t	156	f
-6718	4	1071	3	Table vidée avec succès	francais	t	156	f
-6719	4	1072	3	Erreur! La table n''a pas été supprimée.	francais	t	156	f
-6720	4	1073	3	Requête SQL executée avec succès	francais	t	156	f
-6724	4	1078	3	Règle	francais	t	160	f
+6714	4	1067	3	PrivilÄges	francais	t	155	f
+6715	4	1068	3	Date de crÃ©ation	francais	t	155	f
+6716	4	1069	3	Table vidÃ©e avec succÄs	francais	t	156	f
+6717	4	1070	3	Erreur! La table n''a pas Ã©tÃ© vidÃ©e	francais	t	156	f
+6718	4	1071	3	Table vidÃ©e avec succÄs	francais	t	156	f
+6719	4	1072	3	Erreur! La table n''a pas Ã©tÃ© supprimÃ©e.	francais	t	156	f
+6720	4	1073	3	RequÅºte SQL executÃ©e avec succÄs	francais	t	156	f
+6724	4	1078	3	RÄgle	francais	t	160	f
 6728	4	1083	3	URL	francais	t	162	f
 6732	4	1087	3	Image	francais	t	162	f
 6744	4	1099	3	Element	francais	t	168	f
 6745	4	1100	3	Infos image	francais	t	168	f
 6747	4	1102	3	Representation	francais	t	168	f
-6749	4	1104	3	Couleur de caractère	francais	t	168	f
+6749	4	1104	3	Couleur de caractÄre	francais	t	168	f
 6750	4	1105	3	Epaisseur	francais	t	168	f
 6752	4	1107	3	Couleur de fond	francais	t	168	f
 6753	4	1108	3	Symetrie	francais	t	168	f
 6754	4	1109	3	Colonnes	francais	t	168	f
 6756	4	1111	3	Marge	francais	t	168	f
-6757	4	1112	3	Entête	francais	t	168	f
+6757	4	1112	3	EntÅºte	francais	t	168	f
 6758	4	1113	3	Pied de page	francais	t	168	f
 6759	4	1114	3	Liste	francais	t	168	f
 6760	4	1115	3	Style de police	francais	t	168	f
@@ -6300,12 +6300,12 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6768	4	1123	3	Normal	francais	t	168	f
 6769	4	1124	3	Oblique	francais	t	168	f
 6770	4	1125	3	Gras	francais	t	168	f
-6771	4	1126	3	Souligné	francais	t	168	f
+6771	4	1126	3	SoulignÃ©	francais	t	168	f
 6772	4	1127	3	Majuscule	francais	t	168	f
 6773	4	1128	3	Minuscule	francais	t	168	f
 6774	4	1129	3	Citation	francais	t	168	f
 6775	4	1130	3	Droite	francais	t	168	f
-6776	4	1131	3	Centré	francais	t	168	f
+6776	4	1131	3	CentrÃ©	francais	t	168	f
 6777	4	1132	3	A droite	francais	t	168	f
 6779	4	1134	3	Histoirque	francais	t	168	f
 6781	4	1136	3	Recalculer	francais	t	168	f
@@ -6326,14 +6326,14 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6799	4	1154	3	Ellipse	francais	t	169	f
 6807	4	1162	3	pour la table	francais	t	170	f
 6810	4	1165	3	Nouveau rapport	francais	t	170	f
-6811	4	1167	3	Le graphique n''a pu être sauvegarder correctement	francais	t	172	f
+6811	4	1167	3	Le graphique n''a pu Åºtre sauvegarder correctement	francais	t	172	f
 6814	4	1170	3	Police	francais	t	175	f
 6815	4	1171	3	Sous-formulaire	francais	t	175	f
 6818	4	1174	3	Button submit	francais	t	175	f
-6820	4	1176	3	Qualité	francais	t	175	f
+6820	4	1176	3	QualitÃ©	francais	t	175	f
 6823	4	1179	3	Formulaire	francais	t	176	f
-6827	4	1183	3	Créer avec un enregistrement unique	francais	t	176	f
-6828	4	1184	3	Créer avec une liste d''enregistrement	francais	t	176	f
+6827	4	1183	3	CrÃ©er avec un enregistrement unique	francais	t	176	f
+6828	4	1184	3	CrÃ©er avec une liste d''enregistrement	francais	t	176	f
 6829	4	1186	3	Nouveau formulaire	francais	t	176	f
 6834	4	1191	3	Nouveau diagramme	francais	t	177	f
 6841	4	1200	2	Gestionnaire de fichier	francais	t	0	f
@@ -6342,48 +6342,48 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6845	4	1205	3	Status	francais	t	180	f
 6857	4	1217	3	Ouvrir	francais	t	180	f
 6858	4	1218	3	Ok	francais	t	180	f
-6859	4	1219	3	Général	francais	t	180	f
+6859	4	1219	3	GÃ©nÃ©ral	francais	t	180	f
 6860	4	1220	3	Admin	francais	t	180	f
-6861	4	1221	3	Système	francais	t	180	f
+6861	4	1221	3	SystÄme	francais	t	180	f
 6862	4	1222	3	Choix de la langue	francais	t	180	f
 6867	4	1232	2	Progression	francais	t	0	f
 6868	4	1233	2	Progression	francais	t	0	f
-6871	4	1240	1	Inclure sous-répertoire	francais	t	20	f
+6871	4	1240	1	Inclure sous-rÃ©pertoire	francais	t	20	f
 6873	4	1244	1	Horizontal	francais	t	5	f
 6874	4	1245	1	Vertical	francais	t	5	f
 6875	4	1246	1	Sans	francais	t	5	f
-6876	4	1249	3	Déconnecter	francais	t	132	f
-6878	4	1251	1	Voulez vous vous déconnecter?	francais	t	11	f
+6876	4	1249	3	DÃ©connecter	francais	t	132	f
+6878	4	1251	1	Voulez vous vous dÃ©connecter?	francais	t	11	f
 6883	4	1257	1	Cacher	francais	t	122	f
 6885	4	1259	1	Editer	francais	t	122	f
 7138	4	1527	1	Enregistrer	francais	t	5	f
 6808	4	1163	3	Action	francais	t	170	f
-6817	4	1173	3	Barre défilement	francais	t	175	f
+6817	4	1173	3	Barre dÃ©filement	francais	t	175	f
 6894	4	1268	2	Droits des tables	francais	t	0	f
 6895	4	1269	2	Actualiser les droits des tables	francais	t	0	f
 6896	4	1270	2	Droit des menus	francais	t	0	f
 6897	4	1271	2	Actualiser les droits des menus	francais	t	0	f
 6877	4	1250	3	Infos	francais	t	132	f
-6907	4	1281	2	Définir relation	francais	t	0	f
-6908	4	1282	2	Définir relation	francais	t	0	f
+6907	4	1281	2	DÃ©finir relation	francais	t	0	f
+6908	4	1282	2	DÃ©finir relation	francais	t	0	f
 6910	4	1284	2	Supprimer la relatioj	francais	t	0	f
-6911	4	1285	1	Enregegistrement déjà lié.	francais	t	27	f
+6911	4	1285	1	Enregegistrement dÃ©jÄ… liÃ©.	francais	t	27	f
 6912	4	1286	2	Taille de bordure	francais	t	0	f
 6914	4	1288	2	Taille du tableau	francais	t	0	f
 6915	4	1289	2	Taille de tableau automatique	francais	t	0	f
 6916	4	1290	2	Editer la liste	francais	t	0	f
 6917	4	1291	2	Vue edition	francais	t	0	f
-6920	4	1294	1	A la première page	francais	t	5	f
-6921	4	1295	1	A a dernière page	francais	t	5	f
+6920	4	1294	1	A la premiÄre page	francais	t	5	f
+6921	4	1295	1	A a derniÄre page	francais	t	5	f
 6872	4	1242	1	Rechercher	francais	t	20	f
-6922	4	1296	1	Une page en arrière	francais	t	5	f
+6922	4	1296	1	Une page en arriÄre	francais	t	5	f
 6923	4	1297	1	Une page en avant	francais	t	5	f
 6924	4	1298	1	Ouvrir les relations	francais	t	15	f
-6925	4	1299	1	Créer relation	francais	t	15	f
+6925	4	1299	1	CrÃ©er relation	francais	t	15	f
 6926	4	1300	3	Autoriser les changements de mot de passe	francais	t	127	f
 6927	4	1301	2	Editeur de relation	francais	t	0	f
 6928	4	1302	2	Editeur de relation	francais	t	0	f
-6929	4	1303	3	Créer nouvelle liaison!	francais	t	121	f
+6929	4	1303	3	CrÃ©er nouvelle liaison!	francais	t	121	f
 6930	4	1304	3	Recalculer!	francais	t	101	f
 6931	4	1305	2	Corbeille	francais	t	0	f
 6932	4	1306	2	Cacher l''enregistrement	francais	t	0	f
@@ -6391,25 +6391,25 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6933	4	1307	2	Ouvrir la corbeille	francais	t	0	f
 7068	4	1451	1	Supprimer!	francais	t	192	f
 6934	4	1308	2	Ouvrir la corbeille	francais	t	0	f
-6936	4	1310	2	Recréer l''enregistrement	francais	t	0	f
-6937	4	1311	1	L#enregistrement, doit-il être recréé?	francais	t	13	f
-6938	4	1312	1	L''enregistrement va être envoyé à la corbeille.	francais	t	25	f
-6939	4	1313	1	L''enregistrement a été recréé!	francais	t	25	f
-6881	4	1255	3	Règles des symboles	francais	t	122	f
+6936	4	1310	2	RecrÃ©er l''enregistrement	francais	t	0	f
+6937	4	1311	1	L#enregistrement, doit-il Åºtre recrÃ©Ã©?	francais	t	13	f
+6938	4	1312	1	L''enregistrement va Åºtre envoyÃ© Ä… la corbeille.	francais	t	25	f
+6939	4	1313	1	L''enregistrement a Ã©tÃ© recrÃ©Ã©!	francais	t	25	f
+6881	4	1255	3	RÄgles des symboles	francais	t	122	f
 7509	4	1929	3	Calendrier	francais	t	140	f
-6950	4	1325	1	L''enregistrement a été supprimer avec succès!	francais	t	25	f
-7145	4	1534	3	Encadré	francais	t	168	f
-6951	4	1326	1	L''enregistrement a été deplacé vers la corbeille!	francais	t	25	f
-6952	4	1327	1	L''enregistrement a été recréé!	francais	t	25	f
-6955	4	1330	1	Tout déselectionner	francais	t	14	f
+6950	4	1325	1	L''enregistrement a Ã©tÃ© supprimer avec succÄs!	francais	t	25	f
+7145	4	1534	3	EncadrÃ©	francais	t	168	f
+6951	4	1326	1	L''enregistrement a Ã©tÃ© deplacÃ© vers la corbeille!	francais	t	25	f
+6952	4	1327	1	L''enregistrement a Ã©tÃ© recrÃ©Ã©!	francais	t	25	f
+6955	4	1330	1	Tout dÃ©selectionner	francais	t	14	f
 6956	4	1331	1	Tout selectionner	francais	t	14	f
-6957	4	1333	1	Ajouter à la valeur	francais	t	14	f
+6957	4	1333	1	Ajouter Ä… la valeur	francais	t	14	f
 6958	4	1334	1	Soustraire de la valeur	francais	t	14	f
 6962	4	1338	1	Remplacer avec la date	francais	t	14	f
 6963	4	1339	1	Ajouter un jour	francais	t	14	f
 6964	4	1340	1	Soustrraire un jour	francais	t	14	f
 6965	4	1341	1	Modifier!	francais	t	14	f
-6966	4	1342	1	affichés	francais	t	5	f
+6966	4	1342	1	affichÃ©s	francais	t	5	f
 6969	4	1345	2	Calendrier	francais	t	0	f
 6970	4	1346	2	Agenda	francais	t	0	f
 6977	4	1354	2	Texte 8	francais	t	0	f
@@ -6424,25 +6424,25 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6998	4	1375	2	Argument	francais	t	0	f
 7007	4	1384	2	-------Type de champs standard -------	francais	t	0	f
 7008	4	1385	2	-------Autre type  de champs -------	francais	t	0	f
-7013	4	1390	2	Texte max 8 caractères	francais	t	0	f
-7014	4	1391	2	Texte max 10 caractères	francais	t	0	f
-7015	4	1392	2	Texte max 20 caractères	francais	t	0	f
-7016	4	1393	2	Texte max 30 caractères	francais	t	0	f
-7017	4	1394	2	Texte max 50 caractères	francais	t	0	f
-7018	4	1395	2	Texte max 128 caractères	francais	t	0	f
-7019	4	1396	2	Texte max 160 caractères	francais	t	0	f
-7027	4	1404	2	URL avec maximum 255 caractères	francais	t	0	f
-7028	4	1405	2	Email avec maximum 128 caractères	francais	t	0	f
+7013	4	1390	2	Texte max 8 caractÄres	francais	t	0	f
+7014	4	1391	2	Texte max 10 caractÄres	francais	t	0	f
+7015	4	1392	2	Texte max 20 caractÄres	francais	t	0	f
+7016	4	1393	2	Texte max 30 caractÄres	francais	t	0	f
+7017	4	1394	2	Texte max 50 caractÄres	francais	t	0	f
+7018	4	1395	2	Texte max 128 caractÄres	francais	t	0	f
+7019	4	1396	2	Texte max 160 caractÄres	francais	t	0	f
+7027	4	1404	2	URL avec maximum 255 caractÄres	francais	t	0	f
+7028	4	1405	2	Email avec maximum 128 caractÄres	francais	t	0	f
 7030	4	1407	2	Champs de choix (select)	francais	t	0	f
 7034	4	1411	2	Formule (eval)	francais	t	0	f
-7043	4	1420	1	Désactiver tous les utilisateurs	francais	t	154	f
-7046	4	1423	2	Vérirfier les nouveaux messages	francais	t	0	f
+7043	4	1420	1	DÃ©sactiver tous les utilisateurs	francais	t	154	f
+7046	4	1423	2	VÃ©rirfier les nouveaux messages	francais	t	0	f
 7048	4	1431	3	Connexion	francais	t	182	f
 7050	4	1433	3	Surveiller	francais	t	182	f
 7052	4	1435	1	Jour	francais	t	188	f
 7053	4	1436	1	Semaine	francais	t	188	f
 7054	4	1437	1	Mois	francais	t	188	f
-7055	4	1438	1	Année	francais	t	188	f
+7055	4	1438	1	AnnÃ©e	francais	t	188	f
 7058	4	1441	1	Rendez-vous	francais	t	192	f
 7059	4	1442	1	Vacances	francais	t	192	f
 7060	4	1443	1	Couleur.	francais	t	192	f
@@ -6453,18 +6453,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7065	4	1448	1	Contenu:	francais	t	192	f
 7066	4	1449	1	Type:	francais	t	192	f
 6985	4	1362	2	Bloc texte 399	francais	t	0	f
-7003	4	1380	2	Date création	francais	t	0	f
-7039	4	1416	2	Date de création	francais	t	0	f
+7003	4	1380	2	Date crÃ©ation	francais	t	0	f
+7039	4	1416	2	Date de crÃ©ation	francais	t	0	f
 7004	4	1381	2	Date edition	francais	t	0	f
-7040	4	1417	2	Date de dernière édition	francais	t	0	f
-7021	4	1398	2	Bloc de texte max 399 caractères	francais	t	0	f
+7040	4	1417	2	Date de derniÄre Ã©dition	francais	t	0	f
+7021	4	1398	2	Bloc de texte max 399 caractÄres	francais	t	0	f
 7076	4	1459	3	Regroupable	francais	t	110	f
 7077	4	1460	3	Relation	francais	t	140	f
 7080	4	1463	3	Proportionnel	francais	t	168	f
 7081	4	1464	3	Copier	francais	t	176	f
 7085	4	1470	2	Supprimer	francais	t	0	f
 7086	4	1471	2	Supprimer Fichier/Dossier	francais	t	0	f
-7087	4	1472	1	Aucun fichier trouvé!	francais	t	66	f
+7087	4	1472	1	Aucun fichier trouvÃ©!	francais	t	66	f
 7091	4	1476	2	Supprimer	francais	t	0	f
 7092	4	1477	2	Supprimer le message	francais	t	0	f
 7096	4	1481	3	Inclure dossier utilisateur	francais	t	127	f
@@ -6477,10 +6477,10 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7117	4	1502	2	Impression de rapport	francais	t	0	f
 7000	4	1377	2	Relation n:m	francais	t	0	f
 7036	4	1413	2	Ex: Commande (n) -> Article (m)	francais	t	0	f
-7001	4	1378	2	Créateur	francais	t	0	f
-7037	4	1414	2	Utilisateur ayant crée l''enregistrement	francais	t	0	f
+7001	4	1378	2	CrÃ©ateur	francais	t	0	f
+7037	4	1414	2	Utilisateur ayant crÃ©e l''enregistrement	francais	t	0	f
 7002	4	1379	2	Editeru	francais	t	0	f
-7038	4	1415	2	Utilisateur ayant modifié l''enregistrement en dernier	francais	t	0	f
+7038	4	1415	2	Utilisateur ayant modifiÃ© l''enregistrement en dernier	francais	t	0	f
 7031	4	1408	2	Champs de choix multiple sous forme de MULTISELECT	francais	t	0	f
 7118	4	1503	2	Impression de rapport	francais	t	0	f
 7119	4	1505	3	Javascript	francais	t	175	f
@@ -6495,53 +6495,53 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7128	4	1516	3	type_champs	francais	t	160	f
 7129	4	1517	3	type_donnee	francais	t	160	f
 7130	4	1518	3	funcid	francais	t	160	f
-7131	4	1519	3	Type de donnée	francais	t	160	f
+7131	4	1519	3	Type de donnÃ©e	francais	t	160	f
 7135	4	1524	1	Enregistrer et ajouter un nouveau	francais	t	13	f
 7137	4	1526	1	Afficher liste	francais	t	13	f
 7141	4	1530	1	Enregistrer et suivant	francais	t	13	f
-7142	4	1531	1	Enregistrer et précedant	francais	t	13	f
+7142	4	1531	1	Enregistrer et prÃ©cedant	francais	t	13	f
 7143	4	1532	3	Deviation	francais	t	127	f
 6974	4	1351	2	Nombre (10)	francais	t	0	f
-7010	4	1387	2	Nombre à 10 chiffres	francais	t	0	f
-7011	4	1388	2	Nombre à 18 chiffres	francais	t	0	f
-7146	4	1535	3	Pointillé	francais	t	168	f
+7010	4	1387	2	Nombre Ä… 10 chiffres	francais	t	0	f
+7011	4	1388	2	Nombre Ä… 18 chiffres	francais	t	0	f
+7146	4	1535	3	PointillÃ©	francais	t	168	f
 7147	4	1536	3	Tiret	francais	t	168	f
 7148	4	1537	3	Double	francais	t	168	f
 7149	4	1538	3	3D interieur	francais	t	168	f
 7150	4	1539	3	3D externe	francais	t	168	f
 7151	4	1540	3	Type	francais	t	168	f
 7152	4	1541	3	Couleur de bordure	francais	t	168	f
-7153	4	1544	1	Afficher les meta données	francais	t	15	f
-7154	4	1545	1	Modifier les meta données	francais	t	15	f
+7153	4	1544	1	Afficher les meta donnÃ©es	francais	t	15	f
+7154	4	1545	1	Modifier les meta donnÃ©es	francais	t	15	f
 7157	4	1552	1	Nom physique	francais	t	15	f
 7158	4	1560	1	Archive	francais	t	15	f
 7161	4	1563	1	Format	francais	t	15	f
 7162	4	1564	1	Geometrie	francais	t	15	f
-7163	4	1565	1	Résolution	francais	t	15	f
+7163	4	1565	1	RÃ©solution	francais	t	15	f
 7164	4	1566	1	Nombre de couleur	francais	t	15	f
 7165	4	1567	1	Couleurs	francais	t	15	f
-7168	4	1571	1	Rétablir	francais	t	20	f
+7168	4	1571	1	RÃ©tablir	francais	t	20	f
 7169	4	1572	2	Sauvegarde	francais	t	0	f
-7170	4	1573	2	Sauvegarde système	francais	t	0	f
-7171	4	1574	1	La contrainte d''intégré a été violée	francais	t	25	f
+7170	4	1573	2	Sauvegarde systÄme	francais	t	0	f
+7171	4	1574	1	La contrainte d''intÃ©grÃ© a Ã©tÃ© violÃ©e	francais	t	25	f
 7172	4	1575	2	Historique	francais	t	0	f
 7173	4	1576	2	Sauvegarde - Historique	francais	t	0	f
-7174	4	1577	2	Périiodique	francais	t	0	f
+7174	4	1577	2	PÃ©riiodique	francais	t	0	f
 7084	4	1469	1	Vue arbre	francais	t	20	f
-7175	4	1578	2	Sauvegarde périodique	francais	t	0	f
+7175	4	1578	2	Sauvegarde pÃ©riodique	francais	t	0	f
 7176	4	1579	2	interactive	francais	t	0	f
 7177	4	1580	2	Sauvegarde interactive	francais	t	0	f
-7536	4	1956	3	Séparé	francais	t	168	f
-7178	4	1581	3	Extraction des mots clés	francais	t	110	f
+7536	4	1956	3	SÃ©parÃ©	francais	t	168	f
+7178	4	1581	3	Extraction des mots clÃ©s	francais	t	110	f
 7179	4	1582	2	Indexation	francais	t	0	f
-7180	4	1583	2	Extraction des mots clés	francais	t	0	f
-7181	4	1584	2	Périodique	francais	t	0	f
-7182	4	1585	2	Indexation périodique	francais	t	0	f
+7180	4	1583	2	Extraction des mots clÃ©s	francais	t	0	f
+7181	4	1584	2	PÃ©riodique	francais	t	0	f
+7182	4	1585	2	Indexation pÃ©riodique	francais	t	0	f
 7183	4	1588	2	Historique	francais	t	0	f
 7184	4	1589	2	Indexation - Historique	francais	t	0	f
-7185	4	1590	1	Indexé	francais	t	15	f
-7191	4	1597	1	Phonétique	francais	t	19	f
-7194	4	1600	1	Mot de passe (vérification)	francais	t	46	f
+7185	4	1590	1	IndexÃ©	francais	t	15	f
+7191	4	1597	1	PhonÃ©tique	francais	t	19	f
+7194	4	1600	1	Mot de passe (vÃ©rification)	francais	t	46	f
 7202	4	1608	1	Vous devez donnez un nom!	francais	t	5	f
 7205	4	1612	2	Download	francais	t	0	f
 7206	4	1613	2	Download fichier archive	francais	t	0	f
@@ -6557,47 +6557,47 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7221	4	1628	2	Sauvegarder	francais	t	0	f
 7222	4	1629	2	Downloader fichier	francais	t	0	f
 7225	4	1632	2	Info	francais	t	0	f
-7226	4	1633	2	Meta données/info du fichier	francais	t	0	f
-7227	4	1634	3	Général	francais	t	52	f
+7226	4	1633	2	Meta donnÃ©es/info du fichier	francais	t	0	f
+7227	4	1634	3	GÃ©nÃ©ral	francais	t	52	f
 7228	4	1635	3	META	francais	t	52	f
 7230	4	1637	3	Mimetype	francais	t	52	f
-7231	4	1638	3	crée par	francais	t	52	f
-7232	4	1639	3	Crée le	francais	t	52	f
-7233	4	1640	3	Entête	francais	t	52	f
+7231	4	1638	3	crÃ©e par	francais	t	52	f
+7232	4	1639	3	CrÃ©e le	francais	t	52	f
+7233	4	1640	3	EntÅºte	francais	t	52	f
 7234	4	1641	3	Autre nom	francais	t	52	f
-7235	4	1642	3	Créateur	francais	t	52	f
-7236	4	1643	3	Nom du créateur (nom, prénom)	francais	t	52	f
-7238	4	1645	3	Mot clés séparés par une virgule	francais	t	52	f
-7240	4	1647	3	Résumé, description du contenu	francais	t	52	f
+7235	4	1642	3	CrÃ©ateur	francais	t	52	f
+7236	4	1643	3	Nom du crÃ©ateur (nom, prÃ©nom)	francais	t	52	f
+7238	4	1645	3	Mot clÃ©s sÃ©parÃ©s par une virgule	francais	t	52	f
+7240	4	1647	3	RÃ©sumÃ©, description du contenu	francais	t	52	f
 7241	4	1648	3	Distributeur	francais	t	52	f
-7242	4	1649	3	Distributeur, université,etc ...	francais	t	52	f
+7242	4	1649	3	Distributeur, universitÃ©,etc ...	francais	t	52	f
 7243	4	1650	3	Co-auteur	francais	t	52	f
 7244	4	1651	3	Nom du co-auteur	francais	t	52	f
 7246	4	1653	3	Type de document	francais	t	52	f
 7247	4	1656	3	Identification	francais	t	52	f
 7392	4	1806	2	Table	francais	t	182	f
 7248	4	1657	3	(ISBN, ISSN, URL ou tout autre identifiant unique du document)	francais	t	52	f
-7250	4	1659	3	Travail, imprimé ou électronique	francais	t	52	f
+7250	4	1659	3	Travail, imprimÃ© ou Ã©lectronique	francais	t	52	f
 7252	4	1661	3	Langue du document	francais	t	52	f
 7254	4	1663	3	Source	francais	t	52	f
 7255	4	1664	3	Attribut	francais	t	52	f
-7256	4	1665	3	Vérifié	francais	t	52	f
+7256	4	1665	3	VÃ©rifiÃ©	francais	t	52	f
 7257	4	1666	3	Libre	francais	t	52	f
 7258	4	1667	3	Format graphique	francais	t	52	f
 7259	4	1668	3	min.	francais	t	52	f
-7261	4	1670	3	Désactivé	francais	t	52	f
+7261	4	1670	3	DÃ©sactivÃ©	francais	t	52	f
 7263	4	1677	3	Classification	francais	t	52	f
-7264	4	1678	3	Remarques sur le document séparés par virgule	francais	t	52	f
+7264	4	1678	3	Remarques sur le document sÃ©parÃ©s par virgule	francais	t	52	f
 7265	4	1679	1	Copie de	francais	t	66	f
-7269	4	1683	1	Fichier déjà existante!	francais	t	66	f
-7270	4	1684	1	Dossier déjà existant!	francais	t	66	f
+7269	4	1683	1	Fichier dÃ©jÄ… existante!	francais	t	66	f
+7270	4	1684	1	Dossier dÃ©jÄ… existant!	francais	t	66	f
 7271	4	1685	3	Copie	francais	t	52	f
-7272	4	1686	3	Le dossier utilisateur ne peut être supprimé!	francais	t	29	f
-7273	4	1687	3	Afficher les utilisateurs supprimés	francais	t	132	f
-7274	4	1688	1	Le fichier est désactivé !	francais	t	66	f
-7278	4	1692	1	Rapport créé.	francais	t	93	f
+7272	4	1686	3	Le dossier utilisateur ne peut Åºtre supprimÃ©!	francais	t	29	f
+7273	4	1687	3	Afficher les utilisateurs supprimÃ©s	francais	t	132	f
+7274	4	1688	1	Le fichier est dÃ©sactivÃ© !	francais	t	66	f
+7278	4	1692	1	Rapport crÃ©Ã©.	francais	t	93	f
 7279	4	1693	1	Editer	francais	t	66	f
-7282	4	1696	1	Messages et Fichiers ne peuvent être mélangés!	francais	t	97	f
+7282	4	1696	1	Messages et Fichiers ne peuvent Åºtre mÃ©langÃ©s!	francais	t	97	f
 7283	4	1697	1	The dossier n''est modifiable qu''au travers du mode table, message ou rapport.	francais	t	66	f
 7284	4	1698	2	Copier	francais	t	0	f
 7285	4	1699	2	Copier message	francais	t	0	f
@@ -6605,34 +6605,34 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7291	4	1705	1	Document	francais	t	3	f
 7292	4	1706	1	Image	francais	t	3	f
 7295	4	1709	1	Voulez vous supprimer le contenu du dossier ?	francais	t	66	f
-7296	4	1710	1	Upload refusé	francais	t	66	f
+7296	4	1710	1	Upload refusÃ©	francais	t	66	f
 7297	4	1711	2	Marquer	francais	t	0	f
 7298	4	1712	2	Marquer message	francais	t	0	f
-7303	4	1717	1	Aucun fichier sélectionné!	francais	t	66	f
-7305	4	1719	3	Indexé le:	francais	t	52	f
+7303	4	1717	1	Aucun fichier sÃ©lectionnÃ©!	francais	t	66	f
+7305	4	1719	3	IndexÃ© le:	francais	t	52	f
 7306	4	1720	3	Index	francais	t	52	f
 7307	4	1721	1	Utilisateur:	francais	t	23	f
 7308	4	1722	1	Temps restant (min.):	francais	t	23	f
 7310	4	1724	2	Rafraichir l''apercu	francais	t	0	f
-7311	4	1725	2	Régénérer l''apercu	francais	t	0	f
+7311	4	1725	2	RÃ©gÃ©nÃ©rer l''apercu	francais	t	0	f
 7313	4	1727	3	Supprimer completement	francais	t	127	f
 7314	4	1728	3	Activer l''utilisateur	francais	t	132	f
 7315	4	1729	2	Copier	francais	t	0	f
 7316	4	1730	2	Copier l''enregistrement	francais	t	0	f
-7319	4	1733	1	Aucun enregistrement sélectionné!	francais	t	5	f
-7321	4	1735	2	Nouvelle fenêtre	francais	t	0	f
+7319	4	1733	1	Aucun enregistrement sÃ©lectionnÃ©!	francais	t	5	f
+7321	4	1735	2	Nouvelle fenÅºtre	francais	t	0	f
 7322	4	1736	2	Nouveau explorer LIMBAS	francais	t	0	f
 7323	4	1737	3	EXIF	francais	t	52	f
 7324	4	1738	3	IPTC	francais	t	52	f
 7325	4	1739	3	Apercu	francais	t	52	f
 7326	4	1740	3	XMP	francais	t	52	f
 7327	4	1741	3	Description de l''objet	francais	t	52	f
-7328	4	1742	3	Mot clé	francais	t	52	f
+7328	4	1742	3	Mot clÃ©	francais	t	52	f
 7329	4	1743	3	Categorie	francais	t	52	f
 7330	4	1744	3	Droit d''image	francais	t	52	f
 7331	4	1745	3	Origine	francais	t	52	f
 7332	4	1746	3	Copyright	francais	t	52	f
-7333	4	1747	3	Résultat	francais	t	52	f
+7333	4	1747	3	RÃ©sultat	francais	t	52	f
 7334	4	1748	3	Urgence	francais	t	52	f
 7335	4	1749	3	Categorie	francais	t	52	f
 7336	4	1750	3	Auteur	francais	t	52	f
@@ -6646,7 +6646,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7345	4	1759	2	Convertir	francais	t	0	f
 7346	4	1760	2	Convertir fichier	francais	t	0	f
 7348	4	1762	1	Methode	francais	t	66	f
-7349	4	1763	3	Résultat	francais	t	168	f
+7349	4	1763	3	RÃ©sultat	francais	t	168	f
 7350	4	1764	3	OnClick	francais	t	168	f
 7351	4	1765	3	OnDblClick	francais	t	168	f
 7607	4	2027	3	Editeur	francais	t	205	f
@@ -6656,7 +6656,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7355	4	1769	2	Mode edition	francais	t	0	f
 7356	4	1770	2	Editer champs long	francais	t	0	f
 7358	4	1772	3	Script PHP	francais	t	175	f
-7359	4	1773	3	Description des données	francais	t	169	f
+7359	4	1773	3	Description des donnÃ©es	francais	t	169	f
 7360	4	1774	3	Champs de recherche	francais	t	169	f
 7362	4	1776	3	Visible	francais	t	168	f
 7363	4	1777	3	Couper	francais	t	168	f
@@ -6665,23 +6665,23 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7366	4	1780	3	Actions	francais	t	127	f
 7368	4	1782	2	Comparaison	francais	t	0	f
 7369	4	1783	2	Comparaison des enregistrements	francais	t	0	f
-7312	4	1726	1	Fichier supprimé ou deplacé!	francais	t	66	f
+7312	4	1726	1	Fichier supprimÃ© ou deplacÃ©!	francais	t	66	f
 7373	4	1787	1	Archiver	francais	t	13	f
 7374	4	1788	1	Rapport	francais	t	5	f
 7375	4	1789	3	Afficher utilisateur actif	francais	t	132	f
-7496	4	1916	2	Affiché	francais	t	0	f
+7496	4	1916	2	AffichÃ©	francais	t	0	f
 7376	4	1790	3	Afficher tous les utilisateurs	francais	t	132	f
 7377	4	1791	3	Statistiques	francais	t	132	f
-7378	4	1792	3	Modifié	francais	t	132	f
+7378	4	1792	3	ModifiÃ©	francais	t	132	f
 7504	4	1924	3	Autres	francais	t	52	f
-7379	4	1793	3	Afficher utilisateurs desactivés	francais	t	132	f
+7379	4	1793	3	Afficher utilisateurs desactivÃ©s	francais	t	132	f
 7383	4	1797	1	0 (pas de log)	francais	t	127	f
 7384	4	1798	1	1 (seulement les actions sur BDD)	francais	t	127	f
 7385	4	1799	1	2 (log complet)	francais	t	127	f
 7386	4	1800	2	Connecter	francais	t	182	f
 7387	4	1801	2	Deconnecter	francais	t	182	f
 7388	4	1802	2	IP	francais	t	182	f
-7389	4	1803	2	Durée	francais	t	182	f
+7389	4	1803	2	DurÃ©e	francais	t	182	f
 7390	4	1804	2	Date	francais	t	182	f
 7393	4	1807	2	ID	francais	t	182	f
 7394	4	1808	2	Type	francais	t	182	f
@@ -6691,10 +6691,10 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7399	4	1813	3	Autre menu	francais	t	163	f
 7400	4	1814	3	Sous-groupe	francais	t	162	f
 7401	4	1815	3	Tri	francais	t	162	f
-7403	4	1817	3	Mot de passe valable jusqu''à	francais	t	127	f
-7407	4	1823	3	Génrateur	francais	t	121	f
+7403	4	1817	3	Mot de passe valable jusqu''Ä…	francais	t	127	f
+7407	4	1823	3	GÃ©nrateur	francais	t	121	f
 7408	4	1824	3	Vers table en relation	francais	t	121	f
-7411	4	1827	1	Opérateur conditionnel	francais	t	19	f
+7411	4	1827	1	OpÃ©rateur conditionnel	francais	t	19	f
 7412	4	1828	2	Info	francais	t	0	f
 7413	4	1829	2	Info sur LIMBAS	francais	t	0	f
 7414	4	1830	3	Choix echantillon	francais	t	104	f
@@ -6702,26 +6702,26 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7537	4	1957	3	Marge	francais	t	168	f
 7421	4	1837	3	Trier	francais	t	104	f
 7422	4	1838	3	Entrer	francais	t	104	f
-7423	4	1839	3	En arrière	francais	t	104	f
+7423	4	1839	3	En arriÄre	francais	t	104	f
 7424	4	1840	3	En avant	francais	t	104	f
 7427	4	1843	1	Valeur	francais	t	12	f
 7428	4	1844	1	De	francais	t	12	f
-7429	4	1845	1	Sélectionné	francais	t	12	f
-7430	4	1846	1	Affiché	francais	t	12	f
-7431	4	1847	3	Mise à jour du système	francais	t	154	f
+7429	4	1845	1	SÃ©lectionnÃ©	francais	t	12	f
+7430	4	1846	1	AffichÃ©	francais	t	12	f
+7431	4	1847	3	Mise Ä… jour du systÄme	francais	t	154	f
 7433	4	1849	3	Synchroniser la structure des dossiers	francais	t	154	f
 7434	4	1850	2	Index	francais	t	0	f
 7435	4	1851	2	Index de table	francais	t	0	f
-7440	4	1856	3	Utilisé	francais	t	195	f
+7440	4	1856	3	UtilisÃ©	francais	t	195	f
 7442	4	1858	3	Renouveller	francais	t	195	f
 7446	4	1862	2	Jobs	francais	t	0	f
 7447	4	1863	2	Jobs - Gabarits	francais	t	0	f
-7448	4	1864	2	Périodique	francais	t	0	f
-7449	4	1865	2	Jobs périodique	francais	t	0	f
+7448	4	1864	2	PÃ©riodique	francais	t	0	f
+7449	4	1865	2	Jobs pÃ©riodique	francais	t	0	f
 7450	4	1866	2	Historique	francais	t	0	f
 7451	4	1867	2	Jobs - historique	francais	t	0	f
 7453	4	1869	2	Augmenter la limite	francais	t	0	f
-7454	4	1870	2	Augmenter la limite de résultat	francais	t	0	f
+7454	4	1870	2	Augmenter la limite de rÃ©sultat	francais	t	0	f
 7455	4	1872	3	Menu Info	francais	t	163	f
 7456	4	1873	2	Deconnecter	francais	t	0	f
 7457	4	1874	2	Deconnecter	francais	t	0	f
@@ -6734,30 +6734,30 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7464	4	1881	3	Reg Exp	francais	t	110	f
 7466	4	1883	3	Devise	francais	t	110	f
 7468	4	1885	3	WYSIWYG	francais	t	110	f
-7469	4	1886	3	Séparateur de valeur	francais	t	110	f
+7469	4	1886	3	SÃ©parateur de valeur	francais	t	110	f
 7470	4	1887	3	Affichage des relations	francais	t	110	f
 7471	4	1888	2	Police	francais	t	0	f
 7472	4	1889	2	Gestionnaire de polices	francais	t	0	f
-7473	4	1891	2	Rétablir	francais	t	0	f
-7474	4	1892	2	Rétablir la recherche	francais	t	0	f
-7475	4	1893	3	Général	francais	t	164	f
+7473	4	1891	2	RÃ©tablir	francais	t	0	f
+7474	4	1892	2	RÃ©tablir la recherche	francais	t	0	f
+7475	4	1893	3	GÃ©nÃ©ral	francais	t	164	f
 7476	4	1894	3	Chemin d''installation	francais	t	164	f
 7477	4	1895	3	Mise en page	francais	t	164	f
-7478	4	1896	3	Paramètres des tables	francais	t	164	f
-7479	4	1898	3	Paramètres des index	francais	t	164	f
-7480	4	1899	3	Paramètres des fichiers	francais	t	164	f
+7478	4	1896	3	ParamÄtres des tables	francais	t	164	f
+7479	4	1898	3	ParamÄtres des index	francais	t	164	f
+7480	4	1899	3	ParamÄtres des fichiers	francais	t	164	f
 7639	4	2060	2	Worfklow	francais	t	0	f
-7482	4	1901	1	Les meta données ne peuvent être correctement lues.	francais	t	41	f
+7482	4	1901	1	Les meta donnÃ©es ne peuvent Åºtre correctement lues.	francais	t	41	f
 7483	4	1902	1	Partie de mot	francais	t	66	f
-7484	4	1903	1	Phrase complète	francais	t	66	f
-7485	4	1904	1	Sensible à la casse	francais	t	66	f
-7489	4	1908	3	Rechercher dans les meta données	francais	t	52	f
+7484	4	1903	1	Phrase complÄte	francais	t	66	f
+7485	4	1904	1	Sensible Ä… la casse	francais	t	66	f
+7489	4	1908	3	Rechercher dans les meta donnÃ©es	francais	t	52	f
 7490	4	1909	1	Aucun apercu pour ce type de fichier.	francais	t	66	f
-7492	4	1911	2	Rechercher dans tous les répertoires marqués	francais	t	0	f
-7495	4	1915	1	Aucun document trouvé!	francais	t	66	f
+7492	4	1911	2	Rechercher dans tous les rÃ©pertoires marquÃ©s	francais	t	0	f
+7495	4	1915	1	Aucun document trouvÃ©!	francais	t	66	f
 7497	4	1917	2	Calcul des champs visible	francais	t	0	f
-7500	4	1920	2	Sauvegarder les paramètres	francais	t	0	f
-7501	4	1921	2	Sauvegarder les paramêtres courrant du dossier	francais	t	0	f
+7500	4	1920	2	Sauvegarder les paramÄtres	francais	t	0	f
+7501	4	1921	2	Sauvegarder les paramÅºtres courrant du dossier	francais	t	0	f
 7502	4	1922	2	Sauvegarder l''affichage	francais	t	0	f
 7503	4	1923	2	Enregistrer cette apparence pour tous les dossiers.	francais	t	0	f
 7511	4	1931	2	Heure	francais	t	0	f
@@ -6767,23 +6767,23 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7527	4	1947	3	Champs de saisie - text	francais	t	175	f
 7528	4	1948	3	Champs de saisie - textarea	francais	t	175	f
 7529	4	1949	3	Champs de choix - select	francais	t	175	f
-7530	4	1950	3	Element case à cocher	francais	t	175	f
+7530	4	1950	3	Element case Ä… cocher	francais	t	175	f
 7531	4	1951	3	Element bouton radio	francais	t	175	f
-7534	4	1954	3	Fenêtre multi-usage	francais	t	115	f
+7534	4	1954	3	FenÅºtre multi-usage	francais	t	115	f
 7541	4	1961	3	Choix	francais	t	168	f
 7542	4	1962	3	Oui	francais	t	168	f
 7543	4	1963	3	Non	francais	t	168	f
 7545	4	1965	2	Public	francais	t	0	f
 7491	4	1910	2	Enregistrer recherche	francais	t	0	f
 7547	4	1967	3	Capture	francais	t	168	f
-7548	4	1968	3	Caché	francais	t	168	f
+7548	4	1968	3	CachÃ©	francais	t	168	f
 7555	4	1975	1	Dans	francais	t	13	f
 7556	4	1976	1	Le	francais	t	13	f
 7560	4	1980	1	Minutes	francais	t	13	f
 7561	4	1981	1	Heures	francais	t	13	f
 7562	4	1982	1	Jours	francais	t	13	f
 7563	4	1983	1	Semaines	francais	t	13	f
-7565	4	1985	1	Années	francais	t	13	f
+7565	4	1985	1	AnnÃ©es	francais	t	13	f
 7566	4	1986	3	Extension	francais	t	162	f
 7567	4	1987	3	TriggerOnCh	francais	t	122	f
 7568	4	1988	2	Trigger	francais	t	0	f
@@ -6795,18 +6795,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7578	4	1998	1	Enregistrer sous	francais	t	5	f
 7516	4	1936	2	Vue fichier	francais	t	0	f
 7580	4	2000	1	Administrer	francais	t	5	f
-7586	4	2006	1	Enregistré avec succès!	francais	t	0	f
-7587	4	2007	1	Supprimé avec succès!	francais	t	0	f
-7588	4	2008	1	Envoyé avec succès!	francais	t	0	f
+7586	4	2006	1	EnregistrÃ© avec succÄs!	francais	t	0	f
+7587	4	2007	1	SupprimÃ© avec succÄs!	francais	t	0	f
+7588	4	2008	1	EnvoyÃ© avec succÄs!	francais	t	0	f
 7596	4	2016	1	Excel	francais	t	5	f
 7597	4	2017	1	XML	francais	t	5	f
 7600	4	2020	3	Conversion du champs:	francais	t	110	f
-7601	4	2021	3	Les données trop longue vont être coupées ou supprimées!	francais	t	110	f
-7603	4	2023	3	Requête	francais	t	140	f
-7604	4	2024	2	Requêtes	francais	t	0	f
-7605	4	2025	2	Génrateur de requêtes	francais	t	0	f
+7601	4	2021	3	Les donnÃ©es trop longue vont Åºtre coupÃ©es ou supprimÃ©es!	francais	t	110	f
+7603	4	2023	3	RequÅºte	francais	t	140	f
+7604	4	2024	2	RequÅºtes	francais	t	0	f
+7605	4	2025	2	GÃ©nrateur de requÅºtes	francais	t	0	f
 7606	4	2026	3	SQL	francais	t	205	f
-7610	4	2030	3	Raffraîchir les champs multiselect	francais	t	154	f
+7610	4	2030	3	RaffraÄ«chir les champs multiselect	francais	t	154	f
 7544	4	1964	3	Select menu	francais	t	168	f
 7615	4	2035	3	Workflow	francais	t	140	f
 7617	4	2038	2	Mes taches	francais	t	0	f
@@ -6826,11 +6826,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7641	4	2062	1	Dernier enregistrement!	francais	t	23	f
 7642	4	2063	3	Z-index	francais	t	175	f
 7643	4	2064	3	A l''avant plan	francais	t	168	f
-3054	3	311	1	lunes	Espagñol	t	88	f
-7644	4	2065	3	A l''arrière plan	francais	t	168	f
+3054	3	311	1	lunes	EspagÅ„ol	t	88	f
+7644	4	2065	3	A l''arriÄre plan	francais	t	168	f
 7646	4	2067	3	Reconstruire:	francais	t	168	f
-7647	4	2068	3	N°	francais	t	212	f
-7649	4	2070	3	Durée	francais	t	212	f
+7647	4	2068	3	NÂ°	francais	t	212	f
+7649	4	2070	3	DurÃ©e	francais	t	212	f
 7651	4	2072	3	Actif	francais	t	212	f
 7653	4	2074	3	Minute	francais	t	212	f
 7654	4	2075	3	Heure	francais	t	212	f
@@ -6840,19 +6840,19 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7659	4	2080	3	Structure des fichier	francais	t	212	f
 7662	1	2082	1	Workflow wurde erfolgreich gestartet!	deutsch	t	5	f
 7663	2	2082	1	Workflow successfully started!	english	t	5	f
-7664	4	2082	1	Le workflow a été démarré avec succès!	francais	t	5	f
-7666	1	2083	1	keine Datensätze ausgewählt!	deutsch	t	5	f
+7664	4	2082	1	Le workflow a Ã©tÃ© dÃ©marrÃ© avec succÄs!	francais	t	5	f
+7666	1	2083	1	keine DatensÃ¤tze ausgewÃ¤hlt!	deutsch	t	5	f
 10932	1	2457	3	Modus	deutsch	t	168	f
-7668	4	2083	1	Aucun enregistrement sélectionné!	francais	t	5	f
+7668	4	2083	1	Aucun enregistrement sÃ©lectionnÃ©!	francais	t	5	f
 7670	2	2084	2	my workflows	english	t	\N	f
 7671	4	2084	2	Mes Workflows	francais	t	\N	f
 7674	2	2085	2	create workflow	english	t	\N	f
-7675	4	2085	2	Workflows créés	francais	t	\N	f
+7675	4	2085	2	Workflows crÃ©Ã©s	francais	t	\N	f
 7669	1	2084	2	Meine Workflows	deutsch	t	\N	f
 7673	1	2085	2	erstelle Workflow	deutsch	t	\N	f
 7686	1	2088	3	versteckt	deutsch	t	168	f
 7687	2	2088	3	hidden	english	t	168	f
-7688	4	2088	3	Caché	francais	t	168	f
+7688	4	2088	3	CachÃ©	francais	t	168	f
 7698	1	2091	3	erste Seite	deutsch	t	168	f
 7700	4	2091	3	Page 1	francais	t	168	f
 7702	1	2092	3	Folgeseiten	deutsch	t	168	f
@@ -6861,15 +6861,15 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7706	1	2093	3	Transp.	deutsch	t	168	f
 7707	2	2093	3	Transp.	english	t	168	f
 7708	4	2093	3	Transparent	francais	t	168	f
-6253	4	362	2	Modifier plusieurs box de sélection	francais	t	0	f
+6253	4	362	2	Modifier plusieurs box de sÃ©lection	francais	t	0	f
 7726	1	2098	3	davor	deutsch	t	168	f
 7727	2	2098	3	before	english	t	168	f
 7728	4	2098	3	Avant	francais	t	168	f
 7730	1	2099	3	danach	deutsch	t	168	f
 7731	2	2099	3	after	english	t	168	f
-7732	4	2099	3	Après	francais	t	168	f
+7732	4	2099	3	AprÄs	francais	t	168	f
 7682	1	2087	2	Vererbtes Feld	deutsch	t	0	f
-7684	4	2087	2	Champs hérité	francais	t	0	f
+7684	4	2087	2	Champs hÃ©ritÃ©	francais	t	0	f
 7734	1	2100	3	Umbruch	deutsch	t	168	f
 7738	1	2101	3	Fixiere Position	deutsch	t	168	f
 7740	4	2101	3	Position fixe	francais	t	168	f
@@ -6883,11 +6883,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7784	4	2112	3	Table des couleurs	francais	t	52	f
 7786	1	2113	1	Datei konnte nicht konvertiert werden!	deutsch	t	66	f
 7787	2	2113	1	File could not be converted!	english	t	66	f
-7788	4	2113	1	Le fichier ne peut être converti!	francais	t	66	f
+7788	4	2113	1	Le fichier ne peut Åºtre converti!	francais	t	66	f
 7790	1	2114	1	Limit	deutsch	t	5	f
 7791	2	2114	1	Limit	english	t	5	f
 7793	1	2115	2	Diagramme	deutsch	t	\N	f
-10424	1	2332	1	überspringen	deutsch	t	66	f
+10424	1	2332	1	Ã¼berspringen	deutsch	t	66	f
 7794	2	2115	2	Diagrams	english	t	\N	f
 7795	4	2115	2	Diagramme	francais	t	\N	f
 7797	1	2116	2	Diagramme	deutsch	t	\N	f
@@ -6900,20 +6900,20 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7810	1	2119	3	Diagramme	deutsch	t	177	f
 7811	2	2119	3	Diagrams	english	t	177	f
 7882	2	2137	2	select all records	english	t	\N	f
-7883	4	2137	2	alle Datensätze auswählen	francais	t	\N	f
+7883	4	2137	2	alle DatensÃ¤tze auswÃ¤hlen	francais	t	\N	f
 10165	1	2269	3	Definition	deutsch	t	218	f
-7886	1	2138	1	keine verknüpfte Tabelle ausgewählt!	deutsch	t	5	f
+7886	1	2138	1	keine verknÃ¼pfte Tabelle ausgewÃ¤hlt!	deutsch	t	5	f
 7887	2	2138	1	no linked table selected!	english	t	5	f
-7890	1	2139	1	keine verknüpften Daten vorhanden!	deutsch	t	5	f
+7890	1	2139	1	keine verknÃ¼pften Daten vorhanden!	deutsch	t	5	f
 7891	2	2139	1	no linked data!	english	t	5	f
 7699	2	2091	3	first page	english	t	168	f
 7735	2	2100	3	page break	english	t	168	f
 7893	1	2140	2	zeige versionierte	deutsch	t	\N	f
 7894	2	2140	2	show versionised	english	t	\N	f
 7895	4	2140	2	zeige Versionen	francais	t	\N	f
-7897	1	2141	2	zeige versionierte Datensätze	deutsch	t	\N	f
+7897	1	2141	2	zeige versionierte DatensÃ¤tze	deutsch	t	\N	f
 7898	2	2141	2	show versionised records	english	t	\N	f
-7899	4	2141	2	zeige versionierte Datensätze	francais	t	\N	f
+7899	4	2141	2	zeige versionierte DatensÃ¤tze	francais	t	\N	f
 7902	1	2142	3	rekursiv	deutsch	t	140	f
 7903	2	2142	3	recursive	english	t	140	f
 7906	1	2143	3	fix	deutsch	t	140	f
@@ -6927,18 +6927,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7918	1	2146	1	soll der Datensatz versioniert werden?	deutsch	t	13	t
 7926	1	2148	1	Datensatz wurde erfolgreich versioniert!	deutsch	t	25	f
 7927	2	2148	1	Record successfully versioned!	english	t	25	f
-7930	1	2149	1	Datensätze wurden erfolgreich versioniert!	deutsch	t	25	f
+7930	1	2149	1	DatensÃ¤tze wurden erfolgreich versioniert!	deutsch	t	25	f
 7931	2	2149	1	Records successfully versioned!	english	t	25	f
 7934	1	2150	1	Datensatz wurde erfolgreich kopiert!	deutsch	t	25	f
 7935	2	2150	1	Record successfully copied!	english	t	25	f
-7938	1	2151	1	Datensätze wurden erfolgreich kopiert!	deutsch	t	25	f
+7938	1	2151	1	DatensÃ¤tze wurden erfolgreich kopiert!	deutsch	t	25	f
 7939	2	2151	1	Records successfully copied!	english	t	25	f
-7946	1	2153	1	Sollen die ausgewählten Datensätze gelöscht werden?	deutsch	t	5	f
-7950	1	2154	1	Sollen die ausgewählten Datensätze archiviert werden?	deutsch	t	5	f
-7954	1	2155	1	Sollen die ausgewählten Datensätze versioniert werden?	deutsch	t	5	f
-7958	1	2156	1	Sollen die ausgewählten Datensätze kopiert werden?	deutsch	t	5	f
-7962	1	2157	1	Sollen die ausgewählten Datensätze wieder hergestellt werden?	deutsch	t	5	f
-7966	1	2158	1	Das Aufheben des Limits kann bei großen Datensatzmengen zu langen Wartezeiten führen!	deutsch	t	5	f
+7946	1	2153	1	Sollen die ausgewÃ¤hlten DatensÃ¤tze gelÃ¶scht werden?	deutsch	t	5	f
+7950	1	2154	1	Sollen die ausgewÃ¤hlten DatensÃ¤tze archiviert werden?	deutsch	t	5	f
+7954	1	2155	1	Sollen die ausgewÃ¤hlten DatensÃ¤tze versioniert werden?	deutsch	t	5	f
+7958	1	2156	1	Sollen die ausgewÃ¤hlten DatensÃ¤tze kopiert werden?	deutsch	t	5	f
+7962	1	2157	1	Sollen die ausgewÃ¤hlten DatensÃ¤tze wieder hergestellt werden?	deutsch	t	5	f
+7966	1	2158	1	Das Aufheben des Limits kann bei groÃŸen Datensatzmengen zu langen Wartezeiten fÃ¼hren!	deutsch	t	5	f
 7967	2	2158	1	Canceling the limit with big amounts of records can lead to long latency.	english	t	5	f
 7973	1	2160	2	workflow	deutsch	t	\N	f
 7974	2	2160	2	workflow	english	t	\N	f
@@ -6950,18 +6950,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7982	2	2162	2	compare with	english	t	\N	f
 7985	1	2163	2	Version vergleichen	deutsch	t	\N	f
 7986	2	2163	2	compare Version	english	t	\N	f
-8059	4	2181	2	zeige verknüpfte Datensätze	francais	t	\N	f
-8062	1	2182	1	Datensatz wurde verknüpft!	deutsch	t	25	f
+8059	4	2181	2	zeige verknÃ¼pfte DatensÃ¤tze	francais	t	\N	f
+8062	1	2182	1	Datensatz wurde verknÃ¼pft!	deutsch	t	25	f
 8063	2	2182	1	Record linked!	english	t	25	f
-8066	1	2183	1	Datensätze wurden verknüpft!	deutsch	t	25	f
+8066	1	2183	1	DatensÃ¤tze wurden verknÃ¼pft!	deutsch	t	25	f
 8067	2	2183	1	Records linked!	english	t	25	f
-8070	1	2184	1	Verknüpfung wurde gelöst!	deutsch	t	25	f
-8074	1	2185	1	Verknüpfungen wurden gelöst!	deutsch	t	25	f
-8078	1	2186	1	Sollen die ausgewählten Datensätze verknüpft werden?	deutsch	t	5	f
+8070	1	2184	1	VerknÃ¼pfung wurde gelÃ¶st!	deutsch	t	25	f
+8074	1	2185	1	VerknÃ¼pfungen wurden gelÃ¶st!	deutsch	t	25	f
+8078	1	2186	1	Sollen die ausgewÃ¤hlten DatensÃ¤tze verknÃ¼pft werden?	deutsch	t	5	f
 8079	2	2186	1	Link selected records?	english	t	5	f
-8082	1	2187	1	Sollen die Verknüpfung der ausgewählten Datensätze gelöst werden?	deutsch	t	5	f
-8090	1	2189	1	Sie haben keine Rechte für diese Datei!	deutsch	t	66	f
-8126	1	2198	3	abhängig	deutsch	t	168	f
+8082	1	2187	1	Sollen die VerknÃ¼pfung der ausgewÃ¤hlten DatensÃ¤tze gelÃ¶st werden?	deutsch	t	5	f
+8090	1	2189	1	Sie haben keine Rechte fÃ¼r diese Datei!	deutsch	t	66	f
+8126	1	2198	3	abhÃ¤ngig	deutsch	t	168	f
 8127	2	2198	3	dependent	english	t	168	f
 8130	2	2199	2	Workplace	english	t	\N	f
 8134	2	2200	2	Summary	english	t	\N	f
@@ -6970,14 +6970,14 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8145	1	2203	2	myLimbas	deutsch	t	\N	f
 8146	2	2203	2	myLimbas	english	t	\N	f
 8147	4	2203	2	myLimbas	francais	t	\N	f
-8149	1	2204	2	Persönliche Daten	deutsch	t	\N	f
+8149	1	2204	2	PersÃ¶nliche Daten	deutsch	t	\N	f
 8150	2	2204	2	personal Data	english	t	\N	f
 8162	1	2207	3	Template	deutsch	t	177	f
 8163	2	2207	3	Template	english	t	177	f
 8174	1	2210	3	umbenennen	deutsch	t	148	f
 8175	2	2210	3	rename	english	t	148	f
-8114	1	2195	2	Größenangabe in Byte	deutsch	t	0	f
-8110	1	2194	2	Dateigröße	deutsch	t	0	f
+8114	1	2195	2	GrÃ¶ÃŸenangabe in Byte	deutsch	t	0	f
+8110	1	2194	2	DateigrÃ¶ÃŸe	deutsch	t	0	f
 8194	1	2215	3	View	deutsch	t	149	f
 8195	2	2215	3	View	english	t	149	f
 8198	1	2216	3	Trigger	deutsch	t	149	f
@@ -6985,7 +6985,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8229	1	2224	2	mini Datei-Manager	deutsch	t	\N	f
 8230	2	2224	2	mini File manager	english	t	\N	f
 8231	4	2224	2	Datei suchen	francais	t	\N	f
-8234	1	2225	1	eine Ebene höher	deutsch	t	215	f
+8234	1	2225	1	eine Ebene hÃ¶her	deutsch	t	215	f
 8235	2	2225	1	one level higher	english	t	215	f
 8239	2	2226	1	select	english	t	215	f
 8242	1	2227	1	abbrechen	deutsch	t	215	f
@@ -7004,7 +7004,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8270	1	2234	1	erweiterte Darstellung	deutsch	t	215	f
 8274	1	2235	3	Bezeichner	deutsch	t	110	f
 8275	2	2235	3	Identifier	english	t	110	f
-8278	1	2236	3	Abhängigkeit	deutsch	t	52	f
+8278	1	2236	3	AbhÃ¤ngigkeit	deutsch	t	52	f
 8279	2	2236	3	Dependence	english	t	52	f
 8290	1	2239	3	nur Backend sperren	deutsch	t	127	f
 8291	2	2239	3	lock only backend	english	t	127	f
@@ -7013,25 +7013,25 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8306	1	2243	3	abfragen	deutsch	t	148	f
 8307	2	2243	3	request	english	t	148	f
 8310	2	2244	2	summary	english	t	\N	f
-8311	4	2244	2	Übersicht	francais	t	\N	f
+8311	4	2244	2	Ãœbersicht	francais	t	\N	f
 8314	2	2245	2	User summary	english	t	\N	f
-8315	4	2245	2	Userübersicht	francais	t	\N	f
-8317	1	2246	2	Menü links	deutsch	t	\N	f
-8319	4	2246	2	Menü links	francais	t	\N	f
-8321	1	2247	2	Menü links	deutsch	t	\N	f
-8323	4	2247	2	Menü links	francais	t	\N	f
-8325	1	2248	2	Menü oben	deutsch	t	\N	f
+8315	4	2245	2	UserÃ¼bersicht	francais	t	\N	f
+8317	1	2246	2	MenÃ¼ links	deutsch	t	\N	f
+8319	4	2246	2	MenÃ¼ links	francais	t	\N	f
+8321	1	2247	2	MenÃ¼ links	deutsch	t	\N	f
+8323	4	2247	2	MenÃ¼ links	francais	t	\N	f
+8325	1	2248	2	MenÃ¼ oben	deutsch	t	\N	f
 8326	2	2248	2	Menu top	english	t	\N	f
-8327	4	2248	2	Menü oben	francais	t	\N	f
-8329	1	2249	2	Menü oben	deutsch	t	\N	f
+8327	4	2248	2	MenÃ¼ oben	francais	t	\N	f
+8329	1	2249	2	MenÃ¼ oben	deutsch	t	\N	f
 8330	2	2249	2	Menu top	english	t	\N	f
-8331	4	2249	2	Menü oben	francais	t	\N	f
-8333	1	2250	2	Menü rechts	deutsch	t	\N	f
+8331	4	2249	2	MenÃ¼ oben	francais	t	\N	f
+8333	1	2250	2	MenÃ¼ rechts	deutsch	t	\N	f
 8334	2	2250	2	Menu right	english	t	\N	f
-8335	4	2250	2	Menü rechts	francais	t	\N	f
-8337	1	2251	2	Menü rechts	deutsch	t	\N	f
+8335	4	2250	2	MenÃ¼ rechts	francais	t	\N	f
+8337	1	2251	2	MenÃ¼ rechts	deutsch	t	\N	f
 8338	2	2251	2	Menu right	english	t	\N	f
-8339	4	2251	2	Menü rechts	francais	t	\N	f
+8339	4	2251	2	MenÃ¼ rechts	francais	t	\N	f
 8341	1	2252	2	Introseite	deutsch	t	\N	f
 8342	2	2252	2	Intro page	english	t	\N	f
 8343	4	2252	2	Introseite	francais	t	\N	f
@@ -7051,36 +7051,36 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10196	2	2275	3	synchronize	english	t	218	f
 10205	2	2277	2	Report/Form rights	english	t	0	f
 10209	2	2278	2	set Report and Form rights	english	t	0	f
-10212	1	2279	3	soll das Formular gelöscht werden?	deutsch	t	176	f
+10212	1	2279	3	soll das Formular gelÃ¶scht werden?	deutsch	t	176	f
 10213	2	2279	3	Delete Form?	english	t	176	f
 10220	1	2281	3	Formulare	deutsch	t	222	f
 10221	2	2281	3	Forms	english	t	222	f
-10232	1	2284	3	soll der Bericht gelöscht werden?	deutsch	t	170	f
-10236	1	2285	3	soll das Diagramm gelöscht werden?	deutsch	t	177	f
-10240	1	2286	3	Soll die Tabellengruppe inklusive Tabellen gelöscht werden?	deutsch	t	140	f
-10244	1	2287	3	soll die Tabelle gelöscht werden?	deutsch	t	140	f
-10248	1	2288	3	alle öffnen	deutsch	t	213	f
+10232	1	2284	3	soll der Bericht gelÃ¶scht werden?	deutsch	t	170	f
+10236	1	2285	3	soll das Diagramm gelÃ¶scht werden?	deutsch	t	177	f
+10240	1	2286	3	Soll die Tabellengruppe inklusive Tabellen gelÃ¶scht werden?	deutsch	t	140	f
+10244	1	2287	3	soll die Tabelle gelÃ¶scht werden?	deutsch	t	140	f
+10248	1	2288	3	alle Ã¶ffnen	deutsch	t	213	f
 10249	2	2288	3	open all	english	t	213	f
-10256	1	2290	3	alle berechtigten öffnen	deutsch	t	213	f
+10256	1	2290	3	alle berechtigten Ã¶ffnen	deutsch	t	213	f
 10257	2	2290	3	open all entitled	english	t	213	f
-10260	1	2291	2	zeige selbstverknüpfte	deutsch	t	0	f
+10260	1	2291	2	zeige selbstverknÃ¼pfte	deutsch	t	0	f
 10261	2	2291	2	show selve linked	english	t	0	f
 10268	1	2293	1	Die Metadaten konnten nicht aktualisiert werden!	deutsch	t	66	f
 10269	2	2293	1	Update Metadata not sucessfull!	english	t	66	f
 10272	1	2294	1	Sie haben keine Berechtigung oder der Order wurde entfernt!	deutsch	t	66	f
 10273	2	2294	1	No permission or folder has been removed!	english	t	66	f
 10276	1	2295	3	Dateien sehen	deutsch	t	213	f
-10280	1	2296	3	Dateien hinzufügen	deutsch	t	213	f
+10280	1	2296	3	Dateien hinzufÃ¼gen	deutsch	t	213	f
 10284	1	2297	3	Ordner anlegen	deutsch	t	213	f
-10288	1	2298	3	Dateien / Ordner löschen	deutsch	t	213	f
+10288	1	2298	3	Dateien / Ordner lÃ¶schen	deutsch	t	213	f
 10292	1	2299	3	Metadaten editieren	deutsch	t	213	f
 10296	1	2300	3	Dateien sperren	deutsch	t	213	f
 10300	1	2301	3	berechtigte Gruppen	deutsch	t	213	f
 10301	2	2301	3	entitled Groups	english	t	213	f
-10304	1	2302	3	Tabelle im Menü nicht zeigen	deutsch	t	122	f
-10305	2	2302	3	Don´t show table in menue.	english	t	122	f
+10304	1	2302	3	Tabelle im MenÃ¼ nicht zeigen	deutsch	t	122	f
+10305	2	2302	3	Donâ€œt show table in menue.	english	t	122	f
 10377	2	2320	2	recursive search	english	t	0	f
-10380	1	2321	1	öffnen	deutsch	t	66	f
+10380	1	2321	1	Ã¶ffnen	deutsch	t	66	f
 10381	2	2321	1	open	english	t	66	f
 10384	1	2322	1	speichern unter	deutsch	t	66	f
 10385	2	2322	1	save as	english	t	66	f
@@ -7093,7 +7093,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10416	1	2330	1	zeige alle Dateien	deutsch	t	66	f
 10417	2	2330	1	show all files	english	t	66	f
 10425	2	2332	1	skip	english	t	66	f
-10428	1	2333	1	Für alle Dateien übernehmen	deutsch	t	66	f
+10428	1	2333	1	FÃ¼r alle Dateien Ã¼bernehmen	deutsch	t	66	f
 10429	2	2333	1	Adopt for all files	english	t	66	f
 10432	1	2334	1	Herkunft anzeigen	deutsch	t	15	f
 10433	2	2334	1	Show origin	english	t	15	f
@@ -7104,11 +7104,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10608	1	2376	3	Erweiterte Filter	deutsch	t	121	f
 2623	2	1351	2	Number (10) 	english	t	0	f
 2257	2	1135	3	reset	english	t	168	f
-10456	1	2340	3	Bei Änderung der Berechtigung werden alle alten Einzel-Rechte dieser Tabelle gelöscht!	deutsch	t	140	f
+10456	1	2340	3	Bei Ã„nderung der Berechtigung werden alle alten Einzel-Rechte dieser Tabelle gelÃ¶scht!	deutsch	t	140	f
 10457	2	2340	3	If you change the permissions, all the old individual rights in this table will be deleted!	english	t	140	f
 10460	1	2341	2	zeige Benutzerrechte	deutsch	t	0	f
 10461	2	2341	2	show Userrights	english	t	0	f
-10464	1	2342	2	Übersicht von Benutzerrechte	deutsch	t	0	f
+10464	1	2342	2	Ãœbersicht von Benutzerrechte	deutsch	t	0	f
 6984	4	1361	2	Texte 254	francais	t	0	f
 10465	2	2342	2	Overview Userrights	english	t	0	f
 10484	1	2347	3	Z-Index	deutsch	t	169	f
@@ -7140,8 +7140,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10672	1	2392	3	editiert von	deutsch	t	52	f
 10673	2	2392	3	edited from	english	t	52	f
 10589	2	2371	3	Back-valued relation 	english	t	121	f
-10572	1	2367	3	Usereinstellungen löschen	deutsch	t	154	f
-10588	1	2371	3	rückwärtige Verknüpfung	deutsch	t	121	f
+10572	1	2367	3	Usereinstellungen lÃ¶schen	deutsch	t	154	f
+10588	1	2371	3	rÃ¼ckwÃ¤rtige VerknÃ¼pfung	deutsch	t	121	f
 10573	2	2367	3	Delete user settings	english	t	154	f
 10752	1	2412	3	Nachricht Nr	deutsch	t	52	f
 10753	2	2412	3	Message No.	english	t	52	f
@@ -7163,7 +7163,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10905	2	2450	3	Database trigger	english	t	218	f
 10908	1	2451	3	Limbas Trigger	deutsch	t	218	f
 10909	2	2451	3	Limbas trigger	english	t	218	f
-10916	1	2453	3	Benutzerrechte verwalten für selbst erstellte Datensätze	deutsch	t	221	f
+10916	1	2453	3	Benutzerrechte verwalten fÃ¼r selbst erstellte DatensÃ¤tze	deutsch	t	221	f
 10917	2	2453	3	Adminstrate User rights for self-created records	english	t	221	f
 6503	4	826	2	Rapports	francais	t	0	f
 10924	1	2455	1	Sie sind angemeldet als	deutsch	t	11	f
@@ -7180,7 +7180,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10957	2	2463	3	send Registration Information	english	t	132	f
 10964	1	2465	2	zeige Summe	deutsch	t	0	f
 10965	2	2465	2	show sum	english	t	0	f
-10968	1	2466	2	zeige Summe von Datensätzen	deutsch	t	0	f
+10968	1	2466	2	zeige Summe von DatensÃ¤tzen	deutsch	t	0	f
 10969	2	2466	2	show sum of records	english	t	0	f
 10981	2	2469	2	force delete	english	t	0	f
 11085	2	2495	2	grouping headers	english	t	0	f
@@ -7188,7 +7188,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11096	1	2498	1	Gruppiert	deutsch	t	84	f
 11060	1	2489	2	Tabellenbaum	deutsch	t	0	f
 11084	1	2495	2	gruppiere Sparten	deutsch	t	0	f
-11088	1	2496	2	gruppiere Feldüberschriften	deutsch	t	0	f
+11088	1	2496	2	gruppiere FeldÃ¼berschriften	deutsch	t	0	f
 11112	1	2502	1	Format:	deutsch	t	13	f
 11116	1	2503	1	Standard-Formular	deutsch	t	13	f
 11124	1	2505	3	Anzeige-Regel	deutsch	t	110	f
@@ -7198,9 +7198,9 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11136	1	2508	3	HTML	deutsch	t	168	f
 11140	1	2509	3	Bericht-Erweiterung	deutsch	t	170	f
 11152	1	2512	3	system reports	deutsch	t	222	f
-10444	1	2337	3	Benutzerrechte verwalten für alle Datensätze	deutsch	t	221	f
+10444	1	2337	3	Benutzerrechte verwalten fÃ¼r alle DatensÃ¤tze	deutsch	t	221	f
 10560	1	2364	2	Duplikate	deutsch	t	0	f
-10564	1	2365	2	Duplikate Übersicht	deutsch	t	0	f
+10564	1	2365	2	Duplikate Ãœbersicht	deutsch	t	0	f
 11016	1	2478	2	Duplikate	deutsch	t	0	f
 11020	1	2479	2	zeige Duplikate	deutsch	t	0	f
 2624	1	1352	2	Zahl (18)	deutsch	t	0	f
@@ -7218,36 +7218,36 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11148	1	2511	3	Ablagename	deutsch	t	170	f
 744	1	744	1	Der eingegebene Wert hat nicht das erforderliche Format!\nBitte korrigieren Sie Ihre Eingabe.	deutsch	t	37	t
 6451	4	744	1	Mauvais format.	francais	t	37	t
-896	1	896	3	Diese Funktion stellt die Standard-Rechte der Gruppe und deren Untergruppen wieder her!\nDabei werden vorhandene Rechte überschrieben!	deutsch	t	115	t
+896	1	896	3	Diese Funktion stellt die Standard-Rechte der Gruppe und deren Untergruppen wieder her!\nDabei werden vorhandene Rechte Ã¼berschrieben!	deutsch	t	115	t
 1869	2	744	1	The entered value does not have the required format!\nPlease correct your entry. 	english	t	37	t
-1048	1	1048	3	Sie wollen alle Sessions löschen!\nAlle Sessions werden neu gestartet.	deutsch	t	154	t
-6699	4	1048	3	Supprimer toutes les sessions?\n Toutes les sessions vont être réinitialisées.	francais	t	154	t
+1048	1	1048	3	Sie wollen alle Sessions lÃ¶schen!\nAlle Sessions werden neu gestartet.	deutsch	t	154	t
+6699	4	1048	3	Supprimer toutes les sessions?\n Toutes les sessions vont Åºtre rÃ©initialisÃ©es.	francais	t	154	t
 1168	1	1168	3	Datei nicht gefunden!\nBitte geben sie den korrekten Pfad an.	deutsch	t	172	t
-6812	4	1168	3	Fichier non trouvé!\nMerci de spécier le chemin correct.	francais	t	172	t
-2768	1	1424	1	Der Datensatz wurde geändert ohne zu speichern.\nSoll versucht werden die Änderungen zu übernehmen?	deutsch	t	13	t
-7047	4	1424	1	L''enregistrement a été modifé sans être suvegardé. Les modifications doivent elles être soumises à enregistrement?	francais	t	13	t
-4596	1	1594	3	Wollen Sie die Datenbank zurücksetzten?\nDabei werden alle Daten gelöscht!	deutsch	t	154	t
-7188	4	1594	3	Voulez vous réinitialiser la base de donnée?\nToutes les données seront perdues!	francais	t	154	t
+6812	4	1168	3	Fichier non trouvÃ©!\nMerci de spÃ©cier le chemin correct.	francais	t	172	t
+2768	1	1424	1	Der Datensatz wurde geÃ¤ndert ohne zu speichern.\nSoll versucht werden die Ã„nderungen zu Ã¼bernehmen?	deutsch	t	13	t
+7047	4	1424	1	L''enregistrement a Ã©tÃ© modifÃ© sans Åºtre suvegardÃ©. Les modifications doivent elles Åºtre soumises Ä… enregistrement?	francais	t	13	t
+4596	1	1594	3	Wollen Sie die Datenbank zurÃ¼cksetzten?\nDabei werden alle Daten gelÃ¶scht!	deutsch	t	154	t
+7188	4	1594	3	Voulez vous rÃ©initialiser la base de donnÃ©e?\nToutes les donnÃ©es seront perdues!	francais	t	154	t
 2170	2	1048	3	Delete all sessions?\nAll sessions will be restarted. 	english	t	154	t
 2769	2	1424	1	The record was changed without saving.\nShould the changed been tryed to being submited? 	english	t	13	t
 1517	2	349	2	create new	english	t	0	f
-5418	1	1868	1	Die Anfrage übersteigt das Maximum der gleichzeitig zu behandelnden Datensätze!\nEine Sortierung wird nur über die zugelassene Ergebnismenge erfolgen. Folgende Schritte stehen Ihnen zur Verfügung:\n\n	deutsch	t	5	t
+5418	1	1868	1	Die Anfrage Ã¼bersteigt das Maximum der gleichzeitig zu behandelnden DatensÃ¤tze!\nEine Sortierung wird nur Ã¼ber die zugelassene Ergebnismenge erfolgen. Folgende Schritte stehen Ihnen zur VerfÃ¼gung:\n\n	deutsch	t	5	t
 1534	2	366	2	record list	english	t	0	f
 6880	4	1254	3	Voulez-vous supprimer le groupe et ses sous-groupes	francais	t	115	t
-7452	4	1868	1	Votre requête dépasse l''espace de résultat.	francais	t	5	t
+7452	4	1868	1	Votre requÅºte dÃ©passe l''espace de rÃ©sultat.	francais	t	5	t
 2625	2	1352	2	Number (18) 	english	t	0	f
 5611	2	1932	2	Date	english	t	0	f
 735	1	735	2	Abfragen	deutsch	t	\N	f
-5553	1	1913	1	- Schränken Sie das Ergebnis durch Suchparameter weiter ein.\n- Erhöhen Sie, falls berechtigt, das Limit.\n- Heben Sie, falls berechtigt, das Limit auf.	deutsch	t	5	t
-7493	4	1913	1	 - limiter le résultat avec d''avantage de paramètres de recherche\n - augmenter la limite	francais	t	5	t
-5787	1	1991	3	Sollen die Dateisystemtabellen FILES und FILES_META neu erstellt werden? \nVorhandene Inhalte werden gelöscht!\nDie Dateitabellen werden in der Tabellengruppe limbassys erstellt.	deutsch	t	154	t
-7571	4	1991	3	Voulez-vous reconstruire les tables systèmes FILES et FILES_META?\nToutes les données vont être supprimées!	francais	t	154	t
-8190	1	2214	3	Für dieses Feld besteht bereits eine positive Verknüpfung!\nDiese Aktion nutzt die vorhandene Verknüpfung negativ.\nVorhandene Verknüpfungen werden gelöscht!	deutsch	t	121	t
+5553	1	1913	1	- SchrÃ¤nken Sie das Ergebnis durch Suchparameter weiter ein.\n- ErhÃ¶hen Sie, falls berechtigt, das Limit.\n- Heben Sie, falls berechtigt, das Limit auf.	deutsch	t	5	t
+7493	4	1913	1	 - limiter le rÃ©sultat avec d''avantage de paramÄtres de recherche\n - augmenter la limite	francais	t	5	t
+5787	1	1991	3	Sollen die Dateisystemtabellen FILES und FILES_META neu erstellt werden? \nVorhandene Inhalte werden gelÃ¶scht!\nDie Dateitabellen werden in der Tabellengruppe limbassys erstellt.	deutsch	t	154	t
+7571	4	1991	3	Voulez-vous reconstruire les tables systÄmes FILES et FILES_META?\nToutes les donnÃ©es vont Åºtre supprimÃ©es!	francais	t	154	t
+8190	1	2214	3	FÃ¼r dieses Feld besteht bereits eine positive VerknÃ¼pfung!\nDiese Aktion nutzt die vorhandene VerknÃ¼pfung negativ.\nVorhandene VerknÃ¼pfungen werden gelÃ¶scht!	deutsch	t	121	t
 11745	2	2660	3	content	english	t	173	f
-10412	1	2329	3	Sollen die die htaccess Dateien neu generiert werden?\nNeue Passwörter werden nur übernommen wenn die clear_password Option in den umgvars aktiviert wurde	deutsch	t	154	t
+10412	1	2329	3	Sollen die die htaccess Dateien neu generiert werden?\nNeue PasswÃ¶rter werden nur Ã¼bernommen wenn die clear_password Option in den umgvars aktiviert wurde	deutsch	t	154	t
 5788	2	1991	3	Do you want to rebuild the Systemtables FILES and FILES_META? Existing data will be deleted!\nThe file tables are provided in the table group limbassys. 	english	t	154	t
 10413	2	2329	3	Shall the htaccess files be renewed? \t\nNew passwords will only be accepted if the clear_password option in the umgvars was activated. 	english	t	154	t
-2556	1	1318	1	Es wurden noch keine Änderungen an diesem neuen Datensatz gemacht!\nErzeugen von leeren Datensätzen ist nicht ratsam.	deutsch	t	13	t
+2556	1	1318	1	Es wurden noch keine Ã„nderungen an diesem neuen Datensatz gemacht!\nErzeugen von leeren DatensÃ¤tzen ist nicht ratsam.	deutsch	t	13	t
 2290	2	1168	3	File not found. please check the file-path.	english	t	172	t
 4597	2	1594	3	Do you want to reset the database?\nAll data will be lost!	english	t	154	t
 11364	1	2565	3	Versionierungsart	deutsch	t	221	f
@@ -7256,9 +7256,9 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2018	2	896	3	Set user rights for groups and sub groupsalignment to default. Existing rights will reset to default. system alignment!\nThis can require time.	english	t	115	t
 721	1	721	1	Dieser Datensatz ist mit einer Wiedervorlage versehen! Soll diese aufgehoben werden?	deutsch	t	13	t
 2045	2	923	3	title	english	t	110	f
-2799	3	30	1	creado el	Espagñol	t	12	f
+2799	3	30	1	creado el	EspagÅ„ol	t	12	f
 11021	2	2479	2	show dublicates 	english	t	0	f
-4992	1	1726	1	Der zugehörige Datensatz oder die Metainformationen der Datei sind nicht vorhanden!	deutsch	t	66	f
+4992	1	1726	1	Der zugehÃ¶rige Datensatz oder die Metainformationen der Datei sind nicht vorhanden!	deutsch	t	66	f
 11208	1	2526	2	erweiterte Einstellungen	deutsch	t	0	f
 349	1	349	2	neu anlegen	deutsch	t	0	f
 6240	4	349	2	Nouvel enregistrement	francais	t	0	f
@@ -7285,7 +7285,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7513	4	1933	2	JJ.MM.AAAA \n\nex: 05.12.07 - 5 dec 02 - 05 decembre 2002	francais	t	0	t
 11220	1	2529	2	Gruppierung Zeile	deutsch	t	0	f
 11224	1	2530	2	Feld Gruppierung in einer Zeile	deutsch	t	0	f
-11228	1	2531	1	Die Länge des Dateinamens darf 128 Zeichen nicht überschreiten!	deutsch	t	41	f
+11228	1	2531	1	Die LÃ¤nge des Dateinamens darf 128 Zeichen nicht Ã¼berschreiten!	deutsch	t	41	f
 11276	1	2543	3	neuer Tabellenbaum	deutsch	t	207	f
 8129	1	2199	2	Arbeitsplatz	deutsch	t	\N	f
 8133	1	2200	2	Zusammenfassung	deutsch	t	\N	f
@@ -7306,7 +7306,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5158	2	1781	3	lock-message  	english	t	127	f
 365	1	365	2	Liste	deutsch	t	0	f
 366	1	366	2	Datensatz Liste	deutsch	t	0	f
-11308	1	2551	3	Datensatzrechte zurücksetzen	deutsch	t	154	f
+11308	1	2551	3	Datensatzrechte zurÃ¼cksetzen	deutsch	t	154	f
 5444	1	1877	2	Tabellenschema	deutsch	t	\N	f
 5447	1	1878	2	Tabellenschema	deutsch	t	\N	f
 10144	1	2265	2	Trigger	deutsch	t	\N	f
@@ -7315,8 +7315,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 841	1	841	2	Gruppe anlegen	deutsch	t	\N	f
 724	1	724	2	Formulare	deutsch	t	\N	f
 725	1	725	2	Formulareditor	deutsch	t	\N	f
-8309	1	2244	2	Übersicht	deutsch	t	\N	f
-8313	1	2245	2	Userübersicht	deutsch	t	\N	f
+8309	1	2244	2	Ãœbersicht	deutsch	t	\N	f
+8313	1	2245	2	UserÃ¼bersicht	deutsch	t	\N	f
 4664	1	1617	2	Dateirechte	deutsch	t	\N	f
 4667	1	1618	2	Dateirechte festlegen	deutsch	t	\N	f
 498	1	498	2	Tabellenrechte festlegen	deutsch	t	\N	f
@@ -7325,18 +7325,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11325	2	2555	3	menuebar	english	t	173	f
 11333	2	2557	3	footer	english	t	173	f
 11352	1	2562	3	Benutzer konnte nicht angelegt werden!	deutsch	t	126	f
-11296	1	2548	3	sollen alle temporären Thumbnails gelöscht werden?	deutsch	t	154	t
+11296	1	2548	3	sollen alle temporÃ¤ren Thumbnails gelÃ¶scht werden?	deutsch	t	154	t
 606	1	606	3	Username schon vorhanden!	deutsch	t	126	f
-6392	4	606	3	Existe déjà ou bien est marqué pour suppression!	francais	t	126	f
+6392	4	606	3	Existe dÃ©jÄ… ou bien est marquÃ© pour suppression!	francais	t	126	f
 11168	1	2516	3	Benutzerrechte hierarchisch vererben	deutsch	t	221	f
 10528	1	2356	3	zeige alle Versionierte	deutsch	t	221	f
 11372	1	2567	3	Spalten Hintergrundfarbe	deutsch	t	221	f
 11380	1	2569	3	Filterregel	deutsch	t	221	f
 11384	1	2570	3	Editierregel	deutsch	t	221	f
 11392	1	2572	3	Formatieungseinstellungen	deutsch	t	221	f
-11396	1	2573	3	Regel für Schreibrecht	deutsch	t	221	f
+11396	1	2573	3	Regel fÃ¼r Schreibrecht	deutsch	t	221	f
 11356	1	2563	2	Einstellungen	deutsch	t	0	f
-10252	1	2289	3	alle schließen	deutsch	t	213	f
+10252	1	2289	3	alle schlieÃŸen	deutsch	t	213	f
 5618	1	1935	2	Datei-Modus	deutsch	t	\N	f
 5621	1	1936	2	Exploreransicht	deutsch	t	\N	f
 5624	1	1937	2	Schlagwort-Modus	deutsch	t	\N	f
@@ -7351,19 +7351,19 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 6587	4	924	3	Affichage	francais	t	110	f
 11452	1	2587	3	Potenzschwelle	deutsch	t	110	f
 11456	1	2588	3	Datenbankspezifischer Defaultwert<br>z.B. 12 | text | now()	deutsch	t	110	f
-11460	1	2589	3	Ändern des Feldtyps soweit möglich	deutsch	t	110	f
+11460	1	2589	3	Ã„ndern des Feldtyps soweit mÃ¶glich	deutsch	t	110	f
 11464	1	2590	3	Ersetzen des Feldtyps mit einer eigenen Funktion aus [ext_type.inc]	deutsch	t	110	f
 2295	2	1173	3	single scroll bar	english	t	175	f
 11468	1	2591	3	Regel zum Ausblenden des Feldes, erwartet: return true/false	deutsch	t	110	f
-11472	1	2592	3	Regel für Schreibrecht des Feldes, erwartet: return true/false	deutsch	t	110	f
+11472	1	2592	3	Regel fÃ¼r Schreibrecht des Feldes, erwartet: return true/false	deutsch	t	110	f
 11476	1	2593	3	einrichten	deutsch	t	110	f
 11492	1	2597	3	Ab wieviel Stellen die Zahl in Expotentialschreibweise dargestellt werden soll	deutsch	t	110	f
 7005	4	1382	2	Liste utilisateur/groupe	francais	t	0	f
 2756	1	1418	2	Auswahlfeld System-User/Gruppe	deutsch	t	0	f
-11500	1	2599	3	Standardeinstellung für Währung	deutsch	t	110	f
+11500	1	2599	3	Standardeinstellung fÃ¼r WÃ¤hrung	deutsch	t	110	f
 11504	1	2600	3	Zeitformat	deutsch	t	110	f
 11488	1	2596	3	Zahlendarstellung im numberformat() Format: z.B. 2, ''.'', ''''	deutsch	t	110	f
-11520	1	2604	3	Verknüpfungstabelle	deutsch	t	110	f
+11520	1	2604	3	VerknÃ¼pfungstabelle	deutsch	t	110	f
 11524	1	2605	1	darf nicht doppelt vergeben werden!	deutsch	t	13	f
 865	1	865	1	Auswahl gruppieren	deutsch	t	5	f
 11873	2	2692	3	write	english	t	168	f
@@ -7428,7 +7428,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11537	2	2608	3	filter	english	t	110	f
 11541	2	2609	3	searchfield	english	t	110	f
 11545	2	2610	3	evaluation	english	t	110	f
-128	1	128	1	Datei konnte nicht gespeichert werden!\nDie Datei ist keine reguläre Datei, der Zielort lässt kein speichern zu oder ist voll.	deutsch	t	41	t
+128	1	128	1	Datei konnte nicht gespeichert werden!\nDie Datei ist keine regulÃ¤re Datei, der Zielort lÃ¤sst kein speichern zu oder ist voll.	deutsch	t	41	t
 1744	2	605	3	Username, password and main group are required.	english	t	126	f
 11317	2	2553	3	All existing datarecord specific rights of the selected table will be deleted!	english	t	154	f
 1988	2	865	1	group selection	english	t	5	f
@@ -7439,18 +7439,18 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11409	2	2576	3	date format	english	t	127	f
 11461	2	2589	3	Change of field type so far as possible	english	t	110	f
 7763	2	2107	3	inhertit	english	t	213	f
-6123	4	128	1	Fichier non trouvé! Vérifiez le chemin spécifié.	francais	t	41	t
+6123	4	128	1	Fichier non trouvÃ©! VÃ©rifiez le chemin spÃ©cifiÃ©.	francais	t	41	t
 2	1	2	1	Version	deutsch	t	4	f
 6060	4	2	1	version	francais	t	4	f
-918	1	918	3	wobei ? ID für die Artikelnummer steht	deutsch	t	107	f
-1135	1	1135	3	zurücksetzen	deutsch	t	168	f
-6780	4	1135	3	Rétablir	francais	t	168	f
+918	1	918	3	wobei ? ID fÃ¼r die Artikelnummer steht	deutsch	t	107	f
+1135	1	1135	3	zurÃ¼cksetzen	deutsch	t	168	f
+6780	4	1135	3	RÃ©tablir	francais	t	168	f
 2538	1	1309	2	wiederherstellen	deutsch	t	\N	f
 6935	4	1309	2	Annuler	francais	t	0	f
 11553	2	2612	3	View Editor	english	t	225	f
 4881	1	1689	1	max. Anzahl gleichzeitiger downloads:	deutsch	t	66	f
-7275	4	1689	1	Nombre maximum de download simultanés	francais	t	66	f
-4916	1	1701	2	Änderungen speichern	deutsch	t	\N	f
+7275	4	1689	1	Nombre maximum de download simultanÃ©s	francais	t	66	f
+4916	1	1701	2	Ã„nderungen speichern	deutsch	t	\N	f
 7287	4	1701	2	Enregistrer les modifications	francais	t	0	f
 5869	2	2018	3	new version 	english	t	52	f
 11297	2	2548	3	Delete all temporary thumpnails?	english	t	154	f
@@ -7458,11 +7458,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 7695	2	2090	3	Background 	english	t	168	f
 11552	1	2612	3	Abfrage Editor	deutsch	t	225	f
 11733	2	2657	3	Create-Query	english	t	140	f
-11572	1	2617	3	Beinhaltet nur die Datensätze bei denen die Inhalte der verknüpften Felder beider Tabellen gleich sind	deutsch	t	226	f
-11576	1	2618	3	Beinhaltet alle Datensätze aus	deutsch	t	226	f
+11572	1	2617	3	Beinhaltet nur die DatensÃ¤tze bei denen die Inhalte der verknÃ¼pften Felder beider Tabellen gleich sind	deutsch	t	226	f
+11576	1	2618	3	Beinhaltet alle DatensÃ¤tze aus	deutsch	t	226	f
 2648	1	1364	2	Datum/Zeit	deutsch	t	0	f
-11580	1	2619	3	und nur die Datensätze aus	deutsch	t	226	f
-11584	1	2620	3	bei denen die Inhalte der verknüpften Felder beider Tabellen gleich sind	deutsch	t	226	f
+11580	1	2619	3	und nur die DatensÃ¤tze aus	deutsch	t	226	f
+11584	1	2620	3	bei denen die Inhalte der verknÃ¼pften Felder beider Tabellen gleich sind	deutsch	t	226	f
 11600	1	2624	3	Alias	deutsch	t	226	f
 11604	1	2625	3	Funktion	deutsch	t	226	f
 11612	1	2627	3	Summe	deutsch	t	226	f
@@ -7478,8 +7478,8 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4917	2	1701	2	save modification	english	t	\N	f
 5971	2	2052	1	Workflow was not cancelled! You might not have permission for this function.	english	t	209	f
 5974	2	2053	1	Workflow was not cancelled! You might not have permission for this function.	english	t	209	f
-129	1	129	1	Die max. Größe einer hochgeladenen Datei ist beschränkt auf	deutsch	t	41	f
-6124	4	129	1	Le fichier uploadé a une taille de	francais	t	41	f
+129	1	129	1	Die max. GrÃ¶ÃŸe einer hochgeladenen Datei ist beschrÃ¤nkt auf	deutsch	t	41	f
+6124	4	129	1	Le fichier uploadÃ© a une taille de	francais	t	41	f
 11656	1	2638	3	anzeigen	deutsch	t	168	f
 11664	1	2640	3	Ajaxpost	deutsch	t	110	f
 2176	2	1054	3	refresh table and field rules	english	t	154	f
@@ -7490,16 +7490,16 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11601	2	2624	3	Alias	english	t	226	f
 11605	2	2625	3	Function	english	t	226	f
 11700	1	2649	3	Listenmodus	deutsch	t	169	f
-4593	1	1593	3	Datenbank zurücksetzen!!!	deutsch	t	154	f
-7187	4	1593	3	Réinitialisation de la base de donnée!!!	francais	t	154	f
-11704	1	2650	1	versionierte Datensätze können nicht gelöscht werden!	deutsch	t	13	f
-11708	1	2651	1	gesperrte Datensätze können nicht gelöscht werden!	deutsch	t	13	f
+4593	1	1593	3	Datenbank zurÃ¼cksetzen!!!	deutsch	t	154	f
+7187	4	1593	3	RÃ©initialisation de la base de donnÃ©e!!!	francais	t	154	f
+11704	1	2650	1	versionierte DatensÃ¤tze kÃ¶nnen nicht gelÃ¶scht werden!	deutsch	t	13	f
+11708	1	2651	1	gesperrte DatensÃ¤tze kÃ¶nnen nicht gelÃ¶scht werden!	deutsch	t	13	f
 11693	2	2647	1	target	english	t	66	f
 11701	2	2649	3	listmode	english	t	169	f
 6989	4	1366	2	ID-BD	francais	t	0	f
-2724	1	1402	2	Schlüsselwert 18 stellige Zahl	deutsch	t	0	f
-7025	4	1402	2	Valeur de la clé encodée sur 18 caractères	francais	t	0	f
-11724	1	2655	3	Feldgröße<br>z.B. 255 | 5,2	deutsch	t	110	f
+2724	1	1402	2	SchlÃ¼sselwert 18 stellige Zahl	deutsch	t	0	f
+7025	4	1402	2	Valeur de la clÃ© encodÃ©e sur 18 caractÄres	francais	t	0	f
+11724	1	2655	3	FeldgrÃ¶ÃŸe<br>z.B. 255 | 5,2	deutsch	t	110	f
 6999	4	1376	2	Relation 1:n	francais	t	0	f
 7035	4	1412	2	Ex: Client (1) -> Interlocuteur (n)	francais	t	0	f
 2748	1	1414	2	Welcher User den Datensatz erstellt hat	deutsch	t	0	f
@@ -7507,49 +7507,49 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8358	1	2256	2	SQL-Argument	deutsch	t	0	f
 10508	1	2351	2	Dokument-Inhalt	deutsch	t	0	f
 2684	1	1382	2	User/Gruppen-Liste	deutsch	t	0	f
-7041	4	1418	2	Choix de sélection d''utilisateur ou de groupe	francais	t	0	f
+7041	4	1418	2	Choix de sÃ©lection d''utilisateur ou de groupe	francais	t	0	f
 2652	1	1366	2	Auto-ID	deutsch	t	0	f
 5613	1	1933	2	DD.MM.YYYY\nnz.B. 05.12.02 \nz.B. 5 dez 02 \nz.B. 05 Dezember 2	deutsch	t	0	t
 11581	2	2619	3	and only data records from	english	t	226	f
 11577	2	2618	3	get all data records from	english	t	226	f
 11629	2	2631	3	view	english	t	226	f
 8363	2	2257	2	formula construct (SQL) 	english	t	0	f
-5913	1	2033	3	Soll die angezeigte Anzahl von Verknüpfungen und Multiselectfeldern neu berechnet werden?	deutsch	t	154	t
+5913	1	2033	3	Soll die angezeigte Anzahl von VerknÃ¼pfungen und Multiselectfeldern neu berechnet werden?	deutsch	t	154	t
 425	1	425	2	Wiedervorlage	deutsch	t	\N	f
-426	1	426	2	persönliche Wiedervorlagen	deutsch	t	\N	f
+426	1	426	2	persÃ¶nliche Wiedervorlagen	deutsch	t	\N	f
 11709	2	2651	1	you can''t delete locked datasets!	english	t	13	f
 11725	2	2655	3	fieldsize<br>255 or 5,2	english	t	110	f
 11728	1	2656	3	Auswahlabfrage	deutsch	t	140	f
 11732	1	2657	3	Erstellungsabfrage	deutsch	t	140	f
-11736	1	2658	3	Anfügeabfrage	deutsch	t	140	f
-11740	1	2659	3	Löschabfrage	deutsch	t	140	f
+11736	1	2658	3	AnfÃ¼geabfrage	deutsch	t	140	f
+11740	1	2659	3	LÃ¶schabfrage	deutsch	t	140	f
 11744	1	2660	3	Inhalt	deutsch	t	173	f
 11760	1	2664	3	nutze [serial] id	deutsch	t	140	f
 2446	1	1263	3	erstelle Berechtigungen	deutsch	t	110	f
 6889	4	1263	3	Incl. droits	francais	t	110	f
 11764	1	2665	3	nutze [sequence] Tabelle	deutsch	t	140	f
 7167	4	1569	1	Liaison negative	francais	t	175	f
-5652	1	1946	3	Hauptmenü-Rahmen	deutsch	t	175	f
+5652	1	1946	3	HauptmenÃ¼-Rahmen	deutsch	t	175	f
 7526	4	1946	3	Menu mode texte	francais	t	175	f
 11768	1	2666	3	ausschneiden	deutsch	t	173	f
-11772	1	2667	3	einfügen	deutsch	t	173	f
-5802	1	1996	1	veröffentlichen	deutsch	t	5	f
+11772	1	2667	3	einfÃ¼gen	deutsch	t	173	f
+5802	1	1996	1	verÃ¶ffentlichen	deutsch	t	5	f
 7576	4	1996	1	Envoyer	francais	t	5	f
 4209	1	1465	3	Verkn-Popup	deutsch	t	140	f
 7082	4	1465	3	Regroupement	francais	t	140	f
-4617	1	1601	1	färben	deutsch	t	140	f
+4617	1	1601	1	fÃ¤rben	deutsch	t	140	f
 7195	4	1601	1	Couleurs	francais	t	140	f
-11804	1	2675	1	Soll in einer Stapeländerung der Inhalt des Feldes geändert werden?\nDie Aktion kann nicht rückgängig gemacht werden!	deutsch	t	230	t
-11816	1	2678	1	kein Feld ausgewählt	deutsch	t	230	f
-11792	1	2672	3	Stapeländerung	deutsch	t	110	f
+11804	1	2675	1	Soll in einer StapelÃ¤nderung der Inhalt des Feldes geÃ¤ndert werden?\nDie Aktion kann nicht rÃ¼ckgÃ¤ngig gemacht werden!	deutsch	t	230	t
+11816	1	2678	1	kein Feld ausgewÃ¤hlt	deutsch	t	230	f
+11792	1	2672	3	StapelÃ¤nderung	deutsch	t	110	f
 11796	1	2673	1	ersetzen mit	deutsch	t	230	f
-11808	1	2676	1	Anzahl betroffener Datensätze	deutsch	t	230	f
+11808	1	2676	1	Anzahl betroffener DatensÃ¤tze	deutsch	t	230	f
 11812	1	2677	1	Betroffenes Feld	deutsch	t	230	f
 8034	1	2175	2	Versionsbemerkung	deutsch	t	0	f
 4210	2	1465	3	Relation-Popup	english	t	140	f
 4522	2	1569	1	Style	english	t	175	f
 11729	2	2656	3	Select-Query	english	t	140	f
-7026	4	1403	2	Devise 10 caractères	francais	f	0	f
+7026	4	1403	2	Devise 10 caractÄres	francais	f	0	f
 11737	2	2658	3	Attach-Query	english	t	140	f
 11741	2	2659	3	Delete-Query	english	t	140	f
 373	1	373	2	suchen	deutsch	t	\N	f
@@ -7559,9 +7559,9 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11836	1	2683	1	ungleich	deutsch	t	19	f
 11776	1	2668	2	zeige Felder	deutsch	t	0	f
 11780	1	2669	2	zeige Felder	deutsch	t	0	f
-51	1	51	1	Soll für die ausgewählten Datensätze ein Bericht gedruckt werden?	deutsch	t	13	t
-6080	4	51	1	Est ce que le rapport doit etre imprimé et archivé?	francais	t	13	f
-11840	1	2684	1	Datensätze geändert	deutsch	t	230	f
+51	1	51	1	Soll fÃ¼r die ausgewÃ¤hlten DatensÃ¤tze ein Bericht gedruckt werden?	deutsch	t	13	t
+6080	4	51	1	Est ce que le rapport doit etre imprimÃ© et archivÃ©?	francais	t	13	f
+11840	1	2684	1	DatensÃ¤tze geÃ¤ndert	deutsch	t	230	f
 11844	1	2685	3	standard	deutsch	t	140	f
 11848	1	2686	3	wenig Ergebnisse	deutsch	t	140	f
 11852	1	2687	3	keine Berechnung	deutsch	t	140	f
@@ -7573,28 +7573,28 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11672	1	2642	2	Farbauswahl	deutsch	t	0	f
 2686	1	1383	2	Long	deutsch	t	0	f
 7006	4	1383	2	Long	francais	t	0	f
-7042	4	1419	2	Bloc de texte avec maximum 100000 caractères	francais	t	0	f
+7042	4	1419	2	Bloc de texte avec maximum 100000 caractÄres	francais	t	0	f
 11860	1	2689	3	bearbeite Tabellenfelder	deutsch	t	140	f
-11864	1	2690	3	öffne Abfrageeditor	deutsch	t	140	f
+11864	1	2690	3	Ã¶ffne Abfrageeditor	deutsch	t	140	f
 4594	2	1593	3	Reset Database !	english	t	154	f
 11705	2	2650	1	you can''t delet datasets under revision control!	english	t	13	f
-7020	4	1397	2	Texte max 250 caractères	francais	t	0	f
-11880	1	2694	3	Sollen alle temporären Textdateien gelöscht werden?	deutsch	t	154	f
-11288	1	2546	3	Temporäre Thumbnails löschen	deutsch	t	154	f
+7020	4	1397	2	Texte max 250 caractÄres	francais	t	0	f
+11880	1	2694	3	Sollen alle temporÃ¤ren Textdateien gelÃ¶scht werden?	deutsch	t	154	f
+11288	1	2546	3	TemporÃ¤re Thumbnails lÃ¶schen	deutsch	t	154	f
 11876	1	2693	1	Kurzschreibweise in der Schnellsuche	deutsch	t	19	f
 11300	1	2549	3	solle versucht werden alle fehlgeschlagene Thumbnails neu zu berechnen?	deutsch	t	154	t
-11884	1	2695	3	Temporäre Textdateien löschen	deutsch	t	154	f
+11884	1	2695	3	TemporÃ¤re Textdateien lÃ¶schen	deutsch	t	154	f
 11292	1	2547	3	Fehlgeschlagene Thumbnails neu berechnen	deutsch	t	154	f
 10933	2	2457	3	mode	english	t	168	f
 11301	2	2549	3	Recalculate failed thumpnails? 	english	t	154	f
 11821	2	2679	2	new window	english	t	0	f
 11825	2	2680	2	new window	english	t	0	f
 11845	2	2685	3	default	english	t	140	f
-11892	1	2697	3	Soll die Ordnerstruktur auf Konsistenz geprüft werden?\nFehlende Benutzer oder Berichtsordner werden neu erstellt.	deutsch	t	154	t
+11892	1	2697	3	Soll die Ordnerstruktur auf Konsistenz geprÃ¼ft werden?\nFehlende Benutzer oder Berichtsordner werden neu erstellt.	deutsch	t	154	t
 11896	1	2698	3	Rotation	deutsch	t	168	f
 4271	1	1486	2	History	deutsch	t	\N	f
 4274	1	1487	2	Datensatz-History	deutsch	t	\N	f
-11900	1	2699	3	nicht veröffentlicht	deutsch	t	140	f
+11900	1	2699	3	nicht verÃ¶ffentlicht	deutsch	t	140	f
 2621	2	1350	2	Number	english	t	0	f
 2643	2	1361	2	Text	english	t	0	f
 2653	2	1366	2	Auto-ID 	english	t	0	f
@@ -7646,523 +7646,523 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11897	2	2698	3	rotation	english	t	168	f
 11901	2	2699	3	not published	english	t	140	f
 11748	1	2661	3	Gruppierungs-Rahmen	deutsch	t	175	f
-114	1	114	1	Für diese Aktion besitzen Sie keine Rechte	deutsch	t	23	f
+114	1	114	1	FÃ¼r diese Aktion besitzen Sie keine Rechte	deutsch	t	23	f
 11749	2	2661	3	grouping frame	english	t	175	f
 6113	4	114	1	Vous n''avez pas de droit suffisant pour efectuer cette action!	francais	t	23	f
-2770	3	1	1	Permiso denegado	Espagñol	t	2	f
-2772	3	3	1	usuario	Espagñol	t	4	f
-2773	3	4	1	nombre	Espagñol	t	4	f
-2776	3	7	1	sistema anfitrión	Espagñol	t	4	f
-2778	3	9	1	agente	Espagñol	t	4	f
-2779	3	10	1	autentificación	Espagñol	t	4	f
-2780	3	11	1	empresa	Espagñol	t	4	f
-2793	3	24	1	¿desea generar un nuevo registro?	Espagñol	t	5	f
-2794	3	25	1	apareció un error no determinado	Espagñol	t	5	f
-2796	3	27	1	editor de selección	Espagñol	t	12	f
-2798	3	29	1	contenido	Espagñol	t	12	f
-2802	3	33	1	tomar control	Espagñol	t	12	f
-2803	3	34	1	añadir	Espagñol	t	12	f
-2818	3	49	1	¿desea realmente ocultar este registro?	Espagñol	t	13	f
+2770	3	1	1	Permiso denegado	EspagÅ„ol	t	2	f
+2772	3	3	1	usuario	EspagÅ„ol	t	4	f
+2773	3	4	1	nombre	EspagÅ„ol	t	4	f
+2776	3	7	1	sistema anfitriÃ³n	EspagÅ„ol	t	4	f
+2778	3	9	1	agente	EspagÅ„ol	t	4	f
+2779	3	10	1	autentificaciÃ³n	EspagÅ„ol	t	4	f
+2780	3	11	1	empresa	EspagÅ„ol	t	4	f
+2793	3	24	1	Ã¦desea generar un nuevo registro?	EspagÅ„ol	t	5	f
+2794	3	25	1	apareciÃ³ un error no determinado	EspagÅ„ol	t	5	f
+2796	3	27	1	editor de selecciÃ³n	EspagÅ„ol	t	12	f
+2798	3	29	1	contenido	EspagÅ„ol	t	12	f
+2802	3	33	1	tomar control	EspagÅ„ol	t	12	f
+2803	3	34	1	aÅ„adir	EspagÅ„ol	t	12	f
+2818	3	49	1	Ã¦desea realmente ocultar este registro?	EspagÅ„ol	t	13	f
 11833	2	2682	1	not empty field 	english	t	19	f
 11829	2	2681	1	empty field 	english	t	19	f
-2819	3	50	1	¿desea realmente borrar este archivo?	Espagñol	t	13	f
-2825	3	56	1	ha ocurrido un error	Espagñol	t	13	f
-2826	3	58	1	cambiar	Espagñol	t	14	f
-2827	3	59	1	añadir	Espagñol	t	14	f
-2828	3	60	1	quitar	Espagñol	t	14	f
-2832	3	84	1	¿realmente desea borrar este registro?	Espagñol	t	17	f
-2834	3	86	1	entradas	Espagñol	t	17	f
-2836	3	88	1	registros	Espagñol	t	17	f
-2837	3	89	1	en total	Espagñol	t	17	f
-2838	3	93	1	saltar a la página	Espagñol	t	17	f
-2843	3	98	1	sin registros	Espagñol	t	17	f
-2846	3	101	1	búsqueda del contenido del cuadro	Espagñol	t	19	f
-2847	3	102	1	buscar	Espagñol	t	19	f
-2848	3	103	1	buscar en	Espagñol	t	19	f
-2856	3	112	1	esta entrada no puede ser borrada,  ya existen conexiones	Espagñol	t	22	f
-2859	3	115	1	ha ocurrdio un error	Espagñol	t	25	f
-2860	3	116	1	el registro fue borrado con éxito	Espagñol	t	25	f
-2862	3	118	1	sin derechos de campo	Espagñol	t	27	f
-2866	3	122	1	sin conexión	Espagñol	t	34	f
+2819	3	50	1	Ã¦desea realmente borrar este archivo?	EspagÅ„ol	t	13	f
+2825	3	56	1	ha ocurrido un error	EspagÅ„ol	t	13	f
+2826	3	58	1	cambiar	EspagÅ„ol	t	14	f
+2827	3	59	1	aÅ„adir	EspagÅ„ol	t	14	f
+2828	3	60	1	quitar	EspagÅ„ol	t	14	f
+2832	3	84	1	Ã¦realmente desea borrar este registro?	EspagÅ„ol	t	17	f
+2834	3	86	1	entradas	EspagÅ„ol	t	17	f
+2836	3	88	1	registros	EspagÅ„ol	t	17	f
+2837	3	89	1	en total	EspagÅ„ol	t	17	f
+2838	3	93	1	saltar a la pÄ¯gina	EspagÅ„ol	t	17	f
+2843	3	98	1	sin registros	EspagÅ„ol	t	17	f
+2846	3	101	1	bÅ›squeda del contenido del cuadro	EspagÅ„ol	t	19	f
+2847	3	102	1	buscar	EspagÅ„ol	t	19	f
+2848	3	103	1	buscar en	EspagÅ„ol	t	19	f
+2856	3	112	1	esta entrada no puede ser borrada,  ya existen conexiones	EspagÅ„ol	t	22	f
+2859	3	115	1	ha ocurrdio un error	EspagÅ„ol	t	25	f
+2860	3	116	1	el registro fue borrado con Ã©xito	EspagÅ„ol	t	25	f
+2862	3	118	1	sin derechos de campo	EspagÅ„ol	t	27	f
+2866	3	122	1	sin conexiÃ³n	EspagÅ„ol	t	34	f
 8035	2	2175	2	Version remark 	english	t	0	f
-2870	3	126	1	descripción	Espagñol	t	34	f
-2877	3	133	1	el archivo cargado posee un formato desconocido	Espagñol	t	41	f
-2878	3	134	1	error/los siguientes campos fueron llenados incorrectamente	Espagñol	t	37	f
-2882	3	138	1	por favor verificar si sus entradas son correctas	Espagñol	t	41	f
-2884	3	140	1	datos del usuario	Espagñol	t	46	f
-2885	3	141	1	contraseña	Espagñol	t	46	f
-2886	3	142	1	primer nombre	Espagñol	t	46	f
-2888	3	144	1	Correo electrónico	Espagñol	t	46	f
-2890	3	146	1	configuraciones generales	Espagñol	t	46	f
-2898	3	154	1	nombre	Espagñol	t	47	f
-2899	3	155	1	color	Espagñol	t	47	f
-2900	3	156	1	valor	Espagñol	t	47	f
+2870	3	126	1	descripciÃ³n	EspagÅ„ol	t	34	f
+2877	3	133	1	el archivo cargado posee un formato desconocido	EspagÅ„ol	t	41	f
+2878	3	134	1	error/los siguientes campos fueron llenados incorrectamente	EspagÅ„ol	t	37	f
+2882	3	138	1	por favor verificar si sus entradas son correctas	EspagÅ„ol	t	41	f
+2884	3	140	1	datos del usuario	EspagÅ„ol	t	46	f
+2885	3	141	1	contraseÅ„a	EspagÅ„ol	t	46	f
+2886	3	142	1	primer nombre	EspagÅ„ol	t	46	f
+2888	3	144	1	Correo electrÃ³nico	EspagÅ„ol	t	46	f
+2890	3	146	1	configuraciones generales	EspagÅ„ol	t	46	f
+2898	3	154	1	nombre	EspagÅ„ol	t	47	f
+2899	3	155	1	color	EspagÅ„ol	t	47	f
+2900	3	156	1	valor	EspagÅ„ol	t	47	f
 11809	2	2676	1	number of used data records	english	t	230	f
-2904	3	160	1	borrar	Espagñol	t	49	f
-2908	3	164	1	cuadro	Espagñol	t	49	f
-2912	3	168	1	campo	Espagñol	t	50	f
-2771	3	2	1	Versión	Espagñol	t	4	f
-2939	3	195	1	ha ocurrido un error	Espagñol	t	54	f
-2941	3	197	1	fecha	Espagñol	t	55	f
-2944	3	200	1	nueva plantilla	Espagñol	t	55	f
-2953	3	209	1	nombre de archivo	Espagñol	t	66	f
-2954	3	210	1	tamaño	Espagñol	t	66	f
-2986	3	242	2	integrar subcarpeta	Espagñol	t	44	f
-3036	3	293	1	KW	Espagñol	t	86	f
-3037	3	294	1	color	Espagñol	t	86	f
-3038	3	295	1	observación	Espagñol	t	86	f
-3039	3	296	1	meses	Espagñol	t	86	f
-3040	3	297	1	comenzar	Espagñol	t	86	f
-3043	3	300	1	vista del calendario	Espagñol	t	86	f
-3044	3	301	1	vista del cuadro	Espagñol	t	86	f
-3045	3	302	1	registrar	Espagñol	t	86	f
-3046	3	303	1	no hay registro	Espagñol	t	87	f
-3047	3	304	1	vista general del calendario	Espagñol	t	88	f
-3055	3	312	1	martes	Espagñol	t	88	f
-3056	3	313	1	miércoles	Espagñol	t	88	f
-3057	3	314	1	jueves	Espagñol	t	88	f
-3058	3	315	1	viernes	Espagñol	t	88	f
-3059	3	316	1	sábado	Espagñol	t	88	f
-3060	3	317	1	domingo	Espagñol	t	88	f
-3086	3	353	2	editar	Espagñol	t	0	f
-3087	3	354	2	editar sólo columna	Espagñol	t	0	f
-3088	3	355	2	observación	Espagñol	t	0	f
-3089	3	356	2	observaciones de conexión	Espagñol	t	0	f
-3090	3	357	2	detalles	Espagñol	t	0	f
-3091	3	358	2	vista de detalles del registro	Espagñol	t	0	f
-3092	3	359	2	exportar	Espagñol	t	0	f
-3093	3	360	2	exportación csv	Espagñol	t	0	f
-3094	3	361	2	añadir	Espagñol	t	0	f
-3095	3	362	2	añadir campo de selección múltiple	Espagñol	t	0	f
-3096	3	363	2	información	Espagñol	t	0	f
-3097	3	364	2	informaciones de registro	Espagñol	t	0	f
-3100	3	367	2	borrar	Espagñol	t	0	f
-3101	3	368	2	borrar registro	Espagñol	t	0	f
-3106	3	373	2	buscar	Espagñol	t	0	f
-3107	3	374	2	buscar registro	Espagñol	t	0	f
-3108	3	379	2	administración	Espagñol	t	0	f
-3109	3	380	2	ajustes	Espagñol	t	0	f
-3110	3	381	2	ayuda	Espagñol	t	0	f
-3111	3	382	2	ayuda	Espagñol	t	0	f
-3114	3	385	2	cuadros	Espagñol	t	0	f
-3115	3	386	2	cuadros	Espagñol	t	0	f
-3116	3	387	2	usuario	Espagñol	t	0	f
-3117	3	388	2	usuario	Espagñol	t	0	f
-3120	3	391	2	imprimir	Espagñol	t	0	f
-3121	3	392	2	versión impresa	Espagñol	t	0	f
-3122	3	393	2	maximizar	Espagñol	t	0	f
-3123	3	394	2	maximizar muestra	Espagñol	t	0	f
-3124	3	395	2	minimizar	Espagñol	t	0	f
-3125	3	396	2	minimizar muestra	Espagñol	t	0	f
-3128	3	401	2	reconfigurar	Espagñol	t	0	f
-3129	3	402	2	reconfigurar resultados	Espagñol	t	0	f
+2904	3	160	1	borrar	EspagÅ„ol	t	49	f
+2908	3	164	1	cuadro	EspagÅ„ol	t	49	f
+2912	3	168	1	campo	EspagÅ„ol	t	50	f
+2771	3	2	1	VersiÃ³n	EspagÅ„ol	t	4	f
+2939	3	195	1	ha ocurrido un error	EspagÅ„ol	t	54	f
+2941	3	197	1	fecha	EspagÅ„ol	t	55	f
+2944	3	200	1	nueva plantilla	EspagÅ„ol	t	55	f
+2953	3	209	1	nombre de archivo	EspagÅ„ol	t	66	f
+2954	3	210	1	tamaÅ„o	EspagÅ„ol	t	66	f
+2986	3	242	2	integrar subcarpeta	EspagÅ„ol	t	44	f
+3036	3	293	1	KW	EspagÅ„ol	t	86	f
+3037	3	294	1	color	EspagÅ„ol	t	86	f
+3038	3	295	1	observaciÃ³n	EspagÅ„ol	t	86	f
+3039	3	296	1	meses	EspagÅ„ol	t	86	f
+3040	3	297	1	comenzar	EspagÅ„ol	t	86	f
+3043	3	300	1	vista del calendario	EspagÅ„ol	t	86	f
+3044	3	301	1	vista del cuadro	EspagÅ„ol	t	86	f
+3045	3	302	1	registrar	EspagÅ„ol	t	86	f
+3046	3	303	1	no hay registro	EspagÅ„ol	t	87	f
+3047	3	304	1	vista general del calendario	EspagÅ„ol	t	88	f
+3055	3	312	1	martes	EspagÅ„ol	t	88	f
+3056	3	313	1	miÃ©rcoles	EspagÅ„ol	t	88	f
+3057	3	314	1	jueves	EspagÅ„ol	t	88	f
+3058	3	315	1	viernes	EspagÅ„ol	t	88	f
+3059	3	316	1	sÄ¯bado	EspagÅ„ol	t	88	f
+3060	3	317	1	domingo	EspagÅ„ol	t	88	f
+3086	3	353	2	editar	EspagÅ„ol	t	0	f
+3087	3	354	2	editar sÃ³lo columna	EspagÅ„ol	t	0	f
+3088	3	355	2	observaciÃ³n	EspagÅ„ol	t	0	f
+3089	3	356	2	observaciones de conexiÃ³n	EspagÅ„ol	t	0	f
+3090	3	357	2	detalles	EspagÅ„ol	t	0	f
+3091	3	358	2	vista de detalles del registro	EspagÅ„ol	t	0	f
+3092	3	359	2	exportar	EspagÅ„ol	t	0	f
+3093	3	360	2	exportaciÃ³n csv	EspagÅ„ol	t	0	f
+3094	3	361	2	aÅ„adir	EspagÅ„ol	t	0	f
+3095	3	362	2	aÅ„adir campo de selecciÃ³n mÅ›ltiple	EspagÅ„ol	t	0	f
+3096	3	363	2	informaciÃ³n	EspagÅ„ol	t	0	f
+3097	3	364	2	informaciones de registro	EspagÅ„ol	t	0	f
+3100	3	367	2	borrar	EspagÅ„ol	t	0	f
+3101	3	368	2	borrar registro	EspagÅ„ol	t	0	f
+3106	3	373	2	buscar	EspagÅ„ol	t	0	f
+3107	3	374	2	buscar registro	EspagÅ„ol	t	0	f
+3108	3	379	2	administraciÃ³n	EspagÅ„ol	t	0	f
+3109	3	380	2	ajustes	EspagÅ„ol	t	0	f
+3110	3	381	2	ayuda	EspagÅ„ol	t	0	f
+3111	3	382	2	ayuda	EspagÅ„ol	t	0	f
+3114	3	385	2	cuadros	EspagÅ„ol	t	0	f
+3115	3	386	2	cuadros	EspagÅ„ol	t	0	f
+3116	3	387	2	usuario	EspagÅ„ol	t	0	f
+3117	3	388	2	usuario	EspagÅ„ol	t	0	f
+3120	3	391	2	imprimir	EspagÅ„ol	t	0	f
+3121	3	392	2	versiÃ³n impresa	EspagÅ„ol	t	0	f
+3122	3	393	2	maximizar	EspagÅ„ol	t	0	f
+3123	3	394	2	maximizar muestra	EspagÅ„ol	t	0	f
+3124	3	395	2	minimizar	EspagÅ„ol	t	0	f
+3125	3	396	2	minimizar muestra	EspagÅ„ol	t	0	f
+3128	3	401	2	reconfigurar	EspagÅ„ol	t	0	f
+3129	3	402	2	reconfigurar resultados	EspagÅ„ol	t	0	f
 4602	1	1596	2	Kommazahl Numeric mit Prozentdarstellung	deutsch	t	0	f
-3130	3	403	2	configuraciones	Espagñol	t	0	f
-3131	3	404	2	configuraciones generales	Espagñol	t	0	f
-3132	3	409	2	colores	Espagñol	t	0	f
+3130	3	403	2	configuraciones	EspagÅ„ol	t	0	f
+3131	3	404	2	configuraciones generales	EspagÅ„ol	t	0	f
+3132	3	409	2	colores	EspagÅ„ol	t	0	f
 4600	2	1595	2	decimal in percent 	english	t	0	f
 4603	2	1596	2	decimal numeric in percent 	english	t	0	f
-2853	3	109	1	CS	Espagñol	f	19	f
-2851	3	107	1	todo el campo	Espagñol	f	19	f
-2850	3	106	1	parte del contenido del campo	Espagñol	f	19	f
-2852	3	108	1	comienzo del contenido del campo	Espagñol	f	19	f
-3133	3	410	2	selección del color	Espagñol	t	0	f
-3134	3	415	2	mensajes	Espagñol	t	0	f
-3135	3	416	2	sistema de mensajes	Espagñol	t	0	f
-3136	3	417	2	nuevo mensaje	Espagñol	t	0	f
-3137	3	418	2	crear un nuevo mensaje	Espagñol	t	0	f
-3140	3	421	2	búsqueda	Espagñol	t	0	f
-3141	3	422	2	buscar mensajes	Espagñol	t	0	f
-3142	3	425	2	nueva presentación	Espagñol	t	0	f
-3143	3	426	2	nuevas presentaciones personales	Espagñol	t	0	f
-3144	3	427	2	presentaciones	Espagñol	t	0	f
-3146	3	429	2	generar usuario	Espagñol	t	0	f
-3147	3	430	2	generar usuario	Espagñol	t	0	f
-3148	3	431	2	variable de entorno	Espagñol	t	0	f
-3149	3	432	2	variables de entorno	Espagñol	t	0	f
-3152	3	435	2	puntos del menú	Espagñol	t	0	f
-3153	3	436	2	lista de conexión	Espagñol	t	0	f
-3154	3	437	2	esquema	Espagñol	t	0	f
-3155	3	438	2	cuadro de colores	Espagñol	t	0	f
-3156	3	439	2	colores	Espagñol	t	0	f
-3157	3	440	2	cuadro de colores	Espagñol	t	0	f
-3158	3	441	2	exportación	Espagñol	t	0	f
-3159	3	442	2	exportación	Espagñol	t	0	f
-3160	3	443	2	importación	Espagñol	t	0	f
-3161	3	444	2	importación	Espagñol	t	0	f
-3823	3	1157	3	página No.	Espagñol	t	169	f
-3162	3	445	2	actualización del sistema	Espagñol	t	0	f
-3163	3	446	2	actualización del sistema	Espagñol	t	0	f
-3164	3	451	2	estadística	Espagñol	t	0	f
-3165	3	452	2	estadística del diagrama de usuario	Espagñol	t	0	f
-3166	3	453	2	usuario/grupos	Espagñol	t	0	f
-3167	3	454	2	usuario/administración de grupos	Espagñol	t	0	f
-3168	3	455	2	grupos	Espagñol	t	0	f
-3169	3	456	2	administración de grupos	Espagñol	t	0	f
-3170	3	457	2	cuadros	Espagñol	t	0	f
-3171	3	458	2	editar cuadros	Espagñol	t	0	f
-3172	3	459	2	informe de errores	Espagñol	t	0	f
-3173	3	460	2	informe de errores	Espagñol	t	0	f
-3174	3	461	2	configuración	Espagñol	t	0	f
-3175	3	462	2	configuraciones generales	Espagñol	t	0	f
-3176	3	463	2	herramientas	Espagñol	t	0	f
-3177	3	464	2	herramientas	Espagñol	t	0	f
-3178	3	465	2	informes	Espagñol	t	0	f
-3179	3	466	2	editar informes	Espagñol	t	0	f
-3186	3	473	2	tamaño	Espagñol	t	0	f
-3187	3	474	2	informe tamaño de elementos	Espagñol	t	0	f
-3188	3	475	2	contenido	Espagñol	t	0	f
-3189	3	476	2	informe contenido de elementos	Espagñol	t	0	f
-3190	3	477	2	representación	Espagñol	t	0	f
-3191	3	478	2	informe estilo de elementos	Espagñol	t	0	f
-3192	3	483	2	derechos del menú	Espagñol	t	0	f
-3744	3	1078	3	norma	Espagñol	t	160	f
-3193	3	484	2	establecer derechos del menú	Espagñol	t	0	f
-3196	3	495	2	en general	Espagñol	t	0	f
-3197	3	496	2	configuraciones generales del usuario	Espagñol	t	0	f
-3198	3	497	2	derechos de cuadro	Espagñol	t	0	f
-3199	3	498	2	establecer derechos de cuadro	Espagñol	t	0	f
-3200	3	501	2	cuadros	Espagñol	t	0	f
-3201	3	502	2	herramientas de cuadros	Espagñol	t	0	f
-3214	3	517	3	argumento	Espagñol	t	101	f
-3215	3	518	3	variables de ambiente	Espagñol	t	101	f
-3216	3	519	3	nombre de usuario	Espagñol	t	101	f
-3217	3	520	3	nombre completo	Espagñol	t	101	f
-3218	3	521	3	correo electrónico	Espagñol	t	101	f
-3219	3	522	3	cambiar	Espagñol	t	101	f
-3226	3	529	3	valores de color RGB	Espagñol	t	106	f
-3227	3	530	3	valores de color HEX	Espagñol	t	106	f
-3237	3	540	3	añadir	Espagñol	t	106	f
-3240	3	543	3	fecha	Espagñol	t	108	f
-3241	3	544	3	acción	Espagñol	t	108	f
-3242	3	545	3	archivo	Espagñol	t	108	f
-3243	3	546	3	fila	Espagñol	t	108	f
-3244	3	547	3	aviso de error	Espagñol	t	108	f
-3245	3	548	3	consulta SQL	Espagñol	t	108	f
-3258	3	561	3	grupo	Espagñol	t	115	f
-3260	3	563	3	generado	Espagñol	t	115	f
-3266	3	569	3	nombre del grupo	Espagñol	t	119	f
-3268	3	571	3	aplicar	Espagñol	t	119	f
-3270	3	573	3	menú	Espagñol	t	120	f
-3272	3	575	3	derechos	Espagñol	t	120	f
-3274	3	577	3	cuadros	Espagñol	t	120	f
-3286	3	600	3	ya existe	Espagñol	t	111	f
-3298	3	612	3	correo electrónico	Espagñol	t	127	f
-3549	3	880	1	enero	Espagñol	t	41	f
-3302	3	616	3	máximo número de aciertos	Espagñol	t	127	f
-3309	3	623	3	esquema de color	Espagñol	t	127	f
-3310	3	624	3	idioma	Espagñol	t	127	f
-3318	3	632	3	activo	Espagñol	t	46	f
-3319	3	633	3	inactivo	Espagñol	t	46	f
-3342	3	656	3	activo	Espagñol	t	132	f
-3343	3	657	3	bloquear	Espagñol	t	132	f
-3358	3	672	3	apellido	Espagñol	t	136	f
-3374	3	698	1	layout	Espagñol	t	46	f
-3376	3	700	1	abrir calendario rápido	Espagñol	t	34	f
-3379	3	704	1	dividir ventana de resultados	Espagñol	t	46	f
-3385	3	711	1	más grande	Espagñol	t	19	f
-3386	3	712	1	más pequeño	Espagñol	t	19	f
-3387	3	713	1	igual	Espagñol	t	19	f
-3388	3	715	1	abrir detalles de selección	Espagñol	t	34	f
-3389	3	716	3	máximo tamaño de cargado	Espagñol	t	127	f
-3395	3	722	1	registro	Espagñol	t	13	f
-3397	3	724	2	formularios	Espagñol	t	0	f
-3398	3	725	2	editor de formularios	Espagñol	t	0	f
-3399	3	726	2	idioma	Espagñol	t	0	f
-3400	3	727	2	cuadro de idioma	Espagñol	t	0	f
+2853	3	109	1	CS	EspagÅ„ol	f	19	f
+2851	3	107	1	todo el campo	EspagÅ„ol	f	19	f
+2850	3	106	1	parte del contenido del campo	EspagÅ„ol	f	19	f
+2852	3	108	1	comienzo del contenido del campo	EspagÅ„ol	f	19	f
+3133	3	410	2	selecciÃ³n del color	EspagÅ„ol	t	0	f
+3134	3	415	2	mensajes	EspagÅ„ol	t	0	f
+3135	3	416	2	sistema de mensajes	EspagÅ„ol	t	0	f
+3136	3	417	2	nuevo mensaje	EspagÅ„ol	t	0	f
+3137	3	418	2	crear un nuevo mensaje	EspagÅ„ol	t	0	f
+3140	3	421	2	bÅ›squeda	EspagÅ„ol	t	0	f
+3141	3	422	2	buscar mensajes	EspagÅ„ol	t	0	f
+3142	3	425	2	nueva presentaciÃ³n	EspagÅ„ol	t	0	f
+3143	3	426	2	nuevas presentaciones personales	EspagÅ„ol	t	0	f
+3144	3	427	2	presentaciones	EspagÅ„ol	t	0	f
+3146	3	429	2	generar usuario	EspagÅ„ol	t	0	f
+3147	3	430	2	generar usuario	EspagÅ„ol	t	0	f
+3148	3	431	2	variable de entorno	EspagÅ„ol	t	0	f
+3149	3	432	2	variables de entorno	EspagÅ„ol	t	0	f
+3152	3	435	2	puntos del menÅ›	EspagÅ„ol	t	0	f
+3153	3	436	2	lista de conexiÃ³n	EspagÅ„ol	t	0	f
+3154	3	437	2	esquema	EspagÅ„ol	t	0	f
+3155	3	438	2	cuadro de colores	EspagÅ„ol	t	0	f
+3156	3	439	2	colores	EspagÅ„ol	t	0	f
+3157	3	440	2	cuadro de colores	EspagÅ„ol	t	0	f
+3158	3	441	2	exportaciÃ³n	EspagÅ„ol	t	0	f
+3159	3	442	2	exportaciÃ³n	EspagÅ„ol	t	0	f
+3160	3	443	2	importaciÃ³n	EspagÅ„ol	t	0	f
+3161	3	444	2	importaciÃ³n	EspagÅ„ol	t	0	f
+3823	3	1157	3	pÄ¯gina No.	EspagÅ„ol	t	169	f
+3162	3	445	2	actualizaciÃ³n del sistema	EspagÅ„ol	t	0	f
+3163	3	446	2	actualizaciÃ³n del sistema	EspagÅ„ol	t	0	f
+3164	3	451	2	estadÄ·stica	EspagÅ„ol	t	0	f
+3165	3	452	2	estadÄ·stica del diagrama de usuario	EspagÅ„ol	t	0	f
+3166	3	453	2	usuario/grupos	EspagÅ„ol	t	0	f
+3167	3	454	2	usuario/administraciÃ³n de grupos	EspagÅ„ol	t	0	f
+3168	3	455	2	grupos	EspagÅ„ol	t	0	f
+3169	3	456	2	administraciÃ³n de grupos	EspagÅ„ol	t	0	f
+3170	3	457	2	cuadros	EspagÅ„ol	t	0	f
+3171	3	458	2	editar cuadros	EspagÅ„ol	t	0	f
+3172	3	459	2	informe de errores	EspagÅ„ol	t	0	f
+3173	3	460	2	informe de errores	EspagÅ„ol	t	0	f
+3174	3	461	2	configuraciÃ³n	EspagÅ„ol	t	0	f
+3175	3	462	2	configuraciones generales	EspagÅ„ol	t	0	f
+3176	3	463	2	herramientas	EspagÅ„ol	t	0	f
+3177	3	464	2	herramientas	EspagÅ„ol	t	0	f
+3178	3	465	2	informes	EspagÅ„ol	t	0	f
+3179	3	466	2	editar informes	EspagÅ„ol	t	0	f
+3186	3	473	2	tamaÅ„o	EspagÅ„ol	t	0	f
+3187	3	474	2	informe tamaÅ„o de elementos	EspagÅ„ol	t	0	f
+3188	3	475	2	contenido	EspagÅ„ol	t	0	f
+3189	3	476	2	informe contenido de elementos	EspagÅ„ol	t	0	f
+3190	3	477	2	representaciÃ³n	EspagÅ„ol	t	0	f
+3191	3	478	2	informe estilo de elementos	EspagÅ„ol	t	0	f
+3192	3	483	2	derechos del menÅ›	EspagÅ„ol	t	0	f
+3744	3	1078	3	norma	EspagÅ„ol	t	160	f
+3193	3	484	2	establecer derechos del menÅ›	EspagÅ„ol	t	0	f
+3196	3	495	2	en general	EspagÅ„ol	t	0	f
+3197	3	496	2	configuraciones generales del usuario	EspagÅ„ol	t	0	f
+3198	3	497	2	derechos de cuadro	EspagÅ„ol	t	0	f
+3199	3	498	2	establecer derechos de cuadro	EspagÅ„ol	t	0	f
+3200	3	501	2	cuadros	EspagÅ„ol	t	0	f
+3201	3	502	2	herramientas de cuadros	EspagÅ„ol	t	0	f
+3214	3	517	3	argumento	EspagÅ„ol	t	101	f
+3215	3	518	3	variables de ambiente	EspagÅ„ol	t	101	f
+3216	3	519	3	nombre de usuario	EspagÅ„ol	t	101	f
+3217	3	520	3	nombre completo	EspagÅ„ol	t	101	f
+3218	3	521	3	correo electrÃ³nico	EspagÅ„ol	t	101	f
+3219	3	522	3	cambiar	EspagÅ„ol	t	101	f
+3226	3	529	3	valores de color RGB	EspagÅ„ol	t	106	f
+3227	3	530	3	valores de color HEX	EspagÅ„ol	t	106	f
+3237	3	540	3	aÅ„adir	EspagÅ„ol	t	106	f
+3240	3	543	3	fecha	EspagÅ„ol	t	108	f
+3241	3	544	3	acciÃ³n	EspagÅ„ol	t	108	f
+3242	3	545	3	archivo	EspagÅ„ol	t	108	f
+3243	3	546	3	fila	EspagÅ„ol	t	108	f
+3244	3	547	3	aviso de error	EspagÅ„ol	t	108	f
+3245	3	548	3	consulta SQL	EspagÅ„ol	t	108	f
+3258	3	561	3	grupo	EspagÅ„ol	t	115	f
+3260	3	563	3	generado	EspagÅ„ol	t	115	f
+3266	3	569	3	nombre del grupo	EspagÅ„ol	t	119	f
+3268	3	571	3	aplicar	EspagÅ„ol	t	119	f
+3270	3	573	3	menÅ›	EspagÅ„ol	t	120	f
+3272	3	575	3	derechos	EspagÅ„ol	t	120	f
+3274	3	577	3	cuadros	EspagÅ„ol	t	120	f
+3286	3	600	3	ya existe	EspagÅ„ol	t	111	f
+3298	3	612	3	correo electrÃ³nico	EspagÅ„ol	t	127	f
+3549	3	880	1	enero	EspagÅ„ol	t	41	f
+3302	3	616	3	mÄ¯ximo nÅ›mero de aciertos	EspagÅ„ol	t	127	f
+3309	3	623	3	esquema de color	EspagÅ„ol	t	127	f
+3310	3	624	3	idioma	EspagÅ„ol	t	127	f
+3318	3	632	3	activo	EspagÅ„ol	t	46	f
+3319	3	633	3	inactivo	EspagÅ„ol	t	46	f
+3342	3	656	3	activo	EspagÅ„ol	t	132	f
+3343	3	657	3	bloquear	EspagÅ„ol	t	132	f
+3358	3	672	3	apellido	EspagÅ„ol	t	136	f
+3374	3	698	1	layout	EspagÅ„ol	t	46	f
+3376	3	700	1	abrir calendario rÄ¯pido	EspagÅ„ol	t	34	f
+3379	3	704	1	dividir ventana de resultados	EspagÅ„ol	t	46	f
+3385	3	711	1	mÄ¯s grande	EspagÅ„ol	t	19	f
+3386	3	712	1	mÄ¯s pequeÅ„o	EspagÅ„ol	t	19	f
+3387	3	713	1	igual	EspagÅ„ol	t	19	f
+3388	3	715	1	abrir detalles de selecciÃ³n	EspagÅ„ol	t	34	f
+3389	3	716	3	mÄ¯ximo tamaÅ„o de cargado	EspagÅ„ol	t	127	f
+3395	3	722	1	registro	EspagÅ„ol	t	13	f
+3397	3	724	2	formularios	EspagÅ„ol	t	0	f
+3398	3	725	2	editor de formularios	EspagÅ„ol	t	0	f
+3399	3	726	2	idioma	EspagÅ„ol	t	0	f
+3400	3	727	2	cuadro de idioma	EspagÅ„ol	t	0	f
 8196	4	2215	3	vue	francais	t	149	f
-3403	3	730	2	marcar como nueva presentación / fichero de reserva	Espagñol	t	0	f
-3404	3	731	2	formularios	Espagñol	t	0	f
-3405	3	732	2	formularios	Espagñol	t	0	f
-3408	3	735	2	consultas	Espagñol	t	0	f
-3409	3	736	2	consultas de cuadros	Espagñol	t	0	f
-3416	3	745	1	aceptar valor cambiado	Espagñol	t	37	f
-3420	3	749	1	último acceso	Espagñol	t	4	f
-3421	3	750	2	diagramas	Espagñol	t	0	f
-3422	3	751	2	diagramas de evaluación	Espagñol	t	0	f
-3423	3	752	2	diagramas	Espagñol	t	0	f
-3424	3	753	2	editor de diagramas	Espagñol	t	0	f
-3435	3	764	1	no se encontró ningún registro con estas características	Espagñol	t	23	f
-3438	3	767	1	mensajes	Espagñol	t	145	f
-3439	3	768	1	recibir	Espagñol	t	145	f
-3440	3	769	1	enviado	Espagñol	t	154	f
-3441	3	770	1	borrado	Espagñol	t	154	f
-3442	3	771	2	renombrar	Espagñol	t	0	f
-3443	3	772	2	renombrar carpeta	Espagñol	t	0	f
-3444	3	773	2	buscar	Espagñol	t	0	f
-3445	3	774	2	buscar archivos	Espagñol	t	0	f
-3446	3	777	2	nueva carpeta	Espagñol	t	0	f
-3447	3	778	2	crear nueva carpeta	Espagñol	t	0	f
-3453	3	784	2	transferir	Espagñol	t	0	f
-3454	3	785	2	transferir mensaje	Espagñol	t	0	f
-3455	3	786	2	responder	Espagñol	t	0	f
-3456	3	787	2	reponder el mensaje	Espagñol	t	0	f
-3457	3	788	2	transmitir	Espagñol	t	0	f
-3458	3	789	2	transmitir mensaje	Espagñol	t	0	f
-3459	3	790	2	no leído	Espagñol	t	0	f
-3460	3	791	2	marcar mensaje como no leído	Espagñol	t	0	f
-3291	3	605	3	usuario	Espagñol	t	126	f
-3481	3	812	1	archivos propios	Espagñol	t	3	f
-3482	3	813	1	imágenes	Espagñol	t	3	f
-3484	3	815	2	nuevo archivo	Espagñol	t	0	f
-3485	3	816	2	crear nuevo archivo	Espagñol	t	0	f
-3486	3	817	2	copiar	Espagñol	t	0	f
-3487	3	818	2	copiar archivo	Espagñol	t	0	f
-3488	3	819	2	transferir	Espagñol	t	0	f
-3489	3	820	2	transferir archivo	Espagñol	t	0	f
-3490	3	821	1	¿desea borrar esta carpeta y su contenido?	Espagñol	t	68	f
-3491	3	822	1	¿desea borrar el archivo?	Espagñol	t	66	f
-3497	3	828	2	formulario	Espagñol	t	0	f
-3498	3	829	2	formulario	Espagñol	t	0	f
-3499	3	830	2	rastreo	Espagñol	t	0	f
-3500	3	831	2	rastrear conexión	Espagñol	t	0	f
-3503	3	834	2	en general	Espagñol	t	0	f
-3504	3	835	2	configuraciones generales de grupo	Espagñol	t	0	f
-3507	3	838	2	vista general	Espagñol	t	0	f
-3508	3	839	2	vista general del usuario	Espagñol	t	0	f
-3509	3	840	2	generar un grupo	Espagñol	t	0	f
-3510	3	841	2	generar un grupo	Espagñol	t	0	f
-3511	3	842	1	almacenar	Espagñol	t	54	f
-3512	3	843	1	editar	Espagñol	t	54	f
-3513	3	844	1	cerrar	Espagñol	t	54	f
-3516	3	847	2	fondo	Espagñol	t	0	f
-3517	3	848	2	color de fondo	Espagñol	t	0	f
-3520	3	851	1	columna	Espagñol	t	5	f
-3524	3	855	1	o	Espagñol	t	19	f
-3525	3	856	1	¿desea realmente borrar la sesión?	Espagñol	t	46	f
-3526	3	857	1	para comenzar	Espagñol	t	13	f
-3527	3	858	1	para terminar	Espagñol	t	13	f
-3528	3	859	1	siguiente	Espagñol	t	13	f
-3529	3	860	1	anterior	Espagñol	t	13	f
-3535	3	866	1	no	Espagñol	t	5	f
-3536	3	867	1	sí	Espagñol	t	5	f
-3538	3	869	1	informar	Espagñol	t	15	f
-3539	3	870	1	abrir página web	Espagñol	t	15	f
-3542	3	873	1	domingo	Espagñol	t	41	f
-3543	3	874	1	lunes	Espagñol	t	41	f
-3544	3	875	1	martes	Espagñol	t	41	f
-3545	3	876	1	miércoles	Espagñol	t	41	f
-3546	3	877	1	jueves	Espagñol	t	41	f
-3547	3	878	1	viernes	Espagñol	t	41	f
-3548	3	879	1	sábado	Espagñol	t	41	f
-3550	3	881	1	febrero	Espagñol	t	41	f
-3551	3	882	1	marzo	Espagñol	t	41	f
-3552	3	883	1	abril	Espagñol	t	41	f
-3553	3	884	1	mayo	Espagñol	t	41	f
-3554	3	885	1	junio	Espagñol	t	41	f
-3555	3	886	1	julio	Espagñol	t	41	f
-3556	3	887	1	agosto	Espagñol	t	41	f
-3557	3	888	1	setiembre	Espagñol	t	41	f
-3558	3	889	1	octubre	Espagñol	t	41	f
-3559	3	890	1	noviembre	Espagñol	t	41	f
-3560	3	891	1	diciembre	Espagñol	t	41	f
-3565	3	897	3	subgrupo de	Espagñol	t	119	f
-3567	3	899	3	¿desea borrar realmente la sesión de este usuario?	Espagñol	t	127	f
-3568	3	900	3	grupo principal	Espagñol	t	127	f
-3569	3	901	3	subgrupos	Espagñol	t	127	f
-3571	3	903	3	rango IP	Espagñol	t	127	f
-5365	3	1850	2	Index	Espagñol	t	\N	f
-3572	3	904	3	reinicio de sesión	Espagñol	t	127	f
-3573	3	905	3	reconfigurar derechos de cuadro	Espagñol	t	127	f
-3575	3	907	3	reconfigurar derechos del menú	Espagñol	t	127	f
-3576	3	908	3	desea el usuario	Espagñol	t	132	f
-3579	3	911	3	depurar	Espagñol	t	132	f
-3584	3	916	3	generador de vínculos	Espagñol	t	107	f
-3585	3	917	3	entrada del vínculo absoluto	Espagñol	t	107	f
-3593	3	925	3	tipo	Espagñol	t	110	f
-3594	3	926	3	clave	Espagñol	t	110	f
-3595	3	927	3	clasificación	Espagñol	t	110	f
-3596	3	928	3	valor default	Espagñol	t	110	f
-3598	3	930	3	editar	Espagñol	t	110	f
-3599	3	931	3	Int. Ref.	Espagñol	t	110	f
-3607	3	939	3	conexión en	Espagñol	t	139	f
-3608	3	940	3	registrado	Espagñol	t	139	f
-3610	3	942	3	añadido	Espagñol	t	139	f
-3617	3	949	3	ID	Espagñol	t	140	f
-3590	3	922	3	campo	Espagñol	t	110	f
-3592	3	924	3	denominación	Espagñol	t	110	f
-3600	3	932	3	seleccionar	Espagñol	t	110	f
-3534	3	865	1	agrupar conexiones	Espagñol	t	5	f
-3619	3	951	3	nombre del cuadro	Espagñol	t	140	f
-3620	3	952	3	positivo	Espagñol	t	140	f
-3621	3	953	3	campos	Espagñol	t	140	f
-3629	3	961	3	archivar cuadro	Espagñol	t	145	f
-3630	3	962	3	exportación de excel	Espagñol	t	145	f
-3631	3	963	3	exportación de texto	Espagñol	t	145	f
-3632	3	964	3	exportación del sistema	Espagñol	t	145	f
-3633	3	965	3	archivar grupo	Espagñol	t	145	f
-3634	3	966	3	sistema completo	Espagñol	t	145	f
-3635	3	967	3	cuadros de proyecto	Espagñol	t	145	f
-3636	3	968	3	cuadros del sistema dependientes	Espagñol	t	145	f
-3638	3	970	3	la exportación fue exitosa	Espagñol	t	145	f
-3639	3	971	3	en total fueron	Espagñol	t	145	f
-3640	3	972	3	registros	Espagñol	t	145	f
-3641	3	973	3	exportado	Espagñol	t	145	f
-3642	3	974	3	índice de exportación	Espagñol	t	145	f
-3645	3	977	3	resumir archivos	Espagñol	t	145	f
-3647	3	979	3	gzip	Espagñol	t	145	f
-3655	3	987	3	terminado	Espagñol	t	147	f
-3656	3	988	3	los siguientes campos tienen un formato no válido	Espagñol	t	148	f
-3658	3	990	3	importación parcial	Espagñol	t	148	f
-3659	3	991	3	importación de texto	Espagñol	t	148	f
-6335	4	478	2	style élément de rapport	francais	t	0	f
-3660	3	992	3	de archivo de texto	Espagñol	t	148	f
-3661	3	993	3	ninguno	Espagñol	t	148	f
-3662	3	994	3	todos	Espagñol	t	148	f
-3663	3	995	3	importación de sistema	Espagñol	t	148	f
-3665	3	997	3	vista previa de la fila	Espagñol	t	148	f
-3666	3	998	3	del archivo del sistema	Espagñol	t	148	f
-3670	3	1002	3	sobreescribir	Espagñol	t	148	f
-3671	3	1003	3	añadir	Espagñol	t	148	f
-3672	3	1004	3	conservar ID	Espagñol	t	148	f
-3674	3	1006	3	importación completa	Espagñol	t	148	f
-3675	3	1007	3	archivo de configuración	Espagñol	t	148	f
-3677	3	1009	3	reinstalar	Espagñol	t	148	f
-3678	3	1010	3	tipo de campo falso	Espagñol	t	149	f
-3679	3	1011	3	registros insertados	Espagñol	t	149	f
-3680	3	1012	3	error	Espagñol	t	149	f
-3682	3	1014	3	probar instancia	Espagñol	t	149	f
-3683	3	1015	3	insertar datos en  el cuadro	Espagñol	t	149	f
-3684	3	1016	3	fallo de filas	Espagñol	t	149	f
-3685	3	1017	3	filas insertadas	Espagñol	t	149	f
-3686	3	1018	3	creado	Espagñol	t	149	f
-3687	3	1019	3	fallado	Espagñol	t	149	f
-3688	3	1020	3	crear cuadro	Espagñol	t	149	f
-3689	3	1021	3	borrar cuadro	Espagñol	t	149	f
-3690	3	1022	3	informe de importación	Espagñol	t	149	f
-3692	3	1024	3	indexado	Espagñol	t	149	f
-3693	3	1025	3	tabla indexada	Espagñol	t	149	f
-3694	3	1026	3	añadir clave externa	Espagñol	t	149	f
-3697	3	1029	3	grupo del cuadro	Espagñol	t	150	f
-3704	3	1036	3	estructura	Espagñol	t	150	f
-3705	3	1037	3	estructura y datos	Espagñol	t	150	f
-3706	3	1038	3	crear	Espagñol	t	150	f
-3707	3	1039	3	existente	Espagñol	t	151	f
-3708	3	1040	3	importar	Espagñol	t	151	f
-3721	3	1054	3	revisión de todos los cuadros y derechos de campo	Espagñol	t	154	f
-3722	3	1056	3	revisión de todos los derechos del menú	Espagñol	t	154	f
-3723	3	1057	3	borrar todas las sesiones	Espagñol	t	154	f
-3726	3	1060	3	información del sistema	Espagñol	t	155	f
-3727	3	1061	3	mostrar	Espagñol	t	155	f
-3731	3	1065	3	ejecutar	Espagñol	t	155	f
-3733	3	1067	3	privilegios	Espagñol	t	155	f
-3734	3	1068	3	fecha de creación	Espagñol	t	155	f
-6337	4	484	2	Définir les droits	francais	t	0	f
-3735	3	1069	3	cuadro vaciado con éxito	Espagñol	t	156	f
-3736	3	1070	3	error/el cuadro no fue vaciado	Espagñol	t	156	f
-3737	3	1071	3	cuadro borrado con éxito	Espagñol	t	156	f
-3738	3	1072	3	error/el cuadro no fue borrado	Espagñol	t	156	f
-3739	3	1073	3	Consulta SQL ejecutada con éxito	Espagñol	t	156	f
-3749	3	1083	3	URL	Espagñol	t	162	f
-3753	3	1087	3	imagen	Espagñol	t	162	f
-3765	3	1099	3	elemento	Espagñol	t	168	f
-3766	3	1100	3	informaciones de imagen	Espagñol	t	168	f
-3768	3	1102	3	presentación	Espagñol	t	168	f
-3770	3	1104	3	color	Espagñol	t	168	f
-3771	3	1105	3	grosor	Espagñol	t	168	f
-3773	3	1107	3	fondo	Espagñol	t	168	f
-3774	3	1108	3	reflejar	Espagñol	t	168	f
-3775	3	1109	3	columnas	Espagñol	t	168	f
-3777	3	1111	3	distancia	Espagñol	t	168	f
-3778	3	1112	3	cabeza	Espagñol	t	168	f
-3779	3	1113	3	pie	Espagñol	t	168	f
-3780	3	1114	3	lista	Espagñol	t	168	f
-3781	3	1115	3	estilo de fuente	Espagñol	t	168	f
-3782	3	1116	3	peso de fuente	Espagñol	t	168	f
-3783	3	1117	3	decoración del texto	Espagñol	t	168	f
-3784	3	1118	3	transformación del texto	Espagñol	t	168	f
-3785	3	1119	3	alineación del texto	Espagñol	t	168	f
-3786	3	1120	3	distancia de filas	Espagñol	t	168	f
-3787	3	1121	3	distancia de letra	Espagñol	t	168	f
-3788	3	1122	3	distancia de palabra	Espagñol	t	168	f
-3789	3	1123	3	normal	Espagñol	t	168	f
-3790	3	1124	3	cursiva	Espagñol	t	168	f
-3791	3	1125	3	negrita	Espagñol	t	168	f
-3792	3	1126	3	subrayada	Espagñol	t	168	f
-3793	3	1127	3	mayúsculas	Espagñol	t	168	f
-3794	3	1128	3	minúsculas	Espagñol	t	168	f
-3795	3	1129	3	en bloque	Espagñol	t	168	f
-3796	3	1130	3	justificado a la izquierda	Espagñol	t	168	f
-3797	3	1131	3	centrado	Espagñol	t	168	f
-3798	3	1132	3	justificado a la derecha	Espagñol	t	168	f
-3800	3	1134	3	historia	Espagñol	t	168	f
-3802	3	1136	3	recalcular	Espagñol	t	168	f
-3804	3	1138	3	fuente	Espagñol	t	169	f
-3806	3	1140	3	tamaño de página (mm)	Espagñol	t	169	f
-3807	3	1141	3	ancho	Espagñol	t	169	f
-3808	3	1142	3	altura	Espagñol	t	169	f
-3809	3	1143	3	márgenes (mm)	Espagñol	t	169	f
-3810	3	1144	3	arriba	Espagñol	t	169	f
-3811	3	1145	3	abajo	Espagñol	t	169	f
-3812	3	1146	3	izquierda	Espagñol	t	169	f
-3813	3	1147	3	derecha	Espagñol	t	169	f
-3814	3	1148	3	proporciones	Espagñol	t	169	f
-3815	3	1149	3	bloque de texto	Espagñol	t	169	f
-3816	3	1150	3	contenidos	Espagñol	t	169	f
-3817	3	1151	3	gráfico	Espagñol	t	169	f
-3818	3	1152	3	línea	Espagñol	t	169	f
-3819	3	1153	3	rectángulo	Espagñol	t	169	f
-3820	3	1154	3	elipse	Espagñol	t	169	f
-3828	3	1162	3	para cuadro	Espagñol	t	170	f
-3831	3	1165	3	nuevo informe	Espagñol	t	170	f
-3833	3	1167	3	el gráfico no pudo ser almacenado con éxito	Espagñol	t	172	f
-3836	3	1170	3	fuente	Espagñol	t	175	f
-3837	3	1171	3	subformulario	Espagñol	t	175	f
-3839	3	1173	3	barra de desplazamiento	Espagñol	t	175	f
-3840	3	1174	3	botón submit	Espagñol	t	175	f
-3842	3	1176	3	calidad	Espagñol	t	175	f
-3845	3	1179	3	formulario	Espagñol	t	176	f
-3849	3	1183	3	vista previa	Espagñol	t	176	f
-3850	3	1184	3	una columna	Espagñol	t	176	f
-3852	3	1186	3	nuevo formulario	Espagñol	t	176	f
-3857	3	1191	3	nuevo diagrama	Espagñol	t	177	f
+3403	3	730	2	marcar como nueva presentaciÃ³n / fichero de reserva	EspagÅ„ol	t	0	f
+3404	3	731	2	formularios	EspagÅ„ol	t	0	f
+3405	3	732	2	formularios	EspagÅ„ol	t	0	f
+3408	3	735	2	consultas	EspagÅ„ol	t	0	f
+3409	3	736	2	consultas de cuadros	EspagÅ„ol	t	0	f
+3416	3	745	1	aceptar valor cambiado	EspagÅ„ol	t	37	f
+3420	3	749	1	Å›ltimo acceso	EspagÅ„ol	t	4	f
+3421	3	750	2	diagramas	EspagÅ„ol	t	0	f
+3422	3	751	2	diagramas de evaluaciÃ³n	EspagÅ„ol	t	0	f
+3423	3	752	2	diagramas	EspagÅ„ol	t	0	f
+3424	3	753	2	editor de diagramas	EspagÅ„ol	t	0	f
+3435	3	764	1	no se encontrÃ³ ningÅ›n registro con estas caracterÄ·sticas	EspagÅ„ol	t	23	f
+3438	3	767	1	mensajes	EspagÅ„ol	t	145	f
+3439	3	768	1	recibir	EspagÅ„ol	t	145	f
+3440	3	769	1	enviado	EspagÅ„ol	t	154	f
+3441	3	770	1	borrado	EspagÅ„ol	t	154	f
+3442	3	771	2	renombrar	EspagÅ„ol	t	0	f
+3443	3	772	2	renombrar carpeta	EspagÅ„ol	t	0	f
+3444	3	773	2	buscar	EspagÅ„ol	t	0	f
+3445	3	774	2	buscar archivos	EspagÅ„ol	t	0	f
+3446	3	777	2	nueva carpeta	EspagÅ„ol	t	0	f
+3447	3	778	2	crear nueva carpeta	EspagÅ„ol	t	0	f
+3453	3	784	2	transferir	EspagÅ„ol	t	0	f
+3454	3	785	2	transferir mensaje	EspagÅ„ol	t	0	f
+3455	3	786	2	responder	EspagÅ„ol	t	0	f
+3456	3	787	2	reponder el mensaje	EspagÅ„ol	t	0	f
+3457	3	788	2	transmitir	EspagÅ„ol	t	0	f
+3458	3	789	2	transmitir mensaje	EspagÅ„ol	t	0	f
+3459	3	790	2	no leÄ·do	EspagÅ„ol	t	0	f
+3460	3	791	2	marcar mensaje como no leÄ·do	EspagÅ„ol	t	0	f
+3291	3	605	3	usuario	EspagÅ„ol	t	126	f
+3481	3	812	1	archivos propios	EspagÅ„ol	t	3	f
+3482	3	813	1	imÄ¯genes	EspagÅ„ol	t	3	f
+3484	3	815	2	nuevo archivo	EspagÅ„ol	t	0	f
+3485	3	816	2	crear nuevo archivo	EspagÅ„ol	t	0	f
+3486	3	817	2	copiar	EspagÅ„ol	t	0	f
+3487	3	818	2	copiar archivo	EspagÅ„ol	t	0	f
+3488	3	819	2	transferir	EspagÅ„ol	t	0	f
+3489	3	820	2	transferir archivo	EspagÅ„ol	t	0	f
+3490	3	821	1	Ã¦desea borrar esta carpeta y su contenido?	EspagÅ„ol	t	68	f
+3491	3	822	1	Ã¦desea borrar el archivo?	EspagÅ„ol	t	66	f
+3497	3	828	2	formulario	EspagÅ„ol	t	0	f
+3498	3	829	2	formulario	EspagÅ„ol	t	0	f
+3499	3	830	2	rastreo	EspagÅ„ol	t	0	f
+3500	3	831	2	rastrear conexiÃ³n	EspagÅ„ol	t	0	f
+3503	3	834	2	en general	EspagÅ„ol	t	0	f
+3504	3	835	2	configuraciones generales de grupo	EspagÅ„ol	t	0	f
+3507	3	838	2	vista general	EspagÅ„ol	t	0	f
+3508	3	839	2	vista general del usuario	EspagÅ„ol	t	0	f
+3509	3	840	2	generar un grupo	EspagÅ„ol	t	0	f
+3510	3	841	2	generar un grupo	EspagÅ„ol	t	0	f
+3511	3	842	1	almacenar	EspagÅ„ol	t	54	f
+3512	3	843	1	editar	EspagÅ„ol	t	54	f
+3513	3	844	1	cerrar	EspagÅ„ol	t	54	f
+3516	3	847	2	fondo	EspagÅ„ol	t	0	f
+3517	3	848	2	color de fondo	EspagÅ„ol	t	0	f
+3520	3	851	1	columna	EspagÅ„ol	t	5	f
+3524	3	855	1	o	EspagÅ„ol	t	19	f
+3525	3	856	1	Ã¦desea realmente borrar la sesiÃ³n?	EspagÅ„ol	t	46	f
+3526	3	857	1	para comenzar	EspagÅ„ol	t	13	f
+3527	3	858	1	para terminar	EspagÅ„ol	t	13	f
+3528	3	859	1	siguiente	EspagÅ„ol	t	13	f
+3529	3	860	1	anterior	EspagÅ„ol	t	13	f
+3535	3	866	1	no	EspagÅ„ol	t	5	f
+3536	3	867	1	sÄ·	EspagÅ„ol	t	5	f
+3538	3	869	1	informar	EspagÅ„ol	t	15	f
+3539	3	870	1	abrir pÄ¯gina web	EspagÅ„ol	t	15	f
+3542	3	873	1	domingo	EspagÅ„ol	t	41	f
+3543	3	874	1	lunes	EspagÅ„ol	t	41	f
+3544	3	875	1	martes	EspagÅ„ol	t	41	f
+3545	3	876	1	miÃ©rcoles	EspagÅ„ol	t	41	f
+3546	3	877	1	jueves	EspagÅ„ol	t	41	f
+3547	3	878	1	viernes	EspagÅ„ol	t	41	f
+3548	3	879	1	sÄ¯bado	EspagÅ„ol	t	41	f
+3550	3	881	1	febrero	EspagÅ„ol	t	41	f
+3551	3	882	1	marzo	EspagÅ„ol	t	41	f
+3552	3	883	1	abril	EspagÅ„ol	t	41	f
+3553	3	884	1	mayo	EspagÅ„ol	t	41	f
+3554	3	885	1	junio	EspagÅ„ol	t	41	f
+3555	3	886	1	julio	EspagÅ„ol	t	41	f
+3556	3	887	1	agosto	EspagÅ„ol	t	41	f
+3557	3	888	1	setiembre	EspagÅ„ol	t	41	f
+3558	3	889	1	octubre	EspagÅ„ol	t	41	f
+3559	3	890	1	noviembre	EspagÅ„ol	t	41	f
+3560	3	891	1	diciembre	EspagÅ„ol	t	41	f
+3565	3	897	3	subgrupo de	EspagÅ„ol	t	119	f
+3567	3	899	3	Ã¦desea borrar realmente la sesiÃ³n de este usuario?	EspagÅ„ol	t	127	f
+3568	3	900	3	grupo principal	EspagÅ„ol	t	127	f
+3569	3	901	3	subgrupos	EspagÅ„ol	t	127	f
+3571	3	903	3	rango IP	EspagÅ„ol	t	127	f
+5365	3	1850	2	Index	EspagÅ„ol	t	\N	f
+3572	3	904	3	reinicio de sesiÃ³n	EspagÅ„ol	t	127	f
+3573	3	905	3	reconfigurar derechos de cuadro	EspagÅ„ol	t	127	f
+3575	3	907	3	reconfigurar derechos del menÅ›	EspagÅ„ol	t	127	f
+3576	3	908	3	desea el usuario	EspagÅ„ol	t	132	f
+3579	3	911	3	depurar	EspagÅ„ol	t	132	f
+3584	3	916	3	generador de vÄ·nculos	EspagÅ„ol	t	107	f
+3585	3	917	3	entrada del vÄ·nculo absoluto	EspagÅ„ol	t	107	f
+3593	3	925	3	tipo	EspagÅ„ol	t	110	f
+3594	3	926	3	clave	EspagÅ„ol	t	110	f
+3595	3	927	3	clasificaciÃ³n	EspagÅ„ol	t	110	f
+3596	3	928	3	valor default	EspagÅ„ol	t	110	f
+3598	3	930	3	editar	EspagÅ„ol	t	110	f
+3599	3	931	3	Int. Ref.	EspagÅ„ol	t	110	f
+3607	3	939	3	conexiÃ³n en	EspagÅ„ol	t	139	f
+3608	3	940	3	registrado	EspagÅ„ol	t	139	f
+3610	3	942	3	aÅ„adido	EspagÅ„ol	t	139	f
+3617	3	949	3	ID	EspagÅ„ol	t	140	f
+3590	3	922	3	campo	EspagÅ„ol	t	110	f
+3592	3	924	3	denominaciÃ³n	EspagÅ„ol	t	110	f
+3600	3	932	3	seleccionar	EspagÅ„ol	t	110	f
+3534	3	865	1	agrupar conexiones	EspagÅ„ol	t	5	f
+3619	3	951	3	nombre del cuadro	EspagÅ„ol	t	140	f
+3620	3	952	3	positivo	EspagÅ„ol	t	140	f
+3621	3	953	3	campos	EspagÅ„ol	t	140	f
+3629	3	961	3	archivar cuadro	EspagÅ„ol	t	145	f
+3630	3	962	3	exportaciÃ³n de excel	EspagÅ„ol	t	145	f
+3631	3	963	3	exportaciÃ³n de texto	EspagÅ„ol	t	145	f
+3632	3	964	3	exportaciÃ³n del sistema	EspagÅ„ol	t	145	f
+3633	3	965	3	archivar grupo	EspagÅ„ol	t	145	f
+3634	3	966	3	sistema completo	EspagÅ„ol	t	145	f
+3635	3	967	3	cuadros de proyecto	EspagÅ„ol	t	145	f
+3636	3	968	3	cuadros del sistema dependientes	EspagÅ„ol	t	145	f
+3638	3	970	3	la exportaciÃ³n fue exitosa	EspagÅ„ol	t	145	f
+3639	3	971	3	en total fueron	EspagÅ„ol	t	145	f
+3640	3	972	3	registros	EspagÅ„ol	t	145	f
+3641	3	973	3	exportado	EspagÅ„ol	t	145	f
+3642	3	974	3	Ä·ndice de exportaciÃ³n	EspagÅ„ol	t	145	f
+3645	3	977	3	resumir archivos	EspagÅ„ol	t	145	f
+3647	3	979	3	gzip	EspagÅ„ol	t	145	f
+3655	3	987	3	terminado	EspagÅ„ol	t	147	f
+3656	3	988	3	los siguientes campos tienen un formato no vÄ¯lido	EspagÅ„ol	t	148	f
+3658	3	990	3	importaciÃ³n parcial	EspagÅ„ol	t	148	f
+3659	3	991	3	importaciÃ³n de texto	EspagÅ„ol	t	148	f
+6335	4	478	2	style Ã©lÃ©ment de rapport	francais	t	0	f
+3660	3	992	3	de archivo de texto	EspagÅ„ol	t	148	f
+3661	3	993	3	ninguno	EspagÅ„ol	t	148	f
+3662	3	994	3	todos	EspagÅ„ol	t	148	f
+3663	3	995	3	importaciÃ³n de sistema	EspagÅ„ol	t	148	f
+3665	3	997	3	vista previa de la fila	EspagÅ„ol	t	148	f
+3666	3	998	3	del archivo del sistema	EspagÅ„ol	t	148	f
+3670	3	1002	3	sobreescribir	EspagÅ„ol	t	148	f
+3671	3	1003	3	aÅ„adir	EspagÅ„ol	t	148	f
+3672	3	1004	3	conservar ID	EspagÅ„ol	t	148	f
+3674	3	1006	3	importaciÃ³n completa	EspagÅ„ol	t	148	f
+3675	3	1007	3	archivo de configuraciÃ³n	EspagÅ„ol	t	148	f
+3677	3	1009	3	reinstalar	EspagÅ„ol	t	148	f
+3678	3	1010	3	tipo de campo falso	EspagÅ„ol	t	149	f
+3679	3	1011	3	registros insertados	EspagÅ„ol	t	149	f
+3680	3	1012	3	error	EspagÅ„ol	t	149	f
+3682	3	1014	3	probar instancia	EspagÅ„ol	t	149	f
+3683	3	1015	3	insertar datos en  el cuadro	EspagÅ„ol	t	149	f
+3684	3	1016	3	fallo de filas	EspagÅ„ol	t	149	f
+3685	3	1017	3	filas insertadas	EspagÅ„ol	t	149	f
+3686	3	1018	3	creado	EspagÅ„ol	t	149	f
+3687	3	1019	3	fallado	EspagÅ„ol	t	149	f
+3688	3	1020	3	crear cuadro	EspagÅ„ol	t	149	f
+3689	3	1021	3	borrar cuadro	EspagÅ„ol	t	149	f
+3690	3	1022	3	informe de importaciÃ³n	EspagÅ„ol	t	149	f
+3692	3	1024	3	indexado	EspagÅ„ol	t	149	f
+3693	3	1025	3	tabla indexada	EspagÅ„ol	t	149	f
+3694	3	1026	3	aÅ„adir clave externa	EspagÅ„ol	t	149	f
+3697	3	1029	3	grupo del cuadro	EspagÅ„ol	t	150	f
+3704	3	1036	3	estructura	EspagÅ„ol	t	150	f
+3705	3	1037	3	estructura y datos	EspagÅ„ol	t	150	f
+3706	3	1038	3	crear	EspagÅ„ol	t	150	f
+3707	3	1039	3	existente	EspagÅ„ol	t	151	f
+3708	3	1040	3	importar	EspagÅ„ol	t	151	f
+3721	3	1054	3	revisiÃ³n de todos los cuadros y derechos de campo	EspagÅ„ol	t	154	f
+3722	3	1056	3	revisiÃ³n de todos los derechos del menÅ›	EspagÅ„ol	t	154	f
+3723	3	1057	3	borrar todas las sesiones	EspagÅ„ol	t	154	f
+3726	3	1060	3	informaciÃ³n del sistema	EspagÅ„ol	t	155	f
+3727	3	1061	3	mostrar	EspagÅ„ol	t	155	f
+3731	3	1065	3	ejecutar	EspagÅ„ol	t	155	f
+3733	3	1067	3	privilegios	EspagÅ„ol	t	155	f
+3734	3	1068	3	fecha de creaciÃ³n	EspagÅ„ol	t	155	f
+6337	4	484	2	DÃ©finir les droits	francais	t	0	f
+3735	3	1069	3	cuadro vaciado con Ã©xito	EspagÅ„ol	t	156	f
+3736	3	1070	3	error/el cuadro no fue vaciado	EspagÅ„ol	t	156	f
+3737	3	1071	3	cuadro borrado con Ã©xito	EspagÅ„ol	t	156	f
+3738	3	1072	3	error/el cuadro no fue borrado	EspagÅ„ol	t	156	f
+3739	3	1073	3	Consulta SQL ejecutada con Ã©xito	EspagÅ„ol	t	156	f
+3749	3	1083	3	URL	EspagÅ„ol	t	162	f
+3753	3	1087	3	imagen	EspagÅ„ol	t	162	f
+3765	3	1099	3	elemento	EspagÅ„ol	t	168	f
+3766	3	1100	3	informaciones de imagen	EspagÅ„ol	t	168	f
+3768	3	1102	3	presentaciÃ³n	EspagÅ„ol	t	168	f
+3770	3	1104	3	color	EspagÅ„ol	t	168	f
+3771	3	1105	3	grosor	EspagÅ„ol	t	168	f
+3773	3	1107	3	fondo	EspagÅ„ol	t	168	f
+3774	3	1108	3	reflejar	EspagÅ„ol	t	168	f
+3775	3	1109	3	columnas	EspagÅ„ol	t	168	f
+3777	3	1111	3	distancia	EspagÅ„ol	t	168	f
+3778	3	1112	3	cabeza	EspagÅ„ol	t	168	f
+3779	3	1113	3	pie	EspagÅ„ol	t	168	f
+3780	3	1114	3	lista	EspagÅ„ol	t	168	f
+3781	3	1115	3	estilo de fuente	EspagÅ„ol	t	168	f
+3782	3	1116	3	peso de fuente	EspagÅ„ol	t	168	f
+3783	3	1117	3	decoraciÃ³n del texto	EspagÅ„ol	t	168	f
+3784	3	1118	3	transformaciÃ³n del texto	EspagÅ„ol	t	168	f
+3785	3	1119	3	alineaciÃ³n del texto	EspagÅ„ol	t	168	f
+3786	3	1120	3	distancia de filas	EspagÅ„ol	t	168	f
+3787	3	1121	3	distancia de letra	EspagÅ„ol	t	168	f
+3788	3	1122	3	distancia de palabra	EspagÅ„ol	t	168	f
+3789	3	1123	3	normal	EspagÅ„ol	t	168	f
+3790	3	1124	3	cursiva	EspagÅ„ol	t	168	f
+3791	3	1125	3	negrita	EspagÅ„ol	t	168	f
+3792	3	1126	3	subrayada	EspagÅ„ol	t	168	f
+3793	3	1127	3	mayÅ›sculas	EspagÅ„ol	t	168	f
+3794	3	1128	3	minÅ›sculas	EspagÅ„ol	t	168	f
+3795	3	1129	3	en bloque	EspagÅ„ol	t	168	f
+3796	3	1130	3	justificado a la izquierda	EspagÅ„ol	t	168	f
+3797	3	1131	3	centrado	EspagÅ„ol	t	168	f
+3798	3	1132	3	justificado a la derecha	EspagÅ„ol	t	168	f
+3800	3	1134	3	historia	EspagÅ„ol	t	168	f
+3802	3	1136	3	recalcular	EspagÅ„ol	t	168	f
+3804	3	1138	3	fuente	EspagÅ„ol	t	169	f
+3806	3	1140	3	tamaÅ„o de pÄ¯gina (mm)	EspagÅ„ol	t	169	f
+3807	3	1141	3	ancho	EspagÅ„ol	t	169	f
+3808	3	1142	3	altura	EspagÅ„ol	t	169	f
+3809	3	1143	3	mÄ¯rgenes (mm)	EspagÅ„ol	t	169	f
+3810	3	1144	3	arriba	EspagÅ„ol	t	169	f
+3811	3	1145	3	abajo	EspagÅ„ol	t	169	f
+3812	3	1146	3	izquierda	EspagÅ„ol	t	169	f
+3813	3	1147	3	derecha	EspagÅ„ol	t	169	f
+3814	3	1148	3	proporciones	EspagÅ„ol	t	169	f
+3815	3	1149	3	bloque de texto	EspagÅ„ol	t	169	f
+3816	3	1150	3	contenidos	EspagÅ„ol	t	169	f
+3817	3	1151	3	grÄ¯fico	EspagÅ„ol	t	169	f
+3818	3	1152	3	lÄ·nea	EspagÅ„ol	t	169	f
+3819	3	1153	3	rectÄ¯ngulo	EspagÅ„ol	t	169	f
+3820	3	1154	3	elipse	EspagÅ„ol	t	169	f
+3828	3	1162	3	para cuadro	EspagÅ„ol	t	170	f
+3831	3	1165	3	nuevo informe	EspagÅ„ol	t	170	f
+3833	3	1167	3	el grÄ¯fico no pudo ser almacenado con Ã©xito	EspagÅ„ol	t	172	f
+3836	3	1170	3	fuente	EspagÅ„ol	t	175	f
+3837	3	1171	3	subformulario	EspagÅ„ol	t	175	f
+3839	3	1173	3	barra de desplazamiento	EspagÅ„ol	t	175	f
+3840	3	1174	3	botÃ³n submit	EspagÅ„ol	t	175	f
+3842	3	1176	3	calidad	EspagÅ„ol	t	175	f
+3845	3	1179	3	formulario	EspagÅ„ol	t	176	f
+3849	3	1183	3	vista previa	EspagÅ„ol	t	176	f
+3850	3	1184	3	una columna	EspagÅ„ol	t	176	f
+3852	3	1186	3	nuevo formulario	EspagÅ„ol	t	176	f
+3857	3	1191	3	nuevo diagrama	EspagÅ„ol	t	177	f
 8184	4	2212	2	attribut	francais	t	0	f
-3866	3	1200	2	administrador de archivo	Espagñol	t	0	f
-3867	3	1201	2	administrador de archivo	Espagñol	t	0	f
-6432	4	715	1	Détails open sélection	francais	t	34	f
-6436	4	722	1	enregistrement de données	francais	t	13	f
-6455	4	751	2	Tableau d'évaluation	francais	t	0	f
+3866	3	1200	2	administrador de archivo	EspagÅ„ol	t	0	f
+3867	3	1201	2	administrador de archivo	EspagÅ„ol	t	0	f
+6432	4	715	1	DÃ©tails open sÃ©lection	francais	t	34	f
+6436	4	722	1	enregistrement de donnÃ©es	francais	t	13	f
+6455	4	751	2	Tableau d'Ã©valuation	francais	t	0	f
 6493	4	812	1	Mes documents	francais	t	3	f
 6537	4	869	1	informer	francais	t	15	f
 6601	4	939	3	liens	francais	t	139	f
 6634	4	977	3	fichiers Ensemble	francais	t	145	f
 6761	4	1116	3	poids police	francais	t	168	f
 10197	4	2275	3	syncronisieren	francais	t	218	f
-6890	4	1264	3	Cette fonction vérifie tous les droits de table à l'existence! Les droits existants ne sont pas remplacés	francais	t	154	t
-6891	4	1265	3	Cette fonction vérifie tous les droits de menu à l'existence! Les droits existants ne sont pas remplacés	francais	t	154	t
+6890	4	1264	3	Cette fonction vÃ©rifie tous les droits de table Ä… l'existence! Les droits existants ne sont pas remplacÃ©s	francais	t	154	t
+6891	4	1265	3	Cette fonction vÃ©rifie tous les droits de menu Ä… l'existence! Les droits existants ne sont pas remplacÃ©s	francais	t	154	t
 6892	4	1266	2	surveillance	francais	t	0	f
 6893	4	1267	2	Surveillance de l'utilisateur	francais	t	0	f
-6902	4	1276	2	tableau détail	francais	t	0	f
-6903	4	1277	2	paramètres de table	francais	t	0	f
-6913	4	1287	2	Ajuster à la taille du cadre et le type	francais	t	0	f
-7045	4	1422	2	récupérer	francais	t	0	f
+6902	4	1276	2	tableau dÃ©tail	francais	t	0	f
+6903	4	1277	2	paramÄtres de table	francais	t	0	f
+6913	4	1287	2	Ajuster Ä… la taille du cadre et le type	francais	t	0	f
+7045	4	1422	2	rÃ©cupÃ©rer	francais	t	0	f
 7105	4	1490	3	haut affleurant	francais	t	168	f
 7106	4	1491	3	centre	francais	t	168	f
 7107	4	1492	3	vers le bas affleurant	francais	t	168	f
 7108	4	1493	3	base	francais	t	168	f
 7109	4	1494	3	indice	francais	t	168	f
-7097	4	1482	2	Case à cocher (choix multiple) comme une liste de cases à cocher	francais	t	0	f
+7097	4	1482	2	Case Ä… cocher (choix multiple) comme une liste de cases Ä… cocher	francais	t	0	f
 7426	4	1842	3	FORMAT: VALEUR [STRING] | AUTRES [STRING]	francais	t	104	f
-7517	4	1937	2	Mode mot-clé	francais	t	0	f
+7517	4	1937	2	Mode mot-clÃ©	francais	t	0	f
 7736	4	2100	3	maquillage	francais	t	168	f
 7812	4	2119	3	diagrammes	francais	t	177	f
 7864	4	2132	3	versioning	francais	t	140	f
-7888	4	2138	1	non table liée sélectionnée!	francais	t	5	f
-7892	4	2139	1	Aucune donnée disponible associé!	francais	t	5	f
+7888	4	2138	1	non table liÃ©e sÃ©lectionnÃ©e!	francais	t	5	f
+7892	4	2139	1	Aucune donnÃ©e disponible associÃ©!	francais	t	5	f
 10538	4	2358	1	lien Break	francais	t	13	f
 7856	4	2130	3	droit de fichier	francais	t	119	f
 7852	4	2129	3	droits de table	francais	t	119	f
-7920	4	2146	1	si le dossier versionné?	francais	t	13	f
-7928	4	2148	1	Record a été versionné avec succès!	francais	t	25	f
-7932	4	2149	1	Les dossiers ont été versionnées avec succès!	francais	t	25	f
-7936	4	2150	1	Enregistrement a été copié avec succès!	francais	t	25	f
-7940	4	2151	1	Datensätze wurden erfolgreich kopiert!	francais	t	25	f
-7948	4	2153	1	Si les enregistrements sélectionnés sont supprimés?	francais	t	5	f
-7952	4	2154	1	Si les enregistrements sélectionnés sont archivés?	francais	t	5	f
-7956	4	2155	1	Si les enregistrements sélectionnés sont versionnés?	francais	t	5	f
-7960	4	2156	1	Si les enregistrements sélectionnés sont copiés?	francais	t	5	f
-7964	4	2157	1	Si les enregistrements sélectionnés sont restaurés?	francais	t	5	f
-7968	4	2158	1	Annulation des limites peut conduire à des longs délais d'attente pour les grands ensembles de disques!	francais	t	5	f
+7920	4	2146	1	si le dossier versionnÃ©?	francais	t	13	f
+7928	4	2148	1	Record a Ã©tÃ© versionnÃ© avec succÄs!	francais	t	25	f
+7932	4	2149	1	Les dossiers ont Ã©tÃ© versionnÃ©es avec succÄs!	francais	t	25	f
+7936	4	2150	1	Enregistrement a Ã©tÃ© copiÃ© avec succÄs!	francais	t	25	f
+7940	4	2151	1	DatensÃ¤tze wurden erfolgreich kopiert!	francais	t	25	f
+7948	4	2153	1	Si les enregistrements sÃ©lectionnÃ©s sont supprimÃ©s?	francais	t	5	f
+7952	4	2154	1	Si les enregistrements sÃ©lectionnÃ©s sont archivÃ©s?	francais	t	5	f
+7956	4	2155	1	Si les enregistrements sÃ©lectionnÃ©s sont versionnÃ©s?	francais	t	5	f
+7960	4	2156	1	Si les enregistrements sÃ©lectionnÃ©s sont copiÃ©s?	francais	t	5	f
+7964	4	2157	1	Si les enregistrements sÃ©lectionnÃ©s sont restaurÃ©s?	francais	t	5	f
+7968	4	2158	1	Annulation des limites peut conduire Ä… des longs dÃ©lais d'attente pour les grands ensembles de disques!	francais	t	5	f
 7983	4	2162	2	comparer avec	francais	t	\N	f
 7987	4	2163	2	comparer la version	francais	t	\N	f
 7995	4	2165	2	barre d'outils	francais	t	\N	f
@@ -8170,148 +8170,148 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8004	4	2167	1	barre d'outils d'exposition	francais	t	46	f
 8007	4	2168	2	recherche	francais	t	\N	f
 8011	4	2169	2	menu de recherche	francais	t	\N	f
-3827	3	1161	3	creado por	Espagñol	t	170	f
+3827	3	1161	3	creado por	EspagÅ„ol	t	170	f
 10330	4	2308	2	barre d'outils d'exposition	francais	t	0	f
-7924	4	2147	1	Il peut être versionné et édité seule la version actuelle du dossier!	francais	t	13	f
+7924	4	2147	1	Il peut Åºtre versionnÃ© et Ã©ditÃ© seule la version actuelle du dossier!	francais	t	13	f
 8024	4	2172	1	Situation au:	francais	t	5	f
 8028	4	2173	2	-------types de champs d'extension ------- 	francais	t	0	f
-8080	4	2186	1	Si les enregistrements sélectionnés sont liés?	francais	t	5	f
-8084	4	2187	1	Si l'opération des enregistrements sélectionnés sera résolu?	francais	t	5	f
-8092	4	2189	1	Vous n'avez pas droit à ce dossier!	francais	t	66	f
+8080	4	2186	1	Si les enregistrements sÃ©lectionnÃ©s sont liÃ©s?	francais	t	5	f
+8084	4	2187	1	Si l'opÃ©ration des enregistrements sÃ©lectionnÃ©s sera rÃ©solu?	francais	t	5	f
+8092	4	2189	1	Vous n'avez pas droit Ä… ce dossier!	francais	t	66	f
 8131	4	2199	2	lieu de travail	francais	t	\N	f
-8135	4	2200	2	résumé	francais	t	\N	f
+8135	4	2200	2	rÃ©sumÃ©	francais	t	\N	f
 8139	4	2201	2	rapports	francais	t	\N	f
 8143	4	2202	2	rapports	francais	t	\N	f
-8151	4	2204	2	données personnelles	francais	t	\N	f
+8151	4	2204	2	donnÃ©es personnelles	francais	t	\N	f
 8176	4	2210	3	rebaptiser	francais	t	148	f
 8116	4	2195	2	Taille en octets	francais	t	0	f
-8200	4	2216	3	gâchette	francais	t	149	f
+8200	4	2216	3	gÄchette	francais	t	149	f
 10338	4	2310	1	Vous avez pas de dossier des droits!	francais	t	97	f
 8120	4	2196	2	mimetype	francais	t	0	f
 8040	4	2176	2	Versioning remarque additionnelle	francais	t	0	f
-8212	4	2219	1	Voulez-vous ajouter le fichier / s à vos favoris?	francais	t	66	f
+8212	4	2219	1	Voulez-vous ajouter le fichier / s Ä… vos favoris?	francais	t	66	f
 8236	4	2225	1	un niveau	francais	t	215	f
-8240	4	2226	1	sélectionner	francais	t	215	f
+8240	4	2226	1	sÃ©lectionner	francais	t	215	f
 8244	4	2227	1	abandonner	francais	t	215	f
 8252	4	2229	1	regardant dans	francais	t	215	f
-8256	4	2230	1	Répertoire de base	francais	t	215	f
+8256	4	2230	1	RÃ©pertoire de base	francais	t	215	f
 8260	4	2231	1	nouveau dossier	francais	t	215	f
 8264	4	2232	1	nouveau fichier	francais	t	215	f
-8268	4	2233	1	simple présentation	francais	t	215	f
-8272	4	2234	1	affichage étendu	francais	t	215	f
+8268	4	2233	1	simple prÃ©sentation	francais	t	215	f
+8272	4	2234	1	affichage Ã©tendu	francais	t	215	f
 8276	4	2235	3	identificateurs	francais	t	110	f
-8280	4	2236	3	dépendance	francais	t	52	f
+8280	4	2236	3	dÃ©pendance	francais	t	52	f
 8292	4	2239	3	uniquement backend verrouillage	francais	t	127	f
 8296	4	2240	3	convertir	francais	t	148	f
 8308	4	2243	3	question	francais	t	148	f
 8384	4	2262	3	la vie de la session	francais	t	127	f
-11034	4	2482	3	fonctions de base de données	francais	t	154	f
-10167	4	2269	3	définition	francais	t	218	f
-10172	4	2270	3	édité sur	francais	t	218	f
-10177	4	2271	3	édité par	francais	t	218	f
-4225	3	1470	2	löschen	Espagñol	t	\N	f
-4360	3	1515	2	Feldtypen	Espagñol	t	\N	f
-4228	3	1471	2	Dateien/Ordner löschen	Espagñol	t	\N	f
-10242	4	2286	3	Si le groupe de table sera supprimé, y compris les tables?	francais	t	140	f
-4243	3	1476	2	löschen	Espagñol	t	\N	f
-4246	3	1477	2	Nachricht löschen	Espagñol	t	\N	f
-10246	4	2287	3	Voulez-vous la table à supprimer?	francais	t	140	f
+11034	4	2482	3	fonctions de base de donnÃ©es	francais	t	154	f
+10167	4	2269	3	dÃ©finition	francais	t	218	f
+10172	4	2270	3	Ã©ditÃ© sur	francais	t	218	f
+10177	4	2271	3	Ã©ditÃ© par	francais	t	218	f
+4225	3	1470	2	lÃ¶schen	EspagÅ„ol	t	\N	f
+4360	3	1515	2	Feldtypen	EspagÅ„ol	t	\N	f
+4228	3	1471	2	Dateien/Ordner lÃ¶schen	EspagÅ„ol	t	\N	f
+10242	4	2286	3	Si le groupe de table sera supprimÃ©, y compris les tables?	francais	t	140	f
+4243	3	1476	2	lÃ¶schen	EspagÅ„ol	t	\N	f
+4246	3	1477	2	Nachricht lÃ¶schen	EspagÅ„ol	t	\N	f
+10246	4	2287	3	Voulez-vous la table Ä… supprimer?	francais	t	140	f
 10250	4	2288	3	tous ouverts	francais	t	213	f
-10258	4	2290	3	tous ouverts justifiés	francais	t	213	f
-10262	4	2291	2	montrer elle-même liée	francais	t	0	f
-10270	4	2293	1	Les métadonnées ne peut pas être mis à jour!	francais	t	66	f
-10274	4	2294	1	Vous n'êtes pas autorisé ou l'ordre a été retiré!	francais	t	66	f
-4273	3	1486	2	Details	Espagñol	t	\N	f
-4276	3	1487	2	Datensatz-Statistik	Espagñol	t	\N	f
+10258	4	2290	3	tous ouverts justifiÃ©s	francais	t	213	f
+10262	4	2291	2	montrer elle-mÅºme liÃ©e	francais	t	0	f
+10270	4	2293	1	Les mÃ©tadonnÃ©es ne peut pas Åºtre mis Ä… jour!	francais	t	66	f
+10274	4	2294	1	Vous n'Åºtes pas autorisÃ© ou l'ordre a Ã©tÃ© retirÃ©!	francais	t	66	f
+4273	3	1486	2	Details	EspagÅ„ol	t	\N	f
+4276	3	1487	2	Datensatz-Statistik	EspagÅ„ol	t	\N	f
 10278	4	2295	3	voir les fichiers	francais	t	213	f
 10282	4	2296	3	Ajouter des fichiers	francais	t	213	f
-10286	4	2297	3	Créer un dossier	francais	t	213	f
+10286	4	2297	3	CrÃ©er un dossier	francais	t	213	f
 10290	4	2298	3	Supprimer les fichiers / dossiers	francais	t	213	f
-10294	4	2299	3	modifier les métadonnées	francais	t	213	f
+10294	4	2299	3	modifier les mÃ©tadonnÃ©es	francais	t	213	f
 10298	4	2300	3	fichiers de verrouillage	francais	t	213	f
-10302	4	2301	3	groupes autorisés	francais	t	213	f
+10302	4	2301	3	groupes autorisÃ©s	francais	t	213	f
 10306	4	2302	3	ne pas afficher le menu de table	francais	t	122	f
 10314	4	2304	2	OCR	francais	t	0	f
 10318	4	2305	2	reconnaissance OCR	francais	t	0	f
 10326	4	2307	2	barre d'outils	francais	t	0	f
 10310	4	2303	3	lire	francais	t	122	f
-10266	4	2292	2	montrer avec lui-même les dossiers liés	francais	t	0	f
-4309	3	1498	2	Berichtsarchiv	Espagñol	t	\N	f
-4312	3	1499	2	Berichtsarchiv	Espagñol	t	\N	f
-4315	3	1500	2	Voransicht	Espagñol	t	\N	f
-4318	3	1501	2	Berichts-Voransicht	Espagñol	t	\N	f
-4321	3	1502	2	Bericht drucken	Espagñol	t	\N	f
-4324	3	1503	2	Bericht drucken	Espagñol	t	\N	f
+10266	4	2292	2	montrer avec lui-mÅºme les dossiers liÃ©s	francais	t	0	f
+4309	3	1498	2	Berichtsarchiv	EspagÅ„ol	t	\N	f
+4312	3	1499	2	Berichtsarchiv	EspagÅ„ol	t	\N	f
+4315	3	1500	2	Voransicht	EspagÅ„ol	t	\N	f
+4318	3	1501	2	Berichts-Voransicht	EspagÅ„ol	t	\N	f
+4321	3	1502	2	Bericht drucken	EspagÅ„ol	t	\N	f
+4324	3	1503	2	Bericht drucken	EspagÅ„ol	t	\N	f
 10334	4	2309	1	fichier	francais	t	97	f
 10342	4	2311	1	Aucun droit de suppression!	francais	t	97	f
-10350	4	2313	1	Le fichier source existe déjà. S'il vous plaît essayer à nouveau.	francais	t	97	f
+10350	4	2313	1	Le fichier source existe dÃ©jÄ…. S'il vous plaÄ«t essayer Ä… nouveau.	francais	t	97	f
 10354	4	2314	1	Lancer la reconnaissance OCR	francais	t	66	f
 10358	4	2315	2	Linked mode	francais	t	0	f
-10362	4	2316	2	afficher uniquement les enregistrements liés	francais	t	0	f
-4357	3	1514	2	Feldtypen	Espagñol	t	\N	f
+10362	4	2316	2	afficher uniquement les enregistrements liÃ©s	francais	t	0	f
+4357	3	1514	2	Feldtypen	EspagÅ„ol	t	\N	f
 10366	4	2317	1	Le fichier source n'existe plus!	francais	t	66	f
 10370	4	2318	1	supprimer le fichier	francais	t	215	f
 10374	4	2319	2	Rechercher les sous-dossiers	francais	t	0	f
-10378	4	2320	2	recherche récursive	francais	t	0	f
+10378	4	2320	2	recherche rÃ©cursive	francais	t	0	f
 10382	4	2321	1	ouvert	francais	t	66	f
 10386	4	2322	1	Enregistrer	francais	t	66	f
-10390	4	2323	1	métadonnées Info	francais	t	66	f
+10390	4	2323	1	mÃ©tadonnÃ©es Info	francais	t	66	f
 10394	4	2324	1	l'indexation de l'information	francais	t	66	f
 10398	4	2325	1	Infos versionnage	francais	t	66	f
 10418	4	2330	1	voir tous les fichiers	francais	t	66	f
 10426	4	2332	1	sauter	francais	t	66	f
-10430	4	2333	1	Appliquer à tous les fichiers	francais	t	66	f
+10430	4	2333	1	Appliquer Ä… tous les fichiers	francais	t	66	f
 10434	4	2334	1	Voir origine	francais	t	15	f
 10450	4	2338	2	Droits de l'utilisateur	francais	t	0	f
 10454	4	2339	2	les utilisateurs d'autorisation	francais	t	0	f
-10458	4	2340	3	Si vous modifiez les autorisations tous les anciens unique des droits de cette table sera supprimé!	francais	t	140	f
+10458	4	2340	3	Si vous modifiez les autorisations tous les anciens unique des droits de cette table sera supprimÃ©!	francais	t	140	f
 10462	4	2341	2	Afficher les droits des utilisateurs	francais	t	0	f
 10466	4	2342	2	Vue d'ensemble des droits des utilisateurs	francais	t	0	f
 10486	4	2347	3	Z-Index	francais	t	169	f
 10490	4	2348	3	Y-Pos	francais	t	169	f
 10494	4	2349	2	test	francais	t	unknown	f
-4531	3	1572	2	Backup	Espagñol	t	\N	f
-4534	3	1573	2	System-Backup	Espagñol	t	\N	f
-4540	3	1575	2	History	Espagñol	t	\N	f
-4543	3	1576	2	Backup-History	Espagñol	t	\N	f
-4546	3	1577	2	Periodisches Backup	Espagñol	t	\N	f
-4549	3	1578	2	Periodisches Backup	Espagñol	t	\N	f
-4552	3	1579	2	Manuell	Espagñol	t	\N	f
-4555	3	1580	2	Manuelles Backup	Espagñol	t	\N	f
-4561	3	1582	2	Schlagworte	Espagñol	t	\N	f
-4564	3	1583	2	Verschlagwortung	Espagñol	t	\N	f
-4567	3	1584	2	Tabellen	Espagñol	t	\N	f
-4570	3	1585	2	Datensatz-Memos	Espagñol	t	\N	f
+4531	3	1572	2	Backup	EspagÅ„ol	t	\N	f
+4534	3	1573	2	System-Backup	EspagÅ„ol	t	\N	f
+4540	3	1575	2	History	EspagÅ„ol	t	\N	f
+4543	3	1576	2	Backup-History	EspagÅ„ol	t	\N	f
+4546	3	1577	2	Periodisches Backup	EspagÅ„ol	t	\N	f
+4549	3	1578	2	Periodisches Backup	EspagÅ„ol	t	\N	f
+4552	3	1579	2	Manuell	EspagÅ„ol	t	\N	f
+4555	3	1580	2	Manuelles Backup	EspagÅ„ol	t	\N	f
+4561	3	1582	2	Schlagworte	EspagÅ„ol	t	\N	f
+4564	3	1583	2	Verschlagwortung	EspagÅ„ol	t	\N	f
+4567	3	1584	2	Tabellen	EspagÅ„ol	t	\N	f
+4570	3	1585	2	Datensatz-Memos	EspagÅ„ol	t	\N	f
 12013	2	2727	3	Ref. table	english	t	195	f
-4579	3	1588	2	History	Espagñol	t	\N	f
-4582	3	1589	2	Schlagwort-History	Espagñol	t	\N	f
+4579	3	1588	2	History	EspagÅ„ol	t	\N	f
+4582	3	1589	2	Schlagwort-History	EspagÅ„ol	t	\N	f
 10498	4	2350	2	 	francais	t	unknown	f
 10502	4	1993	2	section	francais	t	unknown	f
-10410	4	2328	3	sont tous les paramètres utilisateur seront perdus?	francais	t	154	f
-10506	4	1994	2	étiquetage Catégorie	francais	t	unknown	f
+10410	4	2328	3	sont tous les paramÄtres utilisateur seront perdus?	francais	t	154	f
+10506	4	1994	2	Ã©tiquetage CatÃ©gorie	francais	t	unknown	f
 10518	4	2353	3	IP statique	francais	t	127	f
-10446	4	2337	3	Gérer les droits des utilisateurs pour tous les enregistrements	francais	t	221	f
-10522	4	2354	1	La différence entre les versions	francais	t	204	f
-10526	4	2355	1	Télécharger en pdf	francais	t	204	f
-4651	3	1612	2	download	Espagñol	t	\N	f
-4654	3	1613	2	download archive	Espagñol	t	\N	f
+10446	4	2337	3	GÃ©rer les droits des utilisateurs pour tous les enregistrements	francais	t	221	f
+10522	4	2354	1	La diffÃ©rence entre les versions	francais	t	204	f
+10526	4	2355	1	TÃ©lÃ©charger en pdf	francais	t	204	f
+4651	3	1612	2	download	EspagÅ„ol	t	\N	f
+4654	3	1613	2	download archive	EspagÅ„ol	t	\N	f
 10534	4	2357	3	seperator	francais	t	168	f
-4660	3	1615	2	einfügen	Espagñol	t	\N	f
-11358	4	2563	2	paramètres	francais	t	0	f
+4660	3	1615	2	einfÃ¼gen	EspagÅ„ol	t	\N	f
+11358	4	2563	2	paramÄtres	francais	t	0	f
 10542	4	2359	1	Voulez-vous supprimer le lien de ce document?	francais	t	13	f
-4666	3	1617	2	Dateirechte	Espagñol	t	\N	f
-4669	3	1618	2	Dateirechte festlegen	Espagñol	t	\N	f
-4678	3	1621	2	Dateien	Espagñol	t	\N	f
-10514	4	2352	2	Document de référence	francais	t	0	f
+4666	3	1617	2	Dateirechte	EspagÅ„ol	t	\N	f
+4669	3	1618	2	Dateirechte festlegen	EspagÅ„ol	t	\N	f
+4678	3	1621	2	Dateien	EspagÅ„ol	t	\N	f
+10514	4	2352	2	Document de rÃ©fÃ©rence	francais	t	0	f
 10554	4	2362	2	regroupement	francais	t	0	f
 10558	4	2363	2	groupement de terrain	francais	t	0	f
-10578	4	2368	3	Information Texte Bien verrouillé	francais	t	154	f
-4699	3	1628	2	speichern	Espagñol	t	\N	f
-4702	3	1629	2	Dateien speichern	Espagñol	t	\N	f
-4711	3	1632	2	Info	Espagñol	t	\N	f
-4714	3	1633	2	Datei Informationen	Espagñol	t	\N	f
-10606	4	2375	1	Le fichier téléchargé existe déjà avec le même ou un autre nom dans les dossiers suivants	francais	t	41	f
-10610	4	2376	3	filtre avancé	francais	t	121	f
+10578	4	2368	3	Information Texte Bien verrouillÃ©	francais	t	154	f
+4699	3	1628	2	speichern	EspagÅ„ol	t	\N	f
+4702	3	1629	2	Dateien speichern	EspagÅ„ol	t	\N	f
+4711	3	1632	2	Info	EspagÅ„ol	t	\N	f
+4714	3	1633	2	Datei Informationen	EspagÅ„ol	t	\N	f
+10606	4	2375	1	Le fichier tÃ©lÃ©chargÃ© existe dÃ©jÄ… avec le mÅºme ou un autre nom dans les dossiers suivants	francais	t	41	f
+10610	4	2376	3	filtre avancÃ©	francais	t	121	f
 10614	4	2377	3	relations	francais	t	121	f
 10618	4	2378	3	membre du groupe	francais	t	186	f
 10622	4	2379	3	tri	francais	t	186	f
@@ -8319,413 +8319,413 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10646	4	2385	3	fin	francais	t	52	f
 10546	4	2360	2	onglet regroupement	francais	t	0	f
 10550	4	2361	2	Regroupement des champs en tant que coureur	francais	t	0	f
-10658	4	2388	3	créé sur	francais	t	52	f
-10662	4	2389	3	créé par	francais	t	52	f
-10666	4	2390	3	Créé par groupe	francais	t	52	f
-10670	4	2391	3	édité sur	francais	t	52	f
-10674	4	2392	3	édité par	francais	t	52	f
-10574	4	2367	3	Supprimer les paramètres de l'utilisateur	francais	t	154	f
+10658	4	2388	3	crÃ©Ã© sur	francais	t	52	f
+10662	4	2389	3	crÃ©Ã© par	francais	t	52	f
+10666	4	2390	3	CrÃ©Ã© par groupe	francais	t	52	f
+10670	4	2391	3	Ã©ditÃ© sur	francais	t	52	f
+10674	4	2392	3	Ã©ditÃ© par	francais	t	52	f
+10574	4	2367	3	Supprimer les paramÄtres de l'utilisateur	francais	t	154	f
 10590	4	2371	3	back-link	francais	t	121	f
 10754	4	2412	3	message non.	francais	t	52	f
 10762	4	2414	3	de	francais	t	52	f
-10766	4	2415	3	à	francais	t	52	f
+10766	4	2415	3	Ä…	francais	t	52	f
 10782	4	2419	3	message	francais	t	52	f
-10818	4	2428	3	verrouillage illimité	francais	t	221	f
+10818	4	2428	3	verrouillage illimitÃ©	francais	t	221	f
 10822	4	2429	2	serrure	francais	t	0	f
 10826	4	2430	2	enregistrement de verrouillage	francais	t	0	f
-10830	4	2431	2	déverrouillage	francais	t	0	f
-10834	4	2432	2	déverrouiller disque	francais	t	0	f
-10838	4	2433	1	le document devrait être libéré?	francais	t	13	f
-10846	4	2435	1	Record a été bloqué avec succès!	francais	t	25	f
-10850	4	2436	1	Les dossiers ont été bloqués avec succès!	francais	t	25	f
-10854	4	2437	1	Record a été débloqué avec succès!	francais	t	25	f
-10858	4	2438	1	Les dossiers ont été avec succès déverrouillé!	francais	t	25	f
-10862	4	2439	2	Date verrouillée	francais	t	0	f
-10866	4	2440	2	mes dossiers verrouillés	francais	t	0	f
-10870	4	2441	2	show bloqué	francais	t	0	f
-10874	4	2442	2	Affichage des enregistrements verrouillés	francais	t	0	f
+10830	4	2431	2	dÃ©verrouillage	francais	t	0	f
+10834	4	2432	2	dÃ©verrouiller disque	francais	t	0	f
+10838	4	2433	1	le document devrait Åºtre libÃ©rÃ©?	francais	t	13	f
+10846	4	2435	1	Record a Ã©tÃ© bloquÃ© avec succÄs!	francais	t	25	f
+10850	4	2436	1	Les dossiers ont Ã©tÃ© bloquÃ©s avec succÄs!	francais	t	25	f
+10854	4	2437	1	Record a Ã©tÃ© dÃ©bloquÃ© avec succÄs!	francais	t	25	f
+10858	4	2438	1	Les dossiers ont Ã©tÃ© avec succÄs dÃ©verrouillÃ©!	francais	t	25	f
+10862	4	2439	2	Date verrouillÃ©e	francais	t	0	f
+10866	4	2440	2	mes dossiers verrouillÃ©s	francais	t	0	f
+10870	4	2441	2	show bloquÃ©	francais	t	0	f
+10874	4	2442	2	Affichage des enregistrements verrouillÃ©s	francais	t	0	f
 10878	4	2443	2	sauver	francais	t	0	f
 10882	4	2444	2	prendre	francais	t	0	f
 10886	4	2445	3	toujours	francais	t	168	f
-10890	4	2446	3	même des pages	francais	t	168	f
+10890	4	2446	3	mÅºme des pages	francais	t	168	f
 10894	4	2447	3	pages impaires	francais	t	168	f
-10898	4	2448	1	parlé comme	francais	t	66	f
-10906	4	2450	3	base de données de déclenchement	francais	t	218	f
-10910	4	2451	3	déclenchement Limbas	francais	t	218	f
-10918	4	2453	3	Gérer les droits des utilisateurs pour les enregistrements générés en interne	francais	t	221	f
-4909	3	1698	2	kopieren	Espagñol	t	\N	f
-4912	3	1699	2	Nachricht kopieren	Espagñol	t	\N	f
-4915	3	1700	2	speichern	Espagñol	t	\N	f
-10926	4	2455	1	Vous êtes connecté en tant	francais	t	11	f
+10898	4	2448	1	parlÃ© comme	francais	t	66	f
+10906	4	2450	3	base de donnÃ©es de dÃ©clenchement	francais	t	218	f
+10910	4	2451	3	dÃ©clenchement Limbas	francais	t	218	f
+10918	4	2453	3	GÃ©rer les droits des utilisateurs pour les enregistrements gÃ©nÃ©rÃ©s en interne	francais	t	221	f
+4909	3	1698	2	kopieren	EspagÅ„ol	t	\N	f
+4912	3	1699	2	Nachricht kopieren	EspagÅ„ol	t	\N	f
+4915	3	1700	2	speichern	EspagÅ„ol	t	\N	f
+10926	4	2455	1	Vous Åºtes connectÃ© en tant	francais	t	11	f
 10930	4	2456	3	redirection de forme	francais	t	175	f
 10938	4	2458	3	maxlen	francais	t	168	f
 10946	4	2460	3	remplacer	francais	t	168	f
-10954	4	2462	3	La sélection des projets	francais	t	145	f
-4948	3	1711	2	markieren	Espagñol	t	\N	f
-4951	3	1712	2	Nachricht markieren	Espagñol	t	\N	f
+10954	4	2462	3	La sÃ©lection des projets	francais	t	145	f
+4948	3	1711	2	markieren	EspagÅ„ol	t	\N	f
+4951	3	1712	2	Nachricht markieren	EspagÅ„ol	t	\N	f
 10958	4	2463	3	sende Anmelde-Informationen	francais	t	132	f
-4987	3	1724	2	Neuberechnung	Espagñol	t	\N	f
-4990	3	1725	2	Vorschau neu berechnen	Espagñol	t	\N	f
-5002	3	1729	2	kopieren	Espagñol	t	\N	f
-5005	3	1730	2	Datensatz kopieren	Espagñol	t	\N	f
-5020	3	1735	2	neues Fenster	Espagñol	t	\N	f
-5023	3	1736	2	neuer LIMBAS-Explorer	Espagñol	t	\N	f
+4987	3	1724	2	Neuberechnung	EspagÅ„ol	t	\N	f
+4990	3	1725	2	Vorschau neu berechnen	EspagÅ„ol	t	\N	f
+5002	3	1729	2	kopieren	EspagÅ„ol	t	\N	f
+5005	3	1730	2	Datensatz kopieren	EspagÅ„ol	t	\N	f
+5020	3	1735	2	neues Fenster	EspagÅ„ol	t	\N	f
+5023	3	1736	2	neuer LIMBAS-Explorer	EspagÅ„ol	t	\N	f
 10966	4	2465	2	somme spectacle	francais	t	0	f
 10970	4	2466	2	montrer la somme des dossiers	francais	t	0	f
-10982	4	2469	2	Numéro de point de flotteur	francais	t	0	f
-10986	4	2470	2	récursives liens et versions de suppression	francais	t	0	f
-10990	4	2471	2	fonctions spéciales	francais	t	0	f
-10994	4	2472	2	fonctions spéciales	francais	t	0	f
-10998	4	2473	1	Les dépendances suivantes sont réunies:	francais	t	25	f
-11002	4	2474	1	Les dépendances suivantes ont été résolus:	francais	t	25	f
+10982	4	2469	2	NumÃ©ro de point de flotteur	francais	t	0	f
+10986	4	2470	2	rÃ©cursives liens et versions de suppression	francais	t	0	f
+10990	4	2471	2	fonctions spÃ©ciales	francais	t	0	f
+10994	4	2472	2	fonctions spÃ©ciales	francais	t	0	f
+10998	4	2473	1	Les dÃ©pendances suivantes sont rÃ©unies:	francais	t	25	f
+11002	4	2474	1	Les dÃ©pendances suivantes ont Ã©tÃ© rÃ©solus:	francais	t	25	f
 11030	4	2481	3	contenu temporaire	francais	t	154	f
 11042	4	2484	3	gestion des droits	francais	t	154	f
-11046	4	2485	3	Paramètres utilisateur	francais	t	154	f
-11038	4	2483	3	système	francais	t	154	f
-5092	3	1759	2	Vorschau	Espagñol	t	\N	f
-5095	3	1760	2	Vorschau	Espagñol	t	\N	f
+11046	4	2485	3	ParamÄtres utilisateur	francais	t	154	f
+11038	4	2483	3	systÄme	francais	t	154	f
+5092	3	1759	2	Vorschau	EspagÅ„ol	t	\N	f
+5095	3	1760	2	Vorschau	EspagÅ„ol	t	\N	f
 11066	4	2490	2	arbres relation	francais	t	0	f
 11078	4	2493	2	arbre de table	francais	t	0	f
 11082	4	2494	2	arbre de table	francais	t	0	f
 11086	4	2495	2	Rechercher les divisions du Groupe	francais	t	0	f
-11090	4	2496	2	Rechercher les en-têtes de groupe sur le terrain	francais	t	0	f
+11090	4	2496	2	Rechercher les en-tÅºtes de groupe sur le terrain	francais	t	0	f
 11098	4	2498	1	groupes	francais	t	84	f
 11062	4	2489	2	arbre de table	francais	t	0	f
-5122	3	1769	2	Editmodus	Espagñol	t	\N	f
-5125	3	1770	2	Bearbeite Long-Feld	Espagñol	t	\N	f
+5122	3	1769	2	Editmodus	EspagÅ„ol	t	\N	f
+5125	3	1770	2	Bearbeite Long-Feld	EspagÅ„ol	t	\N	f
 11114	4	2502	1	Format:	francais	t	13	f
 11118	4	2503	1	Formulaire standard	francais	t	13	f
 11126	4	2505	3	Afficher l'article	francais	t	110	f
 11134	4	2507	3	Recherche rapide	francais	t	110	f
 11138	4	2508	3	HTML	francais	t	168	f
 11142	4	2509	3	Extension rapport	francais	t	170	f
-5161	3	1782	2	Vergleich	Espagñol	t	\N	f
-5299	3	1828	2	Info	Espagñol	t	\N	f
-5164	3	1783	2	Vergleich zweier Dateien	Espagñol	t	\N	f
-11154	4	2512	3	rapports du système	francais	t	222	f
+5161	3	1782	2	Vergleich	EspagÅ„ol	t	\N	f
+5299	3	1828	2	Info	EspagÅ„ol	t	\N	f
+5164	3	1783	2	Vergleich zweier Dateien	EspagÅ„ol	t	\N	f
+11154	4	2512	3	rapports du systÄme	francais	t	222	f
 8112	4	2194	2	Taille du fichier	francais	t	0	f
 10562	4	2364	2	doublons	francais	t	0	f
 10566	4	2365	2	Vue d'ensemble des doublons	francais	t	0	f
 11018	4	2478	2	doublons	francais	t	0	f
 11022	4	2479	2	Afficher les doublons	francais	t	0	f
 11182	4	2519	1	e-mail:	francais	t	46	f
-11186	4	2520	1	adresse de réponse	francais	t	46	f
-11190	4	2521	1	Nom d'hôte Imap	francais	t	46	f
+11186	4	2520	1	adresse de rÃ©ponse	francais	t	46	f
+11190	4	2521	1	Nom d'hÅte Imap	francais	t	46	f
 11194	4	2522	1	Nom d'utilisateur Imap	francais	t	46	f
 11198	4	2523	1	port imap	francais	t	46	f
 11202	4	2524	1	Mot de passe imap	francais	t	46	f
-6563	4	896	3	Cette fonction définit les droits standards du groupe et de ses sous-groupes ici encore! Ici, les droits existants sont remplacés!	francais	t	115	t
-8192	4	2214	3	déjà il y a un lien positif pour ce domaine! Cette action utilise le raccourci négatif existant. Les liens existants seront perdus!	francais	t	121	t
-10414	4	2329	3	Si les fichiers .htaccess à régénérer? Les nouveaux mots de passe ne sont appliqués que lorsque l'option clear_password est activée dans les umgvars	francais	t	154	t
-6435	4	721	1	Cet ensemble de données est muni d'une nouvelle présentation! Faut-il être retiré?	francais	t	13	t
-11206	4	2525	2	paramètres	francais	t	0	f
-11210	4	2526	2	paramètres avancés	francais	t	0	f
-11214	4	2527	2	mettre à jour	francais	t	0	f
-11218	4	2528	2	mettre à jour	francais	t	0	f
-10634	4	2382	3	début	francais	t	52	f
+6563	4	896	3	Cette fonction dÃ©finit les droits standards du groupe et de ses sous-groupes ici encore! Ici, les droits existants sont remplacÃ©s!	francais	t	115	t
+8192	4	2214	3	dÃ©jÄ… il y a un lien positif pour ce domaine! Cette action utilise le raccourci nÃ©gatif existant. Les liens existants seront perdus!	francais	t	121	t
+10414	4	2329	3	Si les fichiers .htaccess Ä… rÃ©gÃ©nÃ©rer? Les nouveaux mots de passe ne sont appliquÃ©s que lorsque l'option clear_password est activÃ©e dans les umgvars	francais	t	154	t
+6435	4	721	1	Cet ensemble de donnÃ©es est muni d'une nouvelle prÃ©sentation! Faut-il Åºtre retirÃ©?	francais	t	13	t
+11206	4	2525	2	paramÄtres	francais	t	0	f
+11210	4	2526	2	paramÄtres avancÃ©s	francais	t	0	f
+11214	4	2527	2	mettre Ä… jour	francais	t	0	f
+11218	4	2528	2	mettre Ä… jour	francais	t	0	f
+10634	4	2382	3	dÃ©but	francais	t	52	f
 11222	4	2529	2	ligne de regroupement	francais	t	0	f
-11226	4	2530	2	groupe sur le terrain dans une rangée	francais	t	0	f
-11230	4	2531	1	La longueur du nom de fichier ne peut pas dépasser 128 caractères!	francais	t	41	f
-5302	3	1829	2	Info über LIMBAS	Espagñol	t	\N	f
+11226	4	2530	2	groupe sur le terrain dans une rangÃ©e	francais	t	0	f
+11230	4	2531	1	La longueur du nom de fichier ne peut pas dÃ©passer 128 caractÄres!	francais	t	41	f
+5302	3	1829	2	Info Ã¼ber LIMBAS	EspagÅ„ol	t	\N	f
 11278	4	2543	3	nouvel arbre de table	francais	t	207	f
-5368	3	1851	2	Tabellen Index	Espagñol	t	\N	f
-5401	3	1862	2	Jobs	Espagñol	t	\N	f
-5404	3	1863	2	setup_jobs_cron	Espagñol	t	\N	f
-5407	3	1864	2	Periodisch	Espagñol	t	\N	f
-5410	3	1865	2	setup_jobs_cron	Espagñol	t	\N	f
-5413	3	1866	2	History	Espagñol	t	\N	f
-5416	3	1867	2	setup_jobs_hist	Espagñol	t	\N	f
-5422	3	1869	2	Beschränkung aufheben	Espagñol	t	\N	f
-5425	3	1870	2	Beschränkung aufheben	Espagñol	t	\N	f
-5434	3	1873	2	Abmelden	Espagñol	t	\N	f
-5437	3	1874	2	Abmelden	Espagñol	t	\N	f
-5440	3	1875	2	nav_refresh	Espagñol	t	\N	f
-5443	3	1876	2	aktualisieren	Espagñol	t	\N	f
-5446	3	1877	2	Tabellenschema	Espagñol	t	\N	f
-5449	3	1878	2	Tabellenschema	Espagñol	t	\N	f
+5368	3	1851	2	Tabellen Index	EspagÅ„ol	t	\N	f
+5401	3	1862	2	Jobs	EspagÅ„ol	t	\N	f
+5404	3	1863	2	setup_jobs_cron	EspagÅ„ol	t	\N	f
+5407	3	1864	2	Periodisch	EspagÅ„ol	t	\N	f
+5410	3	1865	2	setup_jobs_cron	EspagÅ„ol	t	\N	f
+5413	3	1866	2	History	EspagÅ„ol	t	\N	f
+5416	3	1867	2	setup_jobs_hist	EspagÅ„ol	t	\N	f
+5422	3	1869	2	BeschrÃ¤nkung aufheben	EspagÅ„ol	t	\N	f
+5425	3	1870	2	BeschrÃ¤nkung aufheben	EspagÅ„ol	t	\N	f
+5434	3	1873	2	Abmelden	EspagÅ„ol	t	\N	f
+5437	3	1874	2	Abmelden	EspagÅ„ol	t	\N	f
+5440	3	1875	2	nav_refresh	EspagÅ„ol	t	\N	f
+5443	3	1876	2	aktualisieren	EspagÅ„ol	t	\N	f
+5446	3	1877	2	Tabellenschema	EspagÅ„ol	t	\N	f
+5449	3	1878	2	Tabellenschema	EspagÅ„ol	t	\N	f
 7367	4	1781	3	un message de verrouillage	francais	t	127	f
-6582	4	918	3	où? ID est le numéro d'article	francais	t	107	f
-11310	4	2551	3	rétablir les droits d'enregistrement	francais	t	154	f
-11314	4	2552	3	droits d'enregistrement recalculent ensemble de données recalcul droit	francais	t	154	f
+6582	4	918	3	oÅ‚? ID est le numÃ©ro d'article	francais	t	107	f
+11310	4	2551	3	rÃ©tablir les droits d'enregistrement	francais	t	154	f
+11314	4	2552	3	droits d'enregistrement recalculent ensemble de donnÃ©es recalcul droit	francais	t	154	f
 11322	4	2554	3	onglet raccourci	francais	t	173	f
 11326	4	2555	3	menubar	francais	t	173	f
-5479	3	1888	2	Zeichensätze	Espagñol	t	\N	f
-5482	3	1889	2	fontmanager	Espagñol	t	\N	f
-5488	3	1891	2	zurücksetzen	Espagñol	t	\N	f
-5491	3	1892	2	Suche zurücksetzen	Espagñol	t	\N	f
+5479	3	1888	2	ZeichensÃ¤tze	EspagÅ„ol	t	\N	f
+5482	3	1889	2	fontmanager	EspagÅ„ol	t	\N	f
+5488	3	1891	2	zurÃ¼cksetzen	EspagÅ„ol	t	\N	f
+5491	3	1892	2	Suche zurÃ¼cksetzen	EspagÅ„ol	t	\N	f
 11334	4	2557	3	plinthe	francais	t	173	f
 11150	4	2511	3	Nom de stockage	francais	t	170	f
 7780	4	2111	3	dossier de stockage	francais	t	170	f
 11350	4	2561	3	Tab Rahmenc	francais	t	175	f
-11354	4	2562	3	L'utilisateur n'a pas pu être créé!	francais	t	126	f
-11298	4	2548	3	sollen alle temporären Thumbnails gelöscht werden?	francais	t	154	f
-11362	4	2564	2	paramètres avancés	francais	t	0	f
-11170	4	2516	3	Droits de l'utilisateur hérité hiérarchiquement	francais	t	221	f
-10530	4	2356	3	voir tous versionné	francais	t	221	f
+11354	4	2562	3	L'utilisateur n'a pas pu Åºtre crÃ©Ã©!	francais	t	126	f
+11298	4	2548	3	sollen alle temporÃ¤ren Thumbnails gelÃ¶scht werden?	francais	t	154	f
+11362	4	2564	2	paramÄtres avancÃ©s	francais	t	0	f
+11170	4	2516	3	Droits de l'utilisateur hÃ©ritÃ© hiÃ©rarchiquement	francais	t	221	f
+10530	4	2356	3	voir tous versionnÃ©	francais	t	221	f
 11366	4	2565	3	Versionierungsart	francais	t	221	f
 11374	4	2567	3	Colonnes couleur de fond	francais	t	221	f
-5548	3	1911	2	Suchparameter für alle Ordner	Espagñol	t	\N	f
-11382	4	2569	3	règle de filtrage	francais	t	221	f
-5563	3	1916	2	Anzeige	Espagñol	t	\N	f
-5566	3	1917	2	Auswahl anzuzeigender Felder	Espagñol	t	\N	f
-11386	4	2570	3	règles d'édition	francais	t	221	f
-5575	3	1920	2	Einstellung speichern	Espagñol	t	\N	f
-5578	3	1921	2	Einstellung speichern	Espagñol	t	\N	f
-5581	3	1922	2	Ansicht speichern	Espagñol	t	\N	f
+5548	3	1911	2	Suchparameter fÃ¼r alle Ordner	EspagÅ„ol	t	\N	f
+11382	4	2569	3	rÄgle de filtrage	francais	t	221	f
+5563	3	1916	2	Anzeige	EspagÅ„ol	t	\N	f
+5566	3	1917	2	Auswahl anzuzeigender Felder	EspagÅ„ol	t	\N	f
+11386	4	2570	3	rÄgles d'Ã©dition	francais	t	221	f
+5575	3	1920	2	Einstellung speichern	EspagÅ„ol	t	\N	f
+5578	3	1921	2	Einstellung speichern	EspagÅ„ol	t	\N	f
+5581	3	1922	2	Ansicht speichern	EspagÅ„ol	t	\N	f
 4983	1	1723	3	Datum+Zeit	deutsch	t	110	f
-5584	3	1923	2	Ansichtseinstellungen füell alle Ordner speichern	Espagñol	t	\N	f
-11394	4	2572	3	paramètres de formatage	francais	t	221	f
-11398	4	2573	3	Règle d'accès en écriture	francais	t	221	f
-10254	4	2289	3	tout près	francais	t	213	f
+5584	3	1923	2	Ansichtseinstellungen fÃ¼ell alle Ordner speichern	EspagÅ„ol	t	\N	f
+11394	4	2572	3	paramÄtres de formatage	francais	t	221	f
+11398	4	2573	3	RÄgle d'accÄs en Ã©criture	francais	t	221	f
+10254	4	2289	3	tout prÄs	francais	t	213	f
 11410	4	2576	3	format de date	francais	t	127	f
-11318	4	2553	3	toutes les données existantes des droits spécifiques définis du Tablle sélectionné sont supprimés!	francais	t	154	f
-5620	3	1935	2	Datei	Espagñol	t	\N	f
-5626	3	1937	2	Schlagwort	Espagñol	t	\N	f
-11414	4	2577	3	Infos envoyer du courrier à l'utilisateur	francais	t	172	f
+11318	4	2553	3	toutes les donnÃ©es existantes des droits spÃ©cifiques dÃ©finis du Tablle sÃ©lectionnÃ© sont supprimÃ©s!	francais	t	154	f
+5620	3	1935	2	Datei	EspagÅ„ol	t	\N	f
+5626	3	1937	2	Schlagwort	EspagÅ„ol	t	\N	f
+11414	4	2577	3	Infos envoyer du courrier Ä… l'utilisateur	francais	t	172	f
 11422	4	2579	2	OCR	francais	t	0	f
-5623	3	1936	2	Dateiansicht	Espagñol	t	\N	f
-11378	4	2568	3	Par défaut pour la création d'un nouveau record	francais	t	221	f
+5623	3	1936	2	Dateiansicht	EspagÅ„ol	t	\N	f
+11378	4	2568	3	Par dÃ©faut pour la crÃ©ation d'un nouveau record	francais	t	221	f
 11426	4	2580	2	reconnaissance OCR	francais	t	0	f
 11430	4	2581	3	fichier css	francais	t	175	f
 11434	4	2582	1	lien	francais	t	15	f
 11438	4	2583	2	extensions	francais	t	0	f
-11442	4	2584	2	extensions d'édition	francais	t	0	f
-11486	4	2595	3	séparateur	francais	t	110	f
+11442	4	2584	2	extensions d'Ã©dition	francais	t	0	f
+11486	4	2595	3	sÃ©parateur	francais	t	110	f
 10322	4	2306	3	Formulaire / Rapport des droits	francais	t	119	f
-7860	4	2131	3	menu à droite	francais	t	119	f
-11446	4	2585	3	accepter les droits du groupe supérieur:	francais	t	119	f
+7860	4	2131	3	menu Ä… droite	francais	t	119	f
+11446	4	2585	3	accepter les droits du groupe supÃ©rieur:	francais	t	119	f
 11454	4	2587	3	seuil de puissance	francais	t	110	f
-11458	4	2588	3	valeur par défaut spécifique à base de données <br> 12 | texte | maintenant ()	francais	t	110	f
+11458	4	2588	3	valeur par dÃ©faut spÃ©cifique Ä… base de donnÃ©es <br> 12 | texte | maintenant ()	francais	t	110	f
 11462	4	2589	3	Modification du type de champ si possible	francais	t	110	f
-11466	4	2590	3	Remplacement du type boîte ayant une fonction distincte de [ext_type.inc]	francais	t	110	f
-11470	4	2591	3	En général, pour cacher le champ, attendu: return true / false	francais	t	110	f
-11474	4	2592	3	Règle d'accès en écriture du champ, attendu: return true / false	francais	t	110	f
+11466	4	2590	3	Remplacement du type boÄ«te ayant une fonction distincte de [ext_type.inc]	francais	t	110	f
+11470	4	2591	3	En gÃ©nÃ©ral, pour cacher le champ, attendu: return true / false	francais	t	110	f
+11474	4	2592	3	RÄgle d'accÄs en Ã©criture du champ, attendu: return true / false	francais	t	110	f
 11478	4	2593	3	installer	francais	t	110	f
-5710	3	1965	2	veröffentlichen	Espagñol	t	\N	f
-11494	4	2597	3	De combien d'endroits le nombre à afficher dans Expotentialschreibweise	francais	t	110	f
-11502	4	2599	3	Devise par défaut	francais	t	110	f
+5710	3	1965	2	verÃ¶ffentlichen	EspagÅ„ol	t	\N	f
+11494	4	2597	3	De combien d'endroits le nombre Ä… afficher dans Expotentialschreibweise	francais	t	110	f
+11502	4	2599	3	Devise par dÃ©faut	francais	t	110	f
 11506	4	2600	3	format de l'heure	francais	t	110	f
-11490	4	2596	3	Représentation des nombres dans le format numérique () Format: par exemple 2, ''. '', '' ''	francais	t	110	f
+11490	4	2596	3	ReprÃ©sentation des nombres dans le format numÃ©rique () Format: par exemple 2, ''. '', '' ''	francais	t	110	f
 11522	4	2604	3	table de liaison	francais	t	110	f
-11526	4	2605	1	ne doit pas être plus affecté!	francais	t	13	f
+11526	4	2605	1	ne doit pas Åºtre plus affectÃ©!	francais	t	13	f
 11402	4	2574	3	forme standard	francais	t	221	f
-6533	4	865	1	sélection de groupe	francais	t	5	f
-5779	3	1988	2	Trigger	Espagñol	t	\N	f
-5782	3	1989	2	Trigger	Espagñol	t	\N	f
+6533	4	865	1	sÃ©lection de groupe	francais	t	5	f
+5779	3	1988	2	Trigger	EspagÅ„ol	t	\N	f
+5782	3	1989	2	Trigger	EspagÅ„ol	t	\N	f
 11538	4	2608	3	filtre	francais	t	110	f
-11542	4	2609	3	Boîte de recherche	francais	t	110	f
-11546	4	2610	3	évaluation	francais	t	110	f
-5887	3	2024	2	Abfragen	Espagñol	t	\N	f
-5890	3	2025	2	Abfragen-Generator	Espagñol	t	\N	f
-5929	3	2038	2	workflow	Espagñol	t	\N	f
-5545	3	1910	2	suche global	Espagñol	t	\N	f
-11550	4	2611	3	hérédité	francais	t	110	f
-5932	3	2039	2	workflow	Espagñol	t	\N	f
-11174	4	2517	1	hiérarchisés hériter	francais	t	13	f
-11866	4	2690	3	ouvrir l'éditeur de requête	francais	t	140	f
-11554	4	2612	3	l'éditeur de requête	francais	t	225	f
-11574	4	2617	3	Comprend uniquement les enregistrements dans lesquels le contenu des champs joints sont égaux	francais	t	226	f
+11542	4	2609	3	BoÄ«te de recherche	francais	t	110	f
+11546	4	2610	3	Ã©valuation	francais	t	110	f
+5887	3	2024	2	Abfragen	EspagÅ„ol	t	\N	f
+5890	3	2025	2	Abfragen-Generator	EspagÅ„ol	t	\N	f
+5929	3	2038	2	workflow	EspagÅ„ol	t	\N	f
+5545	3	1910	2	suche global	EspagÅ„ol	t	\N	f
+11550	4	2611	3	hÃ©rÃ©ditÃ©	francais	t	110	f
+5932	3	2039	2	workflow	EspagÅ„ol	t	\N	f
+11174	4	2517	1	hiÃ©rarchisÃ©s hÃ©riter	francais	t	13	f
+11866	4	2690	3	ouvrir l'Ã©diteur de requÅºte	francais	t	140	f
+11554	4	2612	3	l'Ã©diteur de requÅºte	francais	t	225	f
+11574	4	2617	3	Comprend uniquement les enregistrements dans lesquels le contenu des champs joints sont Ã©gaux	francais	t	226	f
 11578	4	2618	3	Comprend tous les dossiers de	francais	t	226	f
 11582	4	2619	3	et que les enregistrements de	francais	t	226	f
-11586	4	2620	3	où le contenu des champs joints sont égaux	francais	t	226	f
+11586	4	2620	3	oÅ‚ le contenu des champs joints sont Ã©gaux	francais	t	226	f
 11602	4	2624	3	alias	francais	t	226	f
-5992	3	2059	2	Workflow	Espagñol	t	\N	f
-5995	3	2060	2	Workflow	Espagñol	t	\N	f
+5992	3	2059	2	Workflow	EspagÅ„ol	t	\N	f
+5995	3	2060	2	Workflow	EspagÅ„ol	t	\N	f
 11606	4	2625	3	fonction	francais	t	226	f
 11614	4	2627	3	somme	francais	t	226	f
 11618	4	2628	3	min	francais	t	226	f
 11622	4	2629	3	max	francais	t	226	f
 11630	4	2631	3	spectacle	francais	t	226	f
-11634	4	2632	3	critères	francais	t	226	f
+11634	4	2632	3	critÄres	francais	t	226	f
 11638	4	2633	3	ascendant	francais	t	226	f
 11642	4	2634	3	descendant	francais	t	226	f
-11646	4	2635	3	tables système d'exposition	francais	t	225	f
+11646	4	2635	3	tables systÄme d'exposition	francais	t	225	f
 11658	4	2638	3	spectacle	francais	t	168	f
 11666	4	2640	3	poste ajax	francais	t	110	f
-11678	4	2643	1	à l'utilisateur	francais	t	13	f
+11678	4	2643	1	Ä… l'utilisateur	francais	t	13	f
 11682	4	2644	1	ensemble	francais	t	13	f
 11694	4	2647	1	cible	francais	t	66	f
-7672	3	2084	2	Meine Workflows	Espagñol	t	\N	f
-7676	3	2085	2	erstellte Workflows	Espagñol	t	\N	f
+7672	3	2084	2	Meine Workflows	EspagÅ„ol	t	\N	f
+7676	3	2085	2	erstellte Workflows	EspagÅ„ol	t	\N	f
 11702	4	2649	3	mode liste	francais	t	169	f
 12073	2	2741	1	create new	english	t	7	f
-11706	4	2650	1	dossiers versionnés ne peuvent pas être supprimés!	francais	t	13	f
-11710	4	2651	1	dossiers verrouillés ne peuvent pas être supprimés!	francais	t	13	f
+11706	4	2650	1	dossiers versionnÃ©s ne peuvent pas Åºtre supprimÃ©s!	francais	t	13	f
+11710	4	2651	1	dossiers verrouillÃ©s ne peuvent pas Åºtre supprimÃ©s!	francais	t	13	f
 11726	4	2655	3	Taille du champ <br> par exemple 255 | 5.2	francais	t	110	f
 8180	4	2211	2	attribut	francais	t	0	f
 8360	4	2256	2	arguments	francais	t	0	f
 8364	4	2257	2	construction de formule (SQL)	francais	t	0	f
 10510	4	2351	2	Contenu du document	francais	t	0	f
-7613	4	2033	3	Si le nombre indiqué de liens et des champs sélectionner plusieurs recalculé?	francais	t	154	f
-11730	4	2656	3	requête de sélection	francais	t	140	f
-11734	4	2657	3	la création de requête	francais	t	140	f
+7613	4	2033	3	Si le nombre indiquÃ© de liens et des champs sÃ©lectionner plusieurs recalculÃ©?	francais	t	154	f
+11730	4	2656	3	requÅºte de sÃ©lection	francais	t	140	f
+11734	4	2657	3	la crÃ©ation de requÅºte	francais	t	140	f
 11738	4	2658	3	ajouter	francais	t	140	f
-11742	4	2659	3	supprimer la requête	francais	t	140	f
+11742	4	2659	3	supprimer la requÅºte	francais	t	140	f
 11746	4	2660	3	content	francais	t	173	f
-11762	4	2664	3	utiliser id [série]	francais	t	140	f
-11766	4	2665	3	utiliser le tableau [séquence]	francais	t	140	f
-11770	4	2666	3	découper	francais	t	173	f
-11774	4	2667	3	insérer	francais	t	173	f
-7796	3	2115	2	Diagramme	Espagñol	t	\N	f
-7800	3	2116	2	Diagramme	Espagñol	t	\N	f
-7804	3	2117	2	Diagramm	Espagñol	t	\N	f
-11670	4	2641	2	sélection des couleurs	francais	f	0	f
-11674	4	2642	2	sélection des couleurs	francais	f	0	f
-7808	3	2118	2	Diagramm	Espagñol	t	\N	f
+11762	4	2664	3	utiliser id [sÃ©rie]	francais	t	140	f
+11766	4	2665	3	utiliser le tableau [sÃ©quence]	francais	t	140	f
+11770	4	2666	3	dÃ©couper	francais	t	173	f
+11774	4	2667	3	insÃ©rer	francais	t	173	f
+7796	3	2115	2	Diagramme	EspagÅ„ol	t	\N	f
+7800	3	2116	2	Diagramme	EspagÅ„ol	t	\N	f
+7804	3	2117	2	Diagramm	EspagÅ„ol	t	\N	f
+11670	4	2641	2	sÃ©lection des couleurs	francais	f	0	f
+11674	4	2642	2	sÃ©lection des couleurs	francais	f	0	f
+7808	3	2118	2	Diagramm	EspagÅ„ol	t	\N	f
 11778	4	2668	2	montrer les champs	francais	t	0	f
 11782	4	2669	2	montrer les champs	francais	t	0	f
-7836	3	2125	2	verstecke gesperrte Daten	Espagñol	t	\N	f
-7840	3	2126	2	verstecke gesperrte Datensätze	Espagñol	t	\N	f
+7836	3	2125	2	verstecke gesperrte Daten	EspagÅ„ol	t	\N	f
+7840	3	2126	2	verstecke gesperrte DatensÃ¤tze	EspagÅ„ol	t	\N	f
 11786	4	2670	2	changement de lot	francais	t	0	f
 11790	4	2671	2	changement de lot	francais	t	0	f
-7872	3	2134	2	versionieren	Espagñol	t	\N	f
-7876	3	2135	2	neue Datensatzversion	Espagñol	t	\N	f
-7880	3	2136	2	alle auswählen	Espagñol	t	\N	f
-7884	3	2137	2	alle Datensätze auswählen	Espagñol	t	\N	f
-11818	4	2678	1	kein Feld ausgewählt	francais	t	230	f
+7872	3	2134	2	versionieren	EspagÅ„ol	t	\N	f
+7876	3	2135	2	neue Datensatzversion	EspagÅ„ol	t	\N	f
+7880	3	2136	2	alle auswÃ¤hlen	EspagÅ„ol	t	\N	f
+7884	3	2137	2	alle DatensÃ¤tze auswÃ¤hlen	EspagÅ„ol	t	\N	f
+11818	4	2678	1	kein Feld ausgewÃ¤hlt	francais	t	230	f
 11794	4	2672	3	changement de lot	francais	t	110	f
-7896	3	2140	2	zeige Versionen	Espagñol	t	\N	f
-7900	3	2141	2	zeige versionierte Datensätze	Espagñol	t	\N	f
+7896	3	2140	2	zeige Versionen	EspagÅ„ol	t	\N	f
+7900	3	2141	2	zeige versionierte DatensÃ¤tze	EspagÅ„ol	t	\N	f
 11798	4	2673	1	remplacer par	francais	t	230	f
-11810	4	2676	1	Nombre de dossiers concernés	francais	t	230	f
+11810	4	2676	1	Nombre de dossiers concernÃ©s	francais	t	230	f
 8036	4	2175	2	Version Commentaires 	francais	t	0	f
-11806	4	2675	1	Pour modifier un lot changer le contenu du champ? L'action ne peut pas être annulée!	francais	t	230	t
-11814	4	2677	1	champ affecté	francais	t	230	f
-11822	4	2679	2	nouvelle fenêtre	francais	t	0	f
-11826	4	2680	2	nouvelle fenêtre	francais	t	0	f
-11838	4	2683	1	inégal	francais	t	19	f
-7976	3	2160	2	workflow	Espagñol	t	\N	f
-7980	3	2161	2	workflow	Espagñol	t	\N	f
-7984	3	2162	2	Versionen	Espagñol	t	\N	f
-7988	3	2163	2	Versionen vergleichen	Espagñol	t	\N	f
-7996	3	2165	2	Symbolleiste	Espagñol	t	\N	f
-8000	3	2166	2	zeige Symbolleiste	Espagñol	t	\N	f
-8008	3	2168	2	suchen	Espagñol	t	\N	f
-8012	3	2169	2	Suchmenü	Espagñol	t	\N	f
-8016	3	2170	2	zeige Versionsstand	Espagñol	t	\N	f
-8020	3	2171	2	zeige Versionsstand eines Datums	Espagñol	t	\N	f
-11842	4	2684	1	enregistrements modifiés	francais	t	230	f
+11806	4	2675	1	Pour modifier un lot changer le contenu du champ? L'action ne peut pas Åºtre annulÃ©e!	francais	t	230	t
+11814	4	2677	1	champ affectÃ©	francais	t	230	f
+11822	4	2679	2	nouvelle fenÅºtre	francais	t	0	f
+11826	4	2680	2	nouvelle fenÅºtre	francais	t	0	f
+11838	4	2683	1	inÃ©gal	francais	t	19	f
+7976	3	2160	2	workflow	EspagÅ„ol	t	\N	f
+7980	3	2161	2	workflow	EspagÅ„ol	t	\N	f
+7984	3	2162	2	Versionen	EspagÅ„ol	t	\N	f
+7988	3	2163	2	Versionen vergleichen	EspagÅ„ol	t	\N	f
+7996	3	2165	2	Symbolleiste	EspagÅ„ol	t	\N	f
+8000	3	2166	2	zeige Symbolleiste	EspagÅ„ol	t	\N	f
+8008	3	2168	2	suchen	EspagÅ„ol	t	\N	f
+8012	3	2169	2	SuchmenÃ¼	EspagÅ„ol	t	\N	f
+8016	3	2170	2	zeige Versionsstand	EspagÅ„ol	t	\N	f
+8020	3	2171	2	zeige Versionsstand eines Datums	EspagÅ„ol	t	\N	f
+11842	4	2684	1	enregistrements modifiÃ©s	francais	t	230	f
 11846	4	2685	3	standard	francais	t	140	f
-11850	4	2686	3	Pas assez de réponses	francais	t	140	f
+11850	4	2686	3	Pas assez de rÃ©ponses	francais	t	140	f
 11854	4	2687	3	aucun calcul	francais	t	140	f
-11858	4	2688	3	numéro de résultat	francais	t	140	f
-11862	4	2689	3	champs de table d'édition	francais	t	140	f
-8056	3	2180	2	zeige verknüpfte	Espagñol	t	\N	f
-8060	3	2181	2	zeige verknüpfte Datensätze	Espagñol	t	\N	f
+11858	4	2688	3	numÃ©ro de rÃ©sultat	francais	t	140	f
+11862	4	2689	3	champs de table d'Ã©dition	francais	t	140	f
+8056	3	2180	2	zeige verknÃ¼pfte	EspagÅ„ol	t	\N	f
+8060	3	2181	2	zeige verknÃ¼pfte DatensÃ¤tze	EspagÅ„ol	t	\N	f
 10934	4	2457	3	mode	francais	t	168	f
-11874	4	2692	3	écrire	francais	t	168	f
-11882	4	2694	3	Si tous les fichiers temporaires, sont effacés?	francais	t	154	f
-11878	4	2693	1	Sténographie dans la recherche rapide	francais	t	19	f
+11874	4	2692	3	Ã©crire	francais	t	168	f
+11882	4	2694	3	Si tous les fichiers temporaires, sont effacÃ©s?	francais	t	154	f
+11878	4	2693	1	StÃ©nographie dans la recherche rapide	francais	t	19	f
 11290	4	2546	3	Supprimer les vignettes temporaires	francais	t	154	f
-11302	4	2549	3	toutes les vignettes ont échoué devraient essayer de recalcule?	francais	t	154	f
+11302	4	2549	3	toutes les vignettes ont Ã©chouÃ© devraient essayer de recalcule?	francais	t	154	f
 11886	4	2695	3	Supprimer des fichiers texte temporaires	francais	t	154	f
-11294	4	2547	3	Recalculer Échec miniatures	francais	t	154	f
-11894	4	2697	3	Si la structure du dossier de cohérence est? utilisateur manquants ou dossiers rapports sont reconstruits.	francais	t	154	f
+11294	4	2547	3	Recalculer Ã‰chec miniatures	francais	t	154	f
+11894	4	2697	3	Si la structure du dossier de cohÃ©rence est? utilisateur manquants ou dossiers rapports sont reconstruits.	francais	t	154	f
 11898	4	2698	3	rotation	francais	t	168	f
-11902	4	2699	3	non publié	francais	t	140	f
-8132	3	2199	2	Zusammenfassung	Espagñol	t	\N	f
-8136	3	2200	2	Zusammenfassung	Espagñol	t	\N	f
-8140	3	2201	2	Berichte	Espagñol	t	\N	f
-8144	3	2202	2	Berichte	Espagñol	t	\N	f
-8148	3	2203	2	myLimbas	Espagñol	t	\N	f
-8152	3	2204	2	Persöhnliche Daten	Espagñol	t	\N	f
+11902	4	2699	3	non publiÃ©	francais	t	140	f
+8132	3	2199	2	Zusammenfassung	EspagÅ„ol	t	\N	f
+8136	3	2200	2	Zusammenfassung	EspagÅ„ol	t	\N	f
+8140	3	2201	2	Berichte	EspagÅ„ol	t	\N	f
+8144	3	2202	2	Berichte	EspagÅ„ol	t	\N	f
+8148	3	2203	2	myLimbas	EspagÅ„ol	t	\N	f
+8152	3	2204	2	PersÃ¶hnliche Daten	EspagÅ„ol	t	\N	f
 11750	4	2661	3	cadre de regroupement	francais	t	175	f
 11994	4	2722	1	Que manque index Limbasspezifische sont reconstruits?	francais	t	154	f
-11718	4	2653	3	Si les procédures de base de données Limbasspezifischen recréés?	francais	t	154	f
-3591	3	923	3	descripción	Espagñol	t	110	f
+11718	4	2653	3	Si les procÃ©dures de base de donnÃ©es Limbasspezifischen recrÃ©Ã©s?	francais	t	154	f
+3591	3	923	3	descripciÃ³n	EspagÅ„ol	t	110	f
 11758	4	2663	3	Sollen die Limbasspezifischen Sequenz-Tabellen neu erstellt werden?	francais	t	154	f
-11714	4	2652	3	Les procédures de vérification	francais	t	154	f
-11754	4	2662	3	Vérifiez séquences	francais	t	154	f
+11714	4	2652	3	Les procÃ©dures de vÃ©rification	francais	t	154	f
+11754	4	2662	3	VÃ©rifiez sÃ©quences	francais	t	154	f
 11998	4	2723	3	inceste	francais	t	195	f
-8204	3	2217	2	zu Favoriten	Espagñol	t	\N	f
-8208	3	2218	2	zu Favoriten hinzufügen	Espagñol	t	\N	f
+8204	3	2217	2	zu Favoriten	EspagÅ„ol	t	\N	f
+8208	3	2218	2	zu Favoriten hinzufÃ¼gen	EspagÅ„ol	t	\N	f
 12002	4	2724	3	Contraintes uniques	francais	t	195	f
 12038	4	2733	1	Masquer la colonne	francais	t	5	f
-8220	3	2221	2	System Arrays	Espagñol	t	\N	f
-8224	3	2222	2	System Arrays	Espagñol	t	\N	f
-8228	3	2223	2	Datei suchen	Espagñol	t	\N	f
-8232	3	2224	2	Datei suchen	Espagñol	t	\N	f
-12102	4	2748	2	Définir des droits de tableau	francais	t	0	f
-12110	4	2750	2	Définir des droits de workflow	francais	t	0	f
-12198	4	2772	2	Gérer la piscine de sélection	francais	t	0	f
+8220	3	2221	2	System Arrays	EspagÅ„ol	t	\N	f
+8224	3	2222	2	System Arrays	EspagÅ„ol	t	\N	f
+8228	3	2223	2	Datei suchen	EspagÅ„ol	t	\N	f
+8232	3	2224	2	Datei suchen	EspagÅ„ol	t	\N	f
+12102	4	2748	2	DÃ©finir des droits de tableau	francais	t	0	f
+12110	4	2750	2	DÃ©finir des droits de workflow	francais	t	0	f
+12198	4	2772	2	GÃ©rer la piscine de sÃ©lection	francais	t	0	f
 12206	4	2774	2	Terminserie	francais	t	0	f
-12294	4	2796	1	prendre en charge et à proximité	francais	t	13	f
+12294	4	2796	1	prendre en charge et Ä… proximitÃ©	francais	t	13	f
 12298	4	2797	2	Importation de fichiers	francais	t	0	f
-12306	4	2799	1	début	francais	t	200	f
-12430	4	2830	3	l'envoi automatique active / sauvegarde du formulaire en arrière-plan en cas de changement des dossiers	francais	t	140	f
-12406	4	2824	3	En général, pour mettre en évidence ou le marquage des dossiers individuels avec des couleurs ou des symboles. appel de fonction prévue.	francais	t	140	f
-12434	4	2831	3	active le déroulement des liens ou des groupes dans la liste des enregistrements	francais	t	140	f
-12398	4	2822	3	Type de versioning. <br> <b> recursiv: </ b> toutes les versions 1: n des liens si versioning activement <br> <b> Correction: </ b> versionné que l'enregistrement en cours	francais	t	140	f
-12482	4	2843	3	Champ peut être représenté dans la liste des tables Groupés	francais	t	110	f
+12306	4	2799	1	dÃ©but	francais	t	200	f
+12430	4	2830	3	l'envoi automatique active / sauvegarde du formulaire en arriÄre-plan en cas de changement des dossiers	francais	t	140	f
+12406	4	2824	3	En gÃ©nÃ©ral, pour mettre en Ã©vidence ou le marquage des dossiers individuels avec des couleurs ou des symboles. appel de fonction prÃ©vue.	francais	t	140	f
+12434	4	2831	3	active le dÃ©roulement des liens ou des groupes dans la liste des enregistrements	francais	t	140	f
+12398	4	2822	3	Type de versioning. <br> <b> recursiv: </ b> toutes les versions 1: n des liens si versioning activement <br> <b> Correction: </ b> versionnÃ© que l'enregistrement en cours	francais	t	140	f
+12482	4	2843	3	Champ peut Åºtre reprÃ©sentÃ© dans la liste des tables GroupÃ©s	francais	t	110	f
 11956	1	2713	3	Tabellenreiter	deutsch	t	173	f
-12470	4	2840	3	l'envoi automatique active / magasin le champ de formulaire en arrière-plan lors d'un changement.	francais	t	110	f
+12470	4	2840	3	l'envoi automatique active / magasin le champ de formulaire en arriÄre-plan lors d'un changement.	francais	t	110	f
 11912	1	2702	3	Datum+Zeit+Sec	deutsch	t	110	f
 11834	4	2682	1	non champ vide	francais	f	19	f
 12486	4	2844	3	active le changement empilement / collecte pour ce champ	francais	t	110	f
-12514	4	2851	3	la définition d'une ressource source pour la représentation de Gantt. Attendu n: m relation	francais	t	140	f
+12514	4	2851	3	la dÃ©finition d'une ressource source pour la reprÃ©sentation de Gantt. Attendu n: m relation	francais	t	140	f
 11662	4	2639	3	Recherche ajax	francais	t	110	f
-8312	3	2244	2	Übersicht	Espagñol	t	\N	f
-8316	3	2245	2	Userübersicht	Espagñol	t	\N	f
-8320	3	2246	2	Menü links	Espagñol	t	\N	f
-8324	3	2247	2	Menü links	Espagñol	t	\N	f
-8328	3	2248	2	Menü oben	Espagñol	t	\N	f
-8332	3	2249	2	Menü oben	Espagñol	t	\N	f
-8336	3	2250	2	Menü rechts	Espagñol	t	\N	f
-8340	3	2251	2	Menü rechts	Espagñol	t	\N	f
-8344	3	2252	2	Introseite	Espagñol	t	\N	f
-8348	3	2253	2	Introseite	Espagñol	t	\N	f
-8352	3	2254	2	Auswahl	Espagñol	t	\N	f
-8356	3	2255	2	Kalender Auswahl	Espagñol	t	\N	f
-8368	3	2258	2	Bildvorschau	Espagñol	t	\N	f
-8372	3	2259	2	Bildvorschau	Espagñol	t	\N	f
-8376	3	2260	2	Bildershow	Espagñol	t	\N	f
-8380	3	2261	2	Bildershow	Espagñol	t	\N	f
-12518	4	2852	3	paramètres spécifiques au calendrier	francais	t	140	f
-8388	3	2263	2	Sprache	Espagñol	t	\N	f
-12490	4	2845	3	recherche de sélection basée sur AJAX à la place du champ déroulant	francais	t	110	f
-12494	4	2846	3	Représentation du lien comme un champ de sélection	francais	t	110	f
-8392	3	2264	2	Lokale Sprachtabelle	Espagñol	t	\N	f
-10147	3	2265	2	Trigger	Espagñol	t	\N	f
-10152	3	2266	2	Datenbank Trigger	Espagñol	t	\N	f
-12502	4	2848	3	<B> Kurtz forme: </ b> affichage numérique Shorter <br> <b> détaillée: </ b> affichage de toutes les valeurs séparées par des coups de séparateur	francais	t	110	f
-12506	4	2849	3	Isolateur pour la présentation détaillée	francais	t	110	f
-12474	4	2841	3	Afficher en champ de sélection dans le <b> Tableau barre de recherche </ b>	francais	t	110	f
+8312	3	2244	2	Ãœbersicht	EspagÅ„ol	t	\N	f
+8316	3	2245	2	UserÃ¼bersicht	EspagÅ„ol	t	\N	f
+8320	3	2246	2	MenÃ¼ links	EspagÅ„ol	t	\N	f
+8324	3	2247	2	MenÃ¼ links	EspagÅ„ol	t	\N	f
+8328	3	2248	2	MenÃ¼ oben	EspagÅ„ol	t	\N	f
+8332	3	2249	2	MenÃ¼ oben	EspagÅ„ol	t	\N	f
+8336	3	2250	2	MenÃ¼ rechts	EspagÅ„ol	t	\N	f
+8340	3	2251	2	MenÃ¼ rechts	EspagÅ„ol	t	\N	f
+8344	3	2252	2	Introseite	EspagÅ„ol	t	\N	f
+8348	3	2253	2	Introseite	EspagÅ„ol	t	\N	f
+8352	3	2254	2	Auswahl	EspagÅ„ol	t	\N	f
+8356	3	2255	2	Kalender Auswahl	EspagÅ„ol	t	\N	f
+8368	3	2258	2	Bildvorschau	EspagÅ„ol	t	\N	f
+8372	3	2259	2	Bildvorschau	EspagÅ„ol	t	\N	f
+8376	3	2260	2	Bildershow	EspagÅ„ol	t	\N	f
+8380	3	2261	2	Bildershow	EspagÅ„ol	t	\N	f
+12518	4	2852	3	paramÄtres spÃ©cifiques au calendrier	francais	t	140	f
+8388	3	2263	2	Sprache	EspagÅ„ol	t	\N	f
+12490	4	2845	3	recherche de sÃ©lection basÃ©e sur AJAX Ä… la place du champ dÃ©roulant	francais	t	110	f
+12494	4	2846	3	ReprÃ©sentation du lien comme un champ de sÃ©lection	francais	t	110	f
+8392	3	2264	2	Lokale Sprachtabelle	EspagÅ„ol	t	\N	f
+10147	3	2265	2	Trigger	EspagÅ„ol	t	\N	f
+10152	3	2266	2	Datenbank Trigger	EspagÅ„ol	t	\N	f
+12502	4	2848	3	<B> Kurtz forme: </ b> affichage numÃ©rique Shorter <br> <b> dÃ©taillÃ©e: </ b> affichage de toutes les valeurs sÃ©parÃ©es par des coups de sÃ©parateur	francais	t	110	f
+12506	4	2849	3	Isolateur pour la prÃ©sentation dÃ©taillÃ©e	francais	t	110	f
+12474	4	2841	3	Afficher en champ de sÃ©lection dans le <b> Tableau barre de recherche </ b>	francais	t	110	f
 12546	4	2859	3	export Sync	francais	t	145	f
 12658	4	2887	3	valeur show	francais	t	177	f
 12662	4	2888	3	montrer le pourcentage	francais	t	177	f
 12666	4	2889	3	Pie-rayon	francais	t	177	f
-12674	4	2891	3	propriété	francais	t	177	f
-12682	4	2893	3	réglage	francais	t	177	f
+12674	4	2891	3	propriÃ©tÃ©	francais	t	177	f
+12682	4	2893	3	rÃ©glage	francais	t	177	f
 12726	4	2904	2	image	francais	t	0	f
 12730	4	2905	2	Mimetypes	francais	t	0	f
 12734	4	2906	2	Mimetypes	francais	t	0	f
-12738	4	2907	2	Révision-Manager	francais	t	0	f
-12742	4	2908	2	Révision-Manager	francais	t	0	f
-3402	3	729	2	nueva presentación / fichero de reserva	Espagñol	t	0	f
-3415	3	744	1	el valor introducido no tiene el formato necesario/por favor corregir su entrada	Espagñol	t	37	t
-3716	3	1048	3	desea borrar todas las sesiones/todas las sesiones fueron reiniciadas	Espagñol	t	154	t
-3834	3	1168	3	no se encontró el archivo/por favor indicar la ruta correcta	Espagñol	t	172	t
-2872	3	128	1	no se encontró el archivo/especificar la ruta correcta del archivo	Espagñol	t	41	t
-3082	3	349	2	generar	Espagñol	t	0	f
-3083	3	350	2	generar registro	Espagñol	t	0	f
-3084	3	351	2	editar	Espagñol	t	0	f
-3099	3	366	2	lista de registro	Espagñol	t	0	f
-3085	3	352	2	editar registro	Espagñol	t	0	f
-3098	3	365	2	lista	Espagñol	t	0	f
-3495	3	826	2	informes	Espagñol	t	0	f
-3496	3	827	2	informes	Espagñol	t	0	f
-5629	3	1938	2	Suchmaschienen-Ansicht	Espagñol	t	\N	f
-4681	3	1622	2	Dateien	Espagñol	t	\N	f
-3394	3	721	1	este registro está provisto de una función para una nueva presentación /fichero de reserva/¿debe ser cancelado?	Espagñol	t	13	t
-3570	3	902	3	foto	Espagñol	t	127	f
-3247	3	550	3	borrar todo	Espagñol	t	108	f
-3829	3	1163	3	acciones	Espagñol	t	170	f
-3292	3	606	3	ya existe	Espagñol	t	126	f
-3586	3	918	3	con lo cual ID significa número de artículo	Espagñol	t	107	f
-3801	3	1135	3	reconfigurar	Espagñol	t	168	f
-4918	3	1701	2	änderungen Speichern	Espagñol	t	\N	f
-2820	3	51	1	¿debe ser el informe impreso y por consiguiente archivado?	Espagñol	t	13	f
-2858	3	114	1	no puede realizar esta acción	Espagñol	t	23	f
+12738	4	2907	2	RÃ©vision-Manager	francais	t	0	f
+12742	4	2908	2	RÃ©vision-Manager	francais	t	0	f
+3402	3	729	2	nueva presentaciÃ³n / fichero de reserva	EspagÅ„ol	t	0	f
+3415	3	744	1	el valor introducido no tiene el formato necesario/por favor corregir su entrada	EspagÅ„ol	t	37	t
+3716	3	1048	3	desea borrar todas las sesiones/todas las sesiones fueron reiniciadas	EspagÅ„ol	t	154	t
+3834	3	1168	3	no se encontrÃ³ el archivo/por favor indicar la ruta correcta	EspagÅ„ol	t	172	t
+2872	3	128	1	no se encontrÃ³ el archivo/especificar la ruta correcta del archivo	EspagÅ„ol	t	41	t
+3082	3	349	2	generar	EspagÅ„ol	t	0	f
+3083	3	350	2	generar registro	EspagÅ„ol	t	0	f
+3084	3	351	2	editar	EspagÅ„ol	t	0	f
+3099	3	366	2	lista de registro	EspagÅ„ol	t	0	f
+3085	3	352	2	editar registro	EspagÅ„ol	t	0	f
+3098	3	365	2	lista	EspagÅ„ol	t	0	f
+3495	3	826	2	informes	EspagÅ„ol	t	0	f
+3496	3	827	2	informes	EspagÅ„ol	t	0	f
+5629	3	1938	2	Suchmaschienen-Ansicht	EspagÅ„ol	t	\N	f
+4681	3	1622	2	Dateien	EspagÅ„ol	t	\N	f
+3394	3	721	1	este registro estÄ¯ provisto de una funciÃ³n para una nueva presentaciÃ³n /fichero de reserva/Ã¦debe ser cancelado?	EspagÅ„ol	t	13	t
+3570	3	902	3	foto	EspagÅ„ol	t	127	f
+3247	3	550	3	borrar todo	EspagÅ„ol	t	108	f
+3829	3	1163	3	acciones	EspagÅ„ol	t	170	f
+3292	3	606	3	ya existe	EspagÅ„ol	t	126	f
+3586	3	918	3	con lo cual ID significa nÅ›mero de artÄ·culo	EspagÅ„ol	t	107	f
+3801	3	1135	3	reconfigurar	EspagÅ„ol	t	168	f
+4918	3	1701	2	Ã¤nderungen Speichern	EspagÅ„ol	t	\N	f
+2820	3	51	1	Ã¦debe ser el informe impreso y por consiguiente archivado?	EspagÅ„ol	t	13	f
+2858	3	114	1	no puede realizar esta acciÃ³n	EspagÅ„ol	t	23	f
 1857	2	730	2	mark as reminder	english	t	0	f
 1856	2	729	2	Reminder	english	t	0	f
 1587	2	425	2	Reminder	english	t	0	f
@@ -8748,38 +8748,38 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 5476	2	1887	3	amount of relations	english	t	110	f
 11009	2	2476	3	Check  foreign keys for relations	english	t	154	f
 7520	4	1940	2	Fuseau horraire	francais	t	0	f
-5635	3	1940	2	Zeitzone	Espagñol	t	\N	f
+5635	3	1940	2	Zeitzone	EspagÅ„ol	t	\N	f
 7521	4	1941	2	Changer de fuseau horraire	francais	t	0	f
-5638	3	1941	2	Zeitzone ändern	Espagñol	t	\N	f
+5638	3	1941	2	Zeitzone Ã¤ndern	EspagÅ„ol	t	\N	f
 11889	2	2696	3	Do you want to create new LIMBAS specific trigger?	english	t	154	f
 11917	2	2703	3	Lock data record 	english	t	140	f
 11914	4	2702	3	Date + heure + Sec	francais	t	110	f
 11916	1	2703	3	reserviere ID	deutsch	t	140	f
-11918	4	2703	3	ID de réserve	francais	t	140	f
+11918	4	2703	3	ID de rÃ©serve	francais	t	140	f
 11924	1	2705	1	Ganztags	deutsch	t	52	f
-11926	4	2705	1	À plein temps	francais	t	52	f
+11926	4	2705	1	Ä„ plein temps	francais	t	52	f
 11936	1	2708	3	Position	deutsch	t	173	f
 11938	4	2708	3	Position	francais	t	173	f
 11940	1	2709	3	erster	deutsch	t	173	f
 11942	4	2709	3	premier	francais	t	173	f
 11944	1	2710	3	merken	deutsch	t	173	f
 11946	4	2710	3	ne pas oublier	francais	t	173	f
-11952	1	2712	3	Click Event für Formularreiter<br>z.B. alert(''hallo'');	deutsch	t	110	f
+11952	1	2712	3	Click Event fÃ¼r Formularreiter<br>z.B. alert(''hallo'');	deutsch	t	110	f
 10988	1	2471	2	Sonderfunktionen	deutsch	t	0	f
 10992	1	2472	2	Sonderfunktionen	deutsch	t	0	f
-11954	4	2712	3	<br> cliquez sur l'événement pour former les coureurs comme alert ( '' bonjour '');	francais	t	110	f
-10408	1	2328	3	sollen alle Usereinstellungen gelöscht werden?	deutsch	t	154	f
-11978	4	2718	3	icône	francais	t	204	f
+11954	4	2712	3	<br> cliquez sur l'Ã©vÃ©nement pour former les coureurs comme alert ( '' bonjour '');	francais	t	110	f
+10408	1	2328	3	sollen alle Usereinstellungen gelÃ¶scht werden?	deutsch	t	154	f
+11978	4	2718	3	icÅne	francais	t	204	f
 11976	1	2718	3	Symbol	deutsch	t	204	f
-11986	4	2720	3	disparaître	francais	t	204	f
-11890	4	2696	3	Si le déclencheur Limbasspezifischen recréée?	francais	t	154	f
+11986	4	2720	3	disparaÄ«tre	francais	t	204	f
+11890	4	2696	3	Si le dÃ©clencheur Limbasspezifischen recrÃ©Ã©e?	francais	t	154	f
 11984	1	2720	3	Ausblenden	deutsch	t	204	f
 11925	2	2705	1	Full-time	english	t	52	f
-11010	4	2476	3	Vérifiez les clés étrangères	francais	t	154	f
-11316	1	2553	3	alle vorhandenen datensatz-spezifischen Rechte der ausgewählten Tablle werden gelöscht!	deutsch	t	154	t
+11010	4	2476	3	VÃ©rifiez les clÃ©s Ã©trangÄres	francais	t	154	f
+11316	1	2553	3	alle vorhandenen datensatz-spezifischen Rechte der ausgewÃ¤hlten Tablle werden gelÃ¶scht!	deutsch	t	154	t
 11012	1	2477	3	Sollen die Limbasspezifischen Foreign-Keys erneuert werden?	deutsch	t	154	f
-11014	4	2477	3	Si les clés étrangères Limbasspezifischen à la retraite?	francais	t	154	f
-11058	4	2488	3	déclencheur Vérifier	francais	t	154	f
+11014	4	2477	3	Si les clÃ©s Ã©trangÄres Limbasspezifischen Ä… la retraite?	francais	t	154	f
+11058	4	2488	3	dÃ©clencheur VÃ©rifier	francais	t	154	f
 11013	2	2477	3	Do you wnat to renew the LIMBAS specific  foreign keys?	english	t	154	f
 11937	2	2708	3	Position	english	t	173	f
 11941	2	2709	3	First	english	t	173	f
@@ -8787,39 +8787,39 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 10409	2	2328	3	Shall all user settings for the file system be deleted?	english	t	154	f
 11977	2	2718	3	Icon	english	t	204	f
 11985	2	2720	3	Hide	english	t	204	f
-11988	1	2721	3	Indizes prüfen	deutsch	t	154	f
-11990	4	2721	3	Vérifiez les index	francais	t	154	f
+11988	1	2721	3	Indizes prÃ¼fen	deutsch	t	154	f
+11990	4	2721	3	VÃ©rifiez les index	francais	t	154	f
 11992	1	2722	1	Sollen fehlende Limbasspezifische Indizes neu erstellt werden ?	deutsch	t	154	f
 11716	1	2653	3	Sollen die Limbasspezifischen Datenbankprozeduren neu erstellt werden?	deutsch	t	154	f
 11756	1	2663	3	Sollen die Limbasspezifischen Sequenz-Tabellen neu erstellt werden?	deutsch	t	154	t
-11712	1	2652	3	Prozeduren prüfen	deutsch	t	154	f
-11752	1	2662	3	Sequenzen prüfen	deutsch	t	154	f
+11712	1	2652	3	Prozeduren prÃ¼fen	deutsch	t	154	f
+11752	1	2662	3	Sequenzen prÃ¼fen	deutsch	t	154	f
 12017	2	2728	3	Ref. field	english	t	195	f
-7877	1	2136	2	alle auswählen	deutsch	t	\N	f
-7881	1	2137	2	alle Datensätze auswählen	deutsch	t	\N	f
-6944	4	1318	1	Les données n''ont pas encore été modifiées! Un enregistrement vide n''est pas conseillé.	francais	t	13	t
+7877	1	2136	2	alle auswÃ¤hlen	deutsch	t	\N	f
+7881	1	2137	2	alle DatensÃ¤tze auswÃ¤hlen	deutsch	t	\N	f
+6944	4	1318	1	Les donnÃ©es n''ont pas encore Ã©tÃ© modifiÃ©es! Un enregistrement vide n''est pas conseillÃ©.	francais	t	13	t
 11996	1	2723	3	Indizes	deutsch	t	195	f
 12000	1	2724	3	Unique Constraints	deutsch	t	195	f
 12004	1	2725	3	Foreign Keys	deutsch	t	195	f
-12006	4	2725	3	Clés étrangères	francais	t	195	f
-12014	4	2727	3	Réf. Tabelle	francais	t	195	f
+12006	4	2725	3	ClÃ©s Ã©trangÄres	francais	t	195	f
+12014	4	2727	3	RÃ©f. Tabelle	francais	t	195	f
 12012	1	2727	3	Ref. Tabelle	deutsch	t	195	f
 12018	4	2728	3	Ref sur le terrain.	francais	t	195	f
 11913	2	2702	3	Date+Time+Sec	english	t	110	f
 12016	1	2728	3	Ref. Feld	deutsch	t	195	f
 11436	1	2583	2	Erweiterungen	deutsch	t	0	f
 11440	1	2584	2	Erweiterungen editieren	deutsch	t	0	f
-12022	4	2729	3	Clés primaires	francais	t	195	f
+12022	4	2729	3	ClÃ©s primaires	francais	t	195	f
 12020	1	2729	3	Primary Keys	deutsch	t	195	f
 12030	4	2731	3	Agregatfunktion	francais	t	110	f
 12028	1	2731	3	Agregatfunktion	deutsch	t	110	f
-12034	4	2732	3	Calculer le nombre de lignes affichées dans le format sélectionné	francais	t	110	f
-12032	1	2732	3	Berechnen der angezeigten Zeilen im ausgewählten Format	deutsch	t	110	f
+12034	4	2732	3	Calculer le nombre de lignes affichÃ©es dans le format sÃ©lectionnÃ©	francais	t	110	f
+12032	1	2732	3	Berechnen der angezeigten Zeilen im ausgewÃ¤hlten Format	deutsch	t	110	f
 861	1	861	1	aufsteigend sortieren	deutsch	t	5	f
 6531	4	861	1	En avant	francais	t	5	f
-3530	3	861	1	hacia arriba	Espagñol	t	5	f
+3530	3	861	1	hacia arriba	EspagÅ„ol	t	5	f
 862	1	862	1	absteigend sortieren	deutsch	t	5	f
-3531	3	862	1	hacia abajo	Espagñol	t	5	f
+3531	3	862	1	hacia abajo	EspagÅ„ol	t	5	f
 12036	1	2733	1	Spalte ausblenden	deutsch	t	5	f
 11713	2	2652	3	Check database procedures	english	t	154	f
 12289	2	2795	3	options	english	t	221	f
@@ -8908,7 +8908,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2195	2	1073	3	SQL-query successfully executed	english	t	156	f
 2245	2	1123	3	normal	english	t	168	f
 2265	2	1143	3	margins (mm)	english	t	169	f
-2289	2	1167	3	picture couldn´t be saved successfully	english	t	172	f
+2289	2	1167	3	picture couldnâ€œt be saved successfully	english	t	172	f
 2355	2	1217	3	to do	english	t	180	f
 2359	2	1219	3	general	english	t	180	f
 2423	2	1251	1	Do you want to logout?	english	t	11	f
@@ -8959,7 +8959,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 2599	2	1339	1	add day	english	t	14	f
 2601	2	1340	1	substract day	english	t	14	f
 2671	2	1375	2	PHP Argument	english	t	0	f
-12382	4	2818	3	Système	francais	t	165	f
+12382	4	2818	3	SystÄme	francais	t	165	f
 2735	2	1407	2	choice (Select)	english	t	0	f
 2737	2	1408	2	choice (multiple) as multiselect	english	t	0	f
 2725	2	1402	2	keyword 18 digit number	english	t	0	f
@@ -9109,16 +9109,16 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12648	1	2885	3	Pie-Chart	deutsch	t	177	f
 11893	2	2697	3	You want to check the filesystem for missing folders?Missing folders will be created.	english	t	154	f
 2557	2	1318	1	Data not yet changed!\nEmpty record creation is not recommended. 	english	t	13	t
-2873	3	129	1	el archivo cargado tiene un tamaño de	Espagñol	t	41	f
+2873	3	129	1	el archivo cargado tiene un tamaÅ„o de	EspagÅ„ol	t	41	f
 2527	2	1303	3	create new relation!	english	t	121	f
-12042	4	2370	3	devrait rester à l'arrière-lien?	francais	t	121	f
+12042	4	2370	3	devrait rester Ä… l'arriÄre-lien?	francais	t	121	f
 12046	4	2734	3	Auswahlpools neu sortieren	francais	t	154	f
 12096	1	2747	2	Diagrammrechte	deutsch	t	0	f
 12100	1	2748	2	Diagrammrechte festlegen	deutsch	t	0	f
 12080	1	2743	2	Wiedervorlagen	deutsch	t	0	f
 12084	1	2744	2	Wiedervorlagen-Rechte festlegen	deutsch	t	0	f
 12050	4	2735	3	style cellulaire	francais	t	168	f
-12040	1	2370	3	soll die rückwärtige Verknüpfung bestehen bleiben?	deutsch	t	121	f
+12040	1	2370	3	soll die rÃ¼ckwÃ¤rtige VerknÃ¼pfung bestehen bleiben?	deutsch	t	121	f
 12054	4	2736	3	table	francais	t	168	f
 12044	1	2734	3	Auswahlpools neu sortieren	deutsch	t	154	f
 12048	1	2735	3	Zellenstyle	deutsch	t	168	f
@@ -9126,7 +9126,7 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12066	4	2739	2	resoumission	francais	t	0	f
 12106	4	2749	2	droits de flux de travail	francais	t	0	f
 12070	4	2740	3	nouvelle resoumission	francais	t	187	f
-12074	4	2741	1	Créer un nouveau	francais	t	7	f
+12074	4	2741	1	CrÃ©er un nouveau	francais	t	7	f
 12068	1	2740	3	neue Wiedervorlage	deutsch	t	187	f
 12078	4	2742	3	par groupe	francais	t	187	f
 12072	1	2741	1	neu anlegen	deutsch	t	7	f
@@ -9139,9 +9139,9 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12041	2	2370	3	Should the backward relation remain? 	english	t	121	f
 12082	4	2743	2	resoumissions	francais	t	0	f
 12076	1	2742	3	Gruppenbasiert	deutsch	t	187	f
-12086	4	2744	2	Définir les droits des rappels	francais	t	0	f
+12086	4	2744	2	DÃ©finir les droits des rappels	francais	t	0	f
 12090	4	2745	2	droits de formulaire	francais	t	0	f
-12094	4	2746	2	Définir des droits de formulaire	francais	t	0	f
+12094	4	2746	2	DÃ©finir des droits de formulaire	francais	t	0	f
 12098	4	2747	2	droit diagramme	francais	t	0	f
 12104	1	2749	2	Workflowrechte	deutsch	t	0	f
 12108	1	2750	2	Workflowrechte festlegen	deutsch	t	0	f
@@ -9150,28 +9150,28 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12088	1	2745	2	Formularrechte	deutsch	t	0	f
 11805	2	2675	1	You want to change content with a batch process? you can''t undo the changes!	english	t	230	t
 12092	1	2746	2	Formularrechte festlegen	deutsch	t	0	f
-12114	4	2751	3	Créer sauvegarde	francais	t	140	f
+12114	4	2751	3	CrÃ©er sauvegarde	francais	t	140	f
 12112	1	2751	3	starte Backup	deutsch	t	140	f
 12118	4	2752	3	nouveau flux de travail	francais	t	208	f
 12116	1	2752	3	neuer Workflow	deutsch	t	208	f
-12126	4	2754	3	nouvelle tâche	francais	t	208	f
+12126	4	2754	3	nouvelle tÄche	francais	t	208	f
 12124	1	2754	3	neuer Task	deutsch	t	208	f
 1169	1	1169	3	Detail-Formular	deutsch	t	175	f
 6813	4	1169	3	Formulaire	francais	t	175	f
-3835	3	1169	3	formulario	Espagñol	t	175	f
+3835	3	1169	3	formulario	EspagÅ„ol	t	175	f
 12134	4	2756	3	Formulaire de liste	francais	t	175	f
 12132	1	2756	3	Listen-Formular	deutsch	t	175	f
 12136	1	2757	3	Radius	deutsch	t	168	f
 12138	4	2757	3	rayon	francais	t	168	f
-12142	4	2758	3	Créer un fichier	francais	t	213	f
+12142	4	2758	3	CrÃ©er un fichier	francais	t	213	f
 12140	1	2758	3	Datei erstellen	deutsch	t	213	f
 8124	4	2197	2	mimetype	francais	t	0	f
 1161	1	1161	3	Office Template	deutsch	t	170	f
-6806	4	1161	3	Créer par	francais	t	170	f
+6806	4	1161	3	CrÃ©er par	francais	t	170	f
 8118	1	2196	2	Mimetype	deutsch	t	0	f
-12150	4	2760	3	Lorsque vous modifiez la version existante des informations versioning seront supprimés!	francais	t	140	f
+12150	4	2760	3	Lorsque vous modifiez la version existante des informations versioning seront supprimÃ©s!	francais	t	140	f
 12154	4	2761	3	synchroniser	francais	t	139	f
-12148	1	2760	3	Bei Änderung der Versionierung werden vorhandene Versionsinformationen gelöscht!	deutsch	t	140	f
+12148	1	2760	3	Bei Ã„nderung der Versionierung werden vorhandene Versionsinformationen gelÃ¶scht!	deutsch	t	140	f
 12152	1	2761	3	synchronisieren	deutsch	t	139	f
 12158	4	2762	1	maintenant	francais	t	204	f
 12172	1	2766	1	vor	deutsch	t	204	f
@@ -9203,14 +9203,14 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12157	2	2762	1	now	english	t	204	f
 12173	2	2766	1	bevore	english	t	204	f
 12189	2	2770	3	max. results	english	t	155	f
-12190	4	2770	3	max. résultats	francais	t	155	f
-12194	4	2771	2	Piscine de sélection	francais	t	0	f
+12190	4	2770	3	max. rÃ©sultats	francais	t	155	f
+12194	4	2771	2	Piscine de sÃ©lection	francais	t	0	f
 12188	1	2770	3	max. Ergebnisse	deutsch	t	155	f
 12193	2	2771	2	select-pools	english	t	0	f
 12197	2	2772	2	administrate select-pools	english	t	0	f
-12210	4	2775	2	Création d'un rendez-vous périodique	francais	t	0	f
+12210	4	2775	2	CrÃ©ation d'un rendez-vous pÃ©riodique	francais	t	0	f
 12266	4	2789	1	par an	francais	t	200	f
-12264	1	2789	1	Jährlich	deutsch	t	200	f
+12264	1	2789	1	JÃ¤hrlich	deutsch	t	200	f
 12270	4	2790	1	2 fois par semaine	francais	t	200	f
 12268	1	2790	1	2 mal in der Woche	deutsch	t	200	f
 4984	2	1723	3	Date+Time	english	t	110	f
@@ -9218,23 +9218,23 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 4516	2	1567	1	Colour	english	t	15	f
 11373	2	2567	3	background colour column	english	t	221	f
 10420	1	2331	3	Parameter	deutsch	t	168	f
-10422	4	2331	3	Paramètre	francais	t	168	f
+10422	4	2331	3	ParamÄtre	francais	t	168	f
 8038	1	2176	2	Versionierung-Zusatzbemerkung	deutsch	t	0	f
-11588	1	2621	3	Verknüpfung entfernen	deutsch	t	226	f
+11588	1	2621	3	VerknÃ¼pfung entfernen	deutsch	t	226	f
 11590	4	2621	3	Supprimer le lien	francais	t	226	f
-12566	4	2864	3	transposée	francais	t	177	f
-12214	4	2776	1	Si tout lien ce jeu de données à supprimer?	francais	t	204	f
+12566	4	2864	3	transposÃ©e	francais	t	177	f
+12214	4	2776	1	Si tout lien ce jeu de donnÃ©es Ä… supprimer?	francais	t	204	f
 12218	4	2777	3	Embed	francais	t	169	f
-12212	1	2776	1	Sollen alle Verknüpfung dieses Datensatzes entfernt werden?	deutsch	t	204	t
+12212	1	2776	1	Sollen alle VerknÃ¼pfung dieses Datensatzes entfernt werden?	deutsch	t	204	t
 12222	4	2778	3	pendre	francais	t	169	f
 12216	1	2777	3	einbetten	deutsch	t	169	f
 12226	4	2779	3	sous rapport	francais	t	169	f
-12220	1	2778	3	einhängen	deutsch	t	169	f
-12230	4	2780	3	Boîte à outils	francais	t	169	f
+12220	1	2778	3	einhÃ¤ngen	deutsch	t	169	f
+12230	4	2780	3	BoÄ«te Ä… outils	francais	t	169	f
 12224	1	2779	3	Unterbericht	deutsch	t	169	f
 12228	1	2780	3	Toolbox	deutsch	t	169	f
-12238	4	2782	3	Les coordonnées	francais	t	169	f
-12242	4	2783	3	éléments	francais	t	169	f
+12238	4	2782	3	Les coordonnÃ©es	francais	t	169	f
+12242	4	2783	3	Ã©lÃ©ments	francais	t	169	f
 12236	1	2782	3	Koordinaten	deutsch	t	169	f
 12240	1	2783	3	Elemente	deutsch	t	169	f
 12254	4	2786	1	tous les jours	francais	t	200	f
@@ -9252,58 +9252,58 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 11589	2	2621	3	remove relation 	english	t	226	f
 2487	2	1283	2	delete link 	english	t	\N	f
 12258	4	2787	1	hebdomadaire	francais	t	200	f
-12252	1	2786	1	Täglich	deutsch	t	200	f
+12252	1	2786	1	TÃ¤glich	deutsch	t	200	f
 12262	4	2788	1	mensuel	francais	t	200	f
-12256	1	2787	1	Wöchentlich	deutsch	t	200	f
-12274	4	2791	3	répétition	francais	t	52	f
+12256	1	2787	1	WÃ¶chentlich	deutsch	t	200	f
+12274	4	2791	3	rÃ©pÃ©tition	francais	t	52	f
 12260	1	2788	1	Monatlich	deutsch	t	200	f
 12272	1	2791	3	Wiederholung	deutsch	t	52	f
-12278	4	2792	3	La répétition se termine	francais	t	52	f
+12278	4	2792	3	La rÃ©pÃ©tition se termine	francais	t	52	f
 12276	1	2792	3	Wiederholung endet am	deutsch	t	52	f
 1137	1	1137	3	Bericht	deutsch	t	169	f
 6782	4	1137	3	Rapport	francais	t	169	f
-3803	3	1137	3	informe	Espagñol	t	169	f
-12284	1	2794	1	Achtung! Rekursives Löschen versionierter oder verknüpfter Datensätze\\\\\\\\\\\\\\\\nwurde aktiviert!	deutsch	t	17	t
-10980	1	2469	2	rekursives Löschen	deutsch	t	0	f
-10984	1	2470	2	rekursives Löschen von Verknüpfungen & Versionen	deutsch	t	0	f
-12286	4	2794	1	Attention! Suppression récursive dossiers versionnés ou liés \\\\\\\\\\\\\\\\ Nhas activé!	francais	t	17	f
+3803	3	1137	3	informe	EspagÅ„ol	t	169	f
+12284	1	2794	1	Achtung! Rekursives LÃ¶schen versionierter oder verknÃ¼pfter DatensÃ¤tze\\\\\\\\\\\\\\\\nwurde aktiviert!	deutsch	t	17	t
+10980	1	2469	2	rekursives LÃ¶schen	deutsch	t	0	f
+10984	1	2470	2	rekursives LÃ¶schen von VerknÃ¼pfungen & Versionen	deutsch	t	0	f
+12286	4	2794	1	Attention! Suppression rÃ©cursive dossiers versionnÃ©s ou liÃ©s \\\\\\\\\\\\\\\\ Nhas activÃ©!	francais	t	17	f
 12290	4	2795	3	Options	francais	t	221	f
 12288	1	2795	3	Optionen	deutsch	t	221	f
 12302	4	2798	2	Importer	francais	t	0	f
-12292	1	2796	1	übernehmen und schließen	deutsch	t	13	f
+12292	1	2796	1	Ã¼bernehmen und schlieÃŸen	deutsch	t	13	f
 12253	2	2786	1	daily	english	t	200	f
 12257	2	2787	1	weekly	english	t	200	f
 12261	2	2788	1	monthly	english	t	200	f
 12265	2	2789	1	yearly	english	t	200	f
 12304	1	2799	1	Beginn	deutsch	t	200	f
-12314	4	2801	1	Durée / Période	francais	t	200	f
+12314	4	2801	1	DurÃ©e / PÃ©riode	francais	t	200	f
 12312	1	2801	1	Dauer/Periode	deutsch	t	200	f
 12318	4	2802	1	Seriendauer	francais	t	200	f
 12316	1	2802	1	Seriendauer	deutsch	t	200	f
-12322	4	2803	1	série Muster	francais	t	200	f
+12322	4	2803	1	sÃ©rie Muster	francais	t	200	f
 12320	1	2803	1	Serienmuster	deutsch	t	200	f
-12332	1	2806	3	angezeigte Felder in der Verknüpfungs-Schnellsuche / Verknüpungs-Auswahl	deutsch	t	121	f
-12334	4	2806	3	Les champs affichés dans le lien Recherche / sélection Verknüpungs rapide	francais	t	121	f
-2524	1	1302	2	Verknüpfungseditor	deutsch	t	\N	f
-12346	4	2809	3	lié paramétrisation	francais	t	121	f
-12344	1	2809	3	Verknüpfungs Parametrisierung	deutsch	t	121	f
+12332	1	2806	3	angezeigte Felder in der VerknÃ¼pfungs-Schnellsuche / VerknÃ¼pungs-Auswahl	deutsch	t	121	f
+12334	4	2806	3	Les champs affichÃ©s dans le lien Recherche / sÃ©lection VerknÃ¼pungs rapide	francais	t	121	f
+2524	1	1302	2	VerknÃ¼pfungseditor	deutsch	t	\N	f
+12346	4	2809	3	liÃ© paramÃ©trisation	francais	t	121	f
+12344	1	2809	3	VerknÃ¼pfungs Parametrisierung	deutsch	t	121	f
 12354	4	2811	3	Description de	francais	t	110	f
 12352	1	2811	3	aus Beschreibung	deutsch	t	110	f
-5871	1	2019	3	soll das Feld gelöscht werden?	deutsch	t	110	f
+5871	1	2019	3	soll das Feld gelÃ¶scht werden?	deutsch	t	110	f
 7599	4	2019	3	Supprimer le champs:	francais	t	110	f
 12358	4	2812	3	Voir la liste	francais	t	139	f
-12362	4	2813	3	séparateur de liste	francais	t	139	f
+12362	4	2813	3	sÃ©parateur de liste	francais	t	139	f
 12356	1	2812	3	Listendarstellung	deutsch	t	139	f
-12366	4	2814	3	la forme abrégée	francais	t	139	f
+12366	4	2814	3	la forme abrÃ©gÃ©e	francais	t	139	f
 12360	1	2813	3	Listentrenner	deutsch	t	139	f
-12370	4	2815	3	en détails	francais	t	139	f
+12370	4	2815	3	en dÃ©tails	francais	t	139	f
 12364	1	2814	3	Kurzform	deutsch	t	139	f
-12342	4	2808	3	avec OU champs à rechercher dans la table de liens	francais	t	121	f
-12368	1	2815	3	Ausführlich	deutsch	t	139	f
+12342	4	2808	3	avec OU champs Ä… rechercher dans la table de liens	francais	t	121	f
+12368	1	2815	3	AusfÃ¼hrlich	deutsch	t	139	f
 5292	1	1826	3	durchsucht	deutsch	t	121	f
 7410	4	1826	3	Champs de recherche	francais	t	121	f
 12378	4	2817	3	taille de bloc	francais	t	139	f
-12340	1	2808	3	mit ODER zu durchsuchende Felder in der Verknüpfungstabelle	deutsch	t	121	f
+12340	1	2808	3	mit ODER zu durchsuchende Felder in der VerknÃ¼pfungstabelle	deutsch	t	121	f
 12369	2	2815	3	in detail	english	t	139	f
 12361	2	2813	3	list-delimiter	english	t	139	f
 12345	2	2809	3	link parametrisation	english	t	121	f
@@ -9318,52 +9318,52 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12297	2	2797	2	import	english	t	0	f
 12301	2	2798	2	import	english	t	0	f
 12305	2	2799	1	start	english	t	200	f
-12376	1	2817	3	Blockgröße	deutsch	t	139	f
+12376	1	2817	3	BlockgrÃ¶ÃŸe	deutsch	t	139	f
 12386	4	2819	3	ImageMagick	francais	t	165	f
 12390	4	2820	3	Ghostscript	francais	t	165	f
-12394	4	2821	1	Détails suppressives	francais	t	5	f
+12394	4	2821	1	DÃ©tails suppressives	francais	t	5	f
 12380	1	2818	3	System	deutsch	t	165	f
-12422	4	2828	3	active la coloration d'enregistrements de données individuels gruppenzpezifische	francais	t	140	f
+12422	4	2828	3	active la coloration d'enregistrements de donnÃ©es individuels gruppenzpezifische	francais	t	140	f
 12384	1	2819	3	ImageMagick	deutsch	t	165	f
 12388	1	2820	3	ghostscript	deutsch	t	165	f
 4401	1	1529	1	Details in neuem Tab	deutsch	t	5	f
 7140	4	1529	1	Editer	francais	t	5	f
-12392	1	2821	1	unterdrücke Details	deutsch	t	5	f
+12392	1	2821	1	unterdrÃ¼cke Details	deutsch	t	5	f
 8349	1	2254	2	Suchleiste	deutsch	t	\N	f
 8353	1	2255	2	Suchleiste einblenden	deutsch	t	\N	f
 12204	1	2774	2	Terminserie	deutsch	t	0	f
 12208	1	2775	2	Terminserie anlegen	deutsch	t	0	f
-12428	1	2830	3	aktiviert das automatische senden / speichern des Formulars im Hintergrund bei Änderung an Datensätzen	deutsch	t	140	f
-12420	1	2828	3	aktiviert die gruppenzpezifische Färbung einzelner Datensätze	deutsch	t	140	f
+12428	1	2830	3	aktiviert das automatische senden / speichern des Formulars im Hintergrund bei Ã„nderung an DatensÃ¤tzen	deutsch	t	140	f
+12420	1	2828	3	aktiviert die gruppenzpezifische FÃ¤rbung einzelner DatensÃ¤tze	deutsch	t	140	f
 5633	1	1940	2	Ansicht	deutsch	t	\N	f
 5636	1	1941	2	Ansicht anpassen	deutsch	t	\N	f
-12404	1	2824	3	Regel zur Hervorhebung oder Markierung einzelner Datensätze mit Farben oder Symbolen. Erwartet Funktionsaufruf.	deutsch	t	140	f
+12404	1	2824	3	Regel zur Hervorhebung oder Markierung einzelner DatensÃ¤tze mit Farben oder Symbolen. Erwartet Funktionsaufruf.	deutsch	t	140	f
 12548	1	2860	3	Sync Import	deutsch	t	145	f
 12440	1	2833	3	physischer Tabellenname	deutsch	t	140	f
-3907	3	1244	1	horizontal	Espagñol	t	5	f
+3907	3	1244	1	horizontal	EspagÅ„ol	t	5	f
 12442	4	2833	3	nom de la table physique	francais	t	140	f
-12436	1	2832	3	aktiviert das Anlegen eines Datensatzes ohne vergebene ID. Neue Datensätze werden erst nach ''Übernehmen'' angelegt.	deutsch	t	140	f
-12412	1	2826	3	aktiviert das Logging aller Änderungen eines Datensatzes	deutsch	t	140	f
-12438	4	2832	3	a permis la création d'un ensemble de données sans ID affecté. De nouveaux records sont « créées après » « Appliquer ».	francais	t	140	f
-12416	1	2827	3	aktiviert das userspezifische Sperren einzelner Datensätze	deutsch	t	140	f
-12414	4	2826	3	l'enregistrement de toutes les modifications activé un enregistrement	francais	t	140	f
-12424	1	2829	3	aktiviert die gruppen/userspezifische Berechtigung einzelner Datensätze	deutsch	t	140	f
-12418	4	2827	3	active le blocage spécifique à l'utilisateur des enregistrements individuels	francais	t	140	f
-12426	4	2829	3	les groupes / active utilisateur autorisation spécifique des dossiers individuels	francais	t	140	f
-12402	4	2823	3	Calculer le résultat alternatif défini <br> <b> par défaut :. </ B> select count (*) <br> <b> Pas assez de réponses: </ b> odbc_fetch_row	francais	t	140	f
+12436	1	2832	3	aktiviert das Anlegen eines Datensatzes ohne vergebene ID. Neue DatensÃ¤tze werden erst nach ''Ãœbernehmen'' angelegt.	deutsch	t	140	f
+12412	1	2826	3	aktiviert das Logging aller Ã„nderungen eines Datensatzes	deutsch	t	140	f
+12438	4	2832	3	a permis la crÃ©ation d'un ensemble de donnÃ©es sans ID affectÃ©. De nouveaux records sont Â« crÃ©Ã©es aprÄs Â» Â« Appliquer Â».	francais	t	140	f
+12416	1	2827	3	aktiviert das userspezifische Sperren einzelner DatensÃ¤tze	deutsch	t	140	f
+12414	4	2826	3	l'enregistrement de toutes les modifications activÃ© un enregistrement	francais	t	140	f
+12424	1	2829	3	aktiviert die gruppen/userspezifische Berechtigung einzelner DatensÃ¤tze	deutsch	t	140	f
+12418	4	2827	3	active le blocage spÃ©cifique Ä… l'utilisateur des enregistrements individuels	francais	t	140	f
+12426	4	2829	3	les groupes / active utilisateur autorisation spÃ©cifique des dossiers individuels	francais	t	140	f
+12402	4	2823	3	Calculer le rÃ©sultat alternatif dÃ©fini <br> <b> par dÃ©faut :. </ B> select count (*) <br> <b> Pas assez de rÃ©ponses: </ b> odbc_fetch_row	francais	t	140	f
 12400	1	2823	3	Berechnung der alternativen Ergebnismenge.<br><b>standart:</b> select count(*)<br><b>wenig Ergebnisse:</b> odbc_fetch_row	deutsch	t	140	f
-12446	4	2834	3	Nom de la table dépendant de la langue	francais	t	140	f
-12444	1	2834	3	Sprachabhängige Tabellenbezeichnung	deutsch	t	140	f
+12446	4	2834	3	Nom de la table dÃ©pendant de la langue	francais	t	140	f
+12444	1	2834	3	SprachabhÃ¤ngige Tabellenbezeichnung	deutsch	t	140	f
 12454	4	2836	3	Infos	francais	t	140	f
 12452	1	2836	3	Infos	deutsch	t	140	f
-12458	4	2837	3	champ signifiante du record de définition unique	francais	t	110	f
-12456	1	2837	3	Aussagekräftiges Feld des Datensatzes zur eindeutigen Bestimmung	deutsch	t	110	f
-12462	4	2838	3	Le champs a un indice de base de données	francais	t	110	f
+12458	4	2837	3	champ signifiante du record de dÃ©finition unique	francais	t	110	f
+12456	1	2837	3	AussagekrÃ¤ftiges Feld des Datensatzes zur eindeutigen Bestimmung	deutsch	t	110	f
+12462	4	2838	3	Le champs a un indice de base de donnÃ©es	francais	t	110	f
 12460	1	2838	3	Feld besitzt einen Datenbankindex	deutsch	t	110	f
 12466	4	2839	3	Le champ est clairement	francais	t	110	f
 12464	1	2839	3	Feld ist eindeutig	deutsch	t	110	f
 12385	2	2819	3	ImageMagick	english	t	165	f
-12498	4	2847	3	Représentation du lien que la recherche de sélection basée sur AJAX (uniquement en combinaison avec « » Sélectionnez Recherche « »)	francais	t	110	f
+12498	4	2847	3	ReprÃ©sentation du lien que la recherche de sÃ©lection basÃ©e sur AJAX (uniquement en combinaison avec Â« Â» SÃ©lectionnez Recherche Â« Â»)	francais	t	110	f
 12377	2	2817	3	blocksize 	english	t	139	f
 12381	2	2818	3	system	english	t	165	f
 12453	2	2836	3	information	english	t	140	f
@@ -9376,25 +9376,25 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12417	2	2827	3	activates user-specific locking of single records	english	t	140	f
 12421	2	2828	3	activates group-specific coloring of single records	english	t	140	f
 12401	2	2823	3	Calculation of alternative result set.<br><b>standard:</b> select count(*)<br><b>few results:</b> orbc_fetch_row	english	t	140	f
-12468	1	2840	3	aktiviert das automatische senden / speichern des Formularfeldes im Hintergrund bei Änderung.	deutsch	t	110	f
-12432	1	2831	3	aktiviert das Aufklappen von Verknüpfungen oder Gruppierungen in der Datensatzliste	deutsch	t	140	f
-12408	1	2825	3	aktiviert ausgewählte Trigger	deutsch	t	140	f
-12410	4	2825	3	activé déclenchement sélectionné	francais	t	140	f
-12396	1	2822	3	Art der Versionierung. <br><b>recursiv:</b> versioniert alle 1:n Verknüpfungen falls ebenfalls Versionierung aktiv<br><b>Fix:</b> versioniert nur den aktuellen Datensatz	deutsch	t	140	f
+12468	1	2840	3	aktiviert das automatische senden / speichern des Formularfeldes im Hintergrund bei Ã„nderung.	deutsch	t	110	f
+12432	1	2831	3	aktiviert das Aufklappen von VerknÃ¼pfungen oder Gruppierungen in der Datensatzliste	deutsch	t	140	f
+12408	1	2825	3	aktiviert ausgewÃ¤hlte Trigger	deutsch	t	140	f
+12410	4	2825	3	activÃ© dÃ©clenchement sÃ©lectionnÃ©	francais	t	140	f
+12396	1	2822	3	Art der Versionierung. <br><b>recursiv:</b> versioniert alle 1:n VerknÃ¼pfungen falls ebenfalls Versionierung aktiv<br><b>Fix:</b> versioniert nur den aktuellen Datensatz	deutsch	t	140	f
 12480	1	2843	3	Feld kann in der Tabellenliste Gruppiert dargestellt werden	deutsch	t	110	f
 11660	1	2639	3	Ajaxsuche	deutsch	t	110	f
-12484	1	2844	3	aktiviert die Stapel / Sammeländerung für dieses Feld	deutsch	t	110	f
-12512	1	2851	3	definiert eine Resourcen Quelle für Gantt Darstellung. Erwartet n:m Beziehung	deutsch	t	140	f
+12484	1	2844	3	aktiviert die Stapel / SammelÃ¤nderung fÃ¼r dieses Feld	deutsch	t	110	f
+12512	1	2851	3	definiert eine Resourcen Quelle fÃ¼r Gantt Darstellung. Erwartet n:m Beziehung	deutsch	t	140	f
 12516	1	2852	3	Kalender spezifische Einstellungen	deutsch	t	140	f
 12488	1	2845	3	AJAX basierte Auswahlsuche anstelle des dropdown Feldes	deutsch	t	110	f
-12492	1	2846	3	Darstellung der Verknüpfung als Auswahlfeld	deutsch	t	110	f
-12496	1	2847	3	Darstellung der Verknüpfung als AJAX basierte Auswahlsuche (nur in Kombination mit ''Auswahlsuche'')	deutsch	t	110	f
-12500	1	2848	3	<b>Kurtzform: </b>Verkürzte numerische Anzeige<br><b>Ausführlich: </b>Darstellung aller Werte durch Listentrenner getrennt	deutsch	t	110	f
-12504	1	2849	3	Trenner für ausführliche Darstellung	deutsch	t	110	f
+12492	1	2846	3	Darstellung der VerknÃ¼pfung als Auswahlfeld	deutsch	t	110	f
+12496	1	2847	3	Darstellung der VerknÃ¼pfung als AJAX basierte Auswahlsuche (nur in Kombination mit ''Auswahlsuche'')	deutsch	t	110	f
+12500	1	2848	3	<b>Kurtzform: </b>VerkÃ¼rzte numerische Anzeige<br><b>AusfÃ¼hrlich: </b>Darstellung aller Werte durch Listentrenner getrennt	deutsch	t	110	f
+12504	1	2849	3	Trenner fÃ¼r ausfÃ¼hrliche Darstellung	deutsch	t	110	f
 12472	1	2841	3	Darstellung als Auswahlfeld in der <b>Tabellensuchleiste</b>	deutsch	t	110	f
 12476	1	2842	3	aktiviert eine AJAX basierte Auswahlsuche in der <b>Tabellensuchleiste</b>	deutsch	t	110	f
 12600	1	2873	3	Abstand links	deutsch	t	177	f
-12478	4	2842	3	activé une recherche de sélection basée sur AJAX dans le tableau Recherche <b> bar </ b>	francais	t	110	f
+12478	4	2842	3	activÃ© une recherche de sÃ©lection basÃ©e sur AJAX dans le tableau Recherche <b> bar </ b>	francais	t	110	f
 12510	4	2850	3	Ressource	francais	t	140	f
 12508	1	2850	3	Ressource	deutsch	t	140	f
 12522	4	2853	1	ordre du jour	francais	t	200	f
@@ -9403,12 +9403,12 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12524	1	2854	1	Gantt	deutsch	t	200	f
 8166	1	2208	3	Projekt-Import	deutsch	t	148	f
 8168	4	2208	3	projet d'importation	francais	t	148	f
-12534	4	2856	3	Devrait être créé pour le lien existant d'une table croisée View? Les liens existants seront effacés.	francais	t	121	f
-12532	1	2856	3	Soll für die vorhandene Verknüpfung ein tabellenübergreifendes View erstellt werden?\nVorhandene Verknüpfungen werden gelöscht.	deutsch	t	121	t
-12528	1	2855	3	Tabellenübergreifende Verknüpfung: (nur lesend)	deutsch	t	121	f
+12534	4	2856	3	Devrait Åºtre crÃ©Ã© pour le lien existant d'une table croisÃ©e View? Les liens existants seront effacÃ©s.	francais	t	121	f
+12532	1	2856	3	Soll fÃ¼r die vorhandene VerknÃ¼pfung ein tabellenÃ¼bergreifendes View erstellt werden?\nVorhandene VerknÃ¼pfungen werden gelÃ¶scht.	deutsch	t	121	t
+12528	1	2855	3	TabellenÃ¼bergreifende VerknÃ¼pfung: (nur lesend)	deutsch	t	121	f
 12530	4	2855	3	Table de liaison: (lecture seule)	francais	t	121	f
-12536	1	2857	3	Filter Optionen für Auswahlpool<br>z.B. $extension[''where''] = " keywords like ''%fish%'' "; return $extension;	deutsch	t	110	f
-12538	4	2857	3	Les options de filtrage pour la sélection Pool | $ Extension [ '' où ''] = "mots-clés tels que '' %% de poissons « ; return $ prolongation;	francais	t	110	f
+12536	1	2857	3	Filter Optionen fÃ¼r Auswahlpool<br>z.B. $extension[''where''] = " keywords like ''%fish%'' "; return $extension;	deutsch	t	110	f
+12538	4	2857	3	Les options de filtrage pour la sÃ©lection Pool | $ Extension [ '' oÅ‚ ''] = "mots-clÃ©s tels que '' %% de poissons Â« ; return $ prolongation;	francais	t	110	f
 11482	4	2594	3	piscine	francais	t	110	f
 11480	1	2594	3	Pool	deutsch	t	110	f
 11665	2	2640	3	ajaxpost 	english	t	110	f
@@ -9462,25 +9462,25 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12544	1	2859	3	Sync Export	deutsch	t	145	f
 12550	4	2860	3	importation Sync	francais	t	145	f
 12576	1	2867	3	Achse	deutsch	t	177	f
-11784	1	2670	2	Stapeländerung	deutsch	t	0	f
-11788	1	2671	2	Stapeländerung	deutsch	t	0	f
+11784	1	2670	2	StapelÃ¤nderung	deutsch	t	0	f
+11788	1	2671	2	StapelÃ¤nderung	deutsch	t	0	f
 12554	4	2861	3	largeur de la cellule	francais	t	168	f
 12552	1	2861	3	Zellenbreite	deutsch	t	168	f
-7942	1	2152	1	Fehler bei Versionierung! Nur aktuelle Datensätze können versioniert werden!	deutsch	t	25	f
-7944	4	2152	1	Erreur versioning! Seuls les enregistrements actuels peuvent être versionnées!	francais	t	25	f
-12558	4	2862	3	Créer une nouvelle EXIF &#8203;&#8203;du fichier de configuration	francais	t	154	f
+7942	1	2152	1	Fehler bei Versionierung! Nur aktuelle DatensÃ¤tze kÃ¶nnen versioniert werden!	deutsch	t	25	f
+7944	4	2152	1	Erreur versioning! Seuls les enregistrements actuels peuvent Åºtre versionnÃ©es!	francais	t	25	f
+12558	4	2862	3	CrÃ©er une nouvelle EXIF &#8203;&#8203;du fichier de configuration	francais	t	154	f
 12556	1	2862	3	EXIF Konfigurationsdatei neu erstellen	deutsch	t	154	f
 12562	4	2863	3	type de graphique	francais	t	177	f
 12560	1	2863	3	Diagramm-Typ	deutsch	t	177	f
 12564	1	2864	3	Transponiert	deutsch	t	177	f
 12578	4	2867	3	axe	francais	t	177	f
-12596	1	2872	3	Schriftgröße	deutsch	t	177	f
+12596	1	2872	3	SchriftgrÃ¶ÃŸe	deutsch	t	177	f
 12598	4	2872	3	taille de la police	francais	t	177	f
-12602	4	2873	3	distance par rapport à la gauche	francais	t	177	f
+12602	4	2873	3	distance par rapport Ä… la gauche	francais	t	177	f
 12604	1	2874	3	Abstand oben	deutsch	t	177	f
 12606	4	2874	3	espace au-dessus	francais	t	177	f
 12608	1	2875	3	Abstand rechts	deutsch	t	177	f
-12610	4	2875	3	droit à distance	francais	t	177	f
+12610	4	2875	3	droit Ä… distance	francais	t	177	f
 12612	1	2876	3	Abstand unten	deutsch	t	177	f
 12614	4	2876	3	L'espace ci-dessous	francais	t	177	f
 12616	1	2877	3	Text X-Achse	deutsch	t	177	f
@@ -9488,22 +9488,22 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12620	1	2878	3	Text Y-Achse	deutsch	t	177	f
 12622	4	2878	3	Texte axe Y	francais	t	177	f
 12624	1	2879	3	Legende x	deutsch	t	177	f
-12626	4	2879	3	légende x	francais	t	177	f
+12626	4	2879	3	lÃ©gende x	francais	t	177	f
 12628	1	2880	3	Legende y	deutsch	t	177	f
-12630	4	2880	3	légende y	francais	t	177	f
+12630	4	2880	3	lÃ©gende y	francais	t	177	f
 12632	1	2881	3	Legende	deutsch	t	177	f
-12634	4	2881	3	légende	francais	t	177	f
+12634	4	2881	3	lÃ©gende	francais	t	177	f
 12636	1	2882	3	verbergen	deutsch	t	177	f
 12638	4	2882	3	cacher	francais	t	177	f
 12650	4	2885	3	Graphique circulaire	francais	t	177	f
 12652	1	2886	3	keine Beschriftung	deutsch	t	177	f
-12654	4	2886	3	pas d'étiquette	francais	t	177	f
+12654	4	2886	3	pas d'Ã©tiquette	francais	t	177	f
 12660	1	2888	3	zeige Prozentwert	deutsch	t	177	f
 12664	1	2889	3	Pie-Radius	deutsch	t	177	f
 12672	1	2891	3	Eigenschaft	deutsch	t	177	f
 12680	1	2893	3	Anpassung	deutsch	t	177	f
-4739	3	1642	3	autor	Espagñol	t	52	f
-3908	3	1245	1	vertical	Espagñol	t	5	f
+4739	3	1642	3	autor	EspagÅ„ol	t	52	f
+3908	3	1245	1	vertical	EspagÅ„ol	t	5	f
 12561	2	2863	3	diagram type	english	t	177	f
 12565	2	2864	3	transposed	english	t	177	f
 12577	2	2867	3	axis	english	t	177	f
@@ -9526,28 +9526,28 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12673	2	2891	3	setting	english	t	177	f
 12681	2	2893	3	customization	english	t	177	f
 12686	4	2894	3	appliquer	francais	t	177	f
-12684	1	2894	3	Übernehmen	deutsch	t	177	f
+12684	1	2894	3	Ãœbernehmen	deutsch	t	177	f
 12690	4	2895	3	multilingue	francais	t	110	f
 12688	1	2895	3	Mehrsprachig	deutsch	t	110	f
-12694	4	2896	3	activé le support linguistique	francais	t	110	f
-12692	1	2896	3	aktiviert die Sprachunterstützung	deutsch	t	110	f
+12694	4	2896	3	activÃ© le support linguistique	francais	t	110	f
+12692	1	2896	3	aktiviert die SprachunterstÃ¼tzung	deutsch	t	110	f
 12698	4	2897	3	traduire	francais	t	180	f
-12696	1	2897	3	übersetzen	deutsch	t	180	f
-12702	4	2898	3	Pour cette langue, la traduction de langue pour les champs de table est activée ou désactivée. \\\\\\\\\\\\\\\\ N champs de traduction sont supprimés ou ajoutés!	francais	t	180	f
+12696	1	2897	3	Ã¼bersetzen	deutsch	t	180	f
+12702	4	2898	3	Pour cette langue, la traduction de langue pour les champs de table est activÃ©e ou dÃ©sactivÃ©e. \\\\\\\\\\\\\\\\ N champs de traduction sont supprimÃ©s ou ajoutÃ©s!	francais	t	180	f
 7943	2	2152	1	Versioning error! Only the currents record can be versionised. 	english	t	25	f
-12700	1	2898	3	Für diese Sprache wird die Sprachübersetzung für Tabellenfelder aktiviert oder deaktiviert.\\\\\\\\\\\\\\\\nÜbersetzungsfelder werden gelöscht oder hinzugefügt!	deutsch	t	180	t
+12700	1	2898	3	FÃ¼r diese Sprache wird die SprachÃ¼bersetzung fÃ¼r Tabellenfelder aktiviert oder deaktiviert.\\\\\\\\\\\\\\\\nÃœbersetzungsfelder werden gelÃ¶scht oder hinzugefÃ¼gt!	deutsch	t	180	t
 12296	1	2797	2	Datei-Import	deutsch	t	0	f
 12300	1	2798	2	Import	deutsch	t	0	f
 729	1	729	2	Wiedervorlage	deutsch	t	\N	f
 730	1	730	2	Wiedervorlage bearbeiten	deutsch	t	\N	f
 12706	4	2899	1	filtre resoumission	francais	t	0	f
 12704	1	2899	1	Wiedervorlage filtern	deutsch	t	0	f
-12714	4	2901	1	Resoumission/s ajouté avec succès!	francais	t	5	f
-12712	1	2901	1	Wiedervorlage/n erfolgreich hinzugefügt!	deutsch	t	5	f
-12708	1	2900	1	Wiedervorlage/n erfolgreich gelöscht!	deutsch	t	5	f
-12710	4	2900	1	Resoumission/s supprimé avec succès!	francais	t	5	f
-12716	1	2902	1	Soll für die ausgewählten Datensätze eine Wiedervorlage erstellt/entfernt werden?	deutsch	t	5	f
-12718	4	2902	1	Cible / supprimé créé pour l'enregistrements sélectionnés resoumission?	francais	t	5	f
+12714	4	2901	1	Resoumission/s ajoutÃ© avec succÄs!	francais	t	5	f
+12712	1	2901	1	Wiedervorlage/n erfolgreich hinzugefÃ¼gt!	deutsch	t	5	f
+12708	1	2900	1	Wiedervorlage/n erfolgreich gelÃ¶scht!	deutsch	t	5	f
+12710	4	2900	1	Resoumission/s supprimÃ© avec succÄs!	francais	t	5	f
+12716	1	2902	1	Soll fÃ¼r die ausgewÃ¤hlten DatensÃ¤tze eine Wiedervorlage erstellt/entfernt werden?	deutsch	t	5	f
+12718	4	2902	1	Cible / supprimÃ© crÃ©Ã© pour l'enregistrements sÃ©lectionnÃ©s resoumission?	francais	t	5	f
 12722	4	2903	2	image	francais	t	0	f
 12720	1	2903	2	Bild	deutsch	t	0	f
 12724	1	2904	2	Bild	deutsch	t	0	f
@@ -9595,1203 +9595,1203 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12729	2	2905	2	mimetypes	english	t	0	f
 12733	2	2906	2	mimetypes	english	t	0	f
 6729	4	1084	3	Icone - URL	francais	t	162	f
-3750	3	1084	3	ícono URL	Espagñol	t	162	f
+3750	3	1084	3	Ä·cono URL	EspagÅ„ol	t	162	f
 2206	2	1084	3	icon	english	t	162	f
-12746	4	2909	1	attribué à	francais	t	0	f
+12746	4	2909	1	attribuÃ© Ä…	francais	t	0	f
 459	1	459	2	Fehlerreport	deutsch	t	\N	f
 460	1	460	2	Fehler Report	deutsch	t	\N	f
-12758	4	2912	3	dépendances	francais	t	110	f
+12758	4	2912	3	dÃ©pendances	francais	t	110	f
 12744	1	2909	1	zugewiesen an	deutsch	t	0	f
-12754	4	2911	3	active la suppression automatique et la recréation des requêtes dépendantes.	francais	t	110	f
+12754	4	2911	3	active la suppression automatique et la recrÃ©ation des requÅºtes dÃ©pendantes.	francais	t	110	f
 12762	4	2913	3	dernier	francais	t	139	f
-12756	1	2912	3	Abhängigkeiten	deutsch	t	110	f
-12752	1	2911	3	aktiviert das automatische Löschen und Wiederanlegen von abhängigen Abfragen. 	deutsch	t	110	f
+12756	1	2912	3	AbhÃ¤ngigkeiten	deutsch	t	110	f
+12752	1	2911	3	aktiviert das automatische LÃ¶schen und Wiederanlegen von abhÃ¤ngigen Abfragen. 	deutsch	t	110	f
 975	1	975	3	Exportdatei	deutsch	t	145	f
 2097	2	975	3	export list	english	t	145	f
 6632	4	975	3	Exporter liste	francais	t	145	f
-3643	3	975	3	lista de exportación	Espagñol	t	145	f
+3643	3	975	3	lista de exportaciÃ³n	EspagÅ„ol	t	145	f
 12760	1	2913	3	letzter	deutsch	t	139	f
 10404	1	2327	3	aktualisiere .htaccess .htpasswd	deutsch	t	154	f
 10405	2	2327	3	update .htaccess / ./htpasswd	english	t	154	f
-4658	1	1615	2	einfügen	deutsch	t	\N	f
-4661	1	1616	2	Dateien/Ordner einfügen	deutsch	t	\N	f
+4658	1	1615	2	einfÃ¼gen	deutsch	t	\N	f
+4661	1	1616	2	Dateien/Ordner einfÃ¼gen	deutsch	t	\N	f
 12780	1	2918	3	aufklappen	deutsch	t	110	f
 12784	1	2919	3	wird in der Tabellendarstellung als aufgeklappt markiert	deutsch	t	110	f
 11105	2	2500	2	save settings	english	t	0	f
 11104	1	2500	2	aktuelle Einstellung speichern	deutsch	t	0	f
-11100	1	2499	2	Ansicht zurücksetzen	deutsch	t	0	f
+11100	1	2499	2	Ansicht zurÃ¼cksetzen	deutsch	t	0	f
 11101	2	2499	2	reset view-settings	english	t	0	f
-10406	4	2327	3	Mise à jour .htaccess / ./htpasswd	francais	t	154	f
-4022	3	1359	2	Texto 128	Espagñol	t	0	f
-11106	4	2500	2	Enregistrer les paramètres en cours	francais	t	0	f
-11102	4	2499	2	Voir Réinitialiser	francais	t	0	f
-10403	3	2327	3	Actualizar .htaccess / ./htpasswd	Espagñol	t	154	f
-11103	3	2500	2	Guardar configuración actual	Espagñol	t	0	f
-4469	3	1552	1	Phys.name	Espagñol	t	15	f
-11099	3	2499	2	Restablecer vista	Espagñol	t	0	f
-4031	3	1368	2	URL	Espagñol	t	0	f
-5996	3	2061	1	Primer registro!	Espagñol	t	23	f
-6056	3	2081	3	incl. sub	Espagñol	t	212	f
-7661	3	2082	1	Flujo de trabajo se ha iniciado con éxito!	Espagñol	t	5	f
-10819	3	2429	2	bloquear	Espagñol	t	0	f
-4592	3	1593	3	Restablecer la base de datos !!!	Espagñol	t	154	f
-11703	3	2650	1	versionados registros no se pueden borrar!	Espagñol	t	13	f
-4009	3	1346	2	diario	Espagñol	t	0	f
-11707	3	2651	1	registros bloqueados no se pueden borrar!	Espagñol	t	13	f
-11767	3	2666	3	cortar	Espagñol	t	173	f
-11879	3	2694	3	Si todos los archivos temporales, se borran?	Espagñol	t	154	f
-3434	3	763	1	Este registro está bloqueado y no se puede procesar en este momento!	Espagñol	t	23	f
-3947	3	1284	2	Retire enlace	Espagñol	t	0	f
-3870	3	1205	3	Estado	Espagñol	t	180	f
-3868	3	1203	3	Importación de texto	Espagñol	t	180	f
-3882	3	1217	3	abierto	Espagñol	t	180	f
-3883	3	1218	3	OK	Espagñol	t	180	f
-3884	3	1219	3	en general	Espagñol	t	180	f
-3885	3	1220	3	administración	Espagñol	t	180	f
-3886	3	1221	3	system	Espagñol	t	180	f
-3887	3	1222	3	Sprachauswahl	Espagñol	t	180	f
-3895	3	1232	2	curso	Espagñol	t	0	f
-3896	3	1233	2	historia	Espagñol	t	0	f
-10974	4	2467	2	nombres à virgule flottante	francais	f	0	f
+10406	4	2327	3	Mise Ä… jour .htaccess / ./htpasswd	francais	t	154	f
+4022	3	1359	2	Texto 128	EspagÅ„ol	t	0	f
+11106	4	2500	2	Enregistrer les paramÄtres en cours	francais	t	0	f
+11102	4	2499	2	Voir RÃ©initialiser	francais	t	0	f
+10403	3	2327	3	Actualizar .htaccess / ./htpasswd	EspagÅ„ol	t	154	f
+11103	3	2500	2	Guardar configuraciÃ³n actual	EspagÅ„ol	t	0	f
+4469	3	1552	1	Phys.name	EspagÅ„ol	t	15	f
+11099	3	2499	2	Restablecer vista	EspagÅ„ol	t	0	f
+4031	3	1368	2	URL	EspagÅ„ol	t	0	f
+5996	3	2061	1	Primer registro!	EspagÅ„ol	t	23	f
+6056	3	2081	3	incl. sub	EspagÅ„ol	t	212	f
+7661	3	2082	1	Flujo de trabajo se ha iniciado con Ã©xito!	EspagÅ„ol	t	5	f
+10819	3	2429	2	bloquear	EspagÅ„ol	t	0	f
+4592	3	1593	3	Restablecer la base de datos !!!	EspagÅ„ol	t	154	f
+11703	3	2650	1	versionados registros no se pueden borrar!	EspagÅ„ol	t	13	f
+4009	3	1346	2	diario	EspagÅ„ol	t	0	f
+11707	3	2651	1	registros bloqueados no se pueden borrar!	EspagÅ„ol	t	13	f
+11767	3	2666	3	cortar	EspagÅ„ol	t	173	f
+11879	3	2694	3	Si todos los archivos temporales, se borran?	EspagÅ„ol	t	154	f
+3434	3	763	1	Este registro estÄ¯ bloqueado y no se puede procesar en este momento!	EspagÅ„ol	t	23	f
+3947	3	1284	2	Retire enlace	EspagÅ„ol	t	0	f
+3870	3	1205	3	Estado	EspagÅ„ol	t	180	f
+3868	3	1203	3	ImportaciÃ³n de texto	EspagÅ„ol	t	180	f
+3882	3	1217	3	abierto	EspagÅ„ol	t	180	f
+3883	3	1218	3	OK	EspagÅ„ol	t	180	f
+3884	3	1219	3	en general	EspagÅ„ol	t	180	f
+3885	3	1220	3	administraciÃ³n	EspagÅ„ol	t	180	f
+3886	3	1221	3	system	EspagÅ„ol	t	180	f
+3887	3	1222	3	Sprachauswahl	EspagÅ„ol	t	180	f
+3895	3	1232	2	curso	EspagÅ„ol	t	0	f
+3896	3	1233	2	historia	EspagÅ„ol	t	0	f
+10974	4	2467	2	nombres Ä… virgule flottante	francais	f	0	f
 10976	1	2468	2	Kommazahl Float	deutsch	t	0	f
-10978	4	2468	2	Numéro de point Float	francais	f	0	f
-7012	4	1389	2	Nombre à virgule (max 10 caractères)	francais	f	0	f
-7190	4	1596	2	Pourcentage composé d''un nombre réel à 6 caractères	francais	f	0	f
+10978	4	2468	2	NumÃ©ro de point Float	francais	f	0	f
+7012	4	1389	2	Nombre Ä… virgule (max 10 caractÄres)	francais	f	0	f
+7190	4	1596	2	Pourcentage composÃ© d''un nombre rÃ©el Ä… 6 caractÄres	francais	f	0	f
 7830	1	2124	2	+xx xx xxxx oder +xx xxxxx	deutsch	t	0	f
 2646	1	1363	2	Textblock	deutsch	t	0	f
 6986	4	1363	2	Bloc texte 1000	francais	f	0	f
-7022	4	1399	2	Bloc de texte max 1000 caractères	francais	f	0	f
-3903	3	1240	1	incluir subcarpetas	Espagñol	t	20	f
-3909	3	1246	1	sin	Espagñol	t	5	f
-3912	3	1249	3	finalizar la sesión	Espagñol	t	132	f
-3914	3	1251	1	¿Quieres cerrar la sesión?	Espagñol	t	11	f
-3920	3	1257	1	archivo	Espagñol	t	122	f
-3922	3	1259	1	editar	Espagñol	t	122	f
-3927	3	1264	3	Esta función comprueba todos los derechos a la existencia de mesa! los derechos existentes no se sobrescriben	Espagñol	t	154	t
-3928	3	1265	3	Esta función comprueba todos los derechos a la existencia de menú! los derechos existentes no se sobrescriben	Espagñol	t	154	t
-3929	3	1266	2	monitoreo	Espagñol	t	0	f
-3930	3	1267	2	Monitoreo de usuario	Espagñol	t	0	f
-3905	3	1242	1	usuario	Espagñol	t	20	f
-3931	3	1268	2	los derechos de mesa	Espagñol	t	0	f
-3932	3	1269	2	actualización de los derechos de mesa	Espagñol	t	0	f
-3933	3	1270	2	derechos de uso	Espagñol	t	0	f
-3934	3	1271	2	actualización de los derechos	Espagñol	t	0	f
-3939	3	1276	2	detalle del vector	Espagñol	t	0	f
-3940	3	1277	2	arreglos de mesa	Espagñol	t	0	f
-3944	3	1281	2	enlace	Espagñol	t	0	f
-3945	3	1282	2	de datos del enlace	Espagñol	t	0	f
-3948	3	1285	1	Registro ya vinculado!	Espagñol	t	27	f
-3949	3	1286	2	enmarcado	Espagñol	t	0	f
-3950	3	1287	2	Tamaño de bastidor Fit y tipo	Espagñol	t	0	f
-3951	3	1288	2	anchura automática	Espagñol	t	0	f
-3952	3	1289	2	Ajustar tamaño de la tabla de forma automática	Espagñol	t	0	f
-3953	3	1290	2	Editar lista	Espagñol	t	0	f
-3954	3	1291	2	Editar lista	Espagñol	t	0	f
-3957	3	1294	1	a la primera cara	Espagñol	t	5	f
-3958	3	1295	1	la última página	Espagñol	t	5	f
-3959	3	1296	1	página anterior	Espagñol	t	5	f
-3960	3	1297	1	página siguiente	Espagñol	t	5	f
-3961	3	1298	1	abrir el enlace	Espagñol	t	15	f
-3962	3	1299	1	enlace de generación	Espagñol	t	15	f
-3963	3	1300	3	permitir el cambio de contraseña	Espagñol	t	127	f
-3964	3	1301	2	Editor de método abreviado	Espagñol	t	0	f
-3965	3	1302	2	Editor de método abreviado	Espagñol	t	0	f
-3966	3	1303	3	Introducir nuevos accesos directos!	Espagñol	t	121	f
-3967	3	1304	3	neu berechnen!	Espagñol	t	101	f
-3968	3	1305	2	archivo	Espagñol	t	0	f
-3969	3	1306	2	registro de archivo	Espagñol	t	0	f
-3970	3	1307	2	Mostrar archivados	Espagñol	t	0	f
-3971	3	1308	2	Mostrar registros archivados	Espagñol	t	0	f
-3973	3	1310	2	restaurar los datos	Espagñol	t	0	f
-3974	3	1311	1	Se deberá recuperar los datos?	Espagñol	t	13	f
-3975	3	1312	1	Registro fue archivada!	Espagñol	t	25	f
-3976	3	1313	1	El registro ha sido restaurado!	Espagñol	t	25	f
-3978	3	1315	3	Nombre de usuario y la contraseña debe contener al menos 5 caracteres!	Espagñol	t	127	f
-3980	3	1317	1	Sin permiso!	Espagñol	t	31	f
-3982	3	1319	2	Editor de subida	Espagñol	t	0	f
-3983	3	1320	2	Editor de subida	Espagñol	t	0	f
-3946	3	1283	2	la eliminación de enlaces	Espagñol	t	0	f
-3985	3	1322	1	ruta del archivo	Espagñol	t	186	f
-3987	3	1324	1	Lista de archivos de importación!	Espagñol	t	186	f
-3988	3	1325	1	Los registros fueron eliminados correctamente! Registros se eliminaron con éxito!	Espagñol	t	25	f
-3989	3	1326	1	Los registros fueron achiviert!	Espagñol	t	25	f
-3990	3	1327	1	Los registros se han restaurado!	Espagñol	t	25	f
-3993	3	1330	1	todas inversa	Espagñol	t	14	f
-3994	3	1331	1	Marcar todo	Espagñol	t	14	f
-3996	3	1333	1	agregará valor a	Espagñol	t	14	f
-3997	3	1334	1	restar valor	Espagñol	t	14	f
-4001	3	1338	1	reemplazado por fecha	Espagñol	t	14	f
-4002	3	1339	1	agregará días	Espagñol	t	14	f
-4003	3	1340	1	restar días	Espagñol	t	14	f
-4004	3	1341	1	Cambiar!	Espagñol	t	14	f
-4005	3	1342	1	Viendo	Espagñol	t	5	f
-4008	3	1345	2	calendario	Espagñol	t	0	f
-4017	3	1354	2	Texto 8	Espagñol	t	0	f
-4018	3	1355	2	Texto 10	Espagñol	t	0	f
-4019	3	1356	2	Texto 20	Espagñol	t	0	f
-4020	3	1357	2	Texto 30	Espagñol	t	0	f
-4021	3	1358	2	Texto 50	Espagñol	t	0	f
-4023	3	1360	2	Texto 160	Espagñol	t	0	f
-4034	3	1371	2	Selección (Select)	Espagñol	t	0	f
-4038	3	1375	2	PHP-Argumento	Espagñol	t	0	f
-5117	3	1768	3	OnChange	Espagñol	t	168	f
-4047	3	1384	2	------- Tipo de Campo Estándar -------	Espagñol	t	0	f
-4048	3	1385	2	------- Sin-Feldtypen ------- 	Espagñol	t	0	f
-4053	3	1390	2	Texto máx. 8 caracteres	Espagñol	t	0	f
-4054	3	1391	2	Texto máx. 10 caracteres	Espagñol	t	0	f
-4055	3	1392	2	Texto máx. 20 caracteres	Espagñol	t	0	f
-4056	3	1393	2	Texto máx. 30 caracteres 	Espagñol	t	0	f
-4057	3	1394	2	Texto máx. 50 caracteres	Espagñol	t	0	f
-3918	3	1255	3	regla indicador	Espagñol	t	122	f
-4058	3	1395	2	Texto máx. 128 caracteres	Espagñol	t	0	f
-4059	3	1396	2	Texto máx. 160 caracteres	Espagñol	t	0	f
-4067	3	1404	2	URL con máx. 230 caracteres	Espagñol	t	0	f
-4068	3	1405	2	Un correo electrónico con máx. 128 caracteres	Espagñol	t	0	f
-4070	3	1407	2	Campo de selección (Select)	Espagñol	t	0	f
-4074	3	1411	2	constructo Fórmula (eval)	Espagñol	t	0	f
-4083	3	1420	1	toda la lista de ignorados!	Espagñol	t	154	f
-4085	3	1422	2	recuperar	Espagñol	t	0	f
-4086	3	1423	2	Comprobar si hay nuevos mensajes	Espagñol	t	0	f
-4106	3	1431	3	registro	Espagñol	t	182	f
-4112	3	1433	3	ver	Espagñol	t	182	f
-4118	3	1435	1	Etiqueta	Espagñol	t	188	f
-4121	3	1436	1	semana	Espagñol	t	188	f
-4025	3	1362	2	Bloque de texto 399	Espagñol	t	0	f
-4043	3	1380	2	Posfechar	Espagñol	t	0	f
-4079	3	1416	2	Erstellungsdatum	Espagñol	t	0	f
-4044	3	1381	2	Fecha de edición	Espagñol	t	0	f
-4037	3	1374	2	Upload	Espagñol	t	0	f
-4080	3	1417	2	fecha de modificación	Espagñol	t	0	f
-4061	3	1398	2	bloque de texto con máx. 399 caracteres	Espagñol	t	0	f
-4124	3	1437	1	mes	Espagñol	t	188	f
-4127	3	1438	1	año	Espagñol	t	188	f
-4136	3	1441	1	plazo	Espagñol	t	192	f
-4139	3	1442	1	fiesta	Espagñol	t	192	f
-4142	3	1443	1	color:	Espagñol	t	192	f
-4145	3	1444	1	recordatorio:	Espagñol	t	192	f
-4148	3	1445	1	por:	Espagñol	t	192	f
-4151	3	1446	1	a:	Espagñol	t	192	f
-4154	3	1447	1	Asunto:	Espagñol	t	192	f
-4157	3	1448	1	contenido:	Espagñol	t	192	f
-4160	3	1449	1	tipo:	Espagñol	t	192	f
-4075	3	1412	2	por ejemplo Cliente (1) -> Persona de contacto (s)	Espagñol	t	0	f
-4040	3	1377	2	Enlace n:m	Espagñol	t	0	f
-4076	3	1413	2	por ejemplo Orden (n) -> punto (m)	Espagñol	t	0	f
-4041	3	1378	2	Postusuario	Espagñol	t	0	f
-4077	3	1414	2	El usuario que creó el registro	Espagñol	t	0	f
-4042	3	1379	2	Editar usuario	Espagñol	t	0	f
-4078	3	1415	2	Qué usuario modificada por última vez el registro	Espagñol	t	0	f
-4071	3	1408	2	Casilla de verificación (opción múltiple) como MULTISELECT	Espagñol	t	0	f
-4045	3	1382	2	Lista de usuario / grupo	Espagñol	t	0	f
-4166	3	1451	1	Claro!	Espagñol	t	192	f
-4046	3	1383	2	Largo	Espagñol	t	0	f
-4060	3	1397	2	Texto	Espagñol	t	0	f
-4024	3	1361	2	Texto	Espagñol	t	0	f
-4190	3	1459	3	gruppierbar	Espagñol	t	110	f
-4193	3	1460	3	agruparse	Espagñol	t	140	f
-4202	3	1463	3	proporcional	Espagñol	t	168	f
-4205	3	1464	3	copia	Espagñol	t	176	f
-4229	3	1472	1	No se han encontrado!	Espagñol	t	66	f
-4014	3	1351	2	número (10)	Espagñol	t	0	f
-4050	3	1387	2	número entero de 10 dígitos	Espagñol	t	0	f
-4256	3	1481	3	incl. directorio de usuarios	Espagñol	t	127	f
-4262	3	1483	2	Campo de selección (lista)	Espagñol	t	0	f
-4265	3	1484	2	Selección (radio)	Espagñol	t	0	f
-4283	3	1490	3	superior al ras	Espagñol	t	168	f
-4286	3	1491	3	centro	Espagñol	t	168	f
-4259	3	1482	2	Casilla de verificación (opción múltiple) como una lista casilla	Espagñol	t	0	f
-4063	3	1400	2	DD.MM.YYYY hh:mm.ss z.B. 05.12.02 z.B.. 5 dez 02 z.B.. 05 Dezember 2 15.10.00	Espagñol	t	0	t
-4289	3	1492	3	enrasado abajo	Espagñol	t	168	f
-4292	3	1493	3	base	Espagñol	t	168	f
-4295	3	1494	3	subíndice	Espagñol	t	168	f
-4298	3	1495	3	aumentar	Espagñol	t	168	f
-4301	3	1496	3	margen de texto superior	Espagñol	t	168	f
-4304	3	1497	3	menor margen de texto	Espagñol	t	168	f
-4328	3	1505	3	Java script	Espagñol	t	175	f
-4331	3	1506	1	sí	Espagñol	t	15	f
-4334	3	1507	1	no	Espagñol	t	15	f
-4337	3	1508	3	campo obligatorio	Espagñol	t	122	f
-4340	3	1509	1	Los siguientes campos no se han llenado!	Espagñol	t	13	f
-4352	3	1513	3	grupo eliminado	Espagñol	t	116	f
-4361	3	1516	3	Tipo de campo	Espagñol	t	160	f
-4364	3	1517	3	tipo de datos	Espagñol	t	160	f
-4367	3	1518	3	funcid	Espagñol	t	160	f
-4370	3	1519	3	tipo de datos	Espagñol	t	160	f
-4385	3	1524	1	tomar el relevo+invertir	Espagñol	t	13	f
-4391	3	1526	1	Mostrar lista	Espagñol	t	13	f
-4394	3	1527	1	tomar / aplicarán	Espagñol	t	5	f
-4403	3	1530	1	tome + Siguiente	Espagñol	t	13	f
-4406	3	1531	1	tomar el relevo+anterior	Espagñol	t	13	f
-4409	3	1532	3	desvío	Espagñol	t	127	f
-4415	3	1534	3	tirado a través	Espagñol	t	168	f
-4418	3	1535	3	puntos	Espagñol	t	168	f
-4421	3	1536	3	discontinua	Espagñol	t	168	f
-4424	3	1537	3	dos veces	Espagñol	t	168	f
-4427	3	1538	3	interior 3D	Espagñol	t	168	f
-4430	3	1539	3	exterior 3D	Espagñol	t	168	f
-4433	3	1540	3	especie	Espagñol	t	168	f
-4072	3	1409	2	Casilla de verificación (opción múltiple) con una nueva ventana	Espagñol	t	0	f
-4400	3	1529	1	Los detalles en nueva pestaña	Espagñol	t	5	f
-4436	3	1541	3	color del marco	Espagñol	t	168	f
-4445	3	1544	1	metadatos del programa	Espagñol	t	15	f
-4448	3	1545	1	cambios en los metadatos	Espagñol	t	15	f
-4035	3	1372	2	Selección (selección múltiple)	Espagñol	f	0	f
-4493	3	1560	1	abrir la cremallera	Espagñol	t	15	f
-4772	3	1653	3	Tipo de documento	Espagñol	t	52	f
-4502	3	1563	1	formato	Espagñol	t	15	f
-4505	3	1564	1	geometría	Espagñol	t	15	f
-4508	3	1565	1	resolución	Espagñol	t	15	f
-4511	3	1566	1	profundidad de color	Espagñol	t	15	f
-4514	3	1567	1	colores	Espagñol	t	15	f
-4526	3	1571	1	reajustar	Espagñol	t	20	f
-4535	3	1574	1	La integridad referencial ha sido violada! 	Espagñol	t	25	f
-4556	3	1581	3	etiquetado	Espagñol	t	110	f
-4583	3	1590	1	indicado	Espagñol	t	15	f
-4604	3	1597	1	hablada	Espagñol	t	19	f
-4220	3	1469	1	grupos	Espagñol	t	20	f
-4613	3	1600	1	repetir contraseña	Espagñol	t	46	f
-4616	3	1601	1	color	Espagñol	t	140	f
-4637	3	1608	1	Debe asignar un nombre!	Espagñol	t	5	f
-4655	3	1614	3	defecto	Espagñol	t	122	f
-4663	3	1616	2	Insertar archivos / carpetas	Espagñol	t	\N	f
-4688	3	1625	1	vista	Espagñol	t	66	f
-4691	3	1626	1	búsqueda	Espagñol	t	66	f
-4694	3	1627	1	Notación mal!	Espagñol	t	66	f
-4715	3	1634	3	en general	Espagñol	t	52	f
-4718	3	1635	3	metadatos	Espagñol	t	52	f
-4724	3	1637	3	mimetype	Espagñol	t	52	f
-4727	3	1638	3	creado por	Espagñol	t	52	f
-4730	3	1639	3	creado en	Espagñol	t	52	f
-4733	3	1640	3	titular	Espagñol	t	52	f
-4736	3	1641	3	Además del nombre	Espagñol	t	52	f
-4742	3	1643	3	El nombre del autor (nombre, apellidos)	Espagñol	t	52	f
-4745	3	1644	3	Palabras clave	Espagñol	t	52	f
-4748	3	1645	3	Etiquetas en el documento, más separados por comas	Espagñol	t	52	f
-4754	3	1647	3	Abstract, descripción del contenido	Espagñol	t	52	f
-4757	3	1648	3	editor	Espagñol	t	52	f
-4760	3	1649	3	Editores, universidad, etc.	Espagñol	t	52	f
-4763	3	1650	3	colaboradores	Espagñol	t	52	f
-4766	3	1651	3	Nombrar otra persona involucrada	Espagñol	t	52	f
-5048	3	1745	3	origen\r\n	Espagñol	t	52	f
-4781	3	1656	3	identificación	Espagñol	t	52	f
-4784	3	1657	3	(ISBN, ISSN, URL, etc. relación con este documento. La identificación única	Espagñol	t	52	f
-4790	3	1659	3	Plant, impreso o electrónicamente, de la cual los presentes origina documento	Espagñol	t	52	f
-4796	3	1661	3	Idioma del contenido del documento	Espagñol	t	52	f
-4802	3	1663	3	fuente	Espagñol	t	52	f
-4805	3	1664	3	atributos	Espagñol	t	52	f
-4808	3	1665	3	probado	Espagñol	t	52	f
-4811	3	1666	3	publicado	Espagñol	t	52	f
-4814	3	1667	3	formato de gráficos	Espagñol	t	52	f
-4817	3	1668	3	minuto	Espagñol	t	52	f
-4823	3	1670	3	cerrado	Espagñol	t	52	f
-4844	3	1677	3	clasificación	Espagñol	t	52	f
-4847	3	1678	3	Anotaciones en el documento, más separados por comas	Espagñol	t	52	f
-4850	3	1679	1	copia de	Espagñol	t	66	f
-4862	3	1683	1	El archivo ya existe!	Espagñol	t	66	f
-4865	3	1684	1	Carpeta ya existe!	Espagñol	t	66	f
-4868	3	1685	3	duplicados	Espagñol	t	52	f
-4871	3	1686	3	Das Userverzeichniss konnte nicht gelöscht werden!	Espagñol	t	29	f
-4874	3	1687	3	Mostrar eliminadas usuarios	Espagñol	t	132	f
-4877	3	1688	1	El archivo está bloqueado!	Espagñol	t	66	f
-5138	3	1775	3	forma	Espagñol	t	168	f
-4889	3	1692	1	Se generó el informe.	Espagñol	t	93	f
-5024	3	1737	3	EXIF	Espagñol	t	52	f
-4892	3	1693	1	editar	Espagñol	t	66	f
-5498	3	1895	3	disposición	Espagñol	t	164	f
-4901	3	1696	1	Los mensajes y los archivos no se pueden mezclar!	Espagñol	t	97	f
-4904	3	1697	1	Dieser Ordner ist ein Systemordner. Er ist nur in Verbindung mit Tabellen, Berichten oder Nachrichten beschreibbar!	Espagñol	t	66	f
-4928	3	1705	1	papeles	Espagñol	t	3	f
-4931	3	1706	1	fotos	Espagñol	t	3	f
-5861	3	2016	1	sobresalir	Espagñol	t	5	f
-4940	3	1709	1	Para borrar todo el contenido de la carpeta?	Espagñol	t	66	f
-4943	3	1710	1	Sin el permiso de carga!	Espagñol	t	66	f
-4964	3	1717	1	ningún archivo seleccionado!	Espagñol	t	66	f
-4970	3	1719	3	Indexada en:	Espagñol	t	52	f
-4973	3	1720	3	índice	Espagñol	t	52	f
-4976	3	1721	1	usuario:	Espagñol	t	23	f
-4979	3	1722	1	el tiempo estimado de tiempo de descanso:	Espagñol	t	23	f
-4994	3	1727	3	borrar completamente	Espagñol	t	127	f
-4997	3	1728	3	habilitar al usuario	Espagñol	t	132	f
-5012	3	1733	1	Ningún registro seleccionado!	Espagñol	t	5	f
-5027	3	1738	3	IPTC	Espagñol	t	52	f
-5030	3	1739	3	preestreno	Espagñol	t	52	f
-5033	3	1740	3	XMP	Espagñol	t	52	f
-5036	3	1741	3	descripción	Espagñol	t	52	f
-5039	3	1742	3	Palabras clave	Espagñol	t	52	f
-5042	3	1743	3	categorías	Espagñol	t	52	f
-5045	3	1744	3	derechos de imagen	Espagñol	t	52	f
-5051	3	1746	3	derechos de autor	Espagñol	t	52	f
-5054	3	1747	3	notas	Espagñol	t	52	f
-5057	3	1748	3	urgencia	Espagñol	t	52	f
-5060	3	1749	3	categoría	Espagñol	t	52	f
-5063	3	1750	3	autor	Espagñol	t	52	f
-5069	3	1752	3	lugar	Espagñol	t	52	f
-5072	3	1753	3	Estado / Provincia	Espagñol	t	52	f
-5075	3	1754	3	país	Espagñol	t	52	f
-5078	3	1755	3	Aufgeber-Code	Espagñol	t	52	f
-5081	3	1756	3	nota	Espagñol	t	52	f
-5084	3	1757	3	nombre de la propiedad	Espagñol	t	52	f
-5087	3	1758	3	subcategorías	Espagñol	t	52	f
-5099	3	1762	1	método	Espagñol	t	66	f
-5102	3	1763	3	eventos	Espagñol	t	168	f
-5105	3	1764	3	OnClick	Espagñol	t	168	f
-5108	3	1765	3	OnDblClick	Espagñol	t	168	f
-4991	3	1726	1	Los datos o metadatos del archivo asociado no existe!	Espagñol	t	66	f
-5111	3	1766	3	OnMouseOver	Espagñol	t	168	f
-5114	3	1767	3	OnMouseOut	Espagñol	t	168	f
-5129	3	1772	3	script PHP	Espagñol	t	175	f
-5132	3	1773	3	datos Descripción	Espagñol	t	169	f
-5135	3	1774	3	cuadro de búsqueda de datos	Espagñol	t	169	f
-5141	3	1776	3	visible	Espagñol	t	168	f
-5144	3	1777	3	aislado	Espagñol	t	168	f
-5147	3	1778	3	desplazable	Espagñol	t	168	f
-5150	3	1779	3	log	Espagñol	t	140	f
-5153	3	1780	3	acciones	Espagñol	t	127	f
-5174	3	1787	1	archivo	Espagñol	t	13	f
-5177	3	1788	1	informes	Espagñol	t	5	f
-5180	3	1789	3	usuarios activos mostrar	Espagñol	t	132	f
-5183	3	1790	3	ver todos los usuarios	Espagñol	t	132	f
-5186	3	1791	3	estadística	Espagñol	t	132	f
-5189	3	1792	3	cambiado	Espagñol	t	132	f
-5192	3	1793	3	Mostrar bloqueado usuarios	Espagñol	t	132	f
-5204	3	1797	1	0 (sin registro)	Espagñol	t	127	f
-5207	3	1798	1	1 (sólo DB, y acciones)	Espagñol	t	127	f
-5210	3	1799	1	2 (registro completo)	Espagñol	t	127	f
-5213	3	1800	2	Iniciar sesión	Espagñol	t	182	f
-5216	3	1801	2	Cerrar sesión	Espagñol	t	182	f
-5219	3	1802	2	IP	Espagñol	t	182	f
-5222	3	1803	2	duración	Espagñol	t	182	f
-5225	3	1804	2	fecha	Espagñol	t	182	f
-5228	3	1805	2	acción	Espagñol	t	182	f
-5231	3	1806	2	mesa	Espagñol	t	182	f
-5234	3	1807	2	ID	Espagñol	t	182	f
-5237	3	1808	2	especie	Espagñol	t	182	f
-5240	3	1809	3	menú principal	Espagñol	t	163	f
-5243	3	1810	3	Administración	Espagñol	t	163	f
-5249	3	1812	3	menú de usuario	Espagñol	t	163	f
-5252	3	1813	3	extensiones	Espagñol	t	163	f
-5255	3	1814	3	subgrupo	Espagñol	t	162	f
-5258	3	1815	3	Ordenar	Espagñol	t	162	f
-11735	3	2658	3	anexar	Espagñol	t	140	f
-5264	3	1817	3	contraseña caduca	Espagñol	t	127	f
-5282	3	1823	3	Generador	Espagñol	t	121	f
-5285	3	1824	3	mesa para enlazar	Espagñol	t	121	f
-5294	3	1827	1	con el mundial	Espagñol	t	19	f
-5303	3	1830	3	selección piscina	Espagñol	t	104	f
-5309	3	1832	3	nueva piscina	Espagñol	t	104	f
-5324	3	1837	3	clasificación	Espagñol	t	104	f
-5327	3	1838	3	entrada	Espagñol	t	104	f
-5330	3	1839	3	descendente	Espagñol	t	104	f
-5333	3	1840	3	aufsteigend	Espagñol	t	104	f
-5339	3	1842	3	FORMATO: VALOR [STRING] | ADICIONAL [STRING]	Espagñol	t	104	f
-5342	3	1843	1	valores	Espagñol	t	12	f
-5345	3	1844	1	de ella	Espagñol	t	12	f
-5348	3	1845	1	seleccionado	Espagñol	t	12	f
-5351	3	1846	1	apropiado	Espagñol	t	12	f
-5354	3	1847	3	actualización del sistema	Espagñol	t	154	f
-5360	3	1849	3	Distribuir estructura de carpetas	Espagñol	t	154	f
-5381	3	1856	3	usado	Espagñol	t	195	f
-5387	3	1858	3	renovar	Espagñol	t	195	f
-5429	3	1872	3	menú de información	Espagñol	t	163	f
-5450	3	1879	3	editable	Espagñol	t	110	f
-5453	3	1880	3	formato de número	Espagñol	t	110	f
-5456	3	1881	3	RegExp	Espagñol	t	110	f
-5462	3	1883	3	moneda	Espagñol	t	110	f
-5468	3	1885	3	WYSIWYG	Espagñol	t	110	f
-5471	3	1886	3	separación valor	Espagñol	t	110	f
-5474	3	1887	3	Disp. atajos	Espagñol	t	110	f
-5417	3	1868	1	La solicitud supera el máximo de los mismos registros a tratar! La ordenación se realiza sólo en el conjunto de resultados aprobado. Los pasos siguientes están disponibles:	Espagñol	t	5	t
-5492	3	1893	3	en general	Espagñol	t	164	f
-5495	3	1894	3	rutas de instalación	Espagñol	t	164	f
-5501	3	1896	3	Los arreglos de mesa	Espagñol	t	164	f
-5507	3	1898	3	Configuración del índice	Espagñol	t	164	f
-5510	3	1899	3	Configuración de archivos	Espagñol	t	164	f
-5513	3	1900	3	Configuración de seguridad	Espagñol	t	164	f
-5516	3	1901	1	Die Medatdaten konnten nicht erfolgreich ausgelesen werden.	Espagñol	t	41	f
-5519	3	1902	1	grandes / pequeños cuadernos de cartas	Espagñol	t	66	f
-5522	3	1903	1	juego completo	Espagñol	t	66	f
-5525	3	1904	1	Parte de la palabra	Espagñol	t	66	f
-5537	3	1908	3	buscar sólo en los metadatos	Espagñol	t	52	f
-5540	3	1909	1	para este tipo de archivo no se puede previsualizar creado.	Espagñol	t	66	f
-5558	3	1915	1	No se encontraron documentos!	Espagñol	t	66	f
-5585	3	1924	3	otro	Espagñol	t	52	f
-5600	3	1929	3	calendario	Espagñol	t	140	f
-5606	3	1931	2	tiempo	Espagñol	t	0	f
-5615	3	1934	2	00:00:00	Espagñol	t	0	f
-5630	3	1939	1	extras	Espagñol	t	66	f
-5654	3	1947	3	cuadro de edición	Espagñol	t	175	f
-5657	3	1948	3	cuadro de área de texto	Espagñol	t	175	f
-5660	3	1949	3	Seleccione la casilla de verificación	Espagñol	t	175	f
-5663	3	1950	3	elemento casilla de verificación	Espagñol	t	175	f
-5666	3	1951	3	elemento de Radio	Espagñol	t	175	f
-5675	3	1954	3	ventana de usos múltiples	Espagñol	t	115	f
-5678	3	1955	3	junto	Espagñol	t	168	f
-5681	3	1956	3	apartado	Espagñol	t	168	f
-5696	3	1961	3	selección	Espagñol	t	168	f
-5699	3	1962	3	Sí 	Espagñol	t	168	f
-5702	3	1963	3	no	Espagñol	t	168	f
-5714	3	1967	3	chasquido	Espagñol	t	168	f
-5717	3	1968	3	oculto	Espagñol	t	168	f
-5738	3	1975	1	en	Espagñol	t	13	f
-5741	3	1976	1	al	Espagñol	t	13	f
-5753	3	1980	1	acta	Espagñol	t	13	f
-5756	3	1981	1	Stunden	Espagñol	t	13	f
-5759	3	1982	1	días	Espagñol	t	13	f
-5762	3	1983	1	semana	Espagñol	t	13	f
-5768	3	1985	1	años	Espagñol	t	13	f
-5771	3	1986	3	extensión	Espagñol	t	162	f
-5774	3	1987	3	Disparador onch	Espagñol	t	122	f
-5789	3	1992	3	renovar las tablas del sistema de archivos	Espagñol	t	154	f
-5798	3	1995	3	Depurar	Espagñol	t	164	f
-5807	3	1998	1	guardar como	Espagñol	t	5	f
-5813	3	2000	1	administrar	Espagñol	t	5	f
-5831	3	2006	1	guardado correctamente!	Espagñol	t	0	f
-5834	3	2007	1	eliminado correctamente!	Espagñol	t	0	f
-5837	3	2008	1	enviado con éxito!	Espagñol	t	0	f
-5864	3	2017	1	XML	Espagñol	t	5	f
-5873	3	2020	3	La conversión de la materia:	Espagñol	t	110	f
-5876	3	2021	3	Contenido con exceso de longitud o el tipo incorrecto de reducir o borrado!	Espagñol	t	110	f
-5882	3	2023	3	pregunta	Espagñol	t	140	f
-5891	3	2026	3	SQL	Espagñol	t	205	f
-5894	3	2027	3	Editor	Espagñol	t	205	f
-5903	3	2030	3	Actualizar contenidos de los campos temporales	Espagñol	t	154	f
-5918	3	2035	3	Workflow	Espagñol	t	140	f
-5867	3	2018	3	última versión	Espagñol	t	52	f
-5684	3	1957	3	rejilla celular	Espagñol	t	168	f
-5939	3	2042	1	último usuario	Espagñol	t	208	f
-5942	3	2043	1	los usuarios actuales	Espagñol	t	208	f
-5945	3	2044	1	próximos a los usuarios	Espagñol	t	208	f
-5951	3	2046	1	¿Le detener este flujo de trabajo?	Espagñol	t	208	f
-5954	3	2047	1	¿Quieres abortar este flujo de trabajo?	Espagñol	t	208	f
-5957	3	2048	1	tarea	Espagñol	t	208	f
-5960	3	2049	1	von\r\n	Espagñol	t	208	f
-5963	3	2050	1	an	Espagñol	t	208	f
-5966	3	2051	1	Sie haben momentan weder eine Aufgabe noch ein Workflow gestartet!	Espagñol	t	208	f
-5975	3	2054	1	Flujo de trabajo se ha anulado correctamente!	Espagñol	t	209	f
-5984	3	2057	1	mi flujo de trabajo	Espagñol	t	204	f
-5987	3	2058	1	no es una tarea	Espagñol	t	204	f
-5999	3	2062	1	Último registro! 	Espagñol	t	23	f
-6002	3	2063	3	considerar Índice Z 	Espagñol	t	175	f
-6005	3	2064	3	a un primer plano	Espagñol	t	168	f
-6008	3	2065	3	en el fondo	Espagñol	t	168	f
-6014	3	2067	3	renovar Índice Z	Espagñol	t	168	f
-6017	3	2068	3	No.	Espagñol	t	212	f
-6023	3	2070	3	tiempo	Espagñol	t	212	f
-6029	3	2072	3	aktiv	Espagñol	t	212	f
-6035	3	2074	3	minuto	Espagñol	t	212	f
-6038	3	2075	3	hora	Espagñol	t	212	f
-6041	3	2076	3	del mes	Espagñol	t	212	f
-6047	3	2078	3	día laborable	Espagñol	t	212	f
-6050	3	2079	3	Añadir trabajo	Espagñol	t	212	f
-6053	3	2080	3	estructura de archivos	Espagñol	t	212	f
-7665	3	2083	1	no hay registros seleccionados!	Espagñol	t	5	f
-7685	3	2088	3	oculto	Espagñol	t	168	f
-7697	3	2091	3	primera página	Espagñol	t	168	f
-7701	3	2092	3	siguientes páginas	Espagñol	t	168	f
-7705	3	2093	3	Transp.	Espagñol	t	168	f
-7725	3	2098	3	antes	Espagñol	t	168	f
-7729	3	2099	3	entonces	Espagñol	t	168	f
-7681	3	2087	2	campo heredada	Espagñol	t	0	f
-7733	3	2100	3	maquillaje	Espagñol	t	168	f
-7737	3	2101	3	la posición del arreglo	Espagñol	t	168	f
-7741	3	2102	3	relativamente	Espagñol	t	168	f
-7781	3	2112	3	tabla de colores	Espagñol	t	52	f
-7761	3	2107	3	legar	Espagñol	t	213	f
-7785	3	2113	1	El archivo no se puede convertir!	Espagñol	t	66	f
-7789	3	2114	1	límite	Espagñol	t	5	f
-7809	3	2119	3	gráficos	Espagñol	t	177	f
-7861	3	2132	3	de versiones	Espagñol	t	140	f
-7885	3	2138	1	No tabla vinculada seleccionado!	Espagñol	t	5	f
-7889	3	2139	1	No hay datos asociados disponibles!	Espagñol	t	5	f
-7901	3	2142	3	de forma recursiva	Espagñol	t	140	f
-7905	3	2143	3	fix	Espagñol	t	140	f
-7857	3	2131	3	menú de la derecha	Espagñol	t	119	f
-7853	3	2130	3	derechos de archivo	Espagñol	t	119	f
-7849	3	2129	3	los derechos de mesa	Espagñol	t	119	f
-7909	3	2144	3	a mano	Espagñol	t	122	f
-7913	3	2145	3	automáticamente	Espagñol	t	122	f
-7917	3	2146	1	debe ser versionado el registro?	Espagñol	t	13	f
-7925	3	2148	1	Registro fue versionado con éxito!	Espagñol	t	25	f
-7929	3	2149	1	Los registros fueron versionados correctamente!	Espagñol	t	25	f
-7933	3	2150	1	El registro ha sido copiado con éxito!	Espagñol	t	25	f
-7937	3	2151	1	Los registros se han copiado con éxito!	Espagñol	t	25	f
-7945	3	2153	1	Si se eliminan los registros seleccionados?	Espagñol	t	5	f
-7949	3	2154	1	Si se archivan los registros seleccionados?	Espagñol	t	5	f
-7953	3	2155	1	Si se versionan los registros seleccionados?	Espagñol	t	5	f
-7957	3	2156	1	Si se copian los registros seleccionados?	Espagñol	t	5	f
-7961	3	2157	1	Si se restauran los registros seleccionados?	Espagñol	t	5	f
-10335	3	2310	1	Usted no tiene ninguna carpeta derechos!	Espagñol	t	97	f
-7965	3	2158	1	Cancelación de los límites puede conducir a largos tiempos de espera para grandes conjuntos de registros!	Espagñol	t	5	f
-7921	3	2147	1	Puede ser versionado y editado sólo la versión actual del registro!	Espagñol	t	13	f
-8001	3	2167	1	Mostrar barra de herramientas	Espagñol	t	46	f
-8021	3	2172	1	Situación a:	Espagñol	t	5	f
-8025	3	2173	2	------- tipos de campo Extensión -------	Espagñol	t	0	f
-8029	3	2174	2	sin sentido	Espagñol	t	0	f
-8041	3	2177	1	Registro es idéntico!	Espagñol	t	13	f
-8045	3	2178	3	colspan	Espagñol	t	168	f
-8049	3	2179	3	rowspan	Espagñol	t	168	f
-10303	3	2302	3	no muestran menú de la tabla	Espagñol	t	122	f
-8061	3	2182	1	Registro fue vinculado!	Espagñol	t	25	f
-8065	3	2183	1	Los registros fueron ligados!	Espagñol	t	25	f
-8069	3	2184	1	Link ha sido resuelto!	Espagñol	t	25	f
-8073	3	2185	1	Enlaces se han resuelto!	Espagñol	t	25	f
-8077	3	2186	1	Si se vinculan los registros seleccionados?	Espagñol	t	5	f
-8081	3	2187	1	Si se resolverá el funcionamiento de los registros seleccionados?	Espagñol	t	5	f
-8089	3	2189	1	No tiene derecho a este archivo!	Espagñol	t	66	f
-8125	3	2198	3	dependiente	Espagñol	t	168	f
-8161	3	2207	3	plantilla	Espagñol	t	177	f
-8173	3	2210	3	rebautizar	Espagñol	t	148	f
-4039	3	1376	2	Enlace 1:n	Espagñol	t	0	f
-8109	3	2194	2	tamaño de archivo	Espagñol	t	0	f
-8113	3	2195	2	Tamaño en bytes	Espagñol	t	0	f
-8193	3	2215	3	vista	Espagñol	t	149	f
-8197	3	2216	3	gatillo	Espagñol	t	149	f
-8209	3	2219	1	¿Quieres añadir el archivo / s a &#8203;&#8203;sus favoritos?	Espagñol	t	66	f
-8233	3	2225	1	un nivel	Espagñol	t	215	f
-8237	3	2226	1	seleccionar	Espagñol	t	215	f
-8241	3	2227	1	abortar	Espagñol	t	215	f
-8249	3	2229	1	mirando en	Espagñol	t	215	f
-8253	3	2230	1	Inicio guía	Espagñol	t	215	f
-8257	3	2231	1	nueva carpeta	Espagñol	t	215	f
-8177	3	2211	2	atributo	Espagñol	t	0	f
-8181	3	2212	2	atributo	Espagñol	t	0	f
-8261	3	2232	1	nuevo archivo	Espagñol	t	215	f
-8265	3	2233	1	simple presentación	Espagñol	t	215	f
-8269	3	2234	1	pantalla extendida	Espagñol	t	215	f
-8273	3	2235	3	identificadores	Espagñol	t	110	f
-8277	3	2236	3	dependencia	Espagñol	t	52	f
-8289	3	2239	3	Sólo backend bloqueo	Espagñol	t	127	f
-8293	3	2240	3	convertir	Espagñol	t	148	f
-8305	3	2243	3	abfragen	Espagñol	t	148	f
-8381	3	2262	3	la vida de sesión	Espagñol	t	127	f
-8357	3	2256	2	argumento SQL	Espagñol	t	0	f
-8361	3	2257	2	constructo Fórmula (SQL)	Espagñol	t	0	f
-10164	3	2269	3	definición	Espagñol	t	218	f
-10169	3	2270	3	editado en	Espagñol	t	218	f
-10174	3	2271	3	editado por	Espagñol	t	218	f
-10194	3	2275	3	sincronizar	Espagñol	t	218	f
-10203	3	2277	2	Berichtrechte	Espagñol	t	0	f
-10207	3	2278	2	Configuración de informe de Derechos	Espagñol	t	0	f
-12807	3	2925	3	\N	Espagñol	f	173	f
-10211	3	2279	3	debe suprimirse la forma?	Espagñol	t	176	f
-10219	3	2281	3	formas	Espagñol	t	222	f
-8121	3	2197	2	mimetype	Espagñol	t	0	f
-8037	3	2176	2	Observación adicional de versiones	Espagñol	t	0	f
-8033	3	2175	2	versión Comentarios	Espagñol	t	0	f
-10231	3	2284	3	el informe debería eliminarse?	Espagñol	t	170	f
-10235	3	2285	3	debe suprimirse el diagrama?	Espagñol	t	177	f
-10239	3	2286	3	Si se borra el grupo de tablas, incluyendo tablas?	Espagñol	t	140	f
-10363	3	2317	1	El archivo de origen ya no existe!	Espagñol	t	66	f
-10243	3	2287	3	desea que la tabla que desea eliminar?	Espagñol	t	140	f
-10247	3	2288	3	todos abiertos	Espagñol	t	213	f
-10255	3	2290	3	todos abiertos justificada	Espagñol	t	213	f
-10259	3	2291	2	muestran su vez vinculado	Espagñol	t	0	f
-10267	3	2293	1	Los metadatos no se pudo actualizar!	Espagñol	t	66	f
-10391	3	2324	1	Info Indizierung	Espagñol	t	66	f
-10271	3	2294	1	Usted no tiene permiso o se retiró la orden!	Espagñol	t	66	f
-10275	3	2295	3	ver los archivos	Espagñol	t	213	f
-10279	3	2296	3	Añadir archivos	Espagñol	t	213	f
-10283	3	2297	3	Ordner anlegen	Espagñol	t	213	f
-10287	3	2298	3	Eliminar archivos / carpetas	Espagñol	t	213	f
-10291	3	2299	3	editar metadatos	Espagñol	t	213	f
-10295	3	2300	3	archivos de bloqueo	Espagñol	t	213	f
-10299	3	2301	3	grupos permitidos	Espagñol	t	213	f
-10311	3	2304	2	OCR	Espagñol	t	0	f
-10315	3	2305	2	el reconocimiento OCR	Espagñol	t	0	f
-10323	3	2307	2	barra de herramientas	Espagñol	t	0	f
-10327	3	2308	2	Mostrar barra de herramientas	Espagñol	t	0	f
-10331	3	2309	1	expediente	Espagñol	t	97	f
-10263	3	2292	2	mostrar consigo registros relacionados	Espagñol	t	0	f
-10339	3	2311	1	No hay derechos de eliminación!	Espagñol	t	97	f
-11043	3	2485	3	ajustes de usuario	Espagñol	t	154	f
-10347	3	2313	1	El archivo de origen ya existe. Por favor, inténtelo de nuevo.	Espagñol	t	97	f
-10351	3	2314	1	Iniciar el reconocimiento OCR	Espagñol	t	66	f
-10355	3	2315	2	Modo vinculado	Espagñol	t	0	f
-10359	3	2316	2	mostrar sólo los registros relacionados	Espagñol	t	0	f
-10367	3	2318	1	eliminar el archivo	Espagñol	t	215	f
-10371	3	2319	2	Buscar en subcarpetas	Espagñol	t	0	f
-10375	3	2320	2	búsqueda recursiva	Espagñol	t	0	f
-10379	3	2321	1	abierto	Espagñol	t	66	f
-10383	3	2322	1	Guardar	Espagñol	t	66	f
-10387	3	2323	1	información de metadatos	Espagñol	t	66	f
-10395	3	2325	1	información de versiones	Espagñol	t	66	f
-10415	3	2330	1	ver todos los archivos	Espagñol	t	66	f
-10423	3	2332	1	omitir	Espagñol	t	66	f
-10319	3	2306	3	Forma Derechos / Informe	Espagñol	t	119	f
-10427	3	2333	1	Aplicar a todos los archivos	Espagñol	t	66	f
-10431	3	2334	1	Ver origen	Espagñol	t	15	f
-10447	3	2338	2	Derechos del usuario	Espagñol	t	0	f
-10451	3	2339	2	Benutzer berechtigen	Espagñol	t	0	f
-10455	3	2340	3	Si cambia los permisos de todos los viejos individuales de los derechos se borrará esta tabla!	Espagñol	t	140	f
-10459	3	2341	2	Mostrar derechos de usuario	Espagñol	t	0	f
-10463	3	2342	2	Descripción general de los derechos de los usuarios	Espagñol	t	0	f
-10483	3	2347	3	Índice Z	Espagñol	t	169	f
-10487	3	2348	3	Y-Pos	Espagñol	t	169	f
-10491	3	2349	2	prueba	Espagñol	t	unknown	f
-10495	3	2350	2	sin sentido	Espagñol	t	unknown	f
-10499	3	1993	2	sección	Espagñol	t	unknown	f
-10503	3	1994	2	Categoría etiquetado	Espagñol	t	unknown	f
-10515	3	2353	3	IP estática	Espagñol	t	127	f
-10519	3	2354	1	Diferencia entre versiones	Espagñol	t	204	f
-10523	3	2355	1	mostrar en pdf	Espagñol	t	204	f
-10531	3	2357	3	separador	Espagñol	t	168	f
-10535	3	2358	1	Romper vínculo	Espagñol	t	13	f
-10539	3	2359	1	¿Quieres eliminar el enlace de este disco?	Espagñol	t	13	f
-10551	3	2362	2	agrupamiento	Espagñol	t	0	f
-10507	3	2351	2	contenido del documento	Espagñol	t	0	f
-10511	3	2352	2	Documento de referencia	Espagñol	t	0	f
-12727	3	2905	2	imagen	Espagñol	t	0	f
-10555	3	2363	2	campo de agrupamiento	Espagñol	t	0	f
-10575	3	2368	3	Información de texto mientras está bloqueado	Espagñol	t	154	f
-10603	3	2375	1	El archivo subido ya existe con el mismo o un nombre diferente en las siguientes carpetas	Espagñol	t	41	f
-10607	3	2376	3	filtro avanzado	Espagñol	t	121	f
-10611	3	2377	3	Beziehungen	Espagñol	t	121	f
-10615	3	2378	3	miembro del grupo	Espagñol	t	186	f
-10619	3	2379	3	clasificación	Espagñol	t	186	f
-10627	3	2381	3	respecto	Espagñol	t	52	f
-10643	3	2385	3	final	Espagñol	t	52	f
-10543	3	2360	2	pestaña agrupación	Espagñol	t	0	f
-10547	3	2361	2	Campo de agrupamiento como piloto	Espagñol	t	0	f
-10655	3	2388	3	creado en	Espagñol	t	52	f
-10659	3	2389	3	creado por	Espagñol	t	52	f
-10663	3	2390	3	creado por el grupo	Espagñol	t	52	f
-10667	3	2391	3	editado en	Espagñol	t	52	f
-10671	3	2392	3	editado por	Espagñol	t	52	f
-10751	3	2412	3	mensaje No.	Espagñol	t	52	f
-10759	3	2414	3	de	Espagñol	t	52	f
-10763	3	2415	3	para	Espagñol	t	52	f
-10779	3	2419	3	Nachricht	Espagñol	t	52	f
-10815	3	2428	3	bloquear ilimitada	Espagñol	t	221	f
-10823	3	2430	2	registro de bloqueo	Espagñol	t	0	f
-10827	3	2431	2	desbloqueo	Espagñol	t	0	f
-10831	3	2432	2	desbloquear registro	Espagñol	t	0	f
-10835	3	2433	1	debe ser liberado el disco?	Espagñol	t	13	f
-10843	3	2435	1	Registro fue bloqueado correctamente!	Espagñol	t	25	f
-10847	3	2436	1	Los registros fueron bloqueadas correctamente!	Espagñol	t	25	f
+7022	4	1399	2	Bloc de texte max 1000 caractÄres	francais	f	0	f
+3903	3	1240	1	incluir subcarpetas	EspagÅ„ol	t	20	f
+3909	3	1246	1	sin	EspagÅ„ol	t	5	f
+3912	3	1249	3	finalizar la sesiÃ³n	EspagÅ„ol	t	132	f
+3914	3	1251	1	Ã¦Quieres cerrar la sesiÃ³n?	EspagÅ„ol	t	11	f
+3920	3	1257	1	archivo	EspagÅ„ol	t	122	f
+3922	3	1259	1	editar	EspagÅ„ol	t	122	f
+3927	3	1264	3	Esta funciÃ³n comprueba todos los derechos a la existencia de mesa! los derechos existentes no se sobrescriben	EspagÅ„ol	t	154	t
+3928	3	1265	3	Esta funciÃ³n comprueba todos los derechos a la existencia de menÅ›! los derechos existentes no se sobrescriben	EspagÅ„ol	t	154	t
+3929	3	1266	2	monitoreo	EspagÅ„ol	t	0	f
+3930	3	1267	2	Monitoreo de usuario	EspagÅ„ol	t	0	f
+3905	3	1242	1	usuario	EspagÅ„ol	t	20	f
+3931	3	1268	2	los derechos de mesa	EspagÅ„ol	t	0	f
+3932	3	1269	2	actualizaciÃ³n de los derechos de mesa	EspagÅ„ol	t	0	f
+3933	3	1270	2	derechos de uso	EspagÅ„ol	t	0	f
+3934	3	1271	2	actualizaciÃ³n de los derechos	EspagÅ„ol	t	0	f
+3939	3	1276	2	detalle del vector	EspagÅ„ol	t	0	f
+3940	3	1277	2	arreglos de mesa	EspagÅ„ol	t	0	f
+3944	3	1281	2	enlace	EspagÅ„ol	t	0	f
+3945	3	1282	2	de datos del enlace	EspagÅ„ol	t	0	f
+3948	3	1285	1	Registro ya vinculado!	EspagÅ„ol	t	27	f
+3949	3	1286	2	enmarcado	EspagÅ„ol	t	0	f
+3950	3	1287	2	TamaÅ„o de bastidor Fit y tipo	EspagÅ„ol	t	0	f
+3951	3	1288	2	anchura automÄ¯tica	EspagÅ„ol	t	0	f
+3952	3	1289	2	Ajustar tamaÅ„o de la tabla de forma automÄ¯tica	EspagÅ„ol	t	0	f
+3953	3	1290	2	Editar lista	EspagÅ„ol	t	0	f
+3954	3	1291	2	Editar lista	EspagÅ„ol	t	0	f
+3957	3	1294	1	a la primera cara	EspagÅ„ol	t	5	f
+3958	3	1295	1	la Å›ltima pÄ¯gina	EspagÅ„ol	t	5	f
+3959	3	1296	1	pÄ¯gina anterior	EspagÅ„ol	t	5	f
+3960	3	1297	1	pÄ¯gina siguiente	EspagÅ„ol	t	5	f
+3961	3	1298	1	abrir el enlace	EspagÅ„ol	t	15	f
+3962	3	1299	1	enlace de generaciÃ³n	EspagÅ„ol	t	15	f
+3963	3	1300	3	permitir el cambio de contraseÅ„a	EspagÅ„ol	t	127	f
+3964	3	1301	2	Editor de mÃ©todo abreviado	EspagÅ„ol	t	0	f
+3965	3	1302	2	Editor de mÃ©todo abreviado	EspagÅ„ol	t	0	f
+3966	3	1303	3	Introducir nuevos accesos directos!	EspagÅ„ol	t	121	f
+3967	3	1304	3	neu berechnen!	EspagÅ„ol	t	101	f
+3968	3	1305	2	archivo	EspagÅ„ol	t	0	f
+3969	3	1306	2	registro de archivo	EspagÅ„ol	t	0	f
+3970	3	1307	2	Mostrar archivados	EspagÅ„ol	t	0	f
+3971	3	1308	2	Mostrar registros archivados	EspagÅ„ol	t	0	f
+3973	3	1310	2	restaurar los datos	EspagÅ„ol	t	0	f
+3974	3	1311	1	Se deberÄ¯ recuperar los datos?	EspagÅ„ol	t	13	f
+3975	3	1312	1	Registro fue archivada!	EspagÅ„ol	t	25	f
+3976	3	1313	1	El registro ha sido restaurado!	EspagÅ„ol	t	25	f
+3978	3	1315	3	Nombre de usuario y la contraseÅ„a debe contener al menos 5 caracteres!	EspagÅ„ol	t	127	f
+3980	3	1317	1	Sin permiso!	EspagÅ„ol	t	31	f
+3982	3	1319	2	Editor de subida	EspagÅ„ol	t	0	f
+3983	3	1320	2	Editor de subida	EspagÅ„ol	t	0	f
+3946	3	1283	2	la eliminaciÃ³n de enlaces	EspagÅ„ol	t	0	f
+3985	3	1322	1	ruta del archivo	EspagÅ„ol	t	186	f
+3987	3	1324	1	Lista de archivos de importaciÃ³n!	EspagÅ„ol	t	186	f
+3988	3	1325	1	Los registros fueron eliminados correctamente! Registros se eliminaron con Ã©xito!	EspagÅ„ol	t	25	f
+3989	3	1326	1	Los registros fueron achiviert!	EspagÅ„ol	t	25	f
+3990	3	1327	1	Los registros se han restaurado!	EspagÅ„ol	t	25	f
+3993	3	1330	1	todas inversa	EspagÅ„ol	t	14	f
+3994	3	1331	1	Marcar todo	EspagÅ„ol	t	14	f
+3996	3	1333	1	agregarÄ¯ valor a	EspagÅ„ol	t	14	f
+3997	3	1334	1	restar valor	EspagÅ„ol	t	14	f
+4001	3	1338	1	reemplazado por fecha	EspagÅ„ol	t	14	f
+4002	3	1339	1	agregarÄ¯ dÄ·as	EspagÅ„ol	t	14	f
+4003	3	1340	1	restar dÄ·as	EspagÅ„ol	t	14	f
+4004	3	1341	1	Cambiar!	EspagÅ„ol	t	14	f
+4005	3	1342	1	Viendo	EspagÅ„ol	t	5	f
+4008	3	1345	2	calendario	EspagÅ„ol	t	0	f
+4017	3	1354	2	Texto 8	EspagÅ„ol	t	0	f
+4018	3	1355	2	Texto 10	EspagÅ„ol	t	0	f
+4019	3	1356	2	Texto 20	EspagÅ„ol	t	0	f
+4020	3	1357	2	Texto 30	EspagÅ„ol	t	0	f
+4021	3	1358	2	Texto 50	EspagÅ„ol	t	0	f
+4023	3	1360	2	Texto 160	EspagÅ„ol	t	0	f
+4034	3	1371	2	SelecciÃ³n (Select)	EspagÅ„ol	t	0	f
+4038	3	1375	2	PHP-Argumento	EspagÅ„ol	t	0	f
+5117	3	1768	3	OnChange	EspagÅ„ol	t	168	f
+4047	3	1384	2	------- Tipo de Campo EstÄ¯ndar -------	EspagÅ„ol	t	0	f
+4048	3	1385	2	------- Sin-Feldtypen ------- 	EspagÅ„ol	t	0	f
+4053	3	1390	2	Texto mÄ¯x. 8 caracteres	EspagÅ„ol	t	0	f
+4054	3	1391	2	Texto mÄ¯x. 10 caracteres	EspagÅ„ol	t	0	f
+4055	3	1392	2	Texto mÄ¯x. 20 caracteres	EspagÅ„ol	t	0	f
+4056	3	1393	2	Texto mÄ¯x. 30 caracteres 	EspagÅ„ol	t	0	f
+4057	3	1394	2	Texto mÄ¯x. 50 caracteres	EspagÅ„ol	t	0	f
+3918	3	1255	3	regla indicador	EspagÅ„ol	t	122	f
+4058	3	1395	2	Texto mÄ¯x. 128 caracteres	EspagÅ„ol	t	0	f
+4059	3	1396	2	Texto mÄ¯x. 160 caracteres	EspagÅ„ol	t	0	f
+4067	3	1404	2	URL con mÄ¯x. 230 caracteres	EspagÅ„ol	t	0	f
+4068	3	1405	2	Un correo electrÃ³nico con mÄ¯x. 128 caracteres	EspagÅ„ol	t	0	f
+4070	3	1407	2	Campo de selecciÃ³n (Select)	EspagÅ„ol	t	0	f
+4074	3	1411	2	constructo FÃ³rmula (eval)	EspagÅ„ol	t	0	f
+4083	3	1420	1	toda la lista de ignorados!	EspagÅ„ol	t	154	f
+4085	3	1422	2	recuperar	EspagÅ„ol	t	0	f
+4086	3	1423	2	Comprobar si hay nuevos mensajes	EspagÅ„ol	t	0	f
+4106	3	1431	3	registro	EspagÅ„ol	t	182	f
+4112	3	1433	3	ver	EspagÅ„ol	t	182	f
+4118	3	1435	1	Etiqueta	EspagÅ„ol	t	188	f
+4121	3	1436	1	semana	EspagÅ„ol	t	188	f
+4025	3	1362	2	Bloque de texto 399	EspagÅ„ol	t	0	f
+4043	3	1380	2	Posfechar	EspagÅ„ol	t	0	f
+4079	3	1416	2	Erstellungsdatum	EspagÅ„ol	t	0	f
+4044	3	1381	2	Fecha de ediciÃ³n	EspagÅ„ol	t	0	f
+4037	3	1374	2	Upload	EspagÅ„ol	t	0	f
+4080	3	1417	2	fecha de modificaciÃ³n	EspagÅ„ol	t	0	f
+4061	3	1398	2	bloque de texto con mÄ¯x. 399 caracteres	EspagÅ„ol	t	0	f
+4124	3	1437	1	mes	EspagÅ„ol	t	188	f
+4127	3	1438	1	aÅ„o	EspagÅ„ol	t	188	f
+4136	3	1441	1	plazo	EspagÅ„ol	t	192	f
+4139	3	1442	1	fiesta	EspagÅ„ol	t	192	f
+4142	3	1443	1	color:	EspagÅ„ol	t	192	f
+4145	3	1444	1	recordatorio:	EspagÅ„ol	t	192	f
+4148	3	1445	1	por:	EspagÅ„ol	t	192	f
+4151	3	1446	1	a:	EspagÅ„ol	t	192	f
+4154	3	1447	1	Asunto:	EspagÅ„ol	t	192	f
+4157	3	1448	1	contenido:	EspagÅ„ol	t	192	f
+4160	3	1449	1	tipo:	EspagÅ„ol	t	192	f
+4075	3	1412	2	por ejemplo Cliente (1) -> Persona de contacto (s)	EspagÅ„ol	t	0	f
+4040	3	1377	2	Enlace n:m	EspagÅ„ol	t	0	f
+4076	3	1413	2	por ejemplo Orden (n) -> punto (m)	EspagÅ„ol	t	0	f
+4041	3	1378	2	Postusuario	EspagÅ„ol	t	0	f
+4077	3	1414	2	El usuario que creÃ³ el registro	EspagÅ„ol	t	0	f
+4042	3	1379	2	Editar usuario	EspagÅ„ol	t	0	f
+4078	3	1415	2	QuÃ© usuario modificada por Å›ltima vez el registro	EspagÅ„ol	t	0	f
+4071	3	1408	2	Casilla de verificaciÃ³n (opciÃ³n mÅ›ltiple) como MULTISELECT	EspagÅ„ol	t	0	f
+4045	3	1382	2	Lista de usuario / grupo	EspagÅ„ol	t	0	f
+4166	3	1451	1	Claro!	EspagÅ„ol	t	192	f
+4046	3	1383	2	Largo	EspagÅ„ol	t	0	f
+4060	3	1397	2	Texto	EspagÅ„ol	t	0	f
+4024	3	1361	2	Texto	EspagÅ„ol	t	0	f
+4190	3	1459	3	gruppierbar	EspagÅ„ol	t	110	f
+4193	3	1460	3	agruparse	EspagÅ„ol	t	140	f
+4202	3	1463	3	proporcional	EspagÅ„ol	t	168	f
+4205	3	1464	3	copia	EspagÅ„ol	t	176	f
+4229	3	1472	1	No se han encontrado!	EspagÅ„ol	t	66	f
+4014	3	1351	2	nÅ›mero (10)	EspagÅ„ol	t	0	f
+4050	3	1387	2	nÅ›mero entero de 10 dÄ·gitos	EspagÅ„ol	t	0	f
+4256	3	1481	3	incl. directorio de usuarios	EspagÅ„ol	t	127	f
+4262	3	1483	2	Campo de selecciÃ³n (lista)	EspagÅ„ol	t	0	f
+4265	3	1484	2	SelecciÃ³n (radio)	EspagÅ„ol	t	0	f
+4283	3	1490	3	superior al ras	EspagÅ„ol	t	168	f
+4286	3	1491	3	centro	EspagÅ„ol	t	168	f
+4259	3	1482	2	Casilla de verificaciÃ³n (opciÃ³n mÅ›ltiple) como una lista casilla	EspagÅ„ol	t	0	f
+4063	3	1400	2	DD.MM.YYYY hh:mm.ss z.B. 05.12.02 z.B.. 5 dez 02 z.B.. 05 Dezember 2 15.10.00	EspagÅ„ol	t	0	t
+4289	3	1492	3	enrasado abajo	EspagÅ„ol	t	168	f
+4292	3	1493	3	base	EspagÅ„ol	t	168	f
+4295	3	1494	3	subÄ·ndice	EspagÅ„ol	t	168	f
+4298	3	1495	3	aumentar	EspagÅ„ol	t	168	f
+4301	3	1496	3	margen de texto superior	EspagÅ„ol	t	168	f
+4304	3	1497	3	menor margen de texto	EspagÅ„ol	t	168	f
+4328	3	1505	3	Java script	EspagÅ„ol	t	175	f
+4331	3	1506	1	sÄ·	EspagÅ„ol	t	15	f
+4334	3	1507	1	no	EspagÅ„ol	t	15	f
+4337	3	1508	3	campo obligatorio	EspagÅ„ol	t	122	f
+4340	3	1509	1	Los siguientes campos no se han llenado!	EspagÅ„ol	t	13	f
+4352	3	1513	3	grupo eliminado	EspagÅ„ol	t	116	f
+4361	3	1516	3	Tipo de campo	EspagÅ„ol	t	160	f
+4364	3	1517	3	tipo de datos	EspagÅ„ol	t	160	f
+4367	3	1518	3	funcid	EspagÅ„ol	t	160	f
+4370	3	1519	3	tipo de datos	EspagÅ„ol	t	160	f
+4385	3	1524	1	tomar el relevo+invertir	EspagÅ„ol	t	13	f
+4391	3	1526	1	Mostrar lista	EspagÅ„ol	t	13	f
+4394	3	1527	1	tomar / aplicarÄ¯n	EspagÅ„ol	t	5	f
+4403	3	1530	1	tome + Siguiente	EspagÅ„ol	t	13	f
+4406	3	1531	1	tomar el relevo+anterior	EspagÅ„ol	t	13	f
+4409	3	1532	3	desvÄ·o	EspagÅ„ol	t	127	f
+4415	3	1534	3	tirado a travÃ©s	EspagÅ„ol	t	168	f
+4418	3	1535	3	puntos	EspagÅ„ol	t	168	f
+4421	3	1536	3	discontinua	EspagÅ„ol	t	168	f
+4424	3	1537	3	dos veces	EspagÅ„ol	t	168	f
+4427	3	1538	3	interior 3D	EspagÅ„ol	t	168	f
+4430	3	1539	3	exterior 3D	EspagÅ„ol	t	168	f
+4433	3	1540	3	especie	EspagÅ„ol	t	168	f
+4072	3	1409	2	Casilla de verificaciÃ³n (opciÃ³n mÅ›ltiple) con una nueva ventana	EspagÅ„ol	t	0	f
+4400	3	1529	1	Los detalles en nueva pestaÅ„a	EspagÅ„ol	t	5	f
+4436	3	1541	3	color del marco	EspagÅ„ol	t	168	f
+4445	3	1544	1	metadatos del programa	EspagÅ„ol	t	15	f
+4448	3	1545	1	cambios en los metadatos	EspagÅ„ol	t	15	f
+4035	3	1372	2	SelecciÃ³n (selecciÃ³n mÅ›ltiple)	EspagÅ„ol	f	0	f
+4493	3	1560	1	abrir la cremallera	EspagÅ„ol	t	15	f
+4772	3	1653	3	Tipo de documento	EspagÅ„ol	t	52	f
+4502	3	1563	1	formato	EspagÅ„ol	t	15	f
+4505	3	1564	1	geometrÄ·a	EspagÅ„ol	t	15	f
+4508	3	1565	1	resoluciÃ³n	EspagÅ„ol	t	15	f
+4511	3	1566	1	profundidad de color	EspagÅ„ol	t	15	f
+4514	3	1567	1	colores	EspagÅ„ol	t	15	f
+4526	3	1571	1	reajustar	EspagÅ„ol	t	20	f
+4535	3	1574	1	La integridad referencial ha sido violada! 	EspagÅ„ol	t	25	f
+4556	3	1581	3	etiquetado	EspagÅ„ol	t	110	f
+4583	3	1590	1	indicado	EspagÅ„ol	t	15	f
+4604	3	1597	1	hablada	EspagÅ„ol	t	19	f
+4220	3	1469	1	grupos	EspagÅ„ol	t	20	f
+4613	3	1600	1	repetir contraseÅ„a	EspagÅ„ol	t	46	f
+4616	3	1601	1	color	EspagÅ„ol	t	140	f
+4637	3	1608	1	Debe asignar un nombre!	EspagÅ„ol	t	5	f
+4655	3	1614	3	defecto	EspagÅ„ol	t	122	f
+4663	3	1616	2	Insertar archivos / carpetas	EspagÅ„ol	t	\N	f
+4688	3	1625	1	vista	EspagÅ„ol	t	66	f
+4691	3	1626	1	bÅ›squeda	EspagÅ„ol	t	66	f
+4694	3	1627	1	NotaciÃ³n mal!	EspagÅ„ol	t	66	f
+4715	3	1634	3	en general	EspagÅ„ol	t	52	f
+4718	3	1635	3	metadatos	EspagÅ„ol	t	52	f
+4724	3	1637	3	mimetype	EspagÅ„ol	t	52	f
+4727	3	1638	3	creado por	EspagÅ„ol	t	52	f
+4730	3	1639	3	creado en	EspagÅ„ol	t	52	f
+4733	3	1640	3	titular	EspagÅ„ol	t	52	f
+4736	3	1641	3	AdemÄ¯s del nombre	EspagÅ„ol	t	52	f
+4742	3	1643	3	El nombre del autor (nombre, apellidos)	EspagÅ„ol	t	52	f
+4745	3	1644	3	Palabras clave	EspagÅ„ol	t	52	f
+4748	3	1645	3	Etiquetas en el documento, mÄ¯s separados por comas	EspagÅ„ol	t	52	f
+4754	3	1647	3	Abstract, descripciÃ³n del contenido	EspagÅ„ol	t	52	f
+4757	3	1648	3	editor	EspagÅ„ol	t	52	f
+4760	3	1649	3	Editores, universidad, etc.	EspagÅ„ol	t	52	f
+4763	3	1650	3	colaboradores	EspagÅ„ol	t	52	f
+4766	3	1651	3	Nombrar otra persona involucrada	EspagÅ„ol	t	52	f
+5048	3	1745	3	origen\r\n	EspagÅ„ol	t	52	f
+4781	3	1656	3	identificaciÃ³n	EspagÅ„ol	t	52	f
+4784	3	1657	3	(ISBN, ISSN, URL, etc. relaciÃ³n con este documento. La identificaciÃ³n Å›nica	EspagÅ„ol	t	52	f
+4790	3	1659	3	Plant, impreso o electrÃ³nicamente, de la cual los presentes origina documento	EspagÅ„ol	t	52	f
+4796	3	1661	3	Idioma del contenido del documento	EspagÅ„ol	t	52	f
+4802	3	1663	3	fuente	EspagÅ„ol	t	52	f
+4805	3	1664	3	atributos	EspagÅ„ol	t	52	f
+4808	3	1665	3	probado	EspagÅ„ol	t	52	f
+4811	3	1666	3	publicado	EspagÅ„ol	t	52	f
+4814	3	1667	3	formato de grÄ¯ficos	EspagÅ„ol	t	52	f
+4817	3	1668	3	minuto	EspagÅ„ol	t	52	f
+4823	3	1670	3	cerrado	EspagÅ„ol	t	52	f
+4844	3	1677	3	clasificaciÃ³n	EspagÅ„ol	t	52	f
+4847	3	1678	3	Anotaciones en el documento, mÄ¯s separados por comas	EspagÅ„ol	t	52	f
+4850	3	1679	1	copia de	EspagÅ„ol	t	66	f
+4862	3	1683	1	El archivo ya existe!	EspagÅ„ol	t	66	f
+4865	3	1684	1	Carpeta ya existe!	EspagÅ„ol	t	66	f
+4868	3	1685	3	duplicados	EspagÅ„ol	t	52	f
+4871	3	1686	3	Das Userverzeichniss konnte nicht gelÃ¶scht werden!	EspagÅ„ol	t	29	f
+4874	3	1687	3	Mostrar eliminadas usuarios	EspagÅ„ol	t	132	f
+4877	3	1688	1	El archivo estÄ¯ bloqueado!	EspagÅ„ol	t	66	f
+5138	3	1775	3	forma	EspagÅ„ol	t	168	f
+4889	3	1692	1	Se generÃ³ el informe.	EspagÅ„ol	t	93	f
+5024	3	1737	3	EXIF	EspagÅ„ol	t	52	f
+4892	3	1693	1	editar	EspagÅ„ol	t	66	f
+5498	3	1895	3	disposiciÃ³n	EspagÅ„ol	t	164	f
+4901	3	1696	1	Los mensajes y los archivos no se pueden mezclar!	EspagÅ„ol	t	97	f
+4904	3	1697	1	Dieser Ordner ist ein Systemordner. Er ist nur in Verbindung mit Tabellen, Berichten oder Nachrichten beschreibbar!	EspagÅ„ol	t	66	f
+4928	3	1705	1	papeles	EspagÅ„ol	t	3	f
+4931	3	1706	1	fotos	EspagÅ„ol	t	3	f
+5861	3	2016	1	sobresalir	EspagÅ„ol	t	5	f
+4940	3	1709	1	Para borrar todo el contenido de la carpeta?	EspagÅ„ol	t	66	f
+4943	3	1710	1	Sin el permiso de carga!	EspagÅ„ol	t	66	f
+4964	3	1717	1	ningÅ›n archivo seleccionado!	EspagÅ„ol	t	66	f
+4970	3	1719	3	Indexada en:	EspagÅ„ol	t	52	f
+4973	3	1720	3	Ä·ndice	EspagÅ„ol	t	52	f
+4976	3	1721	1	usuario:	EspagÅ„ol	t	23	f
+4979	3	1722	1	el tiempo estimado de tiempo de descanso:	EspagÅ„ol	t	23	f
+4994	3	1727	3	borrar completamente	EspagÅ„ol	t	127	f
+4997	3	1728	3	habilitar al usuario	EspagÅ„ol	t	132	f
+5012	3	1733	1	NingÅ›n registro seleccionado!	EspagÅ„ol	t	5	f
+5027	3	1738	3	IPTC	EspagÅ„ol	t	52	f
+5030	3	1739	3	preestreno	EspagÅ„ol	t	52	f
+5033	3	1740	3	XMP	EspagÅ„ol	t	52	f
+5036	3	1741	3	descripciÃ³n	EspagÅ„ol	t	52	f
+5039	3	1742	3	Palabras clave	EspagÅ„ol	t	52	f
+5042	3	1743	3	categorÄ·as	EspagÅ„ol	t	52	f
+5045	3	1744	3	derechos de imagen	EspagÅ„ol	t	52	f
+5051	3	1746	3	derechos de autor	EspagÅ„ol	t	52	f
+5054	3	1747	3	notas	EspagÅ„ol	t	52	f
+5057	3	1748	3	urgencia	EspagÅ„ol	t	52	f
+5060	3	1749	3	categorÄ·a	EspagÅ„ol	t	52	f
+5063	3	1750	3	autor	EspagÅ„ol	t	52	f
+5069	3	1752	3	lugar	EspagÅ„ol	t	52	f
+5072	3	1753	3	Estado / Provincia	EspagÅ„ol	t	52	f
+5075	3	1754	3	paÄ·s	EspagÅ„ol	t	52	f
+5078	3	1755	3	Aufgeber-Code	EspagÅ„ol	t	52	f
+5081	3	1756	3	nota	EspagÅ„ol	t	52	f
+5084	3	1757	3	nombre de la propiedad	EspagÅ„ol	t	52	f
+5087	3	1758	3	subcategorÄ·as	EspagÅ„ol	t	52	f
+5099	3	1762	1	mÃ©todo	EspagÅ„ol	t	66	f
+5102	3	1763	3	eventos	EspagÅ„ol	t	168	f
+5105	3	1764	3	OnClick	EspagÅ„ol	t	168	f
+5108	3	1765	3	OnDblClick	EspagÅ„ol	t	168	f
+4991	3	1726	1	Los datos o metadatos del archivo asociado no existe!	EspagÅ„ol	t	66	f
+5111	3	1766	3	OnMouseOver	EspagÅ„ol	t	168	f
+5114	3	1767	3	OnMouseOut	EspagÅ„ol	t	168	f
+5129	3	1772	3	script PHP	EspagÅ„ol	t	175	f
+5132	3	1773	3	datos DescripciÃ³n	EspagÅ„ol	t	169	f
+5135	3	1774	3	cuadro de bÅ›squeda de datos	EspagÅ„ol	t	169	f
+5141	3	1776	3	visible	EspagÅ„ol	t	168	f
+5144	3	1777	3	aislado	EspagÅ„ol	t	168	f
+5147	3	1778	3	desplazable	EspagÅ„ol	t	168	f
+5150	3	1779	3	log	EspagÅ„ol	t	140	f
+5153	3	1780	3	acciones	EspagÅ„ol	t	127	f
+5174	3	1787	1	archivo	EspagÅ„ol	t	13	f
+5177	3	1788	1	informes	EspagÅ„ol	t	5	f
+5180	3	1789	3	usuarios activos mostrar	EspagÅ„ol	t	132	f
+5183	3	1790	3	ver todos los usuarios	EspagÅ„ol	t	132	f
+5186	3	1791	3	estadÄ·stica	EspagÅ„ol	t	132	f
+5189	3	1792	3	cambiado	EspagÅ„ol	t	132	f
+5192	3	1793	3	Mostrar bloqueado usuarios	EspagÅ„ol	t	132	f
+5204	3	1797	1	0 (sin registro)	EspagÅ„ol	t	127	f
+5207	3	1798	1	1 (sÃ³lo DB, y acciones)	EspagÅ„ol	t	127	f
+5210	3	1799	1	2 (registro completo)	EspagÅ„ol	t	127	f
+5213	3	1800	2	Iniciar sesiÃ³n	EspagÅ„ol	t	182	f
+5216	3	1801	2	Cerrar sesiÃ³n	EspagÅ„ol	t	182	f
+5219	3	1802	2	IP	EspagÅ„ol	t	182	f
+5222	3	1803	2	duraciÃ³n	EspagÅ„ol	t	182	f
+5225	3	1804	2	fecha	EspagÅ„ol	t	182	f
+5228	3	1805	2	acciÃ³n	EspagÅ„ol	t	182	f
+5231	3	1806	2	mesa	EspagÅ„ol	t	182	f
+5234	3	1807	2	ID	EspagÅ„ol	t	182	f
+5237	3	1808	2	especie	EspagÅ„ol	t	182	f
+5240	3	1809	3	menÅ› principal	EspagÅ„ol	t	163	f
+5243	3	1810	3	AdministraciÃ³n	EspagÅ„ol	t	163	f
+5249	3	1812	3	menÅ› de usuario	EspagÅ„ol	t	163	f
+5252	3	1813	3	extensiones	EspagÅ„ol	t	163	f
+5255	3	1814	3	subgrupo	EspagÅ„ol	t	162	f
+5258	3	1815	3	Ordenar	EspagÅ„ol	t	162	f
+11735	3	2658	3	anexar	EspagÅ„ol	t	140	f
+5264	3	1817	3	contraseÅ„a caduca	EspagÅ„ol	t	127	f
+5282	3	1823	3	Generador	EspagÅ„ol	t	121	f
+5285	3	1824	3	mesa para enlazar	EspagÅ„ol	t	121	f
+5294	3	1827	1	con el mundial	EspagÅ„ol	t	19	f
+5303	3	1830	3	selecciÃ³n piscina	EspagÅ„ol	t	104	f
+5309	3	1832	3	nueva piscina	EspagÅ„ol	t	104	f
+5324	3	1837	3	clasificaciÃ³n	EspagÅ„ol	t	104	f
+5327	3	1838	3	entrada	EspagÅ„ol	t	104	f
+5330	3	1839	3	descendente	EspagÅ„ol	t	104	f
+5333	3	1840	3	aufsteigend	EspagÅ„ol	t	104	f
+5339	3	1842	3	FORMATO: VALOR [STRING] | ADICIONAL [STRING]	EspagÅ„ol	t	104	f
+5342	3	1843	1	valores	EspagÅ„ol	t	12	f
+5345	3	1844	1	de ella	EspagÅ„ol	t	12	f
+5348	3	1845	1	seleccionado	EspagÅ„ol	t	12	f
+5351	3	1846	1	apropiado	EspagÅ„ol	t	12	f
+5354	3	1847	3	actualizaciÃ³n del sistema	EspagÅ„ol	t	154	f
+5360	3	1849	3	Distribuir estructura de carpetas	EspagÅ„ol	t	154	f
+5381	3	1856	3	usado	EspagÅ„ol	t	195	f
+5387	3	1858	3	renovar	EspagÅ„ol	t	195	f
+5429	3	1872	3	menÅ› de informaciÃ³n	EspagÅ„ol	t	163	f
+5450	3	1879	3	editable	EspagÅ„ol	t	110	f
+5453	3	1880	3	formato de nÅ›mero	EspagÅ„ol	t	110	f
+5456	3	1881	3	RegExp	EspagÅ„ol	t	110	f
+5462	3	1883	3	moneda	EspagÅ„ol	t	110	f
+5468	3	1885	3	WYSIWYG	EspagÅ„ol	t	110	f
+5471	3	1886	3	separaciÃ³n valor	EspagÅ„ol	t	110	f
+5474	3	1887	3	Disp. atajos	EspagÅ„ol	t	110	f
+5417	3	1868	1	La solicitud supera el mÄ¯ximo de los mismos registros a tratar! La ordenaciÃ³n se realiza sÃ³lo en el conjunto de resultados aprobado. Los pasos siguientes estÄ¯n disponibles:	EspagÅ„ol	t	5	t
+5492	3	1893	3	en general	EspagÅ„ol	t	164	f
+5495	3	1894	3	rutas de instalaciÃ³n	EspagÅ„ol	t	164	f
+5501	3	1896	3	Los arreglos de mesa	EspagÅ„ol	t	164	f
+5507	3	1898	3	ConfiguraciÃ³n del Ä·ndice	EspagÅ„ol	t	164	f
+5510	3	1899	3	ConfiguraciÃ³n de archivos	EspagÅ„ol	t	164	f
+5513	3	1900	3	ConfiguraciÃ³n de seguridad	EspagÅ„ol	t	164	f
+5516	3	1901	1	Die Medatdaten konnten nicht erfolgreich ausgelesen werden.	EspagÅ„ol	t	41	f
+5519	3	1902	1	grandes / pequeÅ„os cuadernos de cartas	EspagÅ„ol	t	66	f
+5522	3	1903	1	juego completo	EspagÅ„ol	t	66	f
+5525	3	1904	1	Parte de la palabra	EspagÅ„ol	t	66	f
+5537	3	1908	3	buscar sÃ³lo en los metadatos	EspagÅ„ol	t	52	f
+5540	3	1909	1	para este tipo de archivo no se puede previsualizar creado.	EspagÅ„ol	t	66	f
+5558	3	1915	1	No se encontraron documentos!	EspagÅ„ol	t	66	f
+5585	3	1924	3	otro	EspagÅ„ol	t	52	f
+5600	3	1929	3	calendario	EspagÅ„ol	t	140	f
+5606	3	1931	2	tiempo	EspagÅ„ol	t	0	f
+5615	3	1934	2	00:00:00	EspagÅ„ol	t	0	f
+5630	3	1939	1	extras	EspagÅ„ol	t	66	f
+5654	3	1947	3	cuadro de ediciÃ³n	EspagÅ„ol	t	175	f
+5657	3	1948	3	cuadro de Ä¯rea de texto	EspagÅ„ol	t	175	f
+5660	3	1949	3	Seleccione la casilla de verificaciÃ³n	EspagÅ„ol	t	175	f
+5663	3	1950	3	elemento casilla de verificaciÃ³n	EspagÅ„ol	t	175	f
+5666	3	1951	3	elemento de Radio	EspagÅ„ol	t	175	f
+5675	3	1954	3	ventana de usos mÅ›ltiples	EspagÅ„ol	t	115	f
+5678	3	1955	3	junto	EspagÅ„ol	t	168	f
+5681	3	1956	3	apartado	EspagÅ„ol	t	168	f
+5696	3	1961	3	selecciÃ³n	EspagÅ„ol	t	168	f
+5699	3	1962	3	SÄ· 	EspagÅ„ol	t	168	f
+5702	3	1963	3	no	EspagÅ„ol	t	168	f
+5714	3	1967	3	chasquido	EspagÅ„ol	t	168	f
+5717	3	1968	3	oculto	EspagÅ„ol	t	168	f
+5738	3	1975	1	en	EspagÅ„ol	t	13	f
+5741	3	1976	1	al	EspagÅ„ol	t	13	f
+5753	3	1980	1	acta	EspagÅ„ol	t	13	f
+5756	3	1981	1	Stunden	EspagÅ„ol	t	13	f
+5759	3	1982	1	dÄ·as	EspagÅ„ol	t	13	f
+5762	3	1983	1	semana	EspagÅ„ol	t	13	f
+5768	3	1985	1	aÅ„os	EspagÅ„ol	t	13	f
+5771	3	1986	3	extensiÃ³n	EspagÅ„ol	t	162	f
+5774	3	1987	3	Disparador onch	EspagÅ„ol	t	122	f
+5789	3	1992	3	renovar las tablas del sistema de archivos	EspagÅ„ol	t	154	f
+5798	3	1995	3	Depurar	EspagÅ„ol	t	164	f
+5807	3	1998	1	guardar como	EspagÅ„ol	t	5	f
+5813	3	2000	1	administrar	EspagÅ„ol	t	5	f
+5831	3	2006	1	guardado correctamente!	EspagÅ„ol	t	0	f
+5834	3	2007	1	eliminado correctamente!	EspagÅ„ol	t	0	f
+5837	3	2008	1	enviado con Ã©xito!	EspagÅ„ol	t	0	f
+5864	3	2017	1	XML	EspagÅ„ol	t	5	f
+5873	3	2020	3	La conversiÃ³n de la materia:	EspagÅ„ol	t	110	f
+5876	3	2021	3	Contenido con exceso de longitud o el tipo incorrecto de reducir o borrado!	EspagÅ„ol	t	110	f
+5882	3	2023	3	pregunta	EspagÅ„ol	t	140	f
+5891	3	2026	3	SQL	EspagÅ„ol	t	205	f
+5894	3	2027	3	Editor	EspagÅ„ol	t	205	f
+5903	3	2030	3	Actualizar contenidos de los campos temporales	EspagÅ„ol	t	154	f
+5918	3	2035	3	Workflow	EspagÅ„ol	t	140	f
+5867	3	2018	3	Å›ltima versiÃ³n	EspagÅ„ol	t	52	f
+5684	3	1957	3	rejilla celular	EspagÅ„ol	t	168	f
+5939	3	2042	1	Å›ltimo usuario	EspagÅ„ol	t	208	f
+5942	3	2043	1	los usuarios actuales	EspagÅ„ol	t	208	f
+5945	3	2044	1	prÃ³ximos a los usuarios	EspagÅ„ol	t	208	f
+5951	3	2046	1	Ã¦Le detener este flujo de trabajo?	EspagÅ„ol	t	208	f
+5954	3	2047	1	Ã¦Quieres abortar este flujo de trabajo?	EspagÅ„ol	t	208	f
+5957	3	2048	1	tarea	EspagÅ„ol	t	208	f
+5960	3	2049	1	von\r\n	EspagÅ„ol	t	208	f
+5963	3	2050	1	an	EspagÅ„ol	t	208	f
+5966	3	2051	1	Sie haben momentan weder eine Aufgabe noch ein Workflow gestartet!	EspagÅ„ol	t	208	f
+5975	3	2054	1	Flujo de trabajo se ha anulado correctamente!	EspagÅ„ol	t	209	f
+5984	3	2057	1	mi flujo de trabajo	EspagÅ„ol	t	204	f
+5987	3	2058	1	no es una tarea	EspagÅ„ol	t	204	f
+5999	3	2062	1	Åšltimo registro! 	EspagÅ„ol	t	23	f
+6002	3	2063	3	considerar Ä¶ndice Z 	EspagÅ„ol	t	175	f
+6005	3	2064	3	a un primer plano	EspagÅ„ol	t	168	f
+6008	3	2065	3	en el fondo	EspagÅ„ol	t	168	f
+6014	3	2067	3	renovar Ä¶ndice Z	EspagÅ„ol	t	168	f
+6017	3	2068	3	No.	EspagÅ„ol	t	212	f
+6023	3	2070	3	tiempo	EspagÅ„ol	t	212	f
+6029	3	2072	3	aktiv	EspagÅ„ol	t	212	f
+6035	3	2074	3	minuto	EspagÅ„ol	t	212	f
+6038	3	2075	3	hora	EspagÅ„ol	t	212	f
+6041	3	2076	3	del mes	EspagÅ„ol	t	212	f
+6047	3	2078	3	dÄ·a laborable	EspagÅ„ol	t	212	f
+6050	3	2079	3	AÅ„adir trabajo	EspagÅ„ol	t	212	f
+6053	3	2080	3	estructura de archivos	EspagÅ„ol	t	212	f
+7665	3	2083	1	no hay registros seleccionados!	EspagÅ„ol	t	5	f
+7685	3	2088	3	oculto	EspagÅ„ol	t	168	f
+7697	3	2091	3	primera pÄ¯gina	EspagÅ„ol	t	168	f
+7701	3	2092	3	siguientes pÄ¯ginas	EspagÅ„ol	t	168	f
+7705	3	2093	3	Transp.	EspagÅ„ol	t	168	f
+7725	3	2098	3	antes	EspagÅ„ol	t	168	f
+7729	3	2099	3	entonces	EspagÅ„ol	t	168	f
+7681	3	2087	2	campo heredada	EspagÅ„ol	t	0	f
+7733	3	2100	3	maquillaje	EspagÅ„ol	t	168	f
+7737	3	2101	3	la posiciÃ³n del arreglo	EspagÅ„ol	t	168	f
+7741	3	2102	3	relativamente	EspagÅ„ol	t	168	f
+7781	3	2112	3	tabla de colores	EspagÅ„ol	t	52	f
+7761	3	2107	3	legar	EspagÅ„ol	t	213	f
+7785	3	2113	1	El archivo no se puede convertir!	EspagÅ„ol	t	66	f
+7789	3	2114	1	lÄ·mite	EspagÅ„ol	t	5	f
+7809	3	2119	3	grÄ¯ficos	EspagÅ„ol	t	177	f
+7861	3	2132	3	de versiones	EspagÅ„ol	t	140	f
+7885	3	2138	1	No tabla vinculada seleccionado!	EspagÅ„ol	t	5	f
+7889	3	2139	1	No hay datos asociados disponibles!	EspagÅ„ol	t	5	f
+7901	3	2142	3	de forma recursiva	EspagÅ„ol	t	140	f
+7905	3	2143	3	fix	EspagÅ„ol	t	140	f
+7857	3	2131	3	menÅ› de la derecha	EspagÅ„ol	t	119	f
+7853	3	2130	3	derechos de archivo	EspagÅ„ol	t	119	f
+7849	3	2129	3	los derechos de mesa	EspagÅ„ol	t	119	f
+7909	3	2144	3	a mano	EspagÅ„ol	t	122	f
+7913	3	2145	3	automÄ¯ticamente	EspagÅ„ol	t	122	f
+7917	3	2146	1	debe ser versionado el registro?	EspagÅ„ol	t	13	f
+7925	3	2148	1	Registro fue versionado con Ã©xito!	EspagÅ„ol	t	25	f
+7929	3	2149	1	Los registros fueron versionados correctamente!	EspagÅ„ol	t	25	f
+7933	3	2150	1	El registro ha sido copiado con Ã©xito!	EspagÅ„ol	t	25	f
+7937	3	2151	1	Los registros se han copiado con Ã©xito!	EspagÅ„ol	t	25	f
+7945	3	2153	1	Si se eliminan los registros seleccionados?	EspagÅ„ol	t	5	f
+7949	3	2154	1	Si se archivan los registros seleccionados?	EspagÅ„ol	t	5	f
+7953	3	2155	1	Si se versionan los registros seleccionados?	EspagÅ„ol	t	5	f
+7957	3	2156	1	Si se copian los registros seleccionados?	EspagÅ„ol	t	5	f
+7961	3	2157	1	Si se restauran los registros seleccionados?	EspagÅ„ol	t	5	f
+10335	3	2310	1	Usted no tiene ninguna carpeta derechos!	EspagÅ„ol	t	97	f
+7965	3	2158	1	CancelaciÃ³n de los lÄ·mites puede conducir a largos tiempos de espera para grandes conjuntos de registros!	EspagÅ„ol	t	5	f
+7921	3	2147	1	Puede ser versionado y editado sÃ³lo la versiÃ³n actual del registro!	EspagÅ„ol	t	13	f
+8001	3	2167	1	Mostrar barra de herramientas	EspagÅ„ol	t	46	f
+8021	3	2172	1	SituaciÃ³n a:	EspagÅ„ol	t	5	f
+8025	3	2173	2	------- tipos de campo ExtensiÃ³n -------	EspagÅ„ol	t	0	f
+8029	3	2174	2	sin sentido	EspagÅ„ol	t	0	f
+8041	3	2177	1	Registro es idÃ©ntico!	EspagÅ„ol	t	13	f
+8045	3	2178	3	colspan	EspagÅ„ol	t	168	f
+8049	3	2179	3	rowspan	EspagÅ„ol	t	168	f
+10303	3	2302	3	no muestran menÅ› de la tabla	EspagÅ„ol	t	122	f
+8061	3	2182	1	Registro fue vinculado!	EspagÅ„ol	t	25	f
+8065	3	2183	1	Los registros fueron ligados!	EspagÅ„ol	t	25	f
+8069	3	2184	1	Link ha sido resuelto!	EspagÅ„ol	t	25	f
+8073	3	2185	1	Enlaces se han resuelto!	EspagÅ„ol	t	25	f
+8077	3	2186	1	Si se vinculan los registros seleccionados?	EspagÅ„ol	t	5	f
+8081	3	2187	1	Si se resolverÄ¯ el funcionamiento de los registros seleccionados?	EspagÅ„ol	t	5	f
+8089	3	2189	1	No tiene derecho a este archivo!	EspagÅ„ol	t	66	f
+8125	3	2198	3	dependiente	EspagÅ„ol	t	168	f
+8161	3	2207	3	plantilla	EspagÅ„ol	t	177	f
+8173	3	2210	3	rebautizar	EspagÅ„ol	t	148	f
+4039	3	1376	2	Enlace 1:n	EspagÅ„ol	t	0	f
+8109	3	2194	2	tamaÅ„o de archivo	EspagÅ„ol	t	0	f
+8113	3	2195	2	TamaÅ„o en bytes	EspagÅ„ol	t	0	f
+8193	3	2215	3	vista	EspagÅ„ol	t	149	f
+8197	3	2216	3	gatillo	EspagÅ„ol	t	149	f
+8209	3	2219	1	Ã¦Quieres aÅ„adir el archivo / s a &#8203;&#8203;sus favoritos?	EspagÅ„ol	t	66	f
+8233	3	2225	1	un nivel	EspagÅ„ol	t	215	f
+8237	3	2226	1	seleccionar	EspagÅ„ol	t	215	f
+8241	3	2227	1	abortar	EspagÅ„ol	t	215	f
+8249	3	2229	1	mirando en	EspagÅ„ol	t	215	f
+8253	3	2230	1	Inicio guÄ·a	EspagÅ„ol	t	215	f
+8257	3	2231	1	nueva carpeta	EspagÅ„ol	t	215	f
+8177	3	2211	2	atributo	EspagÅ„ol	t	0	f
+8181	3	2212	2	atributo	EspagÅ„ol	t	0	f
+8261	3	2232	1	nuevo archivo	EspagÅ„ol	t	215	f
+8265	3	2233	1	simple presentaciÃ³n	EspagÅ„ol	t	215	f
+8269	3	2234	1	pantalla extendida	EspagÅ„ol	t	215	f
+8273	3	2235	3	identificadores	EspagÅ„ol	t	110	f
+8277	3	2236	3	dependencia	EspagÅ„ol	t	52	f
+8289	3	2239	3	SÃ³lo backend bloqueo	EspagÅ„ol	t	127	f
+8293	3	2240	3	convertir	EspagÅ„ol	t	148	f
+8305	3	2243	3	abfragen	EspagÅ„ol	t	148	f
+8381	3	2262	3	la vida de sesiÃ³n	EspagÅ„ol	t	127	f
+8357	3	2256	2	argumento SQL	EspagÅ„ol	t	0	f
+8361	3	2257	2	constructo FÃ³rmula (SQL)	EspagÅ„ol	t	0	f
+10164	3	2269	3	definiciÃ³n	EspagÅ„ol	t	218	f
+10169	3	2270	3	editado en	EspagÅ„ol	t	218	f
+10174	3	2271	3	editado por	EspagÅ„ol	t	218	f
+10194	3	2275	3	sincronizar	EspagÅ„ol	t	218	f
+10203	3	2277	2	Berichtrechte	EspagÅ„ol	t	0	f
+10207	3	2278	2	ConfiguraciÃ³n de informe de Derechos	EspagÅ„ol	t	0	f
+12807	3	2925	3	\N	EspagÅ„ol	f	173	f
+10211	3	2279	3	debe suprimirse la forma?	EspagÅ„ol	t	176	f
+10219	3	2281	3	formas	EspagÅ„ol	t	222	f
+8121	3	2197	2	mimetype	EspagÅ„ol	t	0	f
+8037	3	2176	2	ObservaciÃ³n adicional de versiones	EspagÅ„ol	t	0	f
+8033	3	2175	2	versiÃ³n Comentarios	EspagÅ„ol	t	0	f
+10231	3	2284	3	el informe deberÄ·a eliminarse?	EspagÅ„ol	t	170	f
+10235	3	2285	3	debe suprimirse el diagrama?	EspagÅ„ol	t	177	f
+10239	3	2286	3	Si se borra el grupo de tablas, incluyendo tablas?	EspagÅ„ol	t	140	f
+10363	3	2317	1	El archivo de origen ya no existe!	EspagÅ„ol	t	66	f
+10243	3	2287	3	desea que la tabla que desea eliminar?	EspagÅ„ol	t	140	f
+10247	3	2288	3	todos abiertos	EspagÅ„ol	t	213	f
+10255	3	2290	3	todos abiertos justificada	EspagÅ„ol	t	213	f
+10259	3	2291	2	muestran su vez vinculado	EspagÅ„ol	t	0	f
+10267	3	2293	1	Los metadatos no se pudo actualizar!	EspagÅ„ol	t	66	f
+10391	3	2324	1	Info Indizierung	EspagÅ„ol	t	66	f
+10271	3	2294	1	Usted no tiene permiso o se retirÃ³ la orden!	EspagÅ„ol	t	66	f
+10275	3	2295	3	ver los archivos	EspagÅ„ol	t	213	f
+10279	3	2296	3	AÅ„adir archivos	EspagÅ„ol	t	213	f
+10283	3	2297	3	Ordner anlegen	EspagÅ„ol	t	213	f
+10287	3	2298	3	Eliminar archivos / carpetas	EspagÅ„ol	t	213	f
+10291	3	2299	3	editar metadatos	EspagÅ„ol	t	213	f
+10295	3	2300	3	archivos de bloqueo	EspagÅ„ol	t	213	f
+10299	3	2301	3	grupos permitidos	EspagÅ„ol	t	213	f
+10311	3	2304	2	OCR	EspagÅ„ol	t	0	f
+10315	3	2305	2	el reconocimiento OCR	EspagÅ„ol	t	0	f
+10323	3	2307	2	barra de herramientas	EspagÅ„ol	t	0	f
+10327	3	2308	2	Mostrar barra de herramientas	EspagÅ„ol	t	0	f
+10331	3	2309	1	expediente	EspagÅ„ol	t	97	f
+10263	3	2292	2	mostrar consigo registros relacionados	EspagÅ„ol	t	0	f
+10339	3	2311	1	No hay derechos de eliminaciÃ³n!	EspagÅ„ol	t	97	f
+11043	3	2485	3	ajustes de usuario	EspagÅ„ol	t	154	f
+10347	3	2313	1	El archivo de origen ya existe. Por favor, intÃ©ntelo de nuevo.	EspagÅ„ol	t	97	f
+10351	3	2314	1	Iniciar el reconocimiento OCR	EspagÅ„ol	t	66	f
+10355	3	2315	2	Modo vinculado	EspagÅ„ol	t	0	f
+10359	3	2316	2	mostrar sÃ³lo los registros relacionados	EspagÅ„ol	t	0	f
+10367	3	2318	1	eliminar el archivo	EspagÅ„ol	t	215	f
+10371	3	2319	2	Buscar en subcarpetas	EspagÅ„ol	t	0	f
+10375	3	2320	2	bÅ›squeda recursiva	EspagÅ„ol	t	0	f
+10379	3	2321	1	abierto	EspagÅ„ol	t	66	f
+10383	3	2322	1	Guardar	EspagÅ„ol	t	66	f
+10387	3	2323	1	informaciÃ³n de metadatos	EspagÅ„ol	t	66	f
+10395	3	2325	1	informaciÃ³n de versiones	EspagÅ„ol	t	66	f
+10415	3	2330	1	ver todos los archivos	EspagÅ„ol	t	66	f
+10423	3	2332	1	omitir	EspagÅ„ol	t	66	f
+10319	3	2306	3	Forma Derechos / Informe	EspagÅ„ol	t	119	f
+10427	3	2333	1	Aplicar a todos los archivos	EspagÅ„ol	t	66	f
+10431	3	2334	1	Ver origen	EspagÅ„ol	t	15	f
+10447	3	2338	2	Derechos del usuario	EspagÅ„ol	t	0	f
+10451	3	2339	2	Benutzer berechtigen	EspagÅ„ol	t	0	f
+10455	3	2340	3	Si cambia los permisos de todos los viejos individuales de los derechos se borrarÄ¯ esta tabla!	EspagÅ„ol	t	140	f
+10459	3	2341	2	Mostrar derechos de usuario	EspagÅ„ol	t	0	f
+10463	3	2342	2	DescripciÃ³n general de los derechos de los usuarios	EspagÅ„ol	t	0	f
+10483	3	2347	3	Ä¶ndice Z	EspagÅ„ol	t	169	f
+10487	3	2348	3	Y-Pos	EspagÅ„ol	t	169	f
+10491	3	2349	2	prueba	EspagÅ„ol	t	unknown	f
+10495	3	2350	2	sin sentido	EspagÅ„ol	t	unknown	f
+10499	3	1993	2	secciÃ³n	EspagÅ„ol	t	unknown	f
+10503	3	1994	2	CategorÄ·a etiquetado	EspagÅ„ol	t	unknown	f
+10515	3	2353	3	IP estÄ¯tica	EspagÅ„ol	t	127	f
+10519	3	2354	1	Diferencia entre versiones	EspagÅ„ol	t	204	f
+10523	3	2355	1	mostrar en pdf	EspagÅ„ol	t	204	f
+10531	3	2357	3	separador	EspagÅ„ol	t	168	f
+10535	3	2358	1	Romper vÄ·nculo	EspagÅ„ol	t	13	f
+10539	3	2359	1	Ã¦Quieres eliminar el enlace de este disco?	EspagÅ„ol	t	13	f
+10551	3	2362	2	agrupamiento	EspagÅ„ol	t	0	f
+10507	3	2351	2	contenido del documento	EspagÅ„ol	t	0	f
+10511	3	2352	2	Documento de referencia	EspagÅ„ol	t	0	f
+12727	3	2905	2	imagen	EspagÅ„ol	t	0	f
+10555	3	2363	2	campo de agrupamiento	EspagÅ„ol	t	0	f
+10575	3	2368	3	InformaciÃ³n de texto mientras estÄ¯ bloqueado	EspagÅ„ol	t	154	f
+10603	3	2375	1	El archivo subido ya existe con el mismo o un nombre diferente en las siguientes carpetas	EspagÅ„ol	t	41	f
+10607	3	2376	3	filtro avanzado	EspagÅ„ol	t	121	f
+10611	3	2377	3	Beziehungen	EspagÅ„ol	t	121	f
+10615	3	2378	3	miembro del grupo	EspagÅ„ol	t	186	f
+10619	3	2379	3	clasificaciÃ³n	EspagÅ„ol	t	186	f
+10627	3	2381	3	respecto	EspagÅ„ol	t	52	f
+10643	3	2385	3	final	EspagÅ„ol	t	52	f
+10543	3	2360	2	pestaÅ„a agrupaciÃ³n	EspagÅ„ol	t	0	f
+10547	3	2361	2	Campo de agrupamiento como piloto	EspagÅ„ol	t	0	f
+10655	3	2388	3	creado en	EspagÅ„ol	t	52	f
+10659	3	2389	3	creado por	EspagÅ„ol	t	52	f
+10663	3	2390	3	creado por el grupo	EspagÅ„ol	t	52	f
+10667	3	2391	3	editado en	EspagÅ„ol	t	52	f
+10671	3	2392	3	editado por	EspagÅ„ol	t	52	f
+10751	3	2412	3	mensaje No.	EspagÅ„ol	t	52	f
+10759	3	2414	3	de	EspagÅ„ol	t	52	f
+10763	3	2415	3	para	EspagÅ„ol	t	52	f
+10779	3	2419	3	Nachricht	EspagÅ„ol	t	52	f
+10815	3	2428	3	bloquear ilimitada	EspagÅ„ol	t	221	f
+10823	3	2430	2	registro de bloqueo	EspagÅ„ol	t	0	f
+10827	3	2431	2	desbloqueo	EspagÅ„ol	t	0	f
+10831	3	2432	2	desbloquear registro	EspagÅ„ol	t	0	f
+10835	3	2433	1	debe ser liberado el disco?	EspagÅ„ol	t	13	f
+10843	3	2435	1	Registro fue bloqueado correctamente!	EspagÅ„ol	t	25	f
+10847	3	2436	1	Los registros fueron bloqueadas correctamente!	EspagÅ„ol	t	25	f
 12796	1	2922	3	Vollsuche	deutsch	t	110	f
-10851	3	2437	1	El registro ha sido desbloqueado con éxito!	Espagñol	t	25	f
-10855	3	2438	1	Datensätze wurden erfolgreich entsperrt!	Espagñol	t	25	f
-10859	3	2439	2	fecha bloqueado	Espagñol	t	0	f
-10863	3	2440	2	mis registros bloqueados	Espagñol	t	0	f
-10867	3	2441	2	Mostrar bloqueado	Espagñol	t	0	f
-10871	3	2442	2	Viendo registros bloqueados	Espagñol	t	0	f
-10875	3	2443	2	guardar	Espagñol	t	0	f
-10879	3	2444	2	tomar el relevo	Espagñol	t	0	f
-10883	3	2445	3	immer	Espagñol	t	168	f
-10887	3	2446	3	incluso páginas	Espagñol	t	168	f
-10891	3	2447	3	páginas impares	Espagñol	t	168	f
-10895	3	2448	1	hablado como	Espagñol	t	66	f
-10903	3	2450	3	trigger	Espagñol	t	218	f
-10907	3	2451	3	gatillo Limbas	Espagñol	t	218	f
-10915	3	2453	3	Gestionar los derechos de usuario para los registros generados internamente	Espagñol	t	221	f
-10923	3	2455	1	Usted está en el sistema como	Espagñol	t	11	f
-10927	3	2456	3	formulario de cambio de dirección	Espagñol	t	175	f
-10587	3	2371	3	copia de enlace	Espagñol	t	121	f
-10935	3	2458	3	maxlen	Espagñol	t	168	f
-10943	3	2460	3	reemplazar	Espagñol	t	168	f
-10951	3	2462	3	La selección de proyectos	Espagñol	t	145	f
-10955	3	2463	3	enviar información de registro	Espagñol	t	132	f
-11187	3	2521	1	nombre de host IMAP	Espagñol	t	46	f
-10963	3	2465	2	espectáculo de suma	Espagñol	t	0	f
-10967	3	2466	2	mostrar suma de los registros	Espagñol	t	0	f
-10979	3	2469	2	recursiva de eliminación	Espagñol	t	0	f
-10983	3	2470	2	recursivos vínculos de borrado y versiones	Espagñol	t	0	f
-10987	3	2471	2	funciones especiales	Espagñol	t	0	f
-10991	3	2472	2	funciones especiales	Espagñol	t	0	f
-10995	3	2473	1	Existen las siguientes dependencias:	Espagñol	t	25	f
-10999	3	2474	1	Las siguientes dependencias se resolvieron:	Espagñol	t	25	f
-11027	3	2481	3	de contenido temporal	Espagñol	t	154	f
-11031	3	2482	3	funciones de base de datos	Espagñol	t	154	f
-11039	3	2484	3	gestión de derechos	Espagñol	t	154	f
-11035	3	2483	3	sistema	Espagñol	t	154	f
-11063	3	2490	2	árboles de relación	Espagñol	t	0	f
-11075	3	2493	2	vector árbol	Espagñol	t	0	f
-11079	3	2494	2	vector árbol	Espagñol	t	0	f
-11083	3	2495	2	Buscar divisiones del Grupo	Espagñol	t	0	f
-11087	3	2496	2	Buscar encabezados de campo del Grupo	Espagñol	t	0	f
-11095	3	2498	1	grupos	Espagñol	t	84	f
-11059	3	2489	2	vector árbol	Espagñol	t	0	f
-11111	3	2502	1	formato:	Espagñol	t	13	f
-11115	3	2503	1	Formulario estándar	Espagñol	t	13	f
-11123	3	2505	3	Regla pantalla	Espagñol	t	110	f
-11131	3	2507	3	Búsqueda rápida	Espagñol	t	110	f
-3913	3	1250	3	Historia	Espagñol	t	132	f
-11135	3	2508	3	HTML	Espagñol	t	168	f
-11139	3	2509	3	Extensión informe	Espagñol	t	170	f
-11151	3	2512	3	los informes del sistema	Espagñol	t	222	f
-10443	3	2337	3	Gestionar los derechos de usuario para todos los registros	Espagñol	t	221	f
-10559	3	2364	2	duplicados	Espagñol	t	0	f
-10563	3	2365	2	Descripción general duplicados	Espagñol	t	0	f
-11015	3	2478	2	duplicados	Espagñol	t	0	f
-11019	3	2479	2	Mostrar duplicados	Espagñol	t	0	f
-4015	3	1352	2	número (18)	Espagñol	t	0	f
-11179	3	2519	1	E-mail dirección	Espagñol	t	46	f
-11183	3	2520	1	dirección de respuesta	Espagñol	t	46	f
-11191	3	2522	1	Nombre de usuario IMAP	Espagñol	t	46	f
-4013	3	1350	2	número	Espagñol	t	0	f
-4049	3	1386	2	entero	Espagñol	t	0	f
-11195	3	2523	1	puerto IMAP	Espagñol	t	46	f
-11199	3	2524	1	contraseña IMAP	Espagñol	t	46	f
-3564	3	896	3	Esta función establece los derechos estándar del grupo y sus subgrupos aquí de nuevo! En este caso, los derechos existentes se sobreescriben!	Espagñol	t	115	t
-4087	3	1424	1	El registro ha sido cambiado sin guardar. los cambios están destinados a tratar de asumir el control?	Espagñol	t	13	t
-4595	3	1594	3	¿Quieres volver a poner la base de datos? Todos los datos serán borrados!	Espagñol	t	154	t
-11207	3	2526	2	configuración avanzada	Espagñol	t	0	f
-3917	3	1254	3	¿Quieres eliminar el grupo y todos los subgrupos? Los usuarios de estos grupos pueden utilizar [Muestra usuario eliminado] otros grupos se asignan!	Espagñol	t	115	t
-12731	3	2906	2	tipos MIME	Espagñol	t	0	f
-5552	3	1913	1	- Limitar el resultado por parámetros de búsqueda sucesivamente. - Aumentar si titulado hasta el límite. - Elevar, en su caso, el límite a.	Espagñol	t	5	t
-11519	3	2604	3	tabla de vinculación	Espagñol	t	110	f
-5786	3	1991	3	Si se vuelven a crear las tablas del sistema de archivo de los archivos y FILES_META? contenido existente será borrado! Las tablas de archivos se crean en los limbassys grupo de la tabla.	Espagñol	t	154	t
-11219	3	2529	2	Gruppierung Zeile	Espagñol	t	0	f
-8189	3	2214	3	Ya existe un vínculo positivo para este campo! Esta acción utiliza el acceso directo existente negativo. enlaces existentes se perderán!	Espagñol	t	121	t
-10411	3	2329	3	En caso de que los archivos .htaccess a ser regenerados? Las nuevas contraseñas se aplican únicamente cuando la opción clear_password está habilitada en las umgvars	Espagñol	t	154	t
-11203	3	2525	2	ajustes	Espagñol	t	0	f
-11211	3	2527	2	actualización	Espagñol	t	0	f
-11215	3	2528	2	actualización	Espagñol	t	0	f
-10631	3	2382	3	comienzo	Espagñol	t	52	f
-11223	3	2530	2	agrupación de campo en una fila	Espagñol	t	0	f
-11227	3	2531	1	La longitud del nombre del archivo no puede exceder de 128 caracteres!	Espagñol	t	41	f
-11275	3	2543	3	nuevo árbol mesa	Espagñol	t	207	f
-3981	3	1318	1	No había hecho ningún cambio en este nuevo disco! Crear registros vacíos no es aconsejable.	Espagñol	t	13	t
-5156	3	1781	3	Bloquear mensaje	Espagñol	t	127	f
-12575	3	2867	3	eje	Espagñol	t	177	f
-11307	3	2551	3	restablecer los derechos de registro	Espagñol	t	154	f
-11311	3	2552	3	Volver a calcular el historial de derechos	Espagñol	t	154	f
-11319	3	2554	3	pestaña de acceso directo	Espagñol	t	173	f
-11323	3	2555	3	barra de menú	Espagñol	t	173	f
-11331	3	2557	3	zócalo	Espagñol	t	173	f
-11147	3	2511	3	nombre de almacenamiento	Espagñol	t	170	f
-7777	3	2111	3	carpeta de almacenamiento	Espagñol	t	170	f
-11347	3	2561	3	Tabulator-Rahmen	Espagñol	t	175	f
-5705	3	1964	3	nueva pestaña	Espagñol	t	168	f
-11351	3	2562	3	El usuario no se ha podido crear!	Espagñol	t	126	f
-11459	3	2589	3	posible	Espagñol	t	110	f
-11295	3	2548	3	son todos se eliminan miniaturas temporales?	Espagñol	t	154	f
-11355	3	2563	2	ajustes	Espagñol	t	0	f
-11359	3	2564	2	configuración avanzada	Espagñol	t	0	f
-11167	3	2516	3	Los derechos de usuario heredan jerárquicamente	Espagñol	t	221	f
-10527	3	2356	3	ver todas versionado	Espagñol	t	221	f
-11363	3	2565	3	Arte de versiones de	Espagñol	t	221	f
-11371	3	2567	3	color de fondo de las columnas	Espagñol	t	221	f
-11379	3	2569	3	regla de filtrado	Espagñol	t	221	f
-11383	3	2570	3	reglas de ediciónreglas 	Espagñol	t	221	f
-11391	3	2572	3	configuración de formato	Espagñol	t	221	f
-11395	3	2573	3	Regla para el acceso de escritura	Espagñol	t	221	f
-10251	3	2289	3	todos cerca	Espagñol	t	213	f
-11407	3	2576	3	formato de fecha	Espagñol	t	127	f
-11411	3	2577	3	Informaciones Enviar mensaje al usuario	Espagñol	t	172	f
-11419	3	2579	2	OCR	Espagñol	t	0	f
-11423	3	2580	2	OCR Erkennung	Espagñol	t	0	f
-11375	3	2568	3	Predeterminada para crear un nuevo registro	Espagñol	t	221	f
-11399	3	2574	3	la forma estándar	Espagñol	t	221	f
-11427	3	2581	3	archivo CSS	Espagñol	t	175	f
-11431	3	2582	1	enlace	Espagñol	t	15	f
-11435	3	2583	2	extensiones	Espagñol	t	0	f
-11439	3	2584	2	extensiones de edición	Espagñol	t	0	f
-11483	3	2595	3	separador	Espagñol	t	110	f
-11443	3	2585	3	aceptar los derechos de grupo superior:	Espagñol	t	119	f
-11451	3	2587	3	umbral de potencia	Espagñol	t	110	f
-11455	3	2588	3	Datenbankspezifischer Defaultwert<br>z.B. 12 | text | now()	Espagñol	t	110	f
-11463	3	2590	3	Sustitución del tipo de caja que tiene una función independiente de [ext_type.inc]	Espagñol	t	110	f
-11467	3	2591	3	Por lo general, para ocultar el campo, que se espera: devolver verdadero / falso	Espagñol	t	110	f
-11471	3	2592	3	Regla para el acceso de escritura del campo, que se espera: devolver verdadero / falso	Espagñol	t	110	f
-11475	3	2593	3	establecer	Espagñol	t	110	f
-11491	3	2597	3	De la forma en muchos lugares el número que se muestra en Expotentialschreibweise	Espagñol	t	110	f
-4081	3	1418	2	Selección del sistema de carpeta de usuario / grupo	Espagñol	t	0	f
-11499	3	2599	3	moneda por defecto	Espagñol	t	110	f
-11503	3	2600	3	formato de hora	Espagñol	t	110	f
-11487	3	2596	3	representación de números en el formato de número () Formato: por ejemplo, 2 ''. '', '' ''	Espagñol	t	110	f
-11523	3	2605	1	No se le debe asignar más!	Espagñol	t	13	f
-11535	3	2608	3	filtro	Espagñol	t	110	f
-11539	3	2609	3	cuadro de búsqueda	Espagñol	t	110	f
-11543	3	2610	3	evaluación	Espagñol	t	110	f
-11547	3	2611	3	herencia	Espagñol	t	110	f
-11171	3	2517	1	jerárquicamente heredar	Espagñol	t	13	f
-4051	3	1388	2	número entero de 18 dígitos	Espagñol	t	0	f
-5609	3	1932	2	fecha	Espagñol	t	0	f
-3972	3	1309	2	restaurar	Espagñol	t	0	f
-4880	3	1689	1	máx. Número de descargas simultáneas:	Espagñol	t	66	f
-4967	3	1718	3	Si se borrará todo el índice de este campo?	Espagñol	t	110	f
-5555	3	1914	1	Consejos para la búsqueda: prestar atención a la ortografía -korrekte que -verallgemeinern buscar: localiza en subcarpetas (sub)	Espagñol	t	66	t
-11923	3	2705	1	De jornada completa	Espagñol	t	52	f
-4066	3	1403	2	Moneda 25 dígitos	Espagñol	f	0	f
-5969	3	2052	1	¿Se le flujo de trabajo no se cancela! Tal vez una cuestión de derechos.	Espagñol	t	209	f
-5972	3	2053	1	Flujo de trabajo no pudo ser detenido! Tal vez una cuestión de derechos.	Espagñol	t	209	f
-7693	3	2090	3	Backg.	Espagñol	t	168	f
-4027	3	1364	2	fecha_tiempo	Espagñol	f	0	f
-5612	3	1933	2	DD.MM.YYYY z.B. 05.12.02 z.B. 5 dez 02 z.B. 05 Dezember 2	Espagñol	t	0	t
-11551	3	2612	3	Editor de consultas	Espagñol	t	225	f
-11571	3	2617	3	Incluye sólo aquellos registros en los que el contenido de los campos combinados sean iguales	Espagñol	t	226	f
-11575	3	2618	3	Incluye todos los registros de	Espagñol	t	226	f
-11579	3	2619	3	y sólo aquellos registros de	Espagñol	t	226	f
-11583	3	2620	3	donde el contenido de los campos combinados son iguales	Espagñol	t	226	f
-11599	3	2624	3	alias	Espagñol	t	226	f
-11603	3	2625	3	función	Espagñol	t	226	f
-11611	3	2627	3	suma	Espagñol	t	226	f
-11615	3	2628	3	min	Espagñol	t	226	f
-11619	3	2629	3	Max	Espagñol	t	226	f
-11627	3	2631	3	espectáculo	Espagñol	t	226	f
-11631	3	2632	3	criterios	Espagñol	t	226	f
-11635	3	2633	3	ascendente	Espagñol	t	226	f
-11639	3	2634	3	descendente	Espagñol	t	226	f
-11643	3	2635	3	tablas del sistema espectáculo	Espagñol	t	225	f
-11655	3	2638	3	espectáculo	Espagñol	t	168	f
-11315	3	2553	3	los derechos de todos los datos existentes establecen específicos del Tablle seleccionada se borrarán!	Espagñol	t	154	f
-11675	3	2643	1	al usuario	Espagñol	t	13	f
-11679	3	2644	1	conjunto	Espagñol	t	13	f
-11727	3	2656	3	consulta de selección	Espagñol	t	140	f
-11691	3	2647	1	objetivo	Espagñol	t	66	f
-11699	3	2649	3	modo de lista	Espagñol	t	169	f
-4065	3	1402	2	valor de clave número de 18 dígitos	Espagñol	t	0	f
-11723	3	2655	3	El tamaño del campo como <br> 255 | 5.2	Espagñol	t	110	f
-4029	3	1366	2	Autoidentificación	Espagñol	t	0	f
-11731	3	2657	3	consulta la creación	Espagñol	t	140	f
-11667	3	2641	2	selección de color	Espagñol	f	0	f
-11671	3	2642	2	selección de color	Espagñol	f	0	f
-7689	3	2089	3	resultados de la búsqueda	Espagñol	t	121	f
-11739	3	2659	3	consulta de eliminación	Espagñol	t	140	f
-11743	3	2660	3	contenido	Espagñol	t	173	f
-11759	3	2664	3	utiliza [serial] Identificación	Espagñol	t	140	f
-3926	3	1263	3	crear permisos	Espagñol	t	110	f
-11763	3	2665	3	utiliza [secuencia] Tabla	Espagñol	t	140	f
-4520	3	1569	1	estilo	Espagñol	t	175	f
-5651	3	1946	3	Estructura principal	Espagñol	t	175	f
-11771	3	2667	3	insertar	Espagñol	t	173	f
-11775	3	2668	2	Mostrar campos	Espagñol	t	0	f
-11779	3	2669	2	Mostrar campos	Espagñol	t	0	f
-5801	3	1996	1	publicar	Espagñol	t	5	f
-4208	3	1465	3	emergente Verkn	Espagñol	t	140	f
-11803	3	2675	1	Para ser cambiado en un lote cambiar el contenido del campo? La acción no se puede deshacer!	Espagñol	t	230	f
-11783	3	2670	2	el cambio de lote	Espagñol	t	0	f
-11787	3	2671	2	el cambio de lote	Espagñol	t	0	f
-11815	3	2678	1	no campo seleccionado	Espagñol	t	230	f
-11791	3	2672	3	el cambio de lote	Espagñol	t	110	f
-11795	3	2673	1	sustituir con	Espagñol	t	230	f
-11807	3	2676	1	Número de registros afectados	Espagñol	t	230	f
-11811	3	2677	1	campo afectado	Espagñol	t	230	f
-11819	3	2679	2	nueva ventana	Espagñol	t	0	f
-11823	3	2680	2	nueva ventana	Espagñol	t	0	f
-11835	3	2683	1	desigual	Espagñol	t	19	f
-11839	3	2684	1	registros modificados	Espagñol	t	230	f
-11843	3	2685	3	estándar	Espagñol	t	140	f
-11847	3	2686	3	Resultados insuficientes	Espagñol	t	140	f
-11851	3	2687	3	no cálculo	Espagñol	t	140	f
-11855	3	2688	3	número del resultado	Espagñol	t	140	f
-4082	3	1419	2	Memo de Textblock	Espagñol	t	0	f
-11859	3	2689	3	campos de la tabla de edición	Espagñol	t	140	f
-11863	3	2690	3	Editor de consultas abierto	Espagñol	t	140	f
-10931	3	2457	3	modo	Espagñol	t	168	f
-11871	3	2692	3	escribir	Espagñol	t	168	f
-11875	3	2693	1	Taquigrafía en la búsqueda rápida	Espagñol	t	19	f
-11287	3	2546	3	Eliminar miniaturas temporales	Espagñol	t	154	f
-12291	3	2796	1	hacerse cargo y cerca	Espagñol	t	13	f
-11299	3	2549	3	solle versucht werden alle fehlgeschlagene Thumbnails neu zu berechnen?	Espagñol	t	154	f
-11883	3	2695	3	Eliminar archivos temporales de texto	Espagñol	t	154	f
-11291	3	2547	3	Volver a calcular frustrada miniaturas	Espagñol	t	154	f
-11891	3	2697	3	Si la estructura de carpetas se comprueba la consistencia? Faltan carpetas de usuario o informe se reconstruyen.	Espagñol	t	154	f
-11895	3	2698	3	Rotation	Espagñol	t	168	f
-11899	3	2699	3	no publicada	Espagñol	t	140	f
-11747	3	2661	3	marco de agrupación	Espagñol	t	175	f
-11663	3	2640	3	ajax puesto	Espagñol	t	110	f
-11903	3	2700	3	ajustes del calendario	Espagñol	t	164	f
-11751	3	2662	3	Compruebe secuencias	Espagñol	t	154	f
-11715	3	2653	3	Si se vuelven a crear los procedimientos de base de datos específica Limbas?	Espagñol	t	154	f
-11887	3	2696	3	Si Limbasspezifischen se volverá a crear el gatillo?	Espagñol	t	154	f
-11755	3	2663	3	Si se las tablas de secuencia Limbasspezifischen re-creado?	Espagñol	t	154	f
-11711	3	2652	3	Prozeduren prüfen	Espagñol	t	154	f
-5912	3	2033	3	Si vuelve a calcular el número indicado de enlaces y campos de selección múltiple?	Espagñol	t	154	f
-11955	3	2713	3	pestaña mesa	Espagñol	t	173	f
-4982	3	1723	3	Fecha + Hora	Espagñol	t	110	f
-11911	3	2702	3	Fecha + hora + Sec	Espagñol	t	110	f
-11915	3	2703	3	Reservas Pasos ID	Espagñol	t	140	f
-11935	3	2708	3	posición	Espagñol	t	173	f
-11939	3	2709	3	primero	Espagñol	t	173	f
-11943	3	2710	3	recordar	Espagñol	t	173	f
-11951	3	2712	3	Haga clic en Evento de forma Reiter <br> ejemplo alert ( '' hola '');	Espagñol	t	110	f
-10571	3	2367	3	Eliminar la configuración de usuario	Espagñol	t	154	f
-10407	3	2328	3	todos los usuarios borrar los ajustes?	Espagñol	t	154	f
-11975	3	2718	3	icono	Espagñol	t	204	f
-11983	3	2720	3	desaparecer	Espagñol	t	204	f
-11007	3	2476	3	Compruebe claves externas	Espagñol	t	154	f
-11011	3	2477	3	Si las claves externas Limbasspezifischen a ser retirados?	Espagñol	t	154	f
-11055	3	2488	3	Comprobar gatillo	Espagñol	t	154	f
-11987	3	2721	3	Verificar los índices	Espagñol	t	154	f
-11991	3	2722	1	Si faltan los índices se reconstruyen Limbasspezifische?	Espagñol	t	154	f
-11995	3	2723	3	índices	Espagñol	t	195	f
-11999	3	2724	3	restricciones únicas	Espagñol	t	195	f
-12003	3	2725	3	Las claves externas	Espagñol	t	195	f
-12011	3	2727	3	Ref. Tabla	Espagñol	t	195	f
-12015	3	2728	3	Ref campo.	Espagñol	t	195	f
-12019	3	2729	3	Las claves primarias	Espagñol	t	195	f
-12027	3	2731	3	Agregatfunktion	Espagñol	t	110	f
-12031	3	2732	3	Calcular el número de filas que se muestran en el formato seleccionado	Espagñol	t	110	f
-12035	3	2733	1	Ocultar la columna	Espagñol	t	5	f
-12047	3	2735	3	estilo de celda	Espagñol	t	168	f
-10307	3	2303	3	leer	Espagñol	t	122	f
-12103	3	2749	2	los derechos de flujo de trabajo	Espagñol	t	0	f
-12039	3	2370	3	debe seguir siendo la copia de enlace?	Espagñol	t	121	f
-12043	3	2734	3	Selección de reordenación piscina	Espagñol	t	154	f
-12051	3	2736	3	mesa	Espagñol	t	168	f
-12059	3	2738	2	nueva presentación	Espagñol	t	0	f
-12063	3	2739	2	nueva presentación	Espagñol	t	0	f
-12067	3	2740	3	nueva nueva presentación	Espagñol	t	187	f
-12071	3	2741	1	crear nueva	Espagñol	t	7	f
-4598	3	1595	2	Número Porcentaje de punto	Espagñol	f	0	f
-12075	3	2742	3	basado en el grupo	Espagñol	t	187	f
-12079	3	2743	2	reenvíos	Espagñol	t	0	f
-12083	3	2744	2	los derechos establecer recordatorios	Espagñol	t	0	f
-12087	3	2745	2	los derechos de formulario	Espagñol	t	0	f
-12091	3	2746	2	Forma derechos establecidos	Espagñol	t	0	f
-11831	3	2682	1	El campo vacío	Espagñol	f	19	f
-12095	3	2747	2	tabla de derechos	Espagñol	t	0	f
-12099	3	2748	2	Establecer derechos de tabla	Espagñol	t	0	f
-12107	3	2750	2	Workflowrechte festlegen	Espagñol	t	0	f
-12111	3	2751	3	crear copia de seguridad	Espagñol	t	140	f
-12115	3	2752	3	nuevo flujo de trabajo	Espagñol	t	208	f
-12123	3	2754	3	nueva tarea	Espagñol	t	208	f
-12131	3	2756	3	Forma lista	Espagñol	t	175	f
-12135	3	2757	3	radio	Espagñol	t	168	f
-12171	3	2766	1	antes	Espagñol	t	204	f
-12139	3	2758	3	crear el archivo	Espagñol	t	213	f
-8117	3	2196	2	mimetype	Espagñol	t	0	f
-12147	3	2760	3	Cuando se cambia la información de versiones versión existente será eliminado!	Espagñol	t	140	f
-12151	3	2761	3	sincronizar	Espagñol	t	139	f
-12155	3	2762	1	ahora	Espagñol	t	204	f
-12191	3	2771	2	grupo de selección	Espagñol	t	0	f
-12187	3	2770	3	máx. resultados	Espagñol	t	155	f
-12195	3	2772	2	Manejo de grupo de selección	Espagñol	t	0	f
-12203	3	2774	2	Evento recurrente	Espagñol	t	0	f
-12207	3	2775	2	Creación de una cita periódica	Espagñol	t	0	f
-12263	3	2789	1	Jährlich	Espagñol	t	200	f
-12267	3	2790	1	2 veces a la semana	Espagñol	t	200	f
-10419	3	2331	3	parámetro	Espagñol	t	168	f
-12271	3	2791	3	repetición	Espagñol	t	52	f
-11587	3	2621	3	Verknüpfung entfernen	Espagñol	t	226	f
-12211	3	2776	1	Si todo este conjunto de datos enlazar a ser eliminado?	Espagñol	t	204	f
-12215	3	2777	3	incrustar	Espagñol	t	169	f
-12219	3	2778	3	caída	Espagñol	t	169	f
-12223	3	2779	3	el que se informa	Espagñol	t	169	f
-12227	3	2780	3	Caja de herramientas	Espagñol	t	169	f
-12235	3	2782	3	coordenadas	Espagñol	t	169	f
-12239	3	2783	3	elementos	Espagñol	t	169	f
-12251	3	2786	1	diario	Espagñol	t	200	f
-12255	3	2787	1	semanal	Espagñol	t	200	f
-12259	3	2788	1	mensual	Espagñol	t	200	f
-12275	3	2792	3	La repetición está terminando	Espagñol	t	52	f
-12283	3	2794	1	¡Precaución! Eliminación recursiva registros versionados o vinculados \\\\\\\\\\\\\\\\ Nhas activado!	Espagñol	t	17	f
-12287	3	2795	3	opciones	Espagñol	t	221	f
-12295	3	2797	2	Importar archivo	Espagñol	t	0	f
-12299	3	2798	2	importación	Espagñol	t	0	f
-12303	3	2799	1	principio	Espagñol	t	200	f
-12311	3	2801	1	Duración / Period	Espagñol	t	200	f
-12315	3	2802	1	Intervalo de repetición	Espagñol	t	200	f
-12319	3	2803	1	patrón de repetición	Espagñol	t	200	f
-12331	3	2806	3	Los campos que se muestran en el enlace Búsqueda Rápida / selección Verknüpungs	Espagñol	t	121	f
-12343	3	2809	3	parametrización implícita	Espagñol	t	121	f
-12351	3	2811	3	Descripción de las	Espagñol	t	110	f
-5870	3	2019	3	desea que el campo que desea eliminar?	Espagñol	t	110	f
-12355	3	2812	3	vista de lista	Espagñol	t	139	f
-12359	3	2813	3	separador de listas	Espagñol	t	139	f
-12363	3	2814	3	forma abreviada	Espagñol	t	139	f
-12367	3	2815	3	Ausführlich	Espagñol	t	139	f
-5291	3	1826	3	buscado	Espagñol	t	121	f
-12339	3	2808	3	con OR para ser campos de la tabla de enlace buscado	Espagñol	t	121	f
-12375	3	2817	3	tamaño de bloque	Espagñol	t	139	f
-12379	3	2818	3	sistema	Espagñol	t	165	f
-12383	3	2819	3	ImageMagick	Espagñol	t	165	f
-12387	3	2820	3	ghostscript	Espagñol	t	165	f
-12391	3	2821	1	Detalles supresores	Espagñol	t	5	f
-12735	3	2907	2	Revisions-Manager	Espagñol	t	0	f
-12419	3	2828	3	activa la coloración de los registros de datos individuales gruppenzpezifische	Espagñol	t	140	f
-12427	3	2830	3	activa el envío automático / salvamento de la forma en el fondo en caso de cambio de registros	Espagñol	t	140	f
-12403	3	2824	3	Por lo general, para poner de relieve o marcas de los registros individuales con colores o símbolos. Esperada llamada de función.	Espagñol	t	140	f
-12439	3	2833	3	nombre de la tabla física	Espagñol	t	140	f
-12435	3	2832	3	permitido la creación de un conjunto de datos sin identificación asignado. Los nuevos registros se 'crean después' 'Aplicar'.	Espagñol	t	140	f
-12411	3	2826	3	el registro de todos los cambios activa un registro	Espagñol	t	140	f
-12415	3	2827	3	activa el bloqueo específico del usuario registros individuales	Espagñol	t	140	f
-12423	3	2829	3	activa los grupos / autorización específica de usuario registros individuales	Espagñol	t	140	f
-12443	3	2834	3	Dependiente del idioma Nombre de la tabla	Espagñol	t	140	f
-12431	3	2831	3	activa el despliegue de enlaces o grupos en la lista de registros	Espagñol	t	140	f
-12399	3	2823	3	El cálculo ajustado <br> el resultado alternativa <b> por defecto :. </ B> select count (*) <br> <b> Resultados insuficientes: </ b> odbc_fetch_row	Espagñol	t	140	f
-12451	3	2836	3	Infos	Espagñol	t	140	f
-12455	3	2837	3	campo significativo del registro de definición única	Espagñol	t	110	f
-12459	3	2838	3	El campo tiene un índice de base de datos	Espagñol	t	110	f
-12463	3	2839	3	El campo es claramente	Espagñol	t	110	f
-12495	3	2847	3	Representación de la búsqueda enlace como la selección basada en AJAX (sólo en combinación con '' Seleccionar Buscar '')	Espagñol	t	110	f
-12407	3	2825	3	gatillo seleccionado activado	Espagñol	t	140	f
+10851	3	2437	1	El registro ha sido desbloqueado con Ã©xito!	EspagÅ„ol	t	25	f
+10855	3	2438	1	DatensÃ¤tze wurden erfolgreich entsperrt!	EspagÅ„ol	t	25	f
+10859	3	2439	2	fecha bloqueado	EspagÅ„ol	t	0	f
+10863	3	2440	2	mis registros bloqueados	EspagÅ„ol	t	0	f
+10867	3	2441	2	Mostrar bloqueado	EspagÅ„ol	t	0	f
+10871	3	2442	2	Viendo registros bloqueados	EspagÅ„ol	t	0	f
+10875	3	2443	2	guardar	EspagÅ„ol	t	0	f
+10879	3	2444	2	tomar el relevo	EspagÅ„ol	t	0	f
+10883	3	2445	3	immer	EspagÅ„ol	t	168	f
+10887	3	2446	3	incluso pÄ¯ginas	EspagÅ„ol	t	168	f
+10891	3	2447	3	pÄ¯ginas impares	EspagÅ„ol	t	168	f
+10895	3	2448	1	hablado como	EspagÅ„ol	t	66	f
+10903	3	2450	3	trigger	EspagÅ„ol	t	218	f
+10907	3	2451	3	gatillo Limbas	EspagÅ„ol	t	218	f
+10915	3	2453	3	Gestionar los derechos de usuario para los registros generados internamente	EspagÅ„ol	t	221	f
+10923	3	2455	1	Usted estÄ¯ en el sistema como	EspagÅ„ol	t	11	f
+10927	3	2456	3	formulario de cambio de direcciÃ³n	EspagÅ„ol	t	175	f
+10587	3	2371	3	copia de enlace	EspagÅ„ol	t	121	f
+10935	3	2458	3	maxlen	EspagÅ„ol	t	168	f
+10943	3	2460	3	reemplazar	EspagÅ„ol	t	168	f
+10951	3	2462	3	La selecciÃ³n de proyectos	EspagÅ„ol	t	145	f
+10955	3	2463	3	enviar informaciÃ³n de registro	EspagÅ„ol	t	132	f
+11187	3	2521	1	nombre de host IMAP	EspagÅ„ol	t	46	f
+10963	3	2465	2	espectÄ¯culo de suma	EspagÅ„ol	t	0	f
+10967	3	2466	2	mostrar suma de los registros	EspagÅ„ol	t	0	f
+10979	3	2469	2	recursiva de eliminaciÃ³n	EspagÅ„ol	t	0	f
+10983	3	2470	2	recursivos vÄ·nculos de borrado y versiones	EspagÅ„ol	t	0	f
+10987	3	2471	2	funciones especiales	EspagÅ„ol	t	0	f
+10991	3	2472	2	funciones especiales	EspagÅ„ol	t	0	f
+10995	3	2473	1	Existen las siguientes dependencias:	EspagÅ„ol	t	25	f
+10999	3	2474	1	Las siguientes dependencias se resolvieron:	EspagÅ„ol	t	25	f
+11027	3	2481	3	de contenido temporal	EspagÅ„ol	t	154	f
+11031	3	2482	3	funciones de base de datos	EspagÅ„ol	t	154	f
+11039	3	2484	3	gestiÃ³n de derechos	EspagÅ„ol	t	154	f
+11035	3	2483	3	sistema	EspagÅ„ol	t	154	f
+11063	3	2490	2	Ä¯rboles de relaciÃ³n	EspagÅ„ol	t	0	f
+11075	3	2493	2	vector Ä¯rbol	EspagÅ„ol	t	0	f
+11079	3	2494	2	vector Ä¯rbol	EspagÅ„ol	t	0	f
+11083	3	2495	2	Buscar divisiones del Grupo	EspagÅ„ol	t	0	f
+11087	3	2496	2	Buscar encabezados de campo del Grupo	EspagÅ„ol	t	0	f
+11095	3	2498	1	grupos	EspagÅ„ol	t	84	f
+11059	3	2489	2	vector Ä¯rbol	EspagÅ„ol	t	0	f
+11111	3	2502	1	formato:	EspagÅ„ol	t	13	f
+11115	3	2503	1	Formulario estÄ¯ndar	EspagÅ„ol	t	13	f
+11123	3	2505	3	Regla pantalla	EspagÅ„ol	t	110	f
+11131	3	2507	3	BÅ›squeda rÄ¯pida	EspagÅ„ol	t	110	f
+3913	3	1250	3	Historia	EspagÅ„ol	t	132	f
+11135	3	2508	3	HTML	EspagÅ„ol	t	168	f
+11139	3	2509	3	ExtensiÃ³n informe	EspagÅ„ol	t	170	f
+11151	3	2512	3	los informes del sistema	EspagÅ„ol	t	222	f
+10443	3	2337	3	Gestionar los derechos de usuario para todos los registros	EspagÅ„ol	t	221	f
+10559	3	2364	2	duplicados	EspagÅ„ol	t	0	f
+10563	3	2365	2	DescripciÃ³n general duplicados	EspagÅ„ol	t	0	f
+11015	3	2478	2	duplicados	EspagÅ„ol	t	0	f
+11019	3	2479	2	Mostrar duplicados	EspagÅ„ol	t	0	f
+4015	3	1352	2	nÅ›mero (18)	EspagÅ„ol	t	0	f
+11179	3	2519	1	E-mail direcciÃ³n	EspagÅ„ol	t	46	f
+11183	3	2520	1	direcciÃ³n de respuesta	EspagÅ„ol	t	46	f
+11191	3	2522	1	Nombre de usuario IMAP	EspagÅ„ol	t	46	f
+4013	3	1350	2	nÅ›mero	EspagÅ„ol	t	0	f
+4049	3	1386	2	entero	EspagÅ„ol	t	0	f
+11195	3	2523	1	puerto IMAP	EspagÅ„ol	t	46	f
+11199	3	2524	1	contraseÅ„a IMAP	EspagÅ„ol	t	46	f
+3564	3	896	3	Esta funciÃ³n establece los derechos estÄ¯ndar del grupo y sus subgrupos aquÄ· de nuevo! En este caso, los derechos existentes se sobreescriben!	EspagÅ„ol	t	115	t
+4087	3	1424	1	El registro ha sido cambiado sin guardar. los cambios estÄ¯n destinados a tratar de asumir el control?	EspagÅ„ol	t	13	t
+4595	3	1594	3	Ã¦Quieres volver a poner la base de datos? Todos los datos serÄ¯n borrados!	EspagÅ„ol	t	154	t
+11207	3	2526	2	configuraciÃ³n avanzada	EspagÅ„ol	t	0	f
+3917	3	1254	3	Ã¦Quieres eliminar el grupo y todos los subgrupos? Los usuarios de estos grupos pueden utilizar [Muestra usuario eliminado] otros grupos se asignan!	EspagÅ„ol	t	115	t
+12731	3	2906	2	tipos MIME	EspagÅ„ol	t	0	f
+5552	3	1913	1	- Limitar el resultado por parÄ¯metros de bÅ›squeda sucesivamente. - Aumentar si titulado hasta el lÄ·mite. - Elevar, en su caso, el lÄ·mite a.	EspagÅ„ol	t	5	t
+11519	3	2604	3	tabla de vinculaciÃ³n	EspagÅ„ol	t	110	f
+5786	3	1991	3	Si se vuelven a crear las tablas del sistema de archivo de los archivos y FILES_META? contenido existente serÄ¯ borrado! Las tablas de archivos se crean en los limbassys grupo de la tabla.	EspagÅ„ol	t	154	t
+11219	3	2529	2	Gruppierung Zeile	EspagÅ„ol	t	0	f
+8189	3	2214	3	Ya existe un vÄ·nculo positivo para este campo! Esta acciÃ³n utiliza el acceso directo existente negativo. enlaces existentes se perderÄ¯n!	EspagÅ„ol	t	121	t
+10411	3	2329	3	En caso de que los archivos .htaccess a ser regenerados? Las nuevas contraseÅ„as se aplican Å›nicamente cuando la opciÃ³n clear_password estÄ¯ habilitada en las umgvars	EspagÅ„ol	t	154	t
+11203	3	2525	2	ajustes	EspagÅ„ol	t	0	f
+11211	3	2527	2	actualizaciÃ³n	EspagÅ„ol	t	0	f
+11215	3	2528	2	actualizaciÃ³n	EspagÅ„ol	t	0	f
+10631	3	2382	3	comienzo	EspagÅ„ol	t	52	f
+11223	3	2530	2	agrupaciÃ³n de campo en una fila	EspagÅ„ol	t	0	f
+11227	3	2531	1	La longitud del nombre del archivo no puede exceder de 128 caracteres!	EspagÅ„ol	t	41	f
+11275	3	2543	3	nuevo Ä¯rbol mesa	EspagÅ„ol	t	207	f
+3981	3	1318	1	No habÄ·a hecho ningÅ›n cambio en este nuevo disco! Crear registros vacÄ·os no es aconsejable.	EspagÅ„ol	t	13	t
+5156	3	1781	3	Bloquear mensaje	EspagÅ„ol	t	127	f
+12575	3	2867	3	eje	EspagÅ„ol	t	177	f
+11307	3	2551	3	restablecer los derechos de registro	EspagÅ„ol	t	154	f
+11311	3	2552	3	Volver a calcular el historial de derechos	EspagÅ„ol	t	154	f
+11319	3	2554	3	pestaÅ„a de acceso directo	EspagÅ„ol	t	173	f
+11323	3	2555	3	barra de menÅ›	EspagÅ„ol	t	173	f
+11331	3	2557	3	zÃ³calo	EspagÅ„ol	t	173	f
+11147	3	2511	3	nombre de almacenamiento	EspagÅ„ol	t	170	f
+7777	3	2111	3	carpeta de almacenamiento	EspagÅ„ol	t	170	f
+11347	3	2561	3	Tabulator-Rahmen	EspagÅ„ol	t	175	f
+5705	3	1964	3	nueva pestaÅ„a	EspagÅ„ol	t	168	f
+11351	3	2562	3	El usuario no se ha podido crear!	EspagÅ„ol	t	126	f
+11459	3	2589	3	posible	EspagÅ„ol	t	110	f
+11295	3	2548	3	son todos se eliminan miniaturas temporales?	EspagÅ„ol	t	154	f
+11355	3	2563	2	ajustes	EspagÅ„ol	t	0	f
+11359	3	2564	2	configuraciÃ³n avanzada	EspagÅ„ol	t	0	f
+11167	3	2516	3	Los derechos de usuario heredan jerÄ¯rquicamente	EspagÅ„ol	t	221	f
+10527	3	2356	3	ver todas versionado	EspagÅ„ol	t	221	f
+11363	3	2565	3	Arte de versiones de	EspagÅ„ol	t	221	f
+11371	3	2567	3	color de fondo de las columnas	EspagÅ„ol	t	221	f
+11379	3	2569	3	regla de filtrado	EspagÅ„ol	t	221	f
+11383	3	2570	3	reglas de ediciÃ³nreglas 	EspagÅ„ol	t	221	f
+11391	3	2572	3	configuraciÃ³n de formato	EspagÅ„ol	t	221	f
+11395	3	2573	3	Regla para el acceso de escritura	EspagÅ„ol	t	221	f
+10251	3	2289	3	todos cerca	EspagÅ„ol	t	213	f
+11407	3	2576	3	formato de fecha	EspagÅ„ol	t	127	f
+11411	3	2577	3	Informaciones Enviar mensaje al usuario	EspagÅ„ol	t	172	f
+11419	3	2579	2	OCR	EspagÅ„ol	t	0	f
+11423	3	2580	2	OCR Erkennung	EspagÅ„ol	t	0	f
+11375	3	2568	3	Predeterminada para crear un nuevo registro	EspagÅ„ol	t	221	f
+11399	3	2574	3	la forma estÄ¯ndar	EspagÅ„ol	t	221	f
+11427	3	2581	3	archivo CSS	EspagÅ„ol	t	175	f
+11431	3	2582	1	enlace	EspagÅ„ol	t	15	f
+11435	3	2583	2	extensiones	EspagÅ„ol	t	0	f
+11439	3	2584	2	extensiones de ediciÃ³n	EspagÅ„ol	t	0	f
+11483	3	2595	3	separador	EspagÅ„ol	t	110	f
+11443	3	2585	3	aceptar los derechos de grupo superior:	EspagÅ„ol	t	119	f
+11451	3	2587	3	umbral de potencia	EspagÅ„ol	t	110	f
+11455	3	2588	3	Datenbankspezifischer Defaultwert<br>z.B. 12 | text | now()	EspagÅ„ol	t	110	f
+11463	3	2590	3	SustituciÃ³n del tipo de caja que tiene una funciÃ³n independiente de [ext_type.inc]	EspagÅ„ol	t	110	f
+11467	3	2591	3	Por lo general, para ocultar el campo, que se espera: devolver verdadero / falso	EspagÅ„ol	t	110	f
+11471	3	2592	3	Regla para el acceso de escritura del campo, que se espera: devolver verdadero / falso	EspagÅ„ol	t	110	f
+11475	3	2593	3	establecer	EspagÅ„ol	t	110	f
+11491	3	2597	3	De la forma en muchos lugares el nÅ›mero que se muestra en Expotentialschreibweise	EspagÅ„ol	t	110	f
+4081	3	1418	2	SelecciÃ³n del sistema de carpeta de usuario / grupo	EspagÅ„ol	t	0	f
+11499	3	2599	3	moneda por defecto	EspagÅ„ol	t	110	f
+11503	3	2600	3	formato de hora	EspagÅ„ol	t	110	f
+11487	3	2596	3	representaciÃ³n de nÅ›meros en el formato de nÅ›mero () Formato: por ejemplo, 2 ''. '', '' ''	EspagÅ„ol	t	110	f
+11523	3	2605	1	No se le debe asignar mÄ¯s!	EspagÅ„ol	t	13	f
+11535	3	2608	3	filtro	EspagÅ„ol	t	110	f
+11539	3	2609	3	cuadro de bÅ›squeda	EspagÅ„ol	t	110	f
+11543	3	2610	3	evaluaciÃ³n	EspagÅ„ol	t	110	f
+11547	3	2611	3	herencia	EspagÅ„ol	t	110	f
+11171	3	2517	1	jerÄ¯rquicamente heredar	EspagÅ„ol	t	13	f
+4051	3	1388	2	nÅ›mero entero de 18 dÄ·gitos	EspagÅ„ol	t	0	f
+5609	3	1932	2	fecha	EspagÅ„ol	t	0	f
+3972	3	1309	2	restaurar	EspagÅ„ol	t	0	f
+4880	3	1689	1	mÄ¯x. NÅ›mero de descargas simultÄ¯neas:	EspagÅ„ol	t	66	f
+4967	3	1718	3	Si se borrarÄ¯ todo el Ä·ndice de este campo?	EspagÅ„ol	t	110	f
+5555	3	1914	1	Consejos para la bÅ›squeda: prestar atenciÃ³n a la ortografÄ·a -korrekte que -verallgemeinern buscar: localiza en subcarpetas (sub)	EspagÅ„ol	t	66	t
+11923	3	2705	1	De jornada completa	EspagÅ„ol	t	52	f
+4066	3	1403	2	Moneda 25 dÄ·gitos	EspagÅ„ol	f	0	f
+5969	3	2052	1	Ã¦Se le flujo de trabajo no se cancela! Tal vez una cuestiÃ³n de derechos.	EspagÅ„ol	t	209	f
+5972	3	2053	1	Flujo de trabajo no pudo ser detenido! Tal vez una cuestiÃ³n de derechos.	EspagÅ„ol	t	209	f
+7693	3	2090	3	Backg.	EspagÅ„ol	t	168	f
+4027	3	1364	2	fecha_tiempo	EspagÅ„ol	f	0	f
+5612	3	1933	2	DD.MM.YYYY z.B. 05.12.02 z.B. 5 dez 02 z.B. 05 Dezember 2	EspagÅ„ol	t	0	t
+11551	3	2612	3	Editor de consultas	EspagÅ„ol	t	225	f
+11571	3	2617	3	Incluye sÃ³lo aquellos registros en los que el contenido de los campos combinados sean iguales	EspagÅ„ol	t	226	f
+11575	3	2618	3	Incluye todos los registros de	EspagÅ„ol	t	226	f
+11579	3	2619	3	y sÃ³lo aquellos registros de	EspagÅ„ol	t	226	f
+11583	3	2620	3	donde el contenido de los campos combinados son iguales	EspagÅ„ol	t	226	f
+11599	3	2624	3	alias	EspagÅ„ol	t	226	f
+11603	3	2625	3	funciÃ³n	EspagÅ„ol	t	226	f
+11611	3	2627	3	suma	EspagÅ„ol	t	226	f
+11615	3	2628	3	min	EspagÅ„ol	t	226	f
+11619	3	2629	3	Max	EspagÅ„ol	t	226	f
+11627	3	2631	3	espectÄ¯culo	EspagÅ„ol	t	226	f
+11631	3	2632	3	criterios	EspagÅ„ol	t	226	f
+11635	3	2633	3	ascendente	EspagÅ„ol	t	226	f
+11639	3	2634	3	descendente	EspagÅ„ol	t	226	f
+11643	3	2635	3	tablas del sistema espectÄ¯culo	EspagÅ„ol	t	225	f
+11655	3	2638	3	espectÄ¯culo	EspagÅ„ol	t	168	f
+11315	3	2553	3	los derechos de todos los datos existentes establecen especÄ·ficos del Tablle seleccionada se borrarÄ¯n!	EspagÅ„ol	t	154	f
+11675	3	2643	1	al usuario	EspagÅ„ol	t	13	f
+11679	3	2644	1	conjunto	EspagÅ„ol	t	13	f
+11727	3	2656	3	consulta de selecciÃ³n	EspagÅ„ol	t	140	f
+11691	3	2647	1	objetivo	EspagÅ„ol	t	66	f
+11699	3	2649	3	modo de lista	EspagÅ„ol	t	169	f
+4065	3	1402	2	valor de clave nÅ›mero de 18 dÄ·gitos	EspagÅ„ol	t	0	f
+11723	3	2655	3	El tamaÅ„o del campo como <br> 255 | 5.2	EspagÅ„ol	t	110	f
+4029	3	1366	2	AutoidentificaciÃ³n	EspagÅ„ol	t	0	f
+11731	3	2657	3	consulta la creaciÃ³n	EspagÅ„ol	t	140	f
+11667	3	2641	2	selecciÃ³n de color	EspagÅ„ol	f	0	f
+11671	3	2642	2	selecciÃ³n de color	EspagÅ„ol	f	0	f
+7689	3	2089	3	resultados de la bÅ›squeda	EspagÅ„ol	t	121	f
+11739	3	2659	3	consulta de eliminaciÃ³n	EspagÅ„ol	t	140	f
+11743	3	2660	3	contenido	EspagÅ„ol	t	173	f
+11759	3	2664	3	utiliza [serial] IdentificaciÃ³n	EspagÅ„ol	t	140	f
+3926	3	1263	3	crear permisos	EspagÅ„ol	t	110	f
+11763	3	2665	3	utiliza [secuencia] Tabla	EspagÅ„ol	t	140	f
+4520	3	1569	1	estilo	EspagÅ„ol	t	175	f
+5651	3	1946	3	Estructura principal	EspagÅ„ol	t	175	f
+11771	3	2667	3	insertar	EspagÅ„ol	t	173	f
+11775	3	2668	2	Mostrar campos	EspagÅ„ol	t	0	f
+11779	3	2669	2	Mostrar campos	EspagÅ„ol	t	0	f
+5801	3	1996	1	publicar	EspagÅ„ol	t	5	f
+4208	3	1465	3	emergente Verkn	EspagÅ„ol	t	140	f
+11803	3	2675	1	Para ser cambiado en un lote cambiar el contenido del campo? La acciÃ³n no se puede deshacer!	EspagÅ„ol	t	230	f
+11783	3	2670	2	el cambio de lote	EspagÅ„ol	t	0	f
+11787	3	2671	2	el cambio de lote	EspagÅ„ol	t	0	f
+11815	3	2678	1	no campo seleccionado	EspagÅ„ol	t	230	f
+11791	3	2672	3	el cambio de lote	EspagÅ„ol	t	110	f
+11795	3	2673	1	sustituir con	EspagÅ„ol	t	230	f
+11807	3	2676	1	NÅ›mero de registros afectados	EspagÅ„ol	t	230	f
+11811	3	2677	1	campo afectado	EspagÅ„ol	t	230	f
+11819	3	2679	2	nueva ventana	EspagÅ„ol	t	0	f
+11823	3	2680	2	nueva ventana	EspagÅ„ol	t	0	f
+11835	3	2683	1	desigual	EspagÅ„ol	t	19	f
+11839	3	2684	1	registros modificados	EspagÅ„ol	t	230	f
+11843	3	2685	3	estÄ¯ndar	EspagÅ„ol	t	140	f
+11847	3	2686	3	Resultados insuficientes	EspagÅ„ol	t	140	f
+11851	3	2687	3	no cÄ¯lculo	EspagÅ„ol	t	140	f
+11855	3	2688	3	nÅ›mero del resultado	EspagÅ„ol	t	140	f
+4082	3	1419	2	Memo de Textblock	EspagÅ„ol	t	0	f
+11859	3	2689	3	campos de la tabla de ediciÃ³n	EspagÅ„ol	t	140	f
+11863	3	2690	3	Editor de consultas abierto	EspagÅ„ol	t	140	f
+10931	3	2457	3	modo	EspagÅ„ol	t	168	f
+11871	3	2692	3	escribir	EspagÅ„ol	t	168	f
+11875	3	2693	1	TaquigrafÄ·a en la bÅ›squeda rÄ¯pida	EspagÅ„ol	t	19	f
+11287	3	2546	3	Eliminar miniaturas temporales	EspagÅ„ol	t	154	f
+12291	3	2796	1	hacerse cargo y cerca	EspagÅ„ol	t	13	f
+11299	3	2549	3	solle versucht werden alle fehlgeschlagene Thumbnails neu zu berechnen?	EspagÅ„ol	t	154	f
+11883	3	2695	3	Eliminar archivos temporales de texto	EspagÅ„ol	t	154	f
+11291	3	2547	3	Volver a calcular frustrada miniaturas	EspagÅ„ol	t	154	f
+11891	3	2697	3	Si la estructura de carpetas se comprueba la consistencia? Faltan carpetas de usuario o informe se reconstruyen.	EspagÅ„ol	t	154	f
+11895	3	2698	3	Rotation	EspagÅ„ol	t	168	f
+11899	3	2699	3	no publicada	EspagÅ„ol	t	140	f
+11747	3	2661	3	marco de agrupaciÃ³n	EspagÅ„ol	t	175	f
+11663	3	2640	3	ajax puesto	EspagÅ„ol	t	110	f
+11903	3	2700	3	ajustes del calendario	EspagÅ„ol	t	164	f
+11751	3	2662	3	Compruebe secuencias	EspagÅ„ol	t	154	f
+11715	3	2653	3	Si se vuelven a crear los procedimientos de base de datos especÄ·fica Limbas?	EspagÅ„ol	t	154	f
+11887	3	2696	3	Si Limbasspezifischen se volverÄ¯ a crear el gatillo?	EspagÅ„ol	t	154	f
+11755	3	2663	3	Si se las tablas de secuencia Limbasspezifischen re-creado?	EspagÅ„ol	t	154	f
+11711	3	2652	3	Prozeduren prÃ¼fen	EspagÅ„ol	t	154	f
+5912	3	2033	3	Si vuelve a calcular el nÅ›mero indicado de enlaces y campos de selecciÃ³n mÅ›ltiple?	EspagÅ„ol	t	154	f
+11955	3	2713	3	pestaÅ„a mesa	EspagÅ„ol	t	173	f
+4982	3	1723	3	Fecha + Hora	EspagÅ„ol	t	110	f
+11911	3	2702	3	Fecha + hora + Sec	EspagÅ„ol	t	110	f
+11915	3	2703	3	Reservas Pasos ID	EspagÅ„ol	t	140	f
+11935	3	2708	3	posiciÃ³n	EspagÅ„ol	t	173	f
+11939	3	2709	3	primero	EspagÅ„ol	t	173	f
+11943	3	2710	3	recordar	EspagÅ„ol	t	173	f
+11951	3	2712	3	Haga clic en Evento de forma Reiter <br> ejemplo alert ( '' hola '');	EspagÅ„ol	t	110	f
+10571	3	2367	3	Eliminar la configuraciÃ³n de usuario	EspagÅ„ol	t	154	f
+10407	3	2328	3	todos los usuarios borrar los ajustes?	EspagÅ„ol	t	154	f
+11975	3	2718	3	icono	EspagÅ„ol	t	204	f
+11983	3	2720	3	desaparecer	EspagÅ„ol	t	204	f
+11007	3	2476	3	Compruebe claves externas	EspagÅ„ol	t	154	f
+11011	3	2477	3	Si las claves externas Limbasspezifischen a ser retirados?	EspagÅ„ol	t	154	f
+11055	3	2488	3	Comprobar gatillo	EspagÅ„ol	t	154	f
+11987	3	2721	3	Verificar los Ä·ndices	EspagÅ„ol	t	154	f
+11991	3	2722	1	Si faltan los Ä·ndices se reconstruyen Limbasspezifische?	EspagÅ„ol	t	154	f
+11995	3	2723	3	Ä·ndices	EspagÅ„ol	t	195	f
+11999	3	2724	3	restricciones Å›nicas	EspagÅ„ol	t	195	f
+12003	3	2725	3	Las claves externas	EspagÅ„ol	t	195	f
+12011	3	2727	3	Ref. Tabla	EspagÅ„ol	t	195	f
+12015	3	2728	3	Ref campo.	EspagÅ„ol	t	195	f
+12019	3	2729	3	Las claves primarias	EspagÅ„ol	t	195	f
+12027	3	2731	3	Agregatfunktion	EspagÅ„ol	t	110	f
+12031	3	2732	3	Calcular el nÅ›mero de filas que se muestran en el formato seleccionado	EspagÅ„ol	t	110	f
+12035	3	2733	1	Ocultar la columna	EspagÅ„ol	t	5	f
+12047	3	2735	3	estilo de celda	EspagÅ„ol	t	168	f
+10307	3	2303	3	leer	EspagÅ„ol	t	122	f
+12103	3	2749	2	los derechos de flujo de trabajo	EspagÅ„ol	t	0	f
+12039	3	2370	3	debe seguir siendo la copia de enlace?	EspagÅ„ol	t	121	f
+12043	3	2734	3	SelecciÃ³n de reordenaciÃ³n piscina	EspagÅ„ol	t	154	f
+12051	3	2736	3	mesa	EspagÅ„ol	t	168	f
+12059	3	2738	2	nueva presentaciÃ³n	EspagÅ„ol	t	0	f
+12063	3	2739	2	nueva presentaciÃ³n	EspagÅ„ol	t	0	f
+12067	3	2740	3	nueva nueva presentaciÃ³n	EspagÅ„ol	t	187	f
+12071	3	2741	1	crear nueva	EspagÅ„ol	t	7	f
+4598	3	1595	2	NÅ›mero Porcentaje de punto	EspagÅ„ol	f	0	f
+12075	3	2742	3	basado en el grupo	EspagÅ„ol	t	187	f
+12079	3	2743	2	reenvÄ·os	EspagÅ„ol	t	0	f
+12083	3	2744	2	los derechos establecer recordatorios	EspagÅ„ol	t	0	f
+12087	3	2745	2	los derechos de formulario	EspagÅ„ol	t	0	f
+12091	3	2746	2	Forma derechos establecidos	EspagÅ„ol	t	0	f
+11831	3	2682	1	El campo vacÄ·o	EspagÅ„ol	f	19	f
+12095	3	2747	2	tabla de derechos	EspagÅ„ol	t	0	f
+12099	3	2748	2	Establecer derechos de tabla	EspagÅ„ol	t	0	f
+12107	3	2750	2	Workflowrechte festlegen	EspagÅ„ol	t	0	f
+12111	3	2751	3	crear copia de seguridad	EspagÅ„ol	t	140	f
+12115	3	2752	3	nuevo flujo de trabajo	EspagÅ„ol	t	208	f
+12123	3	2754	3	nueva tarea	EspagÅ„ol	t	208	f
+12131	3	2756	3	Forma lista	EspagÅ„ol	t	175	f
+12135	3	2757	3	radio	EspagÅ„ol	t	168	f
+12171	3	2766	1	antes	EspagÅ„ol	t	204	f
+12139	3	2758	3	crear el archivo	EspagÅ„ol	t	213	f
+8117	3	2196	2	mimetype	EspagÅ„ol	t	0	f
+12147	3	2760	3	Cuando se cambia la informaciÃ³n de versiones versiÃ³n existente serÄ¯ eliminado!	EspagÅ„ol	t	140	f
+12151	3	2761	3	sincronizar	EspagÅ„ol	t	139	f
+12155	3	2762	1	ahora	EspagÅ„ol	t	204	f
+12191	3	2771	2	grupo de selecciÃ³n	EspagÅ„ol	t	0	f
+12187	3	2770	3	mÄ¯x. resultados	EspagÅ„ol	t	155	f
+12195	3	2772	2	Manejo de grupo de selecciÃ³n	EspagÅ„ol	t	0	f
+12203	3	2774	2	Evento recurrente	EspagÅ„ol	t	0	f
+12207	3	2775	2	CreaciÃ³n de una cita periÃ³dica	EspagÅ„ol	t	0	f
+12263	3	2789	1	JÃ¤hrlich	EspagÅ„ol	t	200	f
+12267	3	2790	1	2 veces a la semana	EspagÅ„ol	t	200	f
+10419	3	2331	3	parÄ¯metro	EspagÅ„ol	t	168	f
+12271	3	2791	3	repeticiÃ³n	EspagÅ„ol	t	52	f
+11587	3	2621	3	VerknÃ¼pfung entfernen	EspagÅ„ol	t	226	f
+12211	3	2776	1	Si todo este conjunto de datos enlazar a ser eliminado?	EspagÅ„ol	t	204	f
+12215	3	2777	3	incrustar	EspagÅ„ol	t	169	f
+12219	3	2778	3	caÄ·da	EspagÅ„ol	t	169	f
+12223	3	2779	3	el que se informa	EspagÅ„ol	t	169	f
+12227	3	2780	3	Caja de herramientas	EspagÅ„ol	t	169	f
+12235	3	2782	3	coordenadas	EspagÅ„ol	t	169	f
+12239	3	2783	3	elementos	EspagÅ„ol	t	169	f
+12251	3	2786	1	diario	EspagÅ„ol	t	200	f
+12255	3	2787	1	semanal	EspagÅ„ol	t	200	f
+12259	3	2788	1	mensual	EspagÅ„ol	t	200	f
+12275	3	2792	3	La repeticiÃ³n estÄ¯ terminando	EspagÅ„ol	t	52	f
+12283	3	2794	1	â€PrecauciÃ³n! EliminaciÃ³n recursiva registros versionados o vinculados \\\\\\\\\\\\\\\\ Nhas activado!	EspagÅ„ol	t	17	f
+12287	3	2795	3	opciones	EspagÅ„ol	t	221	f
+12295	3	2797	2	Importar archivo	EspagÅ„ol	t	0	f
+12299	3	2798	2	importaciÃ³n	EspagÅ„ol	t	0	f
+12303	3	2799	1	principio	EspagÅ„ol	t	200	f
+12311	3	2801	1	DuraciÃ³n / Period	EspagÅ„ol	t	200	f
+12315	3	2802	1	Intervalo de repeticiÃ³n	EspagÅ„ol	t	200	f
+12319	3	2803	1	patrÃ³n de repeticiÃ³n	EspagÅ„ol	t	200	f
+12331	3	2806	3	Los campos que se muestran en el enlace BÅ›squeda RÄ¯pida / selecciÃ³n VerknÃ¼pungs	EspagÅ„ol	t	121	f
+12343	3	2809	3	parametrizaciÃ³n implÄ·cita	EspagÅ„ol	t	121	f
+12351	3	2811	3	DescripciÃ³n de las	EspagÅ„ol	t	110	f
+5870	3	2019	3	desea que el campo que desea eliminar?	EspagÅ„ol	t	110	f
+12355	3	2812	3	vista de lista	EspagÅ„ol	t	139	f
+12359	3	2813	3	separador de listas	EspagÅ„ol	t	139	f
+12363	3	2814	3	forma abreviada	EspagÅ„ol	t	139	f
+12367	3	2815	3	AusfÃ¼hrlich	EspagÅ„ol	t	139	f
+5291	3	1826	3	buscado	EspagÅ„ol	t	121	f
+12339	3	2808	3	con OR para ser campos de la tabla de enlace buscado	EspagÅ„ol	t	121	f
+12375	3	2817	3	tamaÅ„o de bloque	EspagÅ„ol	t	139	f
+12379	3	2818	3	sistema	EspagÅ„ol	t	165	f
+12383	3	2819	3	ImageMagick	EspagÅ„ol	t	165	f
+12387	3	2820	3	ghostscript	EspagÅ„ol	t	165	f
+12391	3	2821	1	Detalles supresores	EspagÅ„ol	t	5	f
+12735	3	2907	2	Revisions-Manager	EspagÅ„ol	t	0	f
+12419	3	2828	3	activa la coloraciÃ³n de los registros de datos individuales gruppenzpezifische	EspagÅ„ol	t	140	f
+12427	3	2830	3	activa el envÄ·o automÄ¯tico / salvamento de la forma en el fondo en caso de cambio de registros	EspagÅ„ol	t	140	f
+12403	3	2824	3	Por lo general, para poner de relieve o marcas de los registros individuales con colores o sÄ·mbolos. Esperada llamada de funciÃ³n.	EspagÅ„ol	t	140	f
+12439	3	2833	3	nombre de la tabla fÄ·sica	EspagÅ„ol	t	140	f
+12435	3	2832	3	permitido la creaciÃ³n de un conjunto de datos sin identificaciÃ³n asignado. Los nuevos registros se 'crean despuÃ©s' 'Aplicar'.	EspagÅ„ol	t	140	f
+12411	3	2826	3	el registro de todos los cambios activa un registro	EspagÅ„ol	t	140	f
+12415	3	2827	3	activa el bloqueo especÄ·fico del usuario registros individuales	EspagÅ„ol	t	140	f
+12423	3	2829	3	activa los grupos / autorizaciÃ³n especÄ·fica de usuario registros individuales	EspagÅ„ol	t	140	f
+12443	3	2834	3	Dependiente del idioma Nombre de la tabla	EspagÅ„ol	t	140	f
+12431	3	2831	3	activa el despliegue de enlaces o grupos en la lista de registros	EspagÅ„ol	t	140	f
+12399	3	2823	3	El cÄ¯lculo ajustado <br> el resultado alternativa <b> por defecto :. </ B> select count (*) <br> <b> Resultados insuficientes: </ b> odbc_fetch_row	EspagÅ„ol	t	140	f
+12451	3	2836	3	Infos	EspagÅ„ol	t	140	f
+12455	3	2837	3	campo significativo del registro de definiciÃ³n Å›nica	EspagÅ„ol	t	110	f
+12459	3	2838	3	El campo tiene un Ä·ndice de base de datos	EspagÅ„ol	t	110	f
+12463	3	2839	3	El campo es claramente	EspagÅ„ol	t	110	f
+12495	3	2847	3	RepresentaciÃ³n de la bÅ›squeda enlace como la selecciÃ³n basada en AJAX (sÃ³lo en combinaciÃ³n con '' Seleccionar Buscar '')	EspagÅ„ol	t	110	f
+12407	3	2825	3	gatillo seleccionado activado	EspagÅ„ol	t	140	f
 12798	4	2922	3	\N	francais	f	110	f
-12799	3	2923	3	\N	Espagñol	f	110	f
-12395	3	2822	3	Tipo de control de versiones. <br> <b> recursiv: </ b> todas las versiones 1: n enlaces si la versión también activamente <br> <b> Solución: </ b> versionado sólo el registro actual	Espagñol	t	140	f
-12479	3	2843	3	El campo se puede representar en la lista de tablas Agrupados	Espagñol	t	110	f
+12799	3	2923	3	\N	EspagÅ„ol	f	110	f
+12395	3	2822	3	Tipo de control de versiones. <br> <b> recursiv: </ b> todas las versiones 1: n enlaces si la versiÃ³n tambiÃ©n activamente <br> <b> SoluciÃ³n: </ b> versionado sÃ³lo el registro actual	EspagÅ„ol	t	140	f
+12479	3	2843	3	El campo se puede representar en la lista de tablas Agrupados	EspagÅ„ol	t	110	f
 12808	1	2925	3	Rahmen	deutsch	t	173	f
-12179	3	2768	2	instantáneas	Espagñol	f	0	f
-12335	3	2807	3	Los campos que aparecen en Verknüpfungsaansicht	Espagñol	f	121	f
-12467	3	2840	3	activa el envío / almacén automático del campo de formulario en el fondo durante un cambio.	Espagñol	t	110	f
-12483	3	2844	3	activa el cambio de apilado / colección para este campo	Espagñol	t	110	f
-12511	3	2851	3	la definición de un recurso de origen para la representación de Gantt. n esperado: m relación	Espagñol	t	140	f
-11659	3	2639	3	ajax búsqueda	Espagñol	t	110	f
-12499	3	2848	3	<B> forma Kurtz: </ b> pantalla numérica Shorter <br> <b> detallada: </ b> Visualización de todos los valores separados por separador de lista	Espagñol	t	110	f
-12515	3	2852	3	-configuración específica del calendario	Espagñol	t	140	f
-12487	3	2845	3	activa la pila / Búsqueda de selección basado SammeländeruAJAX lugar de la lista desplegable para este campo Feldesng	Espagñol	t	110	f
-12491	3	2846	3	Representación del enlace como un campo de selección	Espagñol	t	110	f
-12503	3	2849	3	Aislador para la presentación detallada	Espagñol	t	110	f
-12471	3	2841	3	Ver como campo de selección en el <b> barra de búsqueda de tabla </ b>	Espagñol	t	110	f
-12475	3	2842	3	una búsqueda activa de selección basado en AJAX en el <b> barra de búsqueda de tabla </ b>	Espagñol	t	110	f
-12507	3	2850	3	Ressource	Espagñol	t	140	f
-12519	3	2853	1	orden del día	Espagñol	t	200	f
-12523	3	2854	1	Gantt	Espagñol	t	200	f
-8165	3	2208	3	importación de proyectos	Espagñol	t	148	f
-12531	3	2856	3	Debe ser creado para el vínculo existente una tabla cruzada View? enlaces existentes se borrarán.	Espagñol	t	121	f
-12527	3	2855	3	Tabla reticulación: (sólo lectura)	Espagñol	t	121	f
-12535	3	2857	3	Las opciones de filtrado para la selección como piscina | $ Extensión [ '', donde ''] = "palabras clave como ''%peces% '"; devolver $ extensión;	Espagñol	t	110	f
-11479	3	2594	3	piscina	Espagñol	t	110	f
-4073	3	1410	2	carga de archivos con vista previa	Espagñol	t	0	f
-12543	3	2859	3	exportación de sincronización	Espagñol	t	145	f
-12547	3	2860	3	importación de sincronización	Espagñol	t	145	f
-12551	3	2861	3	ancho de la celda	Espagñol	t	168	f
-7941	3	2152	1	versiones de errores! Sólo los registros actuales se pueden versionar!	Espagñol	t	25	f
-12555	3	2862	3	Crear un nuevo archivo de configuración EXIF	Espagñol	t	154	f
-12559	3	2863	3	Crear Un Nuevo Archivo de configuration EXIF	Espagñol	t	177	f
-12563	3	2864	3	transpuesto	Espagñol	t	177	f
-12595	3	2872	3	tamaño de la fuente	Espagñol	t	177	f
-12599	3	2873	3	distancia a la izquierda	Espagñol	t	177	f
-12603	3	2874	3	espacio por encima	Espagñol	t	177	f
-12607	3	2875	3	distancia correcta	Espagñol	t	177	f
-12611	3	2876	3	espacio inferior	Espagñol	t	177	f
-12615	3	2877	3	Texto eje X	Espagñol	t	177	f
-12619	3	2878	3	Texto del eje Y	Espagñol	t	177	f
-12623	3	2879	3	Leyenda x	Espagñol	t	177	f
-12627	3	2880	3	Leyenda y	Espagñol	t	177	f
-12631	3	2881	3	Leyenda	Espagñol	t	177	f
-12635	3	2882	3	ocultar	Espagñol	t	177	f
-12647	3	2885	3	gráfico de sectores	Espagñol	t	177	f
-12651	3	2886	3	sin etiqueta	Espagñol	t	177	f
-12655	3	2887	3	Show	Espagñol	t	177	f
-12659	3	2888	3	indican el porcentaje	Espagñol	t	177	f
-12663	3	2889	3	Pie-radio	Espagñol	t	177	f
-12671	3	2891	3	propiedad	Espagñol	t	177	f
-12679	3	2893	3	ajuste	Espagñol	t	177	f
-12683	3	2894	3	aplicar	Espagñol	t	177	f
-12687	3	2895	3	plurilingüe	Espagñol	t	110	f
-12691	3	2896	3	apoyo en el idioma habilitado	Espagñol	t	110	f
-12695	3	2897	3	traducir	Espagñol	t	180	f
-12699	3	2898	3	Para este lenguaje, la traducción de idiomas para los campos de la tabla está activada o desactivada. \\\\\\\\\\\\\\\\ NÜbersetzungsfelder ser eliminado o añadido!	Espagñol	t	180	f
-12703	3	2899	1	nueva presentación de filtro	Espagñol	t	0	f
-12711	3	2901	1	Nueva presentación / s añadido correctamente!	Espagñol	t	5	f
-12707	3	2900	1	Nueva presentación / s borrado correctamente!	Espagñol	t	5	f
-12715	3	2902	1	Objetivo / eliminado creado para el seleccionado registra una nueva presentación?	Espagñol	t	5	f
-12719	3	2903	2	imagen	Espagñol	t	0	f
-12723	3	2904	2	imagen	Espagñol	t	0	f
-12739	3	2908	2	Revisions-Manager	Espagñol	t	0	f
-12743	3	2909	1	asignado a	Espagñol	t	0	f
-12755	3	2912	3	dependencias	Espagñol	t	110	f
-12751	3	2911	3	activa el borrado automático y recreación de consultas dependientes.	Espagñol	t	110	f
-12759	3	2913	3	pasado	Espagñol	t	139	f
+12179	3	2768	2	instantÄ¯neas	EspagÅ„ol	f	0	f
+12335	3	2807	3	Los campos que aparecen en VerknÃ¼pfungsaansicht	EspagÅ„ol	f	121	f
+12467	3	2840	3	activa el envÄ·o / almacÃ©n automÄ¯tico del campo de formulario en el fondo durante un cambio.	EspagÅ„ol	t	110	f
+12483	3	2844	3	activa el cambio de apilado / colecciÃ³n para este campo	EspagÅ„ol	t	110	f
+12511	3	2851	3	la definiciÃ³n de un recurso de origen para la representaciÃ³n de Gantt. n esperado: m relaciÃ³n	EspagÅ„ol	t	140	f
+11659	3	2639	3	ajax bÅ›squeda	EspagÅ„ol	t	110	f
+12499	3	2848	3	<B> forma Kurtz: </ b> pantalla numÃ©rica Shorter <br> <b> detallada: </ b> VisualizaciÃ³n de todos los valores separados por separador de lista	EspagÅ„ol	t	110	f
+12515	3	2852	3	-configuraciÃ³n especÄ·fica del calendario	EspagÅ„ol	t	140	f
+12487	3	2845	3	activa la pila / BÅ›squeda de selecciÃ³n basado SammelÃ¤nderuAJAX lugar de la lista desplegable para este campo Feldesng	EspagÅ„ol	t	110	f
+12491	3	2846	3	RepresentaciÃ³n del enlace como un campo de selecciÃ³n	EspagÅ„ol	t	110	f
+12503	3	2849	3	Aislador para la presentaciÃ³n detallada	EspagÅ„ol	t	110	f
+12471	3	2841	3	Ver como campo de selecciÃ³n en el <b> barra de bÅ›squeda de tabla </ b>	EspagÅ„ol	t	110	f
+12475	3	2842	3	una bÅ›squeda activa de selecciÃ³n basado en AJAX en el <b> barra de bÅ›squeda de tabla </ b>	EspagÅ„ol	t	110	f
+12507	3	2850	3	Ressource	EspagÅ„ol	t	140	f
+12519	3	2853	1	orden del dÄ·a	EspagÅ„ol	t	200	f
+12523	3	2854	1	Gantt	EspagÅ„ol	t	200	f
+8165	3	2208	3	importaciÃ³n de proyectos	EspagÅ„ol	t	148	f
+12531	3	2856	3	Debe ser creado para el vÄ·nculo existente una tabla cruzada View? enlaces existentes se borrarÄ¯n.	EspagÅ„ol	t	121	f
+12527	3	2855	3	Tabla reticulaciÃ³n: (sÃ³lo lectura)	EspagÅ„ol	t	121	f
+12535	3	2857	3	Las opciones de filtrado para la selecciÃ³n como piscina | $ ExtensiÃ³n [ '', donde ''] = "palabras clave como ''%peces% '"; devolver $ extensiÃ³n;	EspagÅ„ol	t	110	f
+11479	3	2594	3	piscina	EspagÅ„ol	t	110	f
+4073	3	1410	2	carga de archivos con vista previa	EspagÅ„ol	t	0	f
+12543	3	2859	3	exportaciÃ³n de sincronizaciÃ³n	EspagÅ„ol	t	145	f
+12547	3	2860	3	importaciÃ³n de sincronizaciÃ³n	EspagÅ„ol	t	145	f
+12551	3	2861	3	ancho de la celda	EspagÅ„ol	t	168	f
+7941	3	2152	1	versiones de errores! SÃ³lo los registros actuales se pueden versionar!	EspagÅ„ol	t	25	f
+12555	3	2862	3	Crear un nuevo archivo de configuraciÃ³n EXIF	EspagÅ„ol	t	154	f
+12559	3	2863	3	Crear Un Nuevo Archivo de configuration EXIF	EspagÅ„ol	t	177	f
+12563	3	2864	3	transpuesto	EspagÅ„ol	t	177	f
+12595	3	2872	3	tamaÅ„o de la fuente	EspagÅ„ol	t	177	f
+12599	3	2873	3	distancia a la izquierda	EspagÅ„ol	t	177	f
+12603	3	2874	3	espacio por encima	EspagÅ„ol	t	177	f
+12607	3	2875	3	distancia correcta	EspagÅ„ol	t	177	f
+12611	3	2876	3	espacio inferior	EspagÅ„ol	t	177	f
+12615	3	2877	3	Texto eje X	EspagÅ„ol	t	177	f
+12619	3	2878	3	Texto del eje Y	EspagÅ„ol	t	177	f
+12623	3	2879	3	Leyenda x	EspagÅ„ol	t	177	f
+12627	3	2880	3	Leyenda y	EspagÅ„ol	t	177	f
+12631	3	2881	3	Leyenda	EspagÅ„ol	t	177	f
+12635	3	2882	3	ocultar	EspagÅ„ol	t	177	f
+12647	3	2885	3	grÄ¯fico de sectores	EspagÅ„ol	t	177	f
+12651	3	2886	3	sin etiqueta	EspagÅ„ol	t	177	f
+12655	3	2887	3	Show	EspagÅ„ol	t	177	f
+12659	3	2888	3	indican el porcentaje	EspagÅ„ol	t	177	f
+12663	3	2889	3	Pie-radio	EspagÅ„ol	t	177	f
+12671	3	2891	3	propiedad	EspagÅ„ol	t	177	f
+12679	3	2893	3	ajuste	EspagÅ„ol	t	177	f
+12683	3	2894	3	aplicar	EspagÅ„ol	t	177	f
+12687	3	2895	3	plurilingÃ¼e	EspagÅ„ol	t	110	f
+12691	3	2896	3	apoyo en el idioma habilitado	EspagÅ„ol	t	110	f
+12695	3	2897	3	traducir	EspagÅ„ol	t	180	f
+12699	3	2898	3	Para este lenguaje, la traducciÃ³n de idiomas para los campos de la tabla estÄ¯ activada o desactivada. \\\\\\\\\\\\\\\\ NÃœbersetzungsfelder ser eliminado o aÅ„adido!	EspagÅ„ol	t	180	f
+12703	3	2899	1	nueva presentaciÃ³n de filtro	EspagÅ„ol	t	0	f
+12711	3	2901	1	Nueva presentaciÃ³n / s aÅ„adido correctamente!	EspagÅ„ol	t	5	f
+12707	3	2900	1	Nueva presentaciÃ³n / s borrado correctamente!	EspagÅ„ol	t	5	f
+12715	3	2902	1	Objetivo / eliminado creado para el seleccionado registra una nueva presentaciÃ³n?	EspagÅ„ol	t	5	f
+12719	3	2903	2	imagen	EspagÅ„ol	t	0	f
+12723	3	2904	2	imagen	EspagÅ„ol	t	0	f
+12739	3	2908	2	Revisions-Manager	EspagÅ„ol	t	0	f
+12743	3	2909	1	asignado a	EspagÅ„ol	t	0	f
+12755	3	2912	3	dependencias	EspagÅ„ol	t	110	f
+12751	3	2911	3	activa el borrado automÄ¯tico y recreaciÃ³n de consultas dependientes.	EspagÅ„ol	t	110	f
+12759	3	2913	3	pasado	EspagÅ„ol	t	139	f
 12772	1	2916	2	Sync-Slave	deutsch	t	0	f
 12776	1	2917	2	Synchronisations ID Slave	deutsch	t	0	f
 12773	2	2916	2	Sync slave 	english	t	0	f
 12774	4	2916	2	Esclave Sync 	francais	t	0	f
-12771	3	2916	2	Esclavo sync 	Espagñol	t	0	f
-12788	1	2920	1	Ausführverbot aufgrund einer Triggerregel	deutsch	t	31	f
-12787	3	2920	1	\N	Espagñol	f	31	f
-12791	3	2921	1	\N	Espagñol	f	25	f
+12771	3	2916	2	Esclavo sync 	EspagÅ„ol	t	0	f
+12788	1	2920	1	AusfÃ¼hrverbot aufgrund einer Triggerregel	deutsch	t	31	f
+12787	3	2920	1	\N	EspagÅ„ol	f	31	f
+12791	3	2921	1	\N	EspagÅ„ol	f	25	f
 12790	4	2920	1	\N	francais	f	31	f
 12789	2	2920	1	trigger denied execution 	english	t	31	f
-12792	1	2921	1	nicht alle Datensätze konnten verknüpft werden!	deutsch	t	25	f
+12792	1	2921	1	nicht alle DatensÃ¤tze konnten verknÃ¼pft werden!	deutsch	t	25	f
 12794	4	2921	1	\N	francais	f	25	f
 2650	1	1365	2	Boolean	deutsch	t	0	f
 6988	4	1365	2	Booleen	francais	f	0	f
-4028	3	1365	2	Booleano	Espagñol	f	0	f
+4028	3	1365	2	Booleano	EspagÅ„ol	f	0	f
 7024	4	1401	2	TRUE|FALSE ou 1|0	francais	f	0	f
-4064	3	1401	2	TRUE | FALSE o 0 | 1	Espagñol	f	0	f
-12795	3	2922	3	\N	Espagñol	f	110	f
-7825	3	2123	2	telefonía	Espagñol	f	0	f
-4026	3	1363	2	Bloque de texto	Espagñol	f	0	f
+4064	3	1401	2	TRUE | FALSE o 0 | 1	EspagÅ„ol	f	0	f
+12795	3	2922	3	\N	EspagÅ„ol	f	110	f
+7825	3	2123	2	telefonÄ·a	EspagÅ„ol	f	0	f
+4026	3	1363	2	Bloque de texto	EspagÅ„ol	f	0	f
 12800	1	2923	3	Feld wird in die globale Tabellensuche einbezogen	deutsch	t	110	f
 12802	4	2923	3	\N	francais	f	110	f
-12803	3	2924	3	\N	Espagñol	f	175	f
+12803	3	2924	3	\N	EspagÅ„ol	f	175	f
 12804	1	2924	3	Kachel	deutsch	t	175	f
 12806	4	2924	3	\N	francais	f	175	f
 12793	2	2921	1	could not link all datasets	english	t	25	f
 12810	4	2925	3	\N	francais	f	173	f
 5438	1	1875	2	reset	deutsch	t	\N	f
-5441	1	1876	2	Anwendung zurücksetzen	deutsch	t	\N	f
-2654	1	1367	2	Währung	deutsch	t	0	f
+5441	1	1876	2	Anwendung zurÃ¼cksetzen	deutsch	t	\N	f
+2654	1	1367	2	WÃ¤hrung	deutsch	t	0	f
 6990	4	1367	2	Devise	francais	f	0	f
-4030	3	1367	2	moneda	Espagñol	f	0	f
-2726	1	1403	2	Währung 25-stellig	deutsch	t	0	f
-12811	3	2926	3	\N	Espagñol	f	225	f
-12812	1	2926	3	prüfen	deutsch	t	225	f
+4030	3	1367	2	moneda	EspagÅ„ol	f	0	f
+2726	1	1403	2	WÃ¤hrung 25-stellig	deutsch	t	0	f
+12811	3	2926	3	\N	EspagÅ„ol	f	225	f
+12812	1	2926	3	prÃ¼fen	deutsch	t	225	f
 12814	4	2926	3	\N	francais	f	225	f
-12815	3	2927	1	\N	Espagñol	f	0	f
-12816	1	2927	1	Version %s ist verfügbar!	deutsch	t	0	f
+12815	3	2927	1	\N	EspagÅ„ol	f	0	f
+12816	1	2927	1	Version %s ist verfÃ¼gbar!	deutsch	t	0	f
 12818	4	2927	1	\N	francais	f	0	f
-12819	3	2928	1	\N	Espagñol	f	0	f
+12819	3	2928	1	\N	EspagÅ„ol	f	0	f
 12820	1	2928	1	Diese Version ist aktuell!	deutsch	t	0	f
 12822	4	2928	1	\N	francais	f	0	f
-12823	3	2929	1	\N	Espagñol	f	0	f
-12824	1	2929	1	Auf Updates prüfen	deutsch	t	0	f
+12823	3	2929	1	\N	EspagÅ„ol	f	0	f
+12824	1	2929	1	Auf Updates prÃ¼fen	deutsch	t	0	f
 12826	4	2929	1	\N	francais	f	0	f
-12827	3	2930	1	\N	Espagñol	f	0	f
+12827	3	2930	1	\N	EspagÅ„ol	f	0	f
 12828	1	2930	1	Aktuelle Version	deutsch	t	0	f
 12830	4	2930	1	\N	francais	f	0	f
-12831	3	2931	2	\N	Espagñol	f	0	f
+12831	3	2931	2	\N	EspagÅ„ol	f	0	f
 12834	4	2931	2	\N	francais	f	0	f
-12835	3	2932	2	\N	Espagñol	f	0	f
+12835	3	2932	2	\N	EspagÅ„ol	f	0	f
 12838	4	2932	2	\N	francais	f	0	f
 12832	1	2931	2	Favoriten	deutsch	t	0	f
 12836	1	2932	2	Favoriten	deutsch	t	0	f
-12851	3	2936	2	\N	Espagñol	f	0	f
-12839	3	2933	2	\N	Espagñol	f	0	f
+12851	3	2936	2	\N	EspagÅ„ol	f	0	f
+12839	3	2933	2	\N	EspagÅ„ol	f	0	f
 12842	4	2933	2	\N	francais	f	0	f
-12843	3	2934	2	\N	Espagñol	f	0	f
+12843	3	2934	2	\N	EspagÅ„ol	f	0	f
 12846	4	2934	2	\N	francais	f	0	f
-12847	3	2935	2	\N	Espagñol	f	0	f
+12847	3	2935	2	\N	EspagÅ„ol	f	0	f
 12850	4	2935	2	\N	francais	f	0	f
 12854	4	2936	2	\N	francais	f	0	f
-12855	3	2937	2	\N	Espagñol	f	0	f
+12855	3	2937	2	\N	EspagÅ„ol	f	0	f
 12856	1	2937	2	drucken	deutsch	t	0	f
 12858	4	2937	2	\N	francais	f	0	f
-12859	3	2938	2	\N	Espagñol	f	0	f
+12859	3	2938	2	\N	EspagÅ„ol	f	0	f
 12860	1	2938	2	Dokument drucken	deutsch	t	0	f
 12862	4	2938	2	\N	francais	f	0	f
-12863	3	2939	1	\N	Espagñol	f	23	f
+12863	3	2939	1	\N	EspagÅ„ol	f	23	f
 12864	1	2939	1	Auf Drucker	deutsch	t	23	f
 12866	4	2939	1	\N	francais	f	23	f
-12891	3	2946	2	\N	Espagñol	f	0	f
-12892	1	2946	2	Verknüpfung	deutsch	t	0	f
+12891	3	2946	2	\N	EspagÅ„ol	f	0	f
+12892	1	2946	2	VerknÃ¼pfung	deutsch	t	0	f
 12894	4	2946	2	\N	francais	f	0	f
-12895	3	2947	2	\N	Espagñol	f	0	f
+12895	3	2947	2	\N	EspagÅ„ol	f	0	f
 12896	1	2947	2	Datei	deutsch	t	0	f
 12898	4	2947	2	\N	francais	f	0	f
-12899	3	2948	2	\N	Espagñol	f	0	f
+12899	3	2948	2	\N	EspagÅ„ol	f	0	f
 12900	1	2948	2	Sonstiges	deutsch	t	0	f
 12902	4	2948	2	\N	francais	f	0	f
-12903	3	2949	2	\N	Espagñol	f	0	f
+12903	3	2949	2	\N	EspagÅ„ol	f	0	f
 12904	1	2949	2	Limbas-System	deutsch	t	0	f
 12906	4	2949	2	\N	francais	f	0	f
 11512	1	2602	3	Datumsdarstellung im strftime() oder DateTime::format  Format: z.B. %V,%G,%Y  | Y-m-d H:i:s	deutsch	t	110	f
-11514	4	2602	3	Affichage de la date à strftime () Format: par exemple % V,% G% Y	francais	f	110	f
-11511	3	2602	3	visualización de la fecha en strftime () Formato: por ejemplo, % V,% G,% Y	Espagñol	f	110	f
-12867	3	2940	3	\N	Espagñol	f	226	f
+11514	4	2602	3	Affichage de la date Ä… strftime () Format: par exemple % V,% G% Y	francais	f	110	f
+11511	3	2602	3	visualizaciÃ³n de la fecha en strftime () Formato: por ejemplo, % V,% G,% Y	EspagÅ„ol	f	110	f
+12867	3	2940	3	\N	EspagÅ„ol	f	226	f
 12868	1	2940	3	Konfiguration speichern	deutsch	t	226	f
 12870	4	2940	3	\N	francais	f	226	f
-12872	1	2941	3	Syntax prüfen	deutsch	t	226	f
-12871	3	2941	3	\N	Espagñol	f	226	f
+12872	1	2941	3	Syntax prÃ¼fen	deutsch	t	226	f
+12871	3	2941	3	\N	EspagÅ„ol	f	226	f
 12874	4	2941	3	\N	francais	f	226	f
 12876	1	2942	3	Abfrage speichern	deutsch	t	226	f
-12875	3	2942	3	\N	Espagñol	f	226	f
+12875	3	2942	3	\N	EspagÅ„ol	f	226	f
 12878	4	2942	3	\N	francais	f	226	f
-12879	3	2943	3	\N	Espagñol	f	226	f
-12880	1	2943	3	Veröffentlichung entfernen	deutsch	t	226	f
+12879	3	2943	3	\N	EspagÅ„ol	f	226	f
+12880	1	2943	3	VerÃ¶ffentlichung entfernen	deutsch	t	226	f
 12882	4	2943	3	\N	francais	f	226	f
-6976	4	1353	2	Réel (10)	francais	f	0	f
+6976	4	1353	2	RÃ©el (10)	francais	f	0	f
 2658	1	1369	2	E-Mail-Adresse	deutsch	t	0	f
 6992	4	1369	2	Email	francais	f	0	f
-4032	3	1369	2	email	Espagñol	f	0	f
+4032	3	1369	2	email	EspagÅ„ol	f	0	f
 6987	4	1364	2	Date heure	francais	f	0	f
 4269	1	1485	2	Auswahl (Checkbox)	deutsch	t	0	f
-7100	4	1485	2	Sélection (case à cocher)	francais	f	0	f
-4268	3	1485	2	Selección (casilla de verificación)	Espagñol	f	0	f
+7100	4	1485	2	SÃ©lection (case Ä… cocher)	francais	f	0	f
+4268	3	1485	2	SelecciÃ³n (casilla de verificaciÃ³n)	EspagÅ„ol	f	0	f
 6995	4	1372	2	Choix (Multiselect)	francais	f	0	f
 2666	1	1373	2	Auswahl (Ajax)	deutsch	t	0	f
 6996	4	1373	2	Choix (popup)	francais	f	0	f
@@ -10803,32 +10803,32 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12844	1	2934	2	externer Datei Speicher	deutsch	t	0	f
 12848	1	2935	2	Drucker	deutsch	t	0	f
 12852	1	2936	2	Drucker verwalten	deutsch	t	0	f
-4036	3	1373	2	Selección (Ajax)	Espagñol	f	0	f
+4036	3	1373	2	SelecciÃ³n (Ajax)	EspagÅ„ol	f	0	f
 7678	1	2086	2	Vererbung	deutsch	t	0	f
-7680	4	2086	2	Hérité	francais	f	0	f
-7677	3	2086	2	heredado	Espagñol	f	0	f
-12883	3	2944	2	\N	Espagñol	f	0	f
+7680	4	2086	2	HÃ©ritÃ©	francais	f	0	f
+7677	3	2086	2	heredado	EspagÅ„ol	f	0	f
+12883	3	2944	2	\N	EspagÅ„ol	f	0	f
 12884	1	2944	2	Numerisch	deutsch	t	0	f
 12886	4	2944	2	\N	francais	f	0	f
-12887	3	2945	2	\N	Espagñol	f	0	f
+12887	3	2945	2	\N	EspagÅ„ol	f	0	f
 12888	1	2945	2	Auswahl	deutsch	t	0	f
 12890	4	2945	2	\N	francais	f	0	f
-10972	1	2467	2	Fließkomma-Zahl	deutsch	t	0	f
-10971	3	2467	2	Números de punto flotante	Espagñol	f	0	f
-10975	3	2468	2	número de punto de flotación	Espagñol	f	0	f
+10972	1	2467	2	FlieÃŸkomma-Zahl	deutsch	t	0	f
+10971	3	2467	2	NÅ›meros de punto flotante	EspagÅ„ol	f	0	f
+10975	3	2468	2	nÅ›mero de punto de flotaciÃ³n	EspagÅ„ol	f	0	f
 2626	1	1353	2	Numerische Kommazahl	deutsch	t	0	f
-4016	3	1353	2	número numérico-punto	Espagñol	f	0	f
+4016	3	1353	2	nÅ›mero numÃ©rico-punto	EspagÅ„ol	f	0	f
 2698	1	1389	2	Kommazahl Numeric	deutsch	t	0	f
-4052	3	1389	2	Kommazahl Numeric	Espagñol	f	0	f
+4052	3	1389	2	Kommazahl Numeric	EspagÅ„ol	f	0	f
 4599	1	1595	2	Numerische Kommazahl (Prozent)	deutsch	t	0	f
 7189	4	1595	2	Pourcentage ()	francais	f	0	f
-4601	3	1596	2	El punto número numérico con representación porcentaje	Espagñol	f	0	f
+4601	3	1596	2	El punto nÅ›mero numÃ©rico con representaciÃ³n porcentaje	EspagÅ„ol	f	0	f
 7826	1	2123	2	Telefonie	deutsch	t	0	f
-7828	4	2123	2	téléphonie	francais	f	0	f
+7828	4	2123	2	tÃ©lÃ©phonie	francais	f	0	f
 7832	4	2124	2	ou\r\n\r\n	francais	f	0	f
-7829	3	2124	2	+xx xx xxxx o +xx xxxxx	Espagñol	f	0	f
+7829	3	2124	2	+xx xx xxxx o +xx xxxxx	EspagÅ„ol	f	0	f
 2718	1	1399	2	Textblock	deutsch	t	0	f
-4062	3	1399	2	bloque de texto	Espagñol	f	0	f
+4062	3	1399	2	bloque de texto	EspagÅ„ol	f	0	f
 1203	2	2	1	version 	english	t	4	f
 1205	2	4	1	name 	english	t	4	f
 1208	2	7	1	host 	english	t	4	f
@@ -10920,68 +10920,68 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 12881	2	2943	3	remove publication	english	t	226	f
 5176	2	1787	1	archive	english	t	13	f
 5557	2	1914	1	Tipps for searching:\r\n- pay attention for correct spelling\r\n- search in subfolders too \r\n- generalize your search	english	t	66	t
-109	1	109	1	groß- und kleinschreibung beachten	deutsch	t	19	f
+109	1	109	1	groÃŸ- und kleinschreibung beachten	deutsch	t	19	f
 6109	4	109	1	PM	francais	f	19	f
 107	1	107	1	ist	deutsch	t	19	f
 6107	4	107	1	Champs complet	francais	f	19	f
 11828	1	2681	1	ist leer	deutsch	t	19	f
 11830	4	2681	1	champ vide	francais	f	19	f
-11827	3	2681	1	campo vacío	Espagñol	f	19	f
-12907	3	2950	3	\N	Espagñol	f	140	f
-12908	1	2950	3	primärer Schlüssel	deutsch	t	140	f
+11827	3	2681	1	campo vacÄ·o	EspagÅ„ol	f	19	f
+12907	3	2950	3	\N	EspagÅ„ol	f	140	f
+12908	1	2950	3	primÃ¤rer SchlÃ¼ssel	deutsch	t	140	f
 12910	4	2950	3	\N	francais	f	140	f
 4620	2	1602	2	filter	english	t	\N	f
 4623	2	1603	2	save filter	english	t	\N	f
 4626	2	1604	2	filter	english	t	\N	f
 4629	2	1605	2	filter overview	english	t	\N	f
-12912	1	2951	3	legt das primäre Schlüsselfeld fest sofern es nicht den Namen "ID" hat. Das Feld muß vom Typ INTEGER sein! Falls das Feld nicht existiert wird auf den Pointer zurückgegriffen.	deutsch	t	140	f
-12911	3	2951	3	\N	Espagñol	f	140	f
+12912	1	2951	3	legt das primÃ¤re SchlÃ¼sselfeld fest sofern es nicht den Namen "ID" hat. Das Feld muÃŸ vom Typ INTEGER sein! Falls das Feld nicht existiert wird auf den Pointer zurÃ¼ckgegriffen.	deutsch	t	140	f
+12911	3	2951	3	\N	EspagÅ„ol	f	140	f
 12914	4	2951	3	\N	francais	f	140	f
 4619	1	1602	2	Filter	deutsch	t	\N	f
 7196	4	1602	2	Capture	francais	f	0	f
-4621	3	1602	2	Schnapschuß	Espagñol	f	\N	f
+4621	3	1602	2	SchnapschuÃŸ	EspagÅ„ol	f	\N	f
 4622	1	1603	2	Filter speichern	deutsch	t	\N	f
 7197	4	1603	2	Sauvegarde la capture	francais	f	0	f
-4624	3	1603	2	neue Filteransicht speichern	Espagñol	f	\N	f
+4624	3	1603	2	neue Filteransicht speichern	EspagÅ„ol	f	\N	f
 4625	1	1604	2	Filter	deutsch	t	\N	f
 7198	4	1604	2	Capture	francais	f	0	f
-4627	3	1604	2	Schnapschuß	Espagñol	f	\N	f
-4628	1	1605	2	Filter Übersicht	deutsch	t	\N	f
+4627	3	1604	2	SchnapschuÃŸ	EspagÅ„ol	f	\N	f
+4628	1	1605	2	Filter Ãœbersicht	deutsch	t	\N	f
 7199	4	1605	2	Vue des captures	francais	f	0	f
-4630	3	1605	2	Schnapschuß Übersicht	Espagñol	f	\N	f
-5711	1	1966	2	Filter veröffentlichen	deutsch	t	\N	f
+4630	3	1605	2	SchnapschuÃŸ Ãœbersicht	EspagÅ„ol	f	\N	f
+5711	1	1966	2	Filter verÃ¶ffentlichen	deutsch	t	\N	f
 7546	4	1966	2	Rendre public une capture	francais	f	0	f
-5713	3	1966	2	Schnappschuß veröffentlichen	Espagñol	f	\N	f
+5713	3	1966	2	SchnappschuÃŸ verÃ¶ffentlichen	EspagÅ„ol	f	\N	f
 5841	1	2009	1	Filter speichern	deutsch	t	0	f
 7589	4	2009	1	Enregistrer capture	francais	f	0	f
-5840	3	2009	1	Guardar instantánea	Espagñol	f	0	f
-5844	1	2010	1	Filter löschen	deutsch	t	0	f
+5840	3	2009	1	Guardar instantÄ¯nea	EspagÅ„ol	f	0	f
+5844	1	2010	1	Filter lÃ¶schen	deutsch	t	0	f
 7590	4	2010	1	Supprimer capture	francais	f	0	f
-5843	3	2010	1	eliminar instantánea	Espagñol	f	0	f
+5843	3	2010	1	eliminar instantÄ¯nea	EspagÅ„ol	f	0	f
 10468	1	2343	3	Filter-Tabellen abgleichen	deutsch	t	154	f
-10470	4	2343	3	tables instantané Syndicate	francais	f	154	f
-10467	3	2343	3	Distribuir tablas de instantáneas	Espagñol	f	154	f
-12182	4	2768	2	instantanés	francais	f	0	f
-12186	4	2769	2	Gérer les instantanés publics	francais	f	0	f
-12183	3	2769	2	Trabajar con instantáneas Públicas	Espagñol	f	0	f
-12244	1	2784	3	veröffentlichte Filter	deutsch	t	210	f
-12246	4	2784	3	instantanés publiés	francais	f	210	f
-12243	3	2784	3	instantáneas publicadas	Espagñol	f	210	f
+10470	4	2343	3	tables instantanÃ© Syndicate	francais	f	154	f
+10467	3	2343	3	Distribuir tablas de instantÄ¯neas	EspagÅ„ol	f	154	f
+12182	4	2768	2	instantanÃ©s	francais	f	0	f
+12186	4	2769	2	GÃ©rer les instantanÃ©s publics	francais	f	0	f
+12183	3	2769	2	Trabajar con instantÄ¯neas PÅ›blicas	EspagÅ„ol	f	0	f
+12244	1	2784	3	verÃ¶ffentlichte Filter	deutsch	t	210	f
+12246	4	2784	3	instantanÃ©s publiÃ©s	francais	f	210	f
+12243	3	2784	3	instantÄ¯neas publicadas	EspagÅ„ol	f	210	f
 12248	1	2785	3	alle Filter	deutsch	t	210	f
-12250	4	2785	3	tous les instantanés	francais	f	210	f
-12247	3	2785	3	todas las instantáneas	Espagñol	f	210	f
+12250	4	2785	3	tous les instantanÃ©s	francais	f	210	f
+12247	3	2785	3	todas las instantÄ¯neas	EspagÅ„ol	f	210	f
 5842	2	2009	1	save filter	english	t	0	f
 5845	2	2010	1	delete filter	english	t	0	f
 10469	2	2343	3	Match filter table	english	t	154	f
-12915	3	2952	2	\N	Espagñol	f	0	f
+12915	3	2952	2	\N	EspagÅ„ol	f	0	f
 12181	2	2768	2	filter	english	t	0	f
 12185	2	2769	2	manage public filter	english	t	0	f
 12245	2	2784	3	public filter	english	t	210	f
 12249	2	2785	3	all filter	english	t	210	f
-12919	3	2953	2	\N	Espagñol	f	0	f
-10476	1	2345	3	Sollen die Filter-Tabellen erneuert werden?\r\nFilter werden auf neue oder fehlende Felder geprüft.	deutsch	t	154	t
-10478	4	2345	3	Si les tables de l'instantané à la retraite? Les instantanés sont vérifiés pour les champs nouveaux ou manquants.	francais	f	154	f
-10475	3	2345	3	Si las tablas de instantáneas que se retiraron? Las instantáneas se comprueban para los campos nuevos o que faltan.	Espagñol	f	154	f
+12919	3	2953	2	\N	EspagÅ„ol	f	0	f
+10476	1	2345	3	Sollen die Filter-Tabellen erneuert werden?\r\nFilter werden auf neue oder fehlende Felder geprÃ¼ft.	deutsch	t	154	t
+10478	4	2345	3	Si les tables de l'instantanÃ© Ä… la retraite? Les instantanÃ©s sont vÃ©rifiÃ©s pour les champs nouveaux ou manquants.	francais	f	154	f
+10475	3	2345	3	Si las tablas de instantÄ¯neas que se retiraron? Las instantÄ¯neas se comprueban para los campos nuevos o que faltan.	EspagÅ„ol	f	154	f
 12918	4	2952	2	\N	francais	f	0	f
 12922	4	2953	2	\N	francais	f	0	f
 437	1	437	2	Schema	deutsch	t	\N	f
@@ -10994,11 +10994,11 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 8389	1	2264	2	Lokale Sprachtabelle	deutsch	t	\N	f
 5477	1	1888	2	Schriftarten	deutsch	t	\N	f
 5480	1	1889	2	Fontmanager	deutsch	t	\N	f
-12184	1	2769	2	Öffentliche Filter verwalten	deutsch	t	0	f
+12184	1	2769	2	Ã–ffentliche Filter verwalten	deutsch	t	0	f
 12909	2	2950	3	primary key	english	t	140	f
 12917	2	2952	2	menueditor	english	t	0	f
-12916	1	2952	2	Menüeditor	deutsch	t	0	f
-12920	1	2953	2	Editor für individuelle menüs	deutsch	t	0	f
+12916	1	2952	2	MenÃ¼editor	deutsch	t	0	f
+12920	1	2953	2	Editor fÃ¼r individuelle menÃ¼s	deutsch	t	0	f
 12921	2	2953	2	editor for individual menus	english	t	0	f
 12913	2	2951	3	set primary key field if not named "ID". Field must be numeric.	english	t	140	f
 10477	2	2345	3	Shall the filter tables be renewed? Filter are checked for new or missing fields. 	english	t	154	f
@@ -11006,21 +11006,21 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 1285	2	106	1	part of fieldcontent 	english	t	19	f
 773	1	773	2	Erweiterte Suche	deutsch	t	\N	f
 774	1	774	2	erweiterte Suche	deutsch	t	\N	f
-7409	4	1825	3	Champs lié	francais	f	121	f
-5288	3	1825	3	vinculado	Espagñol	f	121	f
-12924	1	2954	3	primäres Beschreibungsfeld. Verknüpfungsfeld ist immer 'ID'	deutsch	t	121	f
-12923	3	2954	3	\N	Espagñol	f	121	f
+7409	4	1825	3	Champs liÃ©	francais	f	121	f
+5288	3	1825	3	vinculado	EspagÅ„ol	f	121	f
+12924	1	2954	3	primÃ¤res Beschreibungsfeld. VerknÃ¼pfungsfeld ist immer 'ID'	deutsch	t	121	f
+12923	3	2954	3	\N	EspagÅ„ol	f	121	f
 12926	4	2954	3	\N	francais	f	121	f
-12336	1	2807	3	angezeigte Felder in der Verknüpfungsaansicht	deutsch	t	121	f
-12338	4	2807	3	Les champs affichés dans Verknüpfungsaansicht	francais	f	121	f
-12927	3	2955	3	\N	Espagñol	f	104	f
+12336	1	2807	3	angezeigte Felder in der VerknÃ¼pfungsaansicht	deutsch	t	121	f
+12338	4	2807	3	Les champs affichÃ©s dans VerknÃ¼pfungsaansicht	francais	f	121	f
+12927	3	2955	3	\N	EspagÅ„ol	f	104	f
 12928	1	2955	3	Pflicht	deutsch	t	104	f
 12930	4	2955	3	\N	francais	f	104	f
-12931	3	2956	3	\N	Espagñol	f	104	f
+12931	3	2956	3	\N	EspagÅ„ol	f	104	f
 12932	1	2956	3	Ebene	deutsch	t	104	f
 12934	4	2956	3	\N	francais	f	104	f
 428	1	428	2	Vorlagen	deutsch	t	\N	f
-3145	3	428	2	presentación del informe	Espagñol	f	0	f
+3145	3	428	2	presentaciÃ³n del informe	EspagÅ„ol	f	0	f
 5405	1	1864	2	Crontab	deutsch	t	\N	f
 5408	1	1865	2	System Crontab editieren	deutsch	t	\N	f
 1590	2	428	2	report-template 	english	t	0	f
@@ -11039,574 +11039,574 @@ COPY lmb_lang (id, language_id, element_id, typ, wert, language, edit, lmfile, j
 --
 
 COPY lmb_lang_depend (id, language_id, element_id, typ, wert, language, edit, lmfile, js) FROM stdin;
-100425	1	10106	4	Verleger, Herausgeber, Universität etc.	deutsch	t	ldms_meta:PUBLISHER	f
+100425	1	10106	4	Verleger, Herausgeber, UniversitÃ¤t etc.	deutsch	t	ldms_meta:PUBLISHER	f
 100426	2	10106	4		english	f	ldms_meta:PUBLISHER	f
 100427	4	10106	4		francais	f	ldms_meta:PUBLISHER	f
-100428	3	10107	4		Espagñol	f	ldms_meta:PUBLISHER	f
+100428	3	10107	4		EspagÅ„ol	f	ldms_meta:PUBLISHER	f
 100429	1	10107	4	Herausgeber	deutsch	t	ldms_meta:PUBLISHER	f
 100430	2	10107	4		english	f	ldms_meta:PUBLISHER	f
 100431	4	10107	4		francais	f	ldms_meta:PUBLISHER	f
-100432	3	10108	4		Espagñol	f	ldms_meta:CONTRIBUTORS	f
+100432	3	10108	4		EspagÅ„ol	f	ldms_meta:CONTRIBUTORS	f
 100433	1	10108	4	Name einer weiteren beteiligten Person	deutsch	t	ldms_meta:CONTRIBUTORS	f
 100434	2	10108	4		english	f	ldms_meta:CONTRIBUTORS	f
 100435	4	10108	4		francais	f	ldms_meta:CONTRIBUTORS	f
-100436	3	10109	4		Espagñol	f	ldms_meta:CONTRIBUTORS	f
+100436	3	10109	4		EspagÅ„ol	f	ldms_meta:CONTRIBUTORS	f
 100437	1	10109	4	Mitwirkende	deutsch	t	ldms_meta:CONTRIBUTORS	f
 100438	2	10109	4		english	f	ldms_meta:CONTRIBUTORS	f
 100439	4	10109	4		francais	f	ldms_meta:CONTRIBUTORS	f
-100440	3	10110	4		Espagñol	f	ldms_meta:IDENTIFIER	f
-100441	1	10110	4	(ISBN, ISSN, URL o.ä. des vorliegenden Dokuments betr. eindeutiger Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
+100440	3	10110	4		EspagÅ„ol	f	ldms_meta:IDENTIFIER	f
+100441	1	10110	4	(ISBN, ISSN, URL o.Ã¤. des vorliegenden Dokuments betr. eindeutiger Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
 100442	2	10110	4		english	f	ldms_meta:IDENTIFIER	f
 100443	4	10110	4		francais	f	ldms_meta:IDENTIFIER	f
-100444	3	10111	4		Espagñol	f	ldms_meta:IDENTIFIER	f
+100444	3	10111	4		EspagÅ„ol	f	ldms_meta:IDENTIFIER	f
 100445	1	10111	4	Identifikation	deutsch	t	ldms_meta:IDENTIFIER	f
 100446	2	10111	4		english	f	ldms_meta:IDENTIFIER	f
 100447	4	10111	4		francais	f	ldms_meta:IDENTIFIER	f
-100448	3	10112	4		Espagñol	f	ldms_meta:SOURCE	f
+100448	3	10112	4		EspagÅ„ol	f	ldms_meta:SOURCE	f
 100449	1	10112	4	Werk, gedruckt oder elektronisch, aus dem das vorliegende Dokument stammt	deutsch	t	ldms_meta:SOURCE	f
 100450	2	10112	4		english	f	ldms_meta:SOURCE	f
 100451	4	10112	4		francais	f	ldms_meta:SOURCE	f
-100452	3	10113	4		Espagñol	f	ldms_meta:SOURCE	f
+100452	3	10113	4		EspagÅ„ol	f	ldms_meta:SOURCE	f
 100453	1	10113	4	Quelle	deutsch	t	ldms_meta:SOURCE	f
 100454	2	10113	4		english	f	ldms_meta:SOURCE	f
 100455	4	10113	4		francais	f	ldms_meta:SOURCE	f
-100456	3	10114	4		Espagñol	f	ldms_meta:LANGUAGE	f
+100456	3	10114	4		EspagÅ„ol	f	ldms_meta:LANGUAGE	f
 100457	1	10114	4	Sprache des Inhalts des Dokuments	deutsch	t	ldms_meta:LANGUAGE	f
 100458	2	10114	4		english	f	ldms_meta:LANGUAGE	f
 100459	4	10114	4		francais	f	ldms_meta:LANGUAGE	f
-100460	3	10115	4		Espagñol	f	ldms_meta:LANGUAGE	f
+100460	3	10115	4		EspagÅ„ol	f	ldms_meta:LANGUAGE	f
 100461	1	10115	4	Sprache	deutsch	t	ldms_meta:LANGUAGE	f
 100462	2	10115	4		english	f	ldms_meta:LANGUAGE	f
 100463	4	10115	4		francais	f	ldms_meta:LANGUAGE	f
-100464	3	10116	4		Espagñol	f	ldms_meta:INSTRUCTIONS	f
+100464	3	10116	4		EspagÅ„ol	f	ldms_meta:INSTRUCTIONS	f
 100465	1	10116	4	Hinweise	deutsch	t	ldms_meta:INSTRUCTIONS	f
 100466	2	10116	4		english	f	ldms_meta:INSTRUCTIONS	f
 100467	4	10116	4		francais	f	ldms_meta:INSTRUCTIONS	f
-100468	3	10117	4		Espagñol	f	ldms_meta:INSTRUCTIONS	f
+100468	3	10117	4		EspagÅ„ol	f	ldms_meta:INSTRUCTIONS	f
 100469	1	10117	4	Hinweise	deutsch	t	ldms_meta:INSTRUCTIONS	f
 100470	2	10117	4		english	f	ldms_meta:INSTRUCTIONS	f
 100471	4	10117	4		francais	f	ldms_meta:INSTRUCTIONS	f
-100472	3	10118	4		Espagñol	f	ldms_meta:URGENCY	f
+100472	3	10118	4		EspagÅ„ol	f	ldms_meta:URGENCY	f
 100473	1	10118	4	Dringlichkeit	deutsch	t	ldms_meta:URGENCY	f
 100474	2	10118	4		english	f	ldms_meta:URGENCY	f
 100475	4	10118	4		francais	f	ldms_meta:URGENCY	f
-100476	3	10119	4		Espagñol	f	ldms_meta:URGENCY	f
+100476	3	10119	4		EspagÅ„ol	f	ldms_meta:URGENCY	f
 100477	1	10119	4	Dringlichkeit	deutsch	t	ldms_meta:URGENCY	f
 100478	2	10119	4		english	f	ldms_meta:URGENCY	f
 100479	4	10119	4		francais	f	ldms_meta:URGENCY	f
-100480	3	10120	4		Espagñol	f	ldms_meta:CATEGORY	f
+100480	3	10120	4		EspagÅ„ol	f	ldms_meta:CATEGORY	f
 100481	1	10120	4	Kategorie	deutsch	t	ldms_meta:CATEGORY	f
 100482	2	10120	4		english	f	ldms_meta:CATEGORY	f
 100483	4	10120	4		francais	f	ldms_meta:CATEGORY	f
-100484	3	10121	4		Espagñol	f	ldms_meta:CATEGORY	f
+100484	3	10121	4		EspagÅ„ol	f	ldms_meta:CATEGORY	f
 100485	1	10121	4	Kategorie	deutsch	t	ldms_meta:CATEGORY	f
 100486	2	10121	4		english	f	ldms_meta:CATEGORY	f
 100487	4	10121	4		francais	f	ldms_meta:CATEGORY	f
-100488	3	10122	4		Espagñol	f	ldms_meta:TITLE	f
+100488	3	10122	4		EspagÅ„ol	f	ldms_meta:TITLE	f
 100489	1	10122	4	Autor	deutsch	t	ldms_meta:TITLE	f
 100490	2	10122	4		english	f	ldms_meta:TITLE	f
 100491	4	10122	4		francais	f	ldms_meta:TITLE	f
-100492	3	10123	4		Espagñol	f	ldms_meta:TITLE	f
+100492	3	10123	4		EspagÅ„ol	f	ldms_meta:TITLE	f
 100493	1	10123	4	Autor	deutsch	t	ldms_meta:TITLE	f
 100494	2	10123	4		english	f	ldms_meta:TITLE	f
 100495	4	10123	4		francais	f	ldms_meta:TITLE	f
-100496	3	10124	4		Espagñol	f	ldms_meta:CREDIT	f
+100496	3	10124	4		EspagÅ„ol	f	ldms_meta:CREDIT	f
 100497	1	10124	4	Bildrechte	deutsch	t	ldms_meta:CREDIT	f
 100498	2	10124	4		english	f	ldms_meta:CREDIT	f
 100499	4	10124	4		francais	f	ldms_meta:CREDIT	f
-100500	3	10125	4		Espagñol	f	ldms_meta:CREDIT	f
+100500	3	10125	4		EspagÅ„ol	f	ldms_meta:CREDIT	f
 100501	1	10125	4	Bildrechte	deutsch	t	ldms_meta:CREDIT	f
 100502	2	10125	4		english	f	ldms_meta:CREDIT	f
 100503	4	10125	4		francais	f	ldms_meta:CREDIT	f
-100504	3	10126	4		Espagñol	f	ldms_meta:CITY	f
+100504	3	10126	4		EspagÅ„ol	f	ldms_meta:CITY	f
 100505	1	10126	4	Ort	deutsch	t	ldms_meta:CITY	f
 100506	2	10126	4		english	f	ldms_meta:CITY	f
 100507	4	10126	4		francais	f	ldms_meta:CITY	f
-100508	3	10127	4		Espagñol	f	ldms_meta:CITY	f
+100508	3	10127	4		EspagÅ„ol	f	ldms_meta:CITY	f
 100509	1	10127	4	Ort	deutsch	t	ldms_meta:CITY	f
 100510	2	10127	4		english	f	ldms_meta:CITY	f
 100511	4	10127	4		francais	f	ldms_meta:CITY	f
-100512	3	10128	4		Espagñol	f	ldms_meta:STATE	f
+100512	3	10128	4		EspagÅ„ol	f	ldms_meta:STATE	f
 100513	1	10128	4	Staat/Provinz	deutsch	t	ldms_meta:STATE	f
 100514	2	10128	4		english	f	ldms_meta:STATE	f
 100515	4	10128	4		francais	f	ldms_meta:STATE	f
-100516	3	10129	4		Espagñol	f	ldms_meta:STATE	f
+100516	3	10129	4		EspagÅ„ol	f	ldms_meta:STATE	f
 100517	1	10129	4	Staat/Provinz	deutsch	t	ldms_meta:STATE	f
 100518	2	10129	4		english	f	ldms_meta:STATE	f
 100519	4	10129	4		francais	f	ldms_meta:STATE	f
-100520	3	10130	4		Espagñol	f	ldms_meta:COUNTRY	f
+100520	3	10130	4		EspagÅ„ol	f	ldms_meta:COUNTRY	f
 100521	1	10130	4	Land	deutsch	t	ldms_meta:COUNTRY	f
 100522	2	10130	4		english	f	ldms_meta:COUNTRY	f
 100523	4	10130	4		francais	f	ldms_meta:COUNTRY	f
-100524	3	10131	4		Espagñol	f	ldms_meta:COUNTRY	f
+100524	3	10131	4		EspagÅ„ol	f	ldms_meta:COUNTRY	f
 100525	1	10131	4	Land	deutsch	t	ldms_meta:COUNTRY	f
 100526	2	10131	4		english	f	ldms_meta:COUNTRY	f
 100527	4	10131	4		francais	f	ldms_meta:COUNTRY	f
-100528	3	10132	4		Espagñol	f	ldms_meta:TRANSMISSION	f
+100528	3	10132	4		EspagÅ„ol	f	ldms_meta:TRANSMISSION	f
 100529	1	10132	4	Aufgeber-Code	deutsch	t	ldms_meta:TRANSMISSION	f
 100530	2	10132	4		english	f	ldms_meta:TRANSMISSION	f
 100531	4	10132	4		francais	f	ldms_meta:TRANSMISSION	f
-100532	3	10133	4		Espagñol	f	ldms_meta:TRANSMISSION	f
+100532	3	10133	4		EspagÅ„ol	f	ldms_meta:TRANSMISSION	f
 100533	1	10133	4	Aufgeber-Code	deutsch	t	ldms_meta:TRANSMISSION	f
 100534	2	10133	4		english	f	ldms_meta:TRANSMISSION	f
 100535	4	10133	4		francais	f	ldms_meta:TRANSMISSION	f
-100536	3	10134	4		Espagñol	f	ldms_meta:ORIGINNAME	f
+100536	3	10134	4		EspagÅ„ol	f	ldms_meta:ORIGINNAME	f
 100537	1	10134	4	Objektname	deutsch	t	ldms_meta:ORIGINNAME	f
 100538	2	10134	4		english	f	ldms_meta:ORIGINNAME	f
 100539	4	10134	4		francais	f	ldms_meta:ORIGINNAME	f
-100540	3	10135	4		Espagñol	f	ldms_meta:ORIGINNAME	f
+100540	3	10135	4		EspagÅ„ol	f	ldms_meta:ORIGINNAME	f
 100541	1	10135	4	Objektname	deutsch	t	ldms_meta:ORIGINNAME	f
 100542	2	10135	4		english	f	ldms_meta:ORIGINNAME	f
 100543	4	10135	4		francais	f	ldms_meta:ORIGINNAME	f
-100544	3	10136	4		Espagñol	f	ldms_meta:COPYRIGHT	f
+100544	3	10136	4		EspagÅ„ol	f	ldms_meta:COPYRIGHT	f
 100545	1	10136	4	Vermerk	deutsch	t	ldms_meta:COPYRIGHT	f
 100546	2	10136	4		english	f	ldms_meta:COPYRIGHT	f
 100547	4	10136	4		francais	f	ldms_meta:COPYRIGHT	f
-100548	3	10137	4		Espagñol	f	ldms_meta:COPYRIGHT	f
+100548	3	10137	4		EspagÅ„ol	f	ldms_meta:COPYRIGHT	f
 100549	1	10137	4	Vermerk	deutsch	t	ldms_meta:COPYRIGHT	f
 100550	2	10137	4		english	f	ldms_meta:COPYRIGHT	f
 100551	4	10137	4		francais	f	ldms_meta:COPYRIGHT	f
-100552	3	10138	4		Espagñol	f	ldms_meta:CREATEDATE	f
+100552	3	10138	4		EspagÅ„ol	f	ldms_meta:CREATEDATE	f
 100553	1	10138	4	Erstellt am	deutsch	t	ldms_meta:CREATEDATE	f
 100554	2	10138	4		english	f	ldms_meta:CREATEDATE	f
 100555	4	10138	4		francais	f	ldms_meta:CREATEDATE	f
-100556	3	10139	4		Espagñol	f	ldms_meta:CREATEDATE	f
+100556	3	10139	4		EspagÅ„ol	f	ldms_meta:CREATEDATE	f
 100557	1	10139	4	Erstellt am	deutsch	t	ldms_meta:CREATEDATE	f
 100558	2	10139	4		english	f	ldms_meta:CREATEDATE	f
 100559	4	10139	4		francais	f	ldms_meta:CREATEDATE	f
-100560	3	10140	4		Espagñol	f	ldms_meta:SUBCATEGORY	f
+100560	3	10140	4		EspagÅ„ol	f	ldms_meta:SUBCATEGORY	f
 100561	1	10140	4	Unterkategorien	deutsch	t	ldms_meta:SUBCATEGORY	f
 100562	2	10140	4		english	f	ldms_meta:SUBCATEGORY	f
 100563	4	10140	4		francais	f	ldms_meta:SUBCATEGORY	f
-100564	3	10141	4		Espagñol	f	ldms_meta:SUBCATEGORY	f
+100564	3	10141	4		EspagÅ„ol	f	ldms_meta:SUBCATEGORY	f
 100565	1	10141	4	Unterkategorien	deutsch	t	ldms_meta:SUBCATEGORY	f
 100566	2	10141	4		english	f	ldms_meta:SUBCATEGORY	f
 100567	4	10141	4		francais	f	ldms_meta:SUBCATEGORY	f
-100076	3	10019	4		Espagñol	f	ldms_files:TABID	f
+100076	3	10019	4		EspagÅ„ol	f	ldms_files:TABID	f
 100077	1	10019	4	TABID	deutsch	t	ldms_files:TABID	f
 100078	2	10019	4		english	f	ldms_files:TABID	f
 100079	4	10019	4		francais	f	ldms_files:TABID	f
-100080	3	10020	4		Espagñol	f	ldms_files:TABID	f
+100080	3	10020	4		EspagÅ„ol	f	ldms_files:TABID	f
 100081	1	10020	4	TABID	deutsch	t	ldms_files:TABID	f
 100082	2	10020	4		english	f	ldms_files:TABID	f
 100083	4	10020	4		francais	f	ldms_files:TABID	f
-100000	3	10000	4		Espagñol	f	Tablegroup: Limbassys	f
+100000	3	10000	4		EspagÅ„ol	f	Tablegroup: Limbassys	f
 100001	1	10000	4	Limbassys	deutsch	t	Tablegroup: Limbassys	f
 100002	2	10000	4		english	f	Tablegroup: Limbassys	f
 100003	4	10000	4		francais	f	Tablegroup: Limbassys	f
-100004	3	10001	4		Espagñol	f	Tablegroup: Limbas Systemtabellen	f
+100004	3	10001	4		EspagÅ„ol	f	Tablegroup: Limbas Systemtabellen	f
 100005	1	10001	4	Limbas Systemtabellen	deutsch	t	Tablegroup: Limbas Systemtabellen	f
 100006	2	10001	4		english	f	Tablegroup: Limbas Systemtabellen	f
 100007	4	10001	4		francais	f	Tablegroup: Limbas Systemtabellen	f
-100008	3	10002	4		Espagñol	f	Table: ldms_files	f
+100008	3	10002	4		EspagÅ„ol	f	Table: ldms_files	f
 100009	1	10002	4	Files	deutsch	t	Table: ldms_files	f
 100010	2	10002	4		english	f	Table: ldms_files	f
 100011	4	10002	4		francais	f	Table: ldms_files	f
-100012	3	10003	4		Espagñol	f	ldms_files:LMSECTION	f
+100012	3	10003	4		EspagÅ„ol	f	ldms_files:LMSECTION	f
 100013	1	10003	4	Attribute	deutsch	t	ldms_files:LMSECTION	f
 100014	2	10003	4		english	f	ldms_files:LMSECTION	f
 100015	4	10003	4		francais	f	ldms_files:LMSECTION	f
-100016	3	10004	4		Espagñol	f	ldms_files:LMSECTION	f
+100016	3	10004	4		EspagÅ„ol	f	ldms_files:LMSECTION	f
 100017	1	10004	4	Attribute	deutsch	t	ldms_files:LMSECTION	f
 100018	2	10004	4		english	f	ldms_files:LMSECTION	f
 100019	4	10004	4		francais	f	ldms_files:LMSECTION	f
-100020	3	10005	4		Espagñol	f	ldms_files:ERSTGROUP	f
+100020	3	10005	4		EspagÅ„ol	f	ldms_files:ERSTGROUP	f
 100021	1	10005	4	ERSTGROUP	deutsch	t	ldms_files:ERSTGROUP	f
 100022	2	10005	4		english	f	ldms_files:ERSTGROUP	f
 100023	4	10005	4		francais	f	ldms_files:ERSTGROUP	f
-100024	3	10006	4		Espagñol	f	ldms_files:ERSTGROUP	f
+100024	3	10006	4		EspagÅ„ol	f	ldms_files:ERSTGROUP	f
 100025	1	10006	4	ERSTGROUP	deutsch	t	ldms_files:ERSTGROUP	f
 100026	2	10006	4		english	f	ldms_files:ERSTGROUP	f
 100027	4	10006	4		francais	f	ldms_files:ERSTGROUP	f
-100028	3	10007	4		Espagñol	f	ldms_files:ERSTDATUM	f
+100028	3	10007	4		EspagÅ„ol	f	ldms_files:ERSTDATUM	f
 100029	1	10007	4	Erstellt am	deutsch	t	ldms_files:ERSTDATUM	f
 100030	2	10007	4		english	f	ldms_files:ERSTDATUM	f
 100031	4	10007	4		francais	f	ldms_files:ERSTDATUM	f
-100032	3	10008	4		Espagñol	f	ldms_files:ERSTDATUM	f
+100032	3	10008	4		EspagÅ„ol	f	ldms_files:ERSTDATUM	f
 100033	1	10008	4	Erstellt am	deutsch	t	ldms_files:ERSTDATUM	f
 100034	2	10008	4		english	f	ldms_files:ERSTDATUM	f
 100035	4	10008	4		francais	f	ldms_files:ERSTDATUM	f
-100036	3	10009	4		Espagñol	f	ldms_files:ERSTUSER	f
+100036	3	10009	4		EspagÅ„ol	f	ldms_files:ERSTUSER	f
 100037	1	10009	4	Erstellt von	deutsch	t	ldms_files:ERSTUSER	f
 100038	2	10009	4		english	f	ldms_files:ERSTUSER	f
 100039	4	10009	4		francais	f	ldms_files:ERSTUSER	f
-100040	3	10010	4		Espagñol	f	ldms_files:ERSTUSER	f
+100040	3	10010	4		EspagÅ„ol	f	ldms_files:ERSTUSER	f
 100041	1	10010	4	Erstellt von	deutsch	t	ldms_files:ERSTUSER	f
 100042	2	10010	4		english	f	ldms_files:ERSTUSER	f
 100043	4	10010	4		francais	f	ldms_files:ERSTUSER	f
-100044	3	10011	4		Espagñol	f	ldms_files:LEVEL	f
+100044	3	10011	4		EspagÅ„ol	f	ldms_files:LEVEL	f
 100045	1	10011	4	LEVEL	deutsch	t	ldms_files:LEVEL	f
 100046	2	10011	4		english	f	ldms_files:LEVEL	f
 100047	4	10011	4		francais	f	ldms_files:LEVEL	f
-100048	3	10012	4		Espagñol	f	ldms_files:LEVEL	f
+100048	3	10012	4		EspagÅ„ol	f	ldms_files:LEVEL	f
 100049	1	10012	4	LEVEL	deutsch	t	ldms_files:LEVEL	f
 100050	2	10012	4		english	f	ldms_files:LEVEL	f
 100051	4	10012	4		francais	f	ldms_files:LEVEL	f
-100052	3	10013	4		Espagñol	f	ldms_files:TYP	f
+100052	3	10013	4		EspagÅ„ol	f	ldms_files:TYP	f
 100053	1	10013	4	TYP	deutsch	t	ldms_files:TYP	f
 100054	2	10013	4		english	f	ldms_files:TYP	f
 100055	4	10013	4		francais	f	ldms_files:TYP	f
-100056	3	10014	4		Espagñol	f	ldms_files:TYP	f
+100056	3	10014	4		EspagÅ„ol	f	ldms_files:TYP	f
 100057	1	10014	4	TYP	deutsch	t	ldms_files:TYP	f
 100058	2	10014	4		english	f	ldms_files:TYP	f
 100059	4	10014	4		francais	f	ldms_files:TYP	f
-100060	3	10015	4		Espagñol	f	ldms_files:SORT	f
+100060	3	10015	4		EspagÅ„ol	f	ldms_files:SORT	f
 100061	1	10015	4	Sortierung	deutsch	t	ldms_files:SORT	f
 100062	2	10015	4		english	f	ldms_files:SORT	f
 100063	4	10015	4		francais	f	ldms_files:SORT	f
-100064	3	10016	4		Espagñol	f	ldms_files:SORT	f
+100064	3	10016	4		EspagÅ„ol	f	ldms_files:SORT	f
 100065	1	10016	4	Sortierung	deutsch	t	ldms_files:SORT	f
 100066	2	10016	4		english	f	ldms_files:SORT	f
 100067	4	10016	4		francais	f	ldms_files:SORT	f
-100068	3	10017	4		Espagñol	f	ldms_files:DATID	f
+100068	3	10017	4		EspagÅ„ol	f	ldms_files:DATID	f
 100069	1	10017	4	DATID	deutsch	t	ldms_files:DATID	f
 100070	2	10017	4		english	f	ldms_files:DATID	f
 100071	4	10017	4		francais	f	ldms_files:DATID	f
-100072	3	10018	4		Espagñol	f	ldms_files:DATID	f
+100072	3	10018	4		EspagÅ„ol	f	ldms_files:DATID	f
 100073	1	10018	4	DATID	deutsch	t	ldms_files:DATID	f
 100074	2	10018	4		english	f	ldms_files:DATID	f
 100075	4	10018	4		francais	f	ldms_files:DATID	f
-100084	3	10021	4		Espagñol	f	ldms_files:FIELDID	f
+100084	3	10021	4		EspagÅ„ol	f	ldms_files:FIELDID	f
 100085	1	10021	4	FIELDID	deutsch	t	ldms_files:FIELDID	f
 100086	2	10021	4		english	f	ldms_files:FIELDID	f
 100087	4	10021	4		francais	f	ldms_files:FIELDID	f
-100088	3	10022	4		Espagñol	f	ldms_files:FIELDID	f
+100088	3	10022	4		EspagÅ„ol	f	ldms_files:FIELDID	f
 100089	1	10022	4	FIELDID	deutsch	t	ldms_files:FIELDID	f
 100090	2	10022	4		english	f	ldms_files:FIELDID	f
 100091	4	10022	4		francais	f	ldms_files:FIELDID	f
-100092	3	10023	4		Espagñol	f	ldms_files:NAME	f
+100092	3	10023	4		EspagÅ„ol	f	ldms_files:NAME	f
 100093	1	10023	4	NAME	deutsch	t	ldms_files:NAME	f
 100094	2	10023	4		english	f	ldms_files:NAME	f
 100095	4	10023	4		francais	f	ldms_files:NAME	f
-100096	3	10024	4		Espagñol	f	ldms_files:NAME	f
+100096	3	10024	4		EspagÅ„ol	f	ldms_files:NAME	f
 100097	1	10024	4	NAME	deutsch	t	ldms_files:NAME	f
 100098	2	10024	4		english	f	ldms_files:NAME	f
 100099	4	10024	4		francais	f	ldms_files:NAME	f
-100100	3	10025	4		Espagñol	f	ldms_files:SECNAME	f
+100100	3	10025	4		EspagÅ„ol	f	ldms_files:SECNAME	f
 100101	1	10025	4	Phys.name	deutsch	t	ldms_files:SECNAME	f
 100102	2	10025	4		english	f	ldms_files:SECNAME	f
 100103	4	10025	4		francais	f	ldms_files:SECNAME	f
-100104	3	10026	4		Espagñol	f	ldms_files:SECNAME	f
+100104	3	10026	4		EspagÅ„ol	f	ldms_files:SECNAME	f
 100105	1	10026	4	Phys.name	deutsch	t	ldms_files:SECNAME	f
 100106	2	10026	4		english	f	ldms_files:SECNAME	f
 100107	4	10026	4		francais	f	ldms_files:SECNAME	f
-100108	3	10027	4		Espagñol	f	ldms_files:MIMETYPE	f
+100108	3	10027	4		EspagÅ„ol	f	ldms_files:MIMETYPE	f
 100109	1	10027	4	Mimetype	deutsch	t	ldms_files:MIMETYPE	f
 100110	2	10027	4		english	f	ldms_files:MIMETYPE	f
 100111	4	10027	4		francais	f	ldms_files:MIMETYPE	f
-100112	3	10028	4		Espagñol	f	ldms_files:MIMETYPE	f
+100112	3	10028	4		EspagÅ„ol	f	ldms_files:MIMETYPE	f
 100113	1	10028	4	Mimetype	deutsch	t	ldms_files:MIMETYPE	f
 100114	2	10028	4		english	f	ldms_files:MIMETYPE	f
 100115	4	10028	4		francais	f	ldms_files:MIMETYPE	f
-100116	3	10029	4		Espagñol	f	ldms_files:SIZE	f
-100117	1	10029	4	Größe	deutsch	t	ldms_files:SIZE	f
+100116	3	10029	4		EspagÅ„ol	f	ldms_files:SIZE	f
+100117	1	10029	4	GrÃ¶ÃŸe	deutsch	t	ldms_files:SIZE	f
 100118	2	10029	4		english	f	ldms_files:SIZE	f
 100119	4	10029	4		francais	f	ldms_files:SIZE	f
-100120	3	10030	4		Espagñol	f	ldms_files:SIZE	f
-100121	1	10030	4	Größe	deutsch	t	ldms_files:SIZE	f
+100120	3	10030	4		EspagÅ„ol	f	ldms_files:SIZE	f
+100121	1	10030	4	GrÃ¶ÃŸe	deutsch	t	ldms_files:SIZE	f
 100122	2	10030	4		english	f	ldms_files:SIZE	f
 100123	4	10030	4		francais	f	ldms_files:SIZE	f
-100124	3	10031	4		Espagñol	f	ldms_files:CHECKED	f
-100125	1	10031	4	geprüft	deutsch	t	ldms_files:CHECKED	f
+100124	3	10031	4		EspagÅ„ol	f	ldms_files:CHECKED	f
+100125	1	10031	4	geprÃ¼ft	deutsch	t	ldms_files:CHECKED	f
 100126	2	10031	4		english	f	ldms_files:CHECKED	f
 100127	4	10031	4		francais	f	ldms_files:CHECKED	f
-100128	3	10032	4		Espagñol	f	ldms_files:CHECKED	f
-100129	1	10032	4	geprüft	deutsch	t	ldms_files:CHECKED	f
+100128	3	10032	4		EspagÅ„ol	f	ldms_files:CHECKED	f
+100129	1	10032	4	geprÃ¼ft	deutsch	t	ldms_files:CHECKED	f
 100130	2	10032	4		english	f	ldms_files:CHECKED	f
 100131	4	10032	4		francais	f	ldms_files:CHECKED	f
-100132	3	10033	4		Espagñol	f	ldms_files:PERM	f
+100132	3	10033	4		EspagÅ„ol	f	ldms_files:PERM	f
 100133	1	10033	4	freigegeben	deutsch	t	ldms_files:PERM	f
 100134	2	10033	4		english	f	ldms_files:PERM	f
 100135	4	10033	4		francais	f	ldms_files:PERM	f
-100136	3	10034	4		Espagñol	f	ldms_files:PERM	f
+100136	3	10034	4		EspagÅ„ol	f	ldms_files:PERM	f
 100137	1	10034	4	freigegeben	deutsch	t	ldms_files:PERM	f
 100138	2	10034	4		english	f	ldms_files:PERM	f
 100139	4	10034	4		francais	f	ldms_files:PERM	f
-100140	3	10035	4		Espagñol	f	ldms_files:LMLOCK	f
+100140	3	10035	4		EspagÅ„ol	f	ldms_files:LMLOCK	f
 100141	1	10035	4	gesperrt	deutsch	t	ldms_files:LMLOCK	f
 100142	2	10035	4		english	f	ldms_files:LMLOCK	f
 100143	4	10035	4		francais	f	ldms_files:LMLOCK	f
-100144	3	10036	4		Espagñol	f	ldms_files:LMLOCK	f
+100144	3	10036	4		EspagÅ„ol	f	ldms_files:LMLOCK	f
 100145	1	10036	4	gesperrt	deutsch	t	ldms_files:LMLOCK	f
 100146	2	10036	4		english	f	ldms_files:LMLOCK	f
 100147	4	10036	4		francais	f	ldms_files:LMLOCK	f
-100148	3	10037	4		Espagñol	f	ldms_files:LOCKUSER	f
+100148	3	10037	4		EspagÅ„ol	f	ldms_files:LOCKUSER	f
 100149	1	10037	4	LOCKUSER	deutsch	t	ldms_files:LOCKUSER	f
 100150	2	10037	4		english	f	ldms_files:LOCKUSER	f
 100151	4	10037	4		francais	f	ldms_files:LOCKUSER	f
-100152	3	10038	4		Espagñol	f	ldms_files:LOCKUSER	f
+100152	3	10038	4		EspagÅ„ol	f	ldms_files:LOCKUSER	f
 100153	1	10038	4	LOCKUSER	deutsch	t	ldms_files:LOCKUSER	f
 100154	2	10038	4		english	f	ldms_files:LOCKUSER	f
 100155	4	10038	4		francais	f	ldms_files:LOCKUSER	f
-100156	3	10039	4		Espagñol	f	ldms_files:CHECKUSER	f
+100156	3	10039	4		EspagÅ„ol	f	ldms_files:CHECKUSER	f
 100157	1	10039	4	CHECKUSER	deutsch	t	ldms_files:CHECKUSER	f
 100158	2	10039	4		english	f	ldms_files:CHECKUSER	f
 100159	4	10039	4		francais	f	ldms_files:CHECKUSER	f
-100160	3	10040	4		Espagñol	f	ldms_files:CHECKUSER	f
+100160	3	10040	4		EspagÅ„ol	f	ldms_files:CHECKUSER	f
 100161	1	10040	4	CHECKUSER	deutsch	t	ldms_files:CHECKUSER	f
 100162	2	10040	4		english	f	ldms_files:CHECKUSER	f
 100163	4	10040	4		francais	f	ldms_files:CHECKUSER	f
-100164	3	10041	4		Espagñol	f	ldms_files:PERMUSER	f
+100164	3	10041	4		EspagÅ„ol	f	ldms_files:PERMUSER	f
 100165	1	10041	4	PERMUSER	deutsch	t	ldms_files:PERMUSER	f
 100166	2	10041	4		english	f	ldms_files:PERMUSER	f
 100167	4	10041	4		francais	f	ldms_files:PERMUSER	f
-100168	3	10042	4		Espagñol	f	ldms_files:PERMUSER	f
+100168	3	10042	4		EspagÅ„ol	f	ldms_files:PERMUSER	f
 100169	1	10042	4	PERMUSER	deutsch	t	ldms_files:PERMUSER	f
 100170	2	10042	4		english	f	ldms_files:PERMUSER	f
 100171	4	10042	4		francais	f	ldms_files:PERMUSER	f
-100172	3	10043	4		Espagñol	f	ldms_files:PERMDATE	f
+100172	3	10043	4		EspagÅ„ol	f	ldms_files:PERMDATE	f
 100173	1	10043	4	PERMDATE	deutsch	t	ldms_files:PERMDATE	f
 100174	2	10043	4		english	f	ldms_files:PERMDATE	f
 100175	4	10043	4		francais	f	ldms_files:PERMDATE	f
-100176	3	10044	4		Espagñol	f	ldms_files:PERMDATE	f
+100176	3	10044	4		EspagÅ„ol	f	ldms_files:PERMDATE	f
 100177	1	10044	4	PERMDATE	deutsch	t	ldms_files:PERMDATE	f
 100178	2	10044	4		english	f	ldms_files:PERMDATE	f
 100179	4	10044	4		francais	f	ldms_files:PERMDATE	f
-100180	3	10045	4		Espagñol	f	ldms_files:CHECKDATE	f
+100180	3	10045	4		EspagÅ„ol	f	ldms_files:CHECKDATE	f
 100181	1	10045	4	CHECKDATE	deutsch	t	ldms_files:CHECKDATE	f
 100182	2	10045	4		english	f	ldms_files:CHECKDATE	f
 100183	4	10045	4		francais	f	ldms_files:CHECKDATE	f
-100184	3	10046	4		Espagñol	f	ldms_files:CHECKDATE	f
+100184	3	10046	4		EspagÅ„ol	f	ldms_files:CHECKDATE	f
 100185	1	10046	4	CHECKDATE	deutsch	t	ldms_files:CHECKDATE	f
 100186	2	10046	4		english	f	ldms_files:CHECKDATE	f
 100187	4	10046	4		francais	f	ldms_files:CHECKDATE	f
-100188	3	10047	4		Espagñol	f	ldms_files:LOCKDATE	f
+100188	3	10047	4		EspagÅ„ol	f	ldms_files:LOCKDATE	f
 100189	1	10047	4	LOCKDATE	deutsch	t	ldms_files:LOCKDATE	f
 100190	2	10047	4		english	f	ldms_files:LOCKDATE	f
 100191	4	10047	4		francais	f	ldms_files:LOCKDATE	f
-100192	3	10048	4		Espagñol	f	ldms_files:LOCKDATE	f
+100192	3	10048	4		EspagÅ„ol	f	ldms_files:LOCKDATE	f
 100193	1	10048	4	LOCKDATE	deutsch	t	ldms_files:LOCKDATE	f
 100194	2	10048	4		english	f	ldms_files:LOCKDATE	f
 100195	4	10048	4		francais	f	ldms_files:LOCKDATE	f
-100196	3	10049	4		Espagñol	f	ldms_files:VID	f
+100196	3	10049	4		EspagÅ„ol	f	ldms_files:VID	f
 100197	1	10049	4	VID	deutsch	t	ldms_files:VID	f
 100198	2	10049	4		english	f	ldms_files:VID	f
 100199	4	10049	4		francais	f	ldms_files:VID	f
-100200	3	10050	4		Espagñol	f	ldms_files:VID	f
+100200	3	10050	4		EspagÅ„ol	f	ldms_files:VID	f
 100201	1	10050	4	VID	deutsch	t	ldms_files:VID	f
 100202	2	10050	4		english	f	ldms_files:VID	f
 100203	4	10050	4		francais	f	ldms_files:VID	f
-100204	3	10051	4		Espagñol	f	ldms_files:VACT	f
+100204	3	10051	4		EspagÅ„ol	f	ldms_files:VACT	f
 100205	1	10051	4	VACT	deutsch	t	ldms_files:VACT	f
 100206	2	10051	4		english	f	ldms_files:VACT	f
 100207	4	10051	4		francais	f	ldms_files:VACT	f
-100208	3	10052	4		Espagñol	f	ldms_files:VACT	f
+100208	3	10052	4		EspagÅ„ol	f	ldms_files:VACT	f
 100209	1	10052	4	VACT	deutsch	t	ldms_files:VACT	f
 100210	2	10052	4		english	f	ldms_files:VACT	f
 100211	4	10052	4		francais	f	ldms_files:VACT	f
-100212	3	10053	4		Espagñol	f	ldms_files:VDESC	f
+100212	3	10053	4		EspagÅ„ol	f	ldms_files:VDESC	f
 100213	1	10053	4	VDESC	deutsch	t	ldms_files:VDESC	f
 100214	2	10053	4		english	f	ldms_files:VDESC	f
 100215	4	10053	4		francais	f	ldms_files:VDESC	f
-100216	3	10054	4		Espagñol	f	ldms_files:VDESC	f
+100216	3	10054	4		EspagÅ„ol	f	ldms_files:VDESC	f
 100217	1	10054	4	VDESC	deutsch	t	ldms_files:VDESC	f
 100218	2	10054	4		english	f	ldms_files:VDESC	f
 100219	4	10054	4		francais	f	ldms_files:VDESC	f
-100220	3	10055	4		Espagñol	f	ldms_files:VPID	f
+100220	3	10055	4		EspagÅ„ol	f	ldms_files:VPID	f
 100221	1	10055	4	VPID	deutsch	t	ldms_files:VPID	f
 100222	2	10055	4		english	f	ldms_files:VPID	f
 100223	4	10055	4		francais	f	ldms_files:VPID	f
-100224	3	10056	4		Espagñol	f	ldms_files:VPID	f
+100224	3	10056	4		EspagÅ„ol	f	ldms_files:VPID	f
 100225	1	10056	4	VPID	deutsch	t	ldms_files:VPID	f
 100226	2	10056	4		english	f	ldms_files:VPID	f
 100227	4	10056	4		francais	f	ldms_files:VPID	f
-100228	3	10057	4		Espagñol	f	ldms_files:THUMB_OK	f
+100228	3	10057	4		EspagÅ„ol	f	ldms_files:THUMB_OK	f
 100229	1	10057	4	Vorschau	deutsch	t	ldms_files:THUMB_OK	f
 100230	2	10057	4		english	f	ldms_files:THUMB_OK	f
 100231	4	10057	4		francais	f	ldms_files:THUMB_OK	f
-100232	3	10058	4		Espagñol	f	ldms_files:THUMB_OK	f
+100232	3	10058	4		EspagÅ„ol	f	ldms_files:THUMB_OK	f
 100233	1	10058	4	Vorschau	deutsch	t	ldms_files:THUMB_OK	f
 100234	2	10058	4		english	f	ldms_files:THUMB_OK	f
 100235	4	10058	4		francais	f	ldms_files:THUMB_OK	f
-100236	3	10059	4		Espagñol	f	ldms_files:META	f
+100236	3	10059	4		EspagÅ„ol	f	ldms_files:META	f
 100237	1	10059	4	META	deutsch	t	ldms_files:META	f
 100238	2	10059	4		english	f	ldms_files:META	f
 100239	4	10059	4		francais	f	ldms_files:META	f
-100240	3	10060	4		Espagñol	f	ldms_files:META	f
+100240	3	10060	4		EspagÅ„ol	f	ldms_files:META	f
 100241	1	10060	4	META	deutsch	t	ldms_files:META	f
 100242	2	10060	4		english	f	ldms_files:META	f
 100243	4	10060	4		francais	f	ldms_files:META	f
-100244	3	10061	4		Espagñol	f	ldms_files:INFO	f
+100244	3	10061	4		EspagÅ„ol	f	ldms_files:INFO	f
 100245	1	10061	4	Info	deutsch	t	ldms_files:INFO	f
 100246	2	10061	4		english	f	ldms_files:INFO	f
 100247	4	10061	4		francais	f	ldms_files:INFO	f
-100248	3	10062	4		Espagñol	f	ldms_files:INFO	f
+100248	3	10062	4		EspagÅ„ol	f	ldms_files:INFO	f
 100249	1	10062	4	Info	deutsch	t	ldms_files:INFO	f
 100250	2	10062	4		english	f	ldms_files:INFO	f
 100251	4	10062	4		francais	f	ldms_files:INFO	f
-100252	3	10063	4		Espagñol	f	ldms_files:CONTENT	f
+100252	3	10063	4		EspagÅ„ol	f	ldms_files:CONTENT	f
 100253	1	10063	4	Document-referenz	deutsch	t	ldms_files:CONTENT	f
 100254	2	10063	4		english	f	ldms_files:CONTENT	f
 100255	4	10063	4		francais	f	ldms_files:CONTENT	f
-100256	3	10064	4		Espagñol	f	ldms_files:CONTENT	f
+100256	3	10064	4		EspagÅ„ol	f	ldms_files:CONTENT	f
 100257	1	10064	4	Content	deutsch	t	ldms_files:CONTENT	f
 100258	2	10064	4		english	f	ldms_files:CONTENT	f
 100259	4	10064	4		francais	f	ldms_files:CONTENT	f
-100260	3	10065	4		Espagñol	f	ldms_files:MD5	f
+100260	3	10065	4		EspagÅ„ol	f	ldms_files:MD5	f
 100261	1	10065	4	MD5	deutsch	t	ldms_files:MD5	f
 100262	2	10065	4		english	f	ldms_files:MD5	f
 100263	4	10065	4		francais	f	ldms_files:MD5	f
-100264	3	10066	4		Espagñol	f	ldms_files:MD5	f
+100264	3	10066	4		EspagÅ„ol	f	ldms_files:MD5	f
 100265	1	10066	4	MD5	deutsch	t	ldms_files:MD5	f
 100266	2	10066	4		english	f	ldms_files:MD5	f
 100267	4	10066	4		francais	f	ldms_files:MD5	f
-100268	3	10067	4		Espagñol	f	Table: ldms_meta	f
+100268	3	10067	4		EspagÅ„ol	f	Table: ldms_meta	f
 100269	1	10067	4	Files_Meta	deutsch	t	Table: ldms_meta	f
 100270	2	10067	4		english	f	Table: ldms_meta	f
 100271	4	10067	4		francais	f	Table: ldms_meta	f
-100272	3	10068	4		Espagñol	f	ldms_meta:LMSECTION	f
+100272	3	10068	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100273	1	10068	4	Grafik-Format	deutsch	t	ldms_meta:LMSECTION	f
 100274	2	10068	4		english	f	ldms_meta:LMSECTION	f
 100275	4	10068	4		francais	f	ldms_meta:LMSECTION	f
-100276	3	10069	4		Espagñol	f	ldms_meta:LMSECTION	f
+100276	3	10069	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100277	1	10069	4	Grafik-Format	deutsch	t	ldms_meta:LMSECTION	f
 100278	2	10069	4		english	f	ldms_meta:LMSECTION	f
 100279	4	10069	4		francais	f	ldms_meta:LMSECTION	f
-100280	3	10070	4		Espagñol	f	ldms_meta:LMSECTION	f
+100280	3	10070	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100281	1	10070	4	Objektbeschreibung	deutsch	t	ldms_meta:LMSECTION	f
 100282	2	10070	4		english	f	ldms_meta:LMSECTION	f
 100283	4	10070	4		francais	f	ldms_meta:LMSECTION	f
-100284	3	10071	4		Espagñol	f	ldms_meta:LMSECTION	f
+100284	3	10071	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100285	1	10071	4	Objektbeschreibung	deutsch	t	ldms_meta:LMSECTION	f
 100286	2	10071	4		english	f	ldms_meta:LMSECTION	f
 100287	4	10071	4		francais	f	ldms_meta:LMSECTION	f
-100288	3	10072	4		Espagñol	f	ldms_meta:LMSECTION	f
-100289	1	10072	4	Stichwörter	deutsch	t	ldms_meta:LMSECTION	f
+100288	3	10072	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
+100289	1	10072	4	StichwÃ¶rter	deutsch	t	ldms_meta:LMSECTION	f
 100290	2	10072	4		english	f	ldms_meta:LMSECTION	f
 100291	4	10072	4		francais	f	ldms_meta:LMSECTION	f
-100292	3	10073	4		Espagñol	f	ldms_meta:LMSECTION	f
-100293	1	10073	4	Stichwörter	deutsch	t	ldms_meta:LMSECTION	f
+100292	3	10073	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
+100293	1	10073	4	StichwÃ¶rter	deutsch	t	ldms_meta:LMSECTION	f
 100294	2	10073	4		english	f	ldms_meta:LMSECTION	f
 100295	4	10073	4		francais	f	ldms_meta:LMSECTION	f
-100296	3	10074	4		Espagñol	f	ldms_meta:LMSECTION	f
+100296	3	10074	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100297	1	10074	4	Kategorien	deutsch	t	ldms_meta:LMSECTION	f
 100298	2	10074	4		english	f	ldms_meta:LMSECTION	f
 100299	4	10074	4		francais	f	ldms_meta:LMSECTION	f
-100300	3	10075	4		Espagñol	f	ldms_meta:LMSECTION	f
+100300	3	10075	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100301	1	10075	4	Kategorien	deutsch	t	ldms_meta:LMSECTION	f
 100302	2	10075	4		english	f	ldms_meta:LMSECTION	f
 100303	4	10075	4		francais	f	ldms_meta:LMSECTION	f
-100304	3	10076	4		Espagñol	f	ldms_meta:LMSECTION	f
+100304	3	10076	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100305	1	10076	4	Bildrechte	deutsch	t	ldms_meta:LMSECTION	f
 100306	2	10076	4		english	f	ldms_meta:LMSECTION	f
 100307	4	10076	4		francais	f	ldms_meta:LMSECTION	f
-100308	3	10077	4		Espagñol	f	ldms_meta:LMSECTION	f
+100308	3	10077	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100309	1	10077	4	Bildrechte	deutsch	t	ldms_meta:LMSECTION	f
 100310	2	10077	4		english	f	ldms_meta:LMSECTION	f
 100311	4	10077	4		francais	f	ldms_meta:LMSECTION	f
-100312	3	10078	4		Espagñol	f	ldms_meta:LMSECTION	f
+100312	3	10078	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100313	1	10078	4	Herkunft	deutsch	t	ldms_meta:LMSECTION	f
 100314	2	10078	4		english	f	ldms_meta:LMSECTION	f
 100315	4	10078	4		francais	f	ldms_meta:LMSECTION	f
-100316	3	10079	4		Espagñol	f	ldms_meta:LMSECTION	f
+100316	3	10079	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100317	1	10079	4	Herkunft	deutsch	t	ldms_meta:LMSECTION	f
 100318	2	10079	4		english	f	ldms_meta:LMSECTION	f
 100319	4	10079	4		francais	f	ldms_meta:LMSECTION	f
-100320	3	10080	4		Espagñol	f	ldms_meta:LMSECTION	f
+100320	3	10080	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100321	1	10080	4	Copyright	deutsch	t	ldms_meta:LMSECTION	f
 100322	2	10080	4		english	f	ldms_meta:LMSECTION	f
 100323	4	10080	4		francais	f	ldms_meta:LMSECTION	f
-100324	3	10081	4		Espagñol	f	ldms_meta:LMSECTION	f
+100324	3	10081	4		EspagÅ„ol	f	ldms_meta:LMSECTION	f
 100325	1	10081	4	Copyright	deutsch	t	ldms_meta:LMSECTION	f
 100326	2	10081	4		english	f	ldms_meta:LMSECTION	f
 100327	4	10081	4		francais	f	ldms_meta:LMSECTION	f
-100328	3	10082	4		Espagñol	f	ldms_meta:TYPE	f
+100328	3	10082	4		EspagÅ„ol	f	ldms_meta:TYPE	f
 100329	1	10082	4	Farbschema	deutsch	t	ldms_meta:TYPE	f
 100330	2	10082	4		english	f	ldms_meta:TYPE	f
 100331	4	10082	4		francais	f	ldms_meta:TYPE	f
-100332	3	10083	4		Espagñol	f	ldms_meta:TYPE	f
+100332	3	10083	4		EspagÅ„ol	f	ldms_meta:TYPE	f
 100333	1	10083	4	Farbschema	deutsch	t	ldms_meta:TYPE	f
 100334	2	10083	4		english	f	ldms_meta:TYPE	f
 100335	4	10083	4		francais	f	ldms_meta:TYPE	f
-100336	3	10084	4		Espagñol	f	ldms_meta:FTYPE	f
+100336	3	10084	4		EspagÅ„ol	f	ldms_meta:FTYPE	f
 100337	1	10084	4	Art des Dokuments	deutsch	t	ldms_meta:FTYPE	f
 100338	2	10084	4		english	f	ldms_meta:FTYPE	f
 100339	4	10084	4		francais	f	ldms_meta:FTYPE	f
-100340	3	10085	4		Espagñol	f	ldms_meta:FTYPE	f
+100340	3	10085	4		EspagÅ„ol	f	ldms_meta:FTYPE	f
 100341	1	10085	4	Typ	deutsch	t	ldms_meta:FTYPE	f
 100342	2	10085	4		english	f	ldms_meta:FTYPE	f
 100343	4	10085	4		francais	f	ldms_meta:FTYPE	f
-100344	3	10086	4		Espagñol	f	ldms_meta:NAME2	f
+100344	3	10086	4		EspagÅ„ol	f	ldms_meta:NAME2	f
 100345	1	10086	4	Zusatz zum Namen	deutsch	t	ldms_meta:NAME2	f
 100346	2	10086	4		english	f	ldms_meta:NAME2	f
 100347	4	10086	4		francais	f	ldms_meta:NAME2	f
-100348	3	10087	4		Espagñol	f	ldms_meta:NAME2	f
-100349	1	10087	4	Überschrift	deutsch	t	ldms_meta:NAME2	f
+100348	3	10087	4		EspagÅ„ol	f	ldms_meta:NAME2	f
+100349	1	10087	4	Ãœberschrift	deutsch	t	ldms_meta:NAME2	f
 100350	2	10087	4		english	f	ldms_meta:NAME2	f
 100351	4	10087	4		francais	f	ldms_meta:NAME2	f
-100352	3	10088	4		Espagñol	f	ldms_meta:FORMAT	f
+100352	3	10088	4		EspagÅ„ol	f	ldms_meta:FORMAT	f
 100353	1	10088	4	Format	deutsch	t	ldms_meta:FORMAT	f
 100354	2	10088	4		english	f	ldms_meta:FORMAT	f
 100355	4	10088	4		francais	f	ldms_meta:FORMAT	f
-100356	3	10089	4		Espagñol	f	ldms_meta:FORMAT	f
+100356	3	10089	4		EspagÅ„ol	f	ldms_meta:FORMAT	f
 100357	1	10089	4	Format	deutsch	t	ldms_meta:FORMAT	f
 100358	2	10089	4		english	f	ldms_meta:FORMAT	f
 100359	4	10089	4		francais	f	ldms_meta:FORMAT	f
-100360	3	10090	4		Espagñol	f	ldms_meta:GEOMETRY	f
+100360	3	10090	4		EspagÅ„ol	f	ldms_meta:GEOMETRY	f
 100361	1	10090	4	Geometrie	deutsch	t	ldms_meta:GEOMETRY	f
 100362	2	10090	4		english	f	ldms_meta:GEOMETRY	f
 100363	4	10090	4		francais	f	ldms_meta:GEOMETRY	f
-100364	3	10091	4		Espagñol	f	ldms_meta:GEOMETRY	f
+100364	3	10091	4		EspagÅ„ol	f	ldms_meta:GEOMETRY	f
 100365	1	10091	4	Geometrie	deutsch	t	ldms_meta:GEOMETRY	f
 100366	2	10091	4		english	f	ldms_meta:GEOMETRY	f
 100367	4	10091	4		francais	f	ldms_meta:GEOMETRY	f
-100368	3	10092	4		Espagñol	f	ldms_meta:RESOLUTION	f
-100369	1	10092	4	Auflösung	deutsch	t	ldms_meta:RESOLUTION	f
+100368	3	10092	4		EspagÅ„ol	f	ldms_meta:RESOLUTION	f
+100369	1	10092	4	AuflÃ¶sung	deutsch	t	ldms_meta:RESOLUTION	f
 100370	2	10092	4		english	f	ldms_meta:RESOLUTION	f
 100371	4	10092	4		francais	f	ldms_meta:RESOLUTION	f
-100372	3	10093	4		Espagñol	f	ldms_meta:RESOLUTION	f
-100373	1	10093	4	Auflösung	deutsch	t	ldms_meta:RESOLUTION	f
+100372	3	10093	4		EspagÅ„ol	f	ldms_meta:RESOLUTION	f
+100373	1	10093	4	AuflÃ¶sung	deutsch	t	ldms_meta:RESOLUTION	f
 100374	2	10093	4		english	f	ldms_meta:RESOLUTION	f
 100375	4	10093	4		francais	f	ldms_meta:RESOLUTION	f
-100376	3	10094	4		Espagñol	f	ldms_meta:DEPTH	f
+100376	3	10094	4		EspagÅ„ol	f	ldms_meta:DEPTH	f
 100377	1	10094	4	Farbtiefe	deutsch	t	ldms_meta:DEPTH	f
 100378	2	10094	4		english	f	ldms_meta:DEPTH	f
 100379	4	10094	4		francais	f	ldms_meta:DEPTH	f
-100380	3	10095	4		Espagñol	f	ldms_meta:DEPTH	f
+100380	3	10095	4		EspagÅ„ol	f	ldms_meta:DEPTH	f
 100381	1	10095	4	Farbtiefe	deutsch	t	ldms_meta:DEPTH	f
 100382	2	10095	4		english	f	ldms_meta:DEPTH	f
 100383	4	10095	4		francais	f	ldms_meta:DEPTH	f
-100384	3	10096	4		Espagñol	f	ldms_meta:COLORS	f
+100384	3	10096	4		EspagÅ„ol	f	ldms_meta:COLORS	f
 100385	1	10096	4	Farben	deutsch	t	ldms_meta:COLORS	f
 100386	2	10096	4		english	f	ldms_meta:COLORS	f
 100387	4	10096	4		francais	f	ldms_meta:COLORS	f
-100388	3	10097	4		Espagñol	f	ldms_meta:COLORS	f
+100388	3	10097	4		EspagÅ„ol	f	ldms_meta:COLORS	f
 100389	1	10097	4	Farben	deutsch	t	ldms_meta:COLORS	f
 100390	2	10097	4		english	f	ldms_meta:COLORS	f
 100391	4	10097	4		francais	f	ldms_meta:COLORS	f
-100392	3	10098	4		Espagñol	f	ldms_meta:CREATOR	f
+100392	3	10098	4		EspagÅ„ol	f	ldms_meta:CREATOR	f
 100393	1	10098	4	Name des Verfassers (Familienname, Vorname)	deutsch	t	ldms_meta:CREATOR	f
 100394	2	10098	4		english	f	ldms_meta:CREATOR	f
 100395	4	10098	4		francais	f	ldms_meta:CREATOR	f
-100396	3	10099	4		Espagñol	f	ldms_meta:CREATOR	f
+100396	3	10099	4		EspagÅ„ol	f	ldms_meta:CREATOR	f
 100397	1	10099	4	Verfasser	deutsch	t	ldms_meta:CREATOR	f
 100398	2	10099	4		english	f	ldms_meta:CREATOR	f
 100399	4	10099	4		francais	f	ldms_meta:CREATOR	f
-100400	3	10100	4		Espagñol	f	ldms_meta:SUBJECT	f
+100400	3	10100	4		EspagÅ„ol	f	ldms_meta:SUBJECT	f
 100401	1	10100	4	Stichworte zum Thema des Dokuments, mehrere getrennt durch Komma	deutsch	t	ldms_meta:SUBJECT	f
 100402	2	10100	4		english	f	ldms_meta:SUBJECT	f
 100403	4	10100	4		francais	f	ldms_meta:SUBJECT	f
-100404	3	10101	4		Espagñol	f	ldms_meta:SUBJECT	f
-100405	1	10101	4	Schlagwörter	deutsch	t	ldms_meta:SUBJECT	f
+100404	3	10101	4		EspagÅ„ol	f	ldms_meta:SUBJECT	f
+100405	1	10101	4	SchlagwÃ¶rter	deutsch	t	ldms_meta:SUBJECT	f
 100406	2	10101	4		english	f	ldms_meta:SUBJECT	f
 100407	4	10101	4		francais	f	ldms_meta:SUBJECT	f
-100408	3	10102	4		Espagñol	f	ldms_meta:CLASSIFICATION	f
+100408	3	10102	4		EspagÅ„ol	f	ldms_meta:CLASSIFICATION	f
 100409	1	10102	4	Notationen zum Thema des Dokuments, mehrere getrennt durch Komma	deutsch	t	ldms_meta:CLASSIFICATION	f
 100410	2	10102	4		english	f	ldms_meta:CLASSIFICATION	f
 100411	4	10102	4		francais	f	ldms_meta:CLASSIFICATION	f
-100412	3	10103	4		Espagñol	f	ldms_meta:CLASSIFICATION	f
+100412	3	10103	4		EspagÅ„ol	f	ldms_meta:CLASSIFICATION	f
 100413	1	10103	4	Klassifikation	deutsch	t	ldms_meta:CLASSIFICATION	f
 100414	2	10103	4		english	f	ldms_meta:CLASSIFICATION	f
 100415	4	10103	4		francais	f	ldms_meta:CLASSIFICATION	f
-100416	3	10104	4		Espagñol	f	ldms_meta:DESCRIPTION	f
+100416	3	10104	4		EspagÅ„ol	f	ldms_meta:DESCRIPTION	f
 100417	1	10104	4	Abstrakt, Beschreibung des Inhalts	deutsch	t	ldms_meta:DESCRIPTION	f
 100418	2	10104	4		english	f	ldms_meta:DESCRIPTION	f
 100419	4	10104	4		francais	f	ldms_meta:DESCRIPTION	f
-100420	3	10105	4		Espagñol	f	ldms_meta:DESCRIPTION	f
+100420	3	10105	4		EspagÅ„ol	f	ldms_meta:DESCRIPTION	f
 100421	1	10105	4	Beschreibung	deutsch	t	ldms_meta:DESCRIPTION	f
 100422	2	10105	4		english	f	ldms_meta:DESCRIPTION	f
 100423	4	10105	4		francais	f	ldms_meta:DESCRIPTION	f
-100424	3	10106	4		Espagñol	f	ldms_meta:PUBLISHER	f
+100424	3	10106	4		EspagÅ„ol	f	ldms_meta:PUBLISHER	f
 \.
 
 
@@ -12656,7 +12656,7 @@ COPY lmb_umgvar (id, sort, form_name, norm, beschreibung, category) FROM stdin;
 136	140	LDAP_defaultGroup	\N	default LIMBAS maingroup of all LDAP users	1900
 124	1	report_calc_output	xls	report output format of type calc (xls/xlsx/CSV)	2820
 138	150	LDAP_useSSL	0	use LDAP over SSL	1900
-25	13	charset	ISO-8859-1	charset	1895
+25	13	charset	UTF-8	charset	1895
 140	152	use_phpmailer	1	use PHPMailer for sendmail	2818
 137	140	debug_messages	0	store all messages in messages.log	1995
 89	102	read_metadata	jpg,jpeg,tiff,pdf,gif	read metadata from file (jpg,jpeg,tiff,pdf,gif OR 1 for all)	1899
