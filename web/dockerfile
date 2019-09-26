@@ -21,6 +21,7 @@ RUN sed -i 's/DocumentRoot ".*"/DocumentRoot "\/opt\/openlimbas\/dependent"/g' /
 
 # database connection config
 ADD include_db.lib /opt/openlimbas/dependent/inc/include_db.lib
+RUN chown apache /opt/openlimbas/dependent/inc/include_db.lib
 
 # unpack demo extensions
 RUN tar xzf /opt/openlimbas/dependent/EXTENSIONS/demo.tar.gz -C /opt/openlimbas/dependent/EXTENSIONS
