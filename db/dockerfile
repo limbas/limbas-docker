@@ -1,7 +1,0 @@
-FROM postgres
-MAINTAINER Limbas GmbH <info@limbas.com>
-
-# add limbas demo data, will be imported automatically
-ADD demo.sql /docker-entrypoint-initdb.d/import.sql
-
-CMD ["postgres"]
