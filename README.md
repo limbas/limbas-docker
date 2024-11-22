@@ -5,8 +5,8 @@
 Introduction
 ============
 
-[Limbas](https://github.com/limbas/limbas) is a database framework for creating database-driven business applications.
-As a graphical database front-end, it enables the efficient processing of data stocks and the flexible development of comfortable database applications.
+[Limbas](https://github.com/limbas/limbas) is a low-code database framework for creating database-driven business applications.
+As a graphical database front-end, it enables the efficient processing of data stocks and the flexible development of comfortable database applications with hardly any programming knowledge.
 
 With the help of docker-compose, you have a ready-to-use version of Limbas within a few seconds.
 
@@ -18,10 +18,13 @@ Usage (docker-compose, including PostgreSQL)
 > docker-compose up
 ```
 
-Limbas will be available for usage at http://localhost:8000
+Limbas will be available for configuration at http://localhost:8000
 
-User: admin\
-Pass: limbas
+Note: For live operation, it is recommended that a specific version number is added to the images instead of ‘latest’.
+
+**Fully installed Limbas:**\
+It is possible to fully install Limbas via auto-installation.\
+For details see [https://hub.docker.com/r/limbas/limbas](https://hub.docker.com/r/limbas/limbas)
 
 Usage (with your custom database)
 ------------------------------------

@@ -10,10 +10,16 @@ services:
       POSTGRES_PASSWORD: limbaspass
       POSTGRES_DB: openlimbas
       POSTGRES_INITDB_ARGS: '--locale=C --encoding=UTF8'
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U limbasuser -d openlimbas' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   
   limbas_web:
     depends_on:
-      - limbas_pgsql
+      limbas_pgsql:
+        condition: service_healthy
     image: limbas/limbas:latest
     ports:
       - "8000:80"
@@ -25,6 +31,7 @@ services:
       - temp:/var/www/html/openlimbas/dependent/TEMP
       - inc:/var/www/html/openlimbas/dependent/inc
       - backup:/var/www/html/openlimbas/dependent/BACKUP
+      - localassets:/var/www/html/openlimbas/public/localassets
     environment:
       LIMBAS_DB_HOST: limbas_pgsql
 
@@ -36,4 +43,5 @@ volumes:
   temp:
   inc:
   backup:
+  localassets:
   postgres-data:
